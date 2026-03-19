@@ -1,8 +1,11 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import PageShell from '@/components/PageShell';
 import { BlurFade } from '@/components/magicui/blur-fade';
 import { ScrollReveal } from '@/components/magicui/scroll-reveal';
+
+const GradientStrips = dynamic(() => import('@/components/magicui/gradient-strips').then(m => m.GradientStrips), { ssr: false });
 
 const features = [
   { title: 'Headcount Tracking', desc: 'Real-time worker count across zones. Know exactly who is where at any moment.' },
@@ -14,7 +17,12 @@ const features = [
 export default function AnalyticsPage() {
   return (
     <PageShell>
-      <section className="mx-auto max-w-[72rem] px-6 pb-24 md:px-12">
+      {/* Gradient strips background */}
+      <div className="pointer-events-none fixed inset-0 z-0 opacity-15" style={{ maskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 70%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 70%, transparent 100%)' }}>
+        <GradientStrips colors={['#f59e0b', '#d97706', '#92400e', '#78350f']} shape="hill" barCount={6} speed={0.3} direction="vertical" />
+      </div>
+
+      <section className="relative z-[1] mx-auto max-w-[72rem] px-6 pb-24 md:px-12">
         <BlurFade delay={0.1} duration={0.6} blur="8px" offset={16}>
           <p className="font-mono-accent text-[1.1rem] uppercase tracking-[0.14em] text-amber-400/60 mb-8">Solutions / Analytics</p>
         </BlurFade>
@@ -30,7 +38,7 @@ export default function AnalyticsPage() {
         </BlurFade>
       </section>
 
-      <section className="mx-auto max-w-[72rem] px-6 py-24 md:px-12 border-t border-white/10">
+      <section className="relative z-[1] mx-auto max-w-[72rem] px-6 py-24 md:px-12 border-t border-white/10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {features.map((f, i) => (
             <ScrollReveal key={f.title} variant="fade-up" delay={i * 0.1} distance={50}>
@@ -43,7 +51,7 @@ export default function AnalyticsPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[72rem] px-6 py-16 md:px-12">
+      <section className="relative z-[1] mx-auto max-w-[72rem] px-6 py-16 md:px-12">
         <ScrollReveal variant="fade-right" staggerChildren={true} stagger={0.08}>
           <a href="/solutions/zone-detection" className="btn-kenesis-outline inline-block mr-6">← Zone Detection</a>
           <a href="/solutions/ppe-compliance" className="btn-kenesis-outline inline-block">PPE Compliance →</a>

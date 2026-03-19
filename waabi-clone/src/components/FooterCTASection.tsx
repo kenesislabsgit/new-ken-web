@@ -4,8 +4,9 @@ import dynamic from 'next/dynamic';
 import { ScrollReveal } from '@/components/magicui/scroll-reveal';
 import { TextReveal } from '@/components/magicui/text-reveal';
 
-// Dynamic import to avoid SSR issues with Three.js
+// Dynamic imports to avoid SSR issues with WebGL
 const GLSLHills = dynamic(() => import('./GLSLHills'), { ssr: false });
+
 
 /* ── Data ── */
 
@@ -97,17 +98,12 @@ export default function FooterCTASection() {
           </div>
         </div>
 
-        {/* Large watermark logo */}
+        {/* Large watermark logo — MBF Neo Wave text */}
         <div className="relative mx-auto max-w-[72rem] px-[2.4rem] pb-[4rem] md:px-[4.8rem]">
           <ScrollReveal variant="blur-in" duration={1.5}>
-            <div className="flex items-end justify-end">
-              <span
-                className="font-logo text-[12rem] font-normal leading-[0.85] tracking-[0.08em] uppercase text-white/[0.04] md:text-[20rem] select-none"
-                aria-hidden="true"
-              >
-                kenesis
-              </span>
-            </div>
+            <p className="text-right font-logo text-[clamp(5rem,12vw,10rem)] leading-none tracking-[0.06em] text-white/[0.06] select-none uppercase">
+              kenesis
+            </p>
           </ScrollReveal>
         </div>
 

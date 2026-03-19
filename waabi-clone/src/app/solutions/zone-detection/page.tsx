@@ -1,8 +1,11 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import PageShell from '@/components/PageShell';
 import { BlurFade } from '@/components/magicui/blur-fade';
 import { ScrollReveal } from '@/components/magicui/scroll-reveal';
+
+const ShaderLines = dynamic(() => import('@/components/magicui/shader-lines').then(m => m.ShaderLines), { ssr: false });
 
 const features = [
   { title: 'Restricted Areas', desc: 'Mark zones on any camera feed. AI monitors 24/7 and flags unauthorized entry instantly.' },
@@ -13,7 +16,12 @@ const features = [
 export default function ZoneDetectionPage() {
   return (
     <PageShell>
-      <section className="mx-auto max-w-[72rem] px-6 pb-24 md:px-12">
+      {/* Shader background */}
+      <div className="pointer-events-none fixed inset-0 z-0 opacity-20" style={{ maskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 70%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 70%, transparent 100%)' }}>
+        <ShaderLines color="#f59e0b" speed={0.4} density={10} intensity={0.6} />
+      </div>
+
+      <section className="relative z-[1] mx-auto max-w-[72rem] px-6 pb-24 md:px-12">
         <BlurFade delay={0.1} duration={0.6} blur="8px" offset={16}>
           <p className="font-mono-accent text-[1.1rem] uppercase tracking-[0.14em] text-amber-400/60 mb-8">Solutions / Zone Detection</p>
         </BlurFade>
@@ -29,7 +37,7 @@ export default function ZoneDetectionPage() {
         </BlurFade>
       </section>
 
-      <section className="mx-auto max-w-[72rem] px-6 py-24 md:px-12 border-t border-white/10">
+      <section className="relative z-[1] mx-auto max-w-[72rem] px-6 py-24 md:px-12 border-t border-white/10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {features.map((f, i) => (
             <ScrollReveal key={f.title} variant="clip-up" delay={i * 0.1}>
@@ -42,7 +50,7 @@ export default function ZoneDetectionPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[72rem] px-6 py-16 md:px-12">
+      <section className="relative z-[1] mx-auto max-w-[72rem] px-6 py-16 md:px-12">
         <ScrollReveal variant="fade-right" staggerChildren={true} stagger={0.08}>
           <a href="/solutions/ppe-compliance" className="btn-kenesis-outline inline-block mr-6">← PPE Compliance</a>
           <a href="/solutions/analytics" className="btn-kenesis-outline inline-block">Analytics →</a>

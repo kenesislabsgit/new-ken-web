@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import dynamic from 'next/dynamic';
 import { FlickeringGrid } from '@/components/magicui/flickering-grid';
 import { TextReveal } from '@/components/magicui/text-reveal';
 import gsap from 'gsap';
@@ -8,6 +9,11 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { prefersReducedMotion } from '@/lib/animations';
 
 gsap.registerPlugin(ScrollTrigger);
+
+const LiquidMetalLogo = dynamic(
+  () => import('@/components/magicui/liquid-metal-logo').then(m => ({ default: m.LiquidMetalLogo })),
+  { ssr: false }
+);
 
 export default function TextInterludeSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -58,6 +64,25 @@ export default function TextInterludeSection() {
         maxOpacity={0.06}
         flickerChance={0.1}
       />
+
+      {/* Liquid metal logo — centered background accent */}
+      <div className="absolute inset-0 z-[0] flex items-center justify-center pointer-events-none opacity-[0.07]">
+        <LiquidMetalLogo
+          src="/kenesis-icon.png"
+          width={500}
+          height={500}
+          colorBack="#0a0a0b"
+          colorTint="#f59e0b"
+          speed={0.3}
+          distortion={0.03}
+          shiftRed={0.1}
+          shiftBlue={0.1}
+          softness={0.25}
+          contour={0.25}
+          angle={45}
+          scale={0.8}
+        />
+      </div>
 
       <div className="relative z-[1] flex flex-col items-center">
       {/* Decorative line */}

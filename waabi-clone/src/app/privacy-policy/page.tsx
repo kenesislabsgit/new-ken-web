@@ -1,14 +1,25 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import PageShell from '@/components/PageShell';
 import { BlurFade } from '@/components/magicui/blur-fade';
 import { ScrollReveal } from '@/components/magicui/scroll-reveal';
 import { TextReveal } from '@/components/magicui/text-reveal';
 
+const GradientStrips = dynamic(
+  () => import('@/components/magicui/gradient-strips').then(m => ({ default: m.GradientStrips })),
+  { ssr: false }
+);
+
 export default function PrivacyPolicyPage() {
   return (
     <PageShell>
-      <section className="mx-auto max-w-[56rem] px-6 pb-24 md:px-12">
+      {/* Gradient strips background */}
+      <div className="pointer-events-none fixed inset-0 z-0 opacity-10" style={{ maskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 70%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 70%, transparent 100%)' }}>
+        <GradientStrips colors={["#f59e0b", "#78350f", "#451a03", "#1c1917"]} shape="valley" barCount={10} />
+      </div>
+
+      <section className="relative z-[1] mx-auto max-w-[56rem] px-6 pb-24 md:px-12">
         <BlurFade delay={0.05} duration={0.4} blur="4px" offset={8}>
           <p className="font-mono-accent text-[1.1rem] uppercase tracking-[0.14em] text-white/30 mb-8">Legal</p>
         </BlurFade>

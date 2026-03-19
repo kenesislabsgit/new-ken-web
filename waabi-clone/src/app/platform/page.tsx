@@ -1,7 +1,13 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import PageShell from '@/components/PageShell';
 import { BlurFade } from '@/components/magicui/blur-fade';
+
+const ShaderGradient = dynamic(
+  () => import('@/components/magicui/shader-gradient').then(m => ({ default: m.ShaderGradient })),
+  { ssr: false }
+);
 import { BorderBeam } from '@/components/magicui/border-beam';
 import { NumberTicker } from '@/components/magicui/number-ticker';
 import { Particles } from '@/components/magicui/particles';
@@ -12,8 +18,13 @@ import { TextReveal } from '@/components/magicui/text-reveal';
 export default function PlatformPage() {
   return (
     <PageShell>
+      {/* Shader gradient background */}
+      <div className="pointer-events-none fixed inset-0 z-0 opacity-30 blur-[2px]" style={{ maskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 70%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 70%, transparent 100%)' }}>
+        <ShaderGradient colorA="#f59e0b" colorB="#92400e" speed={0.05} intensity={1.3} barCount={100} />
+      </div>
+
       {/* ── Hero: big statement, no fluff ── */}
-      <section className="relative mx-auto max-w-[72rem] px-6 pb-40 md:px-12">
+      <section className="relative z-[1] mx-auto max-w-[72rem] px-6 pb-40 md:px-12">
         <Particles className="absolute inset-0 z-0 pointer-events-none" quantity={30} color="#f59e0b" size={0.3} staticity={80} ease={80} />
         <div className="relative z-[1]">
           <BlurFade delay={0.1} duration={0.5} blur="6px" offset={12}>
@@ -36,7 +47,7 @@ export default function PlatformPage() {
       </section>
 
       {/* ── Visual: circular gallery showing the product in action ── */}
-      <section className="py-24 overflow-hidden">
+      <section className="relative z-[1] py-24 overflow-hidden">
         <BlurFade delay={0} duration={0.6} blur="8px" offset={14} inView inViewMargin="-60px">
           <CircularGallery
             className="h-[380px] mx-auto"
@@ -55,7 +66,7 @@ export default function PlatformPage() {
       </section>
 
       {/* ── Numbers strip: full-bleed, breaks the content width ── */}
-      <section className="border-y border-white/[0.06] py-16">
+      <section className="relative z-[1] border-y border-white/[0.06] py-16">
         <div className="mx-auto max-w-[80rem] px-6 md:px-12 grid grid-cols-2 md:grid-cols-4 gap-y-10">
           {[
             { val: 30, suffix: '', label: 'Camera feeds per device' },
@@ -81,7 +92,7 @@ export default function PlatformPage() {
       </section>
 
       {/* ── Pipeline: horizontal flow, not numbered cards ── */}
-      <section className="mx-auto max-w-[72rem] px-6 py-32 md:px-12">
+      <section className="relative z-[1] mx-auto max-w-[72rem] px-6 py-32 md:px-12">
         <BlurFade delay={0} duration={0.5} blur="6px" offset={10} inView inViewMargin="-80px">
           <h2 className="font-display text-[clamp(2rem,4vw,3rem)] font-semibold tracking-[-0.02em] text-white/90 mb-4">From camera to alert in one hop</h2>
           <p className="text-[1.1rem] text-white/30 mb-16 max-w-2xl">No staging servers, no cloud queues, no round trips. Your RTSP feeds go in one end, contextual alerts come out the other.</p>
@@ -113,7 +124,7 @@ export default function PlatformPage() {
       </section>
 
       {/* ── Specs: dense table, not cards ── */}
-      <section className="mx-auto max-w-[72rem] px-6 py-32 md:px-12 border-t border-white/[0.06]">
+      <section className="relative z-[1] mx-auto max-w-[72rem] px-6 py-32 md:px-12 border-t border-white/[0.06]">
         <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-16">
           <div>
             <TextReveal
@@ -150,7 +161,7 @@ export default function PlatformPage() {
       </section>
 
       {/* ── Why this matters: editorial paragraphs, not feature cards ── */}
-      <section className="mx-auto max-w-[72rem] px-6 py-32 md:px-12 border-t border-white/[0.06]">
+      <section className="relative z-[1] mx-auto max-w-[72rem] px-6 py-32 md:px-12 border-t border-white/[0.06]">
         <TextReveal
           variant="word-slide"
           as="h2"
@@ -192,7 +203,7 @@ export default function PlatformPage() {
       </section>
 
       {/* ── Pricing: simple, asymmetric ── */}
-      <section className="mx-auto max-w-[72rem] px-6 py-32 md:px-12 border-t border-white/[0.06]">
+      <section className="relative z-[1] mx-auto max-w-[72rem] px-6 py-32 md:px-12 border-t border-white/[0.06]">
         <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-16 items-start">
           <div>
             <BlurFade delay={0} duration={0.5} blur="6px" offset={10} inView inViewMargin="-80px">
@@ -220,7 +231,7 @@ export default function PlatformPage() {
       </section>
 
       {/* ── CTA ── */}
-      <section className="mx-auto max-w-[72rem] px-6 py-24 md:px-12 border-t border-white/[0.06]">
+      <section className="relative z-[1] mx-auto max-w-[72rem] px-6 py-24 md:px-12 border-t border-white/[0.06]">
         <BlurFade delay={0} duration={0.6} blur="8px" offset={14} inView inViewMargin="-80px">
           <p className="font-display text-[clamp(2rem,4vw,3rem)] font-semibold tracking-[-0.02em] text-white/90 mb-6">
             See it running on your cameras.

@@ -1,8 +1,14 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import PageShell from '@/components/PageShell';
 import { BlurFade } from '@/components/magicui/blur-fade';
 import { ScrollReveal } from '@/components/magicui/scroll-reveal';
+
+const GradientStrips = dynamic(
+  () => import('@/components/magicui/gradient-strips').then(m => ({ default: m.GradientStrips })),
+  { ssr: false }
+);
 
 const articles = [
   { slug: 'edge-ai-platform-launch', title: 'Kenesis Labs launches edge AI platform for Indian manufacturing safety', date: 'January 15, 2026', tag: 'Company News' },
@@ -17,7 +23,12 @@ const articles = [
 export default function NewsPage() {
   return (
     <PageShell>
-      <section className="mx-auto max-w-[72rem] px-6 pb-16 md:px-12">
+      {/* Gradient strips background */}
+      <div className="pointer-events-none fixed inset-0 z-0 opacity-15" style={{ maskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 70%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 70%, transparent 100%)' }}>
+        <GradientStrips colors={["#f59e0b", "#d97706", "#92400e", "#78350f"]} shape="wave" barCount={16} />
+      </div>
+
+      <section className="relative z-[1] mx-auto max-w-[72rem] px-6 pb-16 md:px-12">
         <BlurFade delay={0.1} duration={0.6} blur="8px" offset={16}>
           <p className="font-mono-accent text-[1.1rem] uppercase tracking-[0.14em] text-amber-400/60 mb-8">Newsroom</p>
         </BlurFade>
@@ -28,7 +39,7 @@ export default function NewsPage() {
         </BlurFade>
       </section>
 
-      <section className="mx-auto max-w-[72rem] px-6 pb-24 md:px-12">
+      <section className="relative z-[1] mx-auto max-w-[72rem] px-6 pb-24 md:px-12">
         <div className="divide-y divide-white/[0.06]">
           {articles.map((a, i) => (
             <ScrollReveal key={a.slug} variant="fade-left" delay={i * 0.06}>

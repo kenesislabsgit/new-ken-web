@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState, useCallback } from 'react';
+import { useEffect, useRef, useCallback, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { prefersReducedMotion } from '@/lib/animations';
@@ -39,245 +39,222 @@ const TEAM: TeamMember[] = [
     bio: 'Optimizing YOLOv8 and Qwen2.5-VL to run at production speed on Apple Silicon. When the model fits, the factory wins.',
     image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&q=80',
   },
+  {
+    name: 'ML Research Lead',
+    role: 'Computer Vision',
+    bio: 'Pushing the boundaries of on-device vision models. Published researcher turning SOTA papers into production-grade inference pipelines.',
+    image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=600&q=80',
+  },
+  {
+    name: 'Head of Operations',
+    role: 'Deployment & Scale',
+    bio: 'Orchestrating factory deployments across Tamil Nadu. Making sure every edge node ships, installs, and runs without a hitch.',
+    image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&q=80',
+  },
 ];
 
-/* ── Animated Avatar with spring-physics tooltip ── */
-function AnimatedAvatar({ member, index }: { member: TeamMember; index: number }) {
-  const [hovered, setHovered] = useState(false);
-  const tooltipRef = useRef<HTMLDivElement>(null);
-  const avatarRef = useRef<HTMLDivElement>(null);
-  const springX = useRef(0);
-  const springRotate = useRef(0);
+const CARD_W = 300;
+const CARD_H = 400;
 
-  const handleMouseMove = useCallback((e: React.MouseEvent) => {
-    if (!avatarRef.current || !tooltipRef.current) return;
-    const rect = avatarRef.current.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const offsetX = e.clientX - centerX;
-    // Map offset to rotation (-15 to 15 deg) and translateX
-    springX.current = offsetX * 0.4;
-    springRotate.current = offsetX * 0.15;
-    gsap.to(tooltipRef.current, {
-      x: springX.current,
-      rotateZ: springRotate.current,
-      duration: 0.3,
-      ease: 'power2.out',
-    });
-  }, []);
+/* ── 3D Curved Carousel — GSAP-driven per-card transforms ── */
+function CurvedCarousel() {
+  const stageRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const angleRef = useRef(0);
+  const velocityRef = useRef(0);
+  const isDragging = useRef(false);
+  const dragStart = useRef({ x: 0, angle: 0, lastX: 0, lastTime: 0 });
+  const isHovered = useRef(false);
+  const rafId = useRef(0);
+  const [activeIdx, setActiveIdx] = useState(0);
+
+  const count = TEAM.length;
+  const step = 360 / count;
+  const radius = 420;
+
+  const updateCards = useCallback(() => {
+    if (!trackRef.current) return;
+    const cards = trackRef.current.children;
+    let bestIdx = 0;
+    let bestZ = -Infinity;
+
+    for (let i = 0; i < cards.length; i++) {
+      const card = cards[i] as HTMLElement;
+      const a = angleRef.current + i * step;
+      const rad = (a * Math.PI) / 180;
+
+      // Position on the ring
+      const x = Math.sin(rad) * radius;
+      const z = Math.cos(rad) * radius;
+
+      // Normalize z to 0..1 (back..front)
+      const zNorm = (z + radius) / (2 * radius);
+
+      // Scale: back cards smaller, front card full size
+      const scale = 0.55 + zNorm * 0.45;
+      // Opacity: back cards dim
+      const opacity = 0.15 + zNorm * 0.85;
+      // Blur: back cards blurred
+      const blur = (1 - zNorm) * 8;
+      // Y-axis rotation to face outward from the ring center
+      const rotY = -a % 360;
+
+      gsap.set(card, {
+        x,
+        z,
+        rotateY: rotY,
+        scale,
+        opacity,
+        zIndex: Math.round(zNorm * 100),
+        filter: `blur(${blur.toFixed(1)}px)`,
+      });
+
+      if (z > bestZ) { bestZ = z; bestIdx = i; }
+    }
+    setActiveIdx(bestIdx);
+  }, [count, step, radius]);
+
+  // Animation loop
+  const tick = useCallback(() => {
+    if (!isDragging.current) {
+      // Momentum decay
+      if (Math.abs(velocityRef.current) > 0.01) {
+        angleRef.current += velocityRef.current;
+        velocityRef.current *= 0.94;
+      } else {
+        velocityRef.current = 0;
+        // Auto-rotate
+        const speed = isHovered.current ? 0.04 : 0.12;
+        angleRef.current += speed;
+      }
+    }
+    updateCards();
+    rafId.current = requestAnimationFrame(tick);
+  }, [updateCards]);
 
   useEffect(() => {
-    if (!tooltipRef.current) return;
-    if (hovered) {
-      gsap.fromTo(tooltipRef.current,
-        { opacity: 0, y: 10, scale: 0.85 },
-        { opacity: 1, y: 0, scale: 1, duration: 0.35, ease: 'back.out(2)' }
-      );
-    } else {
-      gsap.to(tooltipRef.current, {
-        opacity: 0, y: 10, scale: 0.85,
-        duration: 0.2, ease: 'power2.in',
-      });
+    if (prefersReducedMotion()) {
+      updateCards();
+      return;
     }
-  }, [hovered]);
+    rafId.current = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafId.current);
+  }, [tick, updateCards]);
+
+  // Pointer handlers
+  const onDown = useCallback((e: React.PointerEvent) => {
+    isDragging.current = true;
+    velocityRef.current = 0;
+    dragStart.current = { x: e.clientX, angle: angleRef.current, lastX: e.clientX, lastTime: performance.now() };
+    (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
+  }, []);
+
+  const onMove = useCallback((e: React.PointerEvent) => {
+    if (!isDragging.current) return;
+    const dx = e.clientX - dragStart.current.x;
+    angleRef.current = dragStart.current.angle + dx * 0.25;
+    // Track velocity
+    const now = performance.now();
+    const dt = now - dragStart.current.lastTime;
+    if (dt > 0) {
+      velocityRef.current = ((e.clientX - dragStart.current.lastX) * 0.25) / Math.max(dt / 16, 1);
+    }
+    dragStart.current.lastX = e.clientX;
+    dragStart.current.lastTime = now;
+    updateCards();
+  }, [updateCards]);
+
+  const onUp = useCallback(() => { isDragging.current = false; }, []);
+
+  const onWheel = useCallback((e: React.WheelEvent) => {
+    angleRef.current += e.deltaY * 0.06;
+    velocityRef.current = 0;
+  }, []);
 
   return (
-    <div
-      className="relative -ml-4 first:ml-0 group"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      onMouseMove={handleMouseMove}
-      style={{ zIndex: hovered ? 50 : TEAM.length - index }}
-    >
-      {/* Tooltip */}
+    <div className="relative w-full">
+      {/* Edge fade */}
+      <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-40 z-10 bg-gradient-to-r from-[#0a0a0b] via-[#0a0a0b]/60 to-transparent" />
+      <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-40 z-10 bg-gradient-to-l from-[#0a0a0b] via-[#0a0a0b]/60 to-transparent" />
+
+      {/* Stage */}
       <div
-        ref={tooltipRef}
-        className="pointer-events-none absolute -top-20 left-1/2 -translate-x-1/2 z-50"
-        style={{ opacity: 0 }}
+        ref={stageRef}
+        className="relative mx-auto flex items-center justify-center select-none overflow-hidden cursor-grab active:cursor-grabbing"
+        style={{ perspective: '1200px', height: `${CARD_H + 60}px` }}
+        onPointerDown={onDown}
+        onPointerMove={onMove}
+        onPointerUp={onUp}
+        onPointerCancel={onUp}
+        onMouseEnter={() => { isHovered.current = true; }}
+        onMouseLeave={() => { isHovered.current = false; }}
+        onWheel={onWheel}
       >
-        <div className="rounded-xl bg-[#18181b] border border-white/10 px-4 py-2.5 text-center shadow-2xl shadow-black/40">
-          <p className="font-display text-[14px] font-semibold text-white/90 whitespace-nowrap">
-            {member.name}
-          </p>
-          <p className="font-mono-accent text-[10px] uppercase tracking-[0.1em] text-amber-400/70 whitespace-nowrap">
-            {member.role}
-          </p>
-          {/* Gradient accent line */}
-          <div className="mt-2 h-[2px] w-full rounded-full bg-gradient-to-r from-transparent via-amber-400/60 to-transparent" />
+        <div
+          ref={trackRef}
+          className="relative"
+          style={{ transformStyle: 'preserve-3d', width: `${CARD_W}px`, height: `${CARD_H}px` }}
+        >
+          {TEAM.map((member, i) => (
+            <div
+              key={member.name}
+              className={`absolute left-1/2 top-0 -translate-x-1/2 rounded-2xl overflow-hidden border bg-[#111113]`}
+              style={{
+                width: `${CARD_W}px`,
+                height: `${CARD_H}px`,
+                transformStyle: 'preserve-3d',
+                borderColor: i === activeIdx ? 'rgba(245,158,11,0.3)' : 'rgba(255,255,255,0.06)',
+                transition: 'border-color 0.3s',
+              }}
+            >
+              {/* Photo */}
+              <div className="relative h-[52%] overflow-hidden">
+                <img src={member.image} alt={member.name} className="h-full w-full object-cover" loading="lazy" draggable={false} />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#111113] via-transparent to-transparent" />
+              </div>
+              {/* Info */}
+              <div className="px-5 pt-3 pb-4">
+                <h3 className="font-display text-[1.1rem] font-semibold text-white/90 mb-1">{member.name}</h3>
+                <p className="font-mono-accent text-[0.6rem] uppercase tracking-[0.12em] text-amber-400/70 mb-2">{member.role}</p>
+                <p className="text-[0.75rem] leading-[1.6] text-white/40">{member.bio}</p>
+              </div>
+              {/* Bottom accent */}
+              <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-amber-400/20 to-transparent" />
+            </div>
+          ))}
         </div>
       </div>
 
-      {/* Avatar */}
-      <div
-        ref={avatarRef}
-        className="h-16 w-16 overflow-hidden rounded-full border-[3px] border-[#0a0a0b] ring-2 ring-white/10 transition-all duration-300 cursor-pointer"
-        style={{
-          transform: hovered ? 'translateY(-8px) scale(1.1)' : 'translateY(0) scale(1)',
-          transition: 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
-        }}
-      >
-        <img
-          src={member.image}
-          alt={member.name}
-          className="h-full w-full object-cover"
-          loading="lazy"
-        />
+      {/* Active member label */}
+      <div className="mt-8 text-center">
+        <p className="font-display text-[1.3rem] font-semibold text-white/80">{TEAM[activeIdx]?.name}</p>
+        <p className="font-mono-accent text-[0.7rem] uppercase tracking-[0.12em] text-amber-400/60 mt-1">{TEAM[activeIdx]?.role}</p>
       </div>
+      <p className="mt-4 text-center font-mono-accent text-[0.65rem] text-white/20 tracking-[0.06em]">Drag or scroll to explore</p>
     </div>
   );
 }
 
-/* ── 3D Tilt Card ── */
-function TiltCard({ member, index }: { member: TeamMember; index: number }) {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const glowRef = useRef<HTMLDivElement>(null);
-
-  const handleMouseMove = useCallback((e: React.MouseEvent) => {
-    const card = cardRef.current;
-    const glow = glowRef.current;
-    if (!card) return;
-    const rect = card.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width;
-    const y = (e.clientY - rect.top) / rect.height;
-    const rotateX = (0.5 - y) * 12;
-    const rotateY = (x - 0.5) * 12;
-
-    gsap.to(card, {
-      rotateX, rotateY,
-      duration: 0.4, ease: 'power2.out',
-      transformPerspective: 800,
-    });
-
-    if (glow) {
-      gsap.to(glow, {
-        opacity: 0.15,
-        background: `radial-gradient(circle at ${x * 100}% ${y * 100}%, rgba(245,158,11,0.3), transparent 60%)`,
-        duration: 0.3,
-      });
-    }
-  }, []);
-
-  const handleMouseLeave = useCallback(() => {
-    const card = cardRef.current;
-    const glow = glowRef.current;
-    if (card) gsap.to(card, { rotateX: 0, rotateY: 0, duration: 0.5, ease: 'power3.out' });
-    if (glow) gsap.to(glow, { opacity: 0, duration: 0.3 });
-  }, []);
-
-  return (
-    <div
-      ref={cardRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className="team-card relative overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.03] backdrop-blur-sm p-8 cursor-pointer"
-      style={{
-        opacity: 0,
-        transform: 'translateY(80px)',
-        transformStyle: 'preserve-3d',
-        willChange: 'transform',
-      }}
-    >
-      {/* Glow follow cursor */}
-      <div ref={glowRef} className="pointer-events-none absolute inset-0 rounded-2xl opacity-0" />
-
-      <div className="relative z-10 flex gap-6 items-start">
-        {/* Photo */}
-        <div className="team-img h-24 w-24 flex-shrink-0 overflow-hidden rounded-xl" style={{ clipPath: 'inset(0 100% 0 0)' }}>
-          <img src={member.image} alt={member.name} className="h-full w-full object-cover" loading="lazy" />
-        </div>
-
-        <div className="flex-1 min-w-0">
-          <h3 className="font-display text-[20px] font-semibold text-white/90 mb-1">{member.name}</h3>
-          <p className="font-mono-accent text-[11px] uppercase tracking-[0.1em] text-amber-400/70 mb-4">{member.role}</p>
-          <p className="text-[14px] leading-[1.7] text-white/45">{member.bio}</p>
-        </div>
-      </div>
-
-      {/* Bottom gradient accent */}
-      <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-amber-400/20 to-transparent" />
-    </div>
-  );
-}
-
-/* ── Main TeamSection ── */
+/* ── Main Section ── */
 export default function TeamSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const headingRef = useRef<HTMLDivElement>(null);
-  const cardsRef = useRef<HTMLDivElement>(null);
-  const lineRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const section = sectionRef.current;
     const heading = headingRef.current;
-    const cards = cardsRef.current;
-    const line = lineRef.current;
-    if (!section || !heading || !cards || !line) return;
-
+    if (!section || !heading) return;
     if (prefersReducedMotion()) {
-      cards.querySelectorAll('.team-card').forEach(card => {
-        gsap.set(card, { opacity: 1, y: 0 });
-      });
-      cards.querySelectorAll('.team-img').forEach(img => {
-        gsap.set(img, { clipPath: 'inset(0 0 0 0)' });
-      });
-      gsap.set(line, { scaleY: 1 });
+      gsap.set(heading.querySelectorAll('.tw'), { opacity: 1, y: 0, filter: 'blur(0px)' });
       return;
     }
-
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          pin: true,
-          scrub: 0.6,
-          start: 'top top',
-          end: `+=${TEAM.length * 120}vh`,
-        },
-      });
-
-      // Heading words stagger in
-      const words = heading.querySelectorAll('.tw');
-      tl.fromTo(words,
-        { y: 50, opacity: 0, filter: 'blur(8px)' },
-        { y: 0, opacity: 1, filter: 'blur(0px)', stagger: 0.04, duration: 0.2, ease: 'power3.out' },
-        0
+      gsap.fromTo(heading.querySelectorAll('.tw'),
+        { y: 40, opacity: 0, filter: 'blur(6px)' },
+        { y: 0, opacity: 1, filter: 'blur(0px)', stagger: 0.05, duration: 0.6, ease: 'power3.out',
+          scrollTrigger: { trigger: section, start: 'top 70%', toggleActions: 'play none none reverse' } }
       );
-
-      // Progress line
-      tl.fromTo(line, { scaleY: 0 }, { scaleY: 1, duration: 0.9, ease: 'none' }, 0.05);
-
-      // Cards stagger in with overlap
-      const cardEls = cards.querySelectorAll('.team-card');
-      const imgEls = cards.querySelectorAll('.team-img');
-
-      cardEls.forEach((card, i) => {
-        const start = 0.12 + i * 0.2;
-
-        // Card entrance: slide up + unblur + scale
-        tl.fromTo(card,
-          { y: 80, opacity: 0, scale: 0.94, filter: 'blur(10px)' },
-          { y: 0, opacity: 1, scale: 1, filter: 'blur(0px)', duration: 0.18, ease: 'power3.out' },
-          start
-        );
-
-        // Image clip-path wipe
-        if (imgEls[i]) {
-          tl.fromTo(imgEls[i],
-            { clipPath: 'inset(0 100% 0 0)' },
-            { clipPath: 'inset(0 0% 0 0)', duration: 0.15, ease: 'power2.out' },
-            start + 0.06
-          );
-        }
-
-        // Previous card fades back slightly
-        if (i > 0 && cardEls[i - 1]) {
-          tl.to(cardEls[i - 1],
-            { y: -20, opacity: 0.5, scale: 0.98, duration: 0.12, ease: 'power1.in' },
-            start
-          );
-        }
-      });
     }, section);
-
     return () => ctx.revert();
   }, []);
 
@@ -285,41 +262,22 @@ export default function TeamSection() {
 
   return (
     <section ref={sectionRef} className="relative w-full bg-[#0a0a0b]" data-testid="team-section">
-      <div className="relative flex h-screen w-full">
-        {/* Left column */}
-        <div className="flex w-[42%] flex-col justify-center pl-12 pr-8 lg:pl-[120px] lg:pr-16">
-          <div ref={headingRef}>
-            <p className="mb-4 font-mono-accent text-[11px] uppercase tracking-[0.14em] text-amber-400/70">
-              Our Team
-            </p>
-            <h2 className="font-display text-[clamp(2rem,3.5vw,3.2rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-white/90 mb-6">
-              {headingText.split(' ').map((word, i) => (
-                <span key={i} className="tw inline-block mr-[0.3em]" style={{ opacity: 0 }}>{word}</span>
-              ))}
-            </h2>
-            <p className="max-w-[26rem] text-[14px] leading-[1.7] text-white/35 mb-8">
-              Small team. Deep expertise. Every person here chose to build for the factory floor — not the cloud.
-            </p>
-
-            {/* Animated avatar row */}
-            <div className="flex items-center mb-8">
-              {TEAM.map((member, i) => (
-                <AnimatedAvatar key={member.name} member={member} index={i} />
-              ))}
-            </div>
-          </div>
-
-          {/* Vertical progress line */}
-          <div className="h-[100px] w-[1px] bg-white/10 relative overflow-hidden">
-            <div ref={lineRef} className="absolute top-0 left-0 h-full w-full bg-amber-400/60 origin-top" style={{ transform: 'scaleY(0)' }} />
-          </div>
+      <div className="relative flex min-h-screen w-full flex-col items-center justify-center py-24">
+        <div ref={headingRef} className="mb-12 text-center px-6">
+          <p className="mb-4 font-mono-accent text-[11px] uppercase tracking-[0.14em] text-amber-400/70">Our Team</p>
+          <h2 className="font-display text-[clamp(2rem,4vw,3.5rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-white/90">
+            {headingText.split(' ').map((word, i) => (
+              <span key={i} className="tw inline-block mr-[0.35em]" style={{ opacity: 0 }}>{word}</span>
+            ))}
+          </h2>
+          <p className="mt-6 max-w-xl mx-auto text-[14px] leading-[1.7] text-white/35">
+            Small team. Deep expertise. Every person here chose to build for the factory floor — not the cloud.
+          </p>
         </div>
-
-        {/* Right column — scrollytelling cards */}
-        <div ref={cardsRef} className="flex w-[58%] flex-col justify-center gap-5 pr-12 lg:pr-[120px]">
-          {TEAM.map((member, i) => (
-            <TiltCard key={member.name} member={member} index={i} />
-          ))}
+        <CurvedCarousel />
+        <div className="absolute inset-0 pointer-events-none flex items-center justify-center overflow-hidden">
+          <div className="w-[1100px] h-[1100px] rounded-full border border-white/[0.02]" />
+          <div className="absolute w-[800px] h-[800px] rounded-full border border-white/[0.015]" />
         </div>
       </div>
     </section>

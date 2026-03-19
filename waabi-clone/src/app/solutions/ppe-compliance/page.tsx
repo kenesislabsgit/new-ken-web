@@ -1,16 +1,27 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import PageShell from '@/components/PageShell';
 import { BlurFade } from '@/components/magicui/blur-fade';
 import { ScrollReveal } from '@/components/magicui/scroll-reveal';
 import { TextReveal } from '@/components/magicui/text-reveal';
+
+const ShaderLines = dynamic(
+  () => import('@/components/magicui/shader-lines').then(m => ({ default: m.ShaderLines })),
+  { ssr: false }
+);
 
 const detections = ['Helmets', 'Safety vests', 'Gloves', 'Safety footwear', 'Face shields', 'Ear protection'];
 
 export default function PPECompliancePage() {
   return (
     <PageShell>
-      <section className="mx-auto max-w-[72rem] px-6 pb-24 md:px-12">
+      {/* Shader lines background */}
+      <div className="pointer-events-none fixed inset-0 z-0 opacity-15" style={{ maskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 70%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 70%, transparent 100%)' }}>
+        <ShaderLines color="#f59e0b" bgColor="#0a0a0b" speed={0.4} density={7} intensity={0.4} />
+      </div>
+
+      <section className="relative z-[1] mx-auto max-w-[72rem] px-6 pb-24 md:px-12">
         <BlurFade delay={0.1} duration={0.6} blur="8px" offset={16}>
           <p className="font-mono-accent text-[1.1rem] uppercase tracking-[0.14em] text-amber-400/60 mb-8">Solutions / PPE Compliance</p>
         </BlurFade>

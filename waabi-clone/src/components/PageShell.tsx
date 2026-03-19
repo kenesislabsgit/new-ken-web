@@ -8,7 +8,7 @@ import FooterCTASection from '@/components/FooterCTASection';
 export default function PageShell({ children }: { children: React.ReactNode }) {
   return (
     <LenisProvider>
-      <main className="relative min-h-screen w-full bg-[#0a0a0b]">
+      <main className="relative min-h-screen w-full">
         <Navbar />
         <div className="pt-[12rem]">{children}</div>
         <ErrorBoundary>

@@ -1,9 +1,15 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import PageShell from '@/components/PageShell';
 import { BlurFade } from '@/components/magicui/blur-fade';
 import { ScrollReveal } from '@/components/magicui/scroll-reveal';
 import { TextReveal } from '@/components/magicui/text-reveal';
+
+const ShaderGradient = dynamic(
+  () => import('@/components/magicui/shader-gradient').then(m => ({ default: m.ShaderGradient })),
+  { ssr: false }
+);
 
 const formFields = [
   { type: 'text', placeholder: 'Name', ariaLabel: 'Name' },
@@ -14,7 +20,12 @@ const formFields = [
 export default function ContactPage() {
   return (
     <PageShell>
-      <section className="mx-auto max-w-[72rem] px-6 pb-24 md:px-12">
+      {/* Shader gradient background */}
+      <div className="pointer-events-none fixed inset-0 z-0 opacity-25 blur-[2px]" style={{ maskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 70%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 70%, transparent 100%)' }}>
+        <ShaderGradient colorA="#f59e0b" colorB="#d97706" speed={0.04} intensity={1.0} barCount={70} />
+      </div>
+
+      <section className="relative z-[1] mx-auto max-w-[72rem] px-6 pb-24 md:px-12">
         <BlurFade delay={0.1} duration={0.6} blur="8px" offset={16}>
           <p className="font-mono-accent text-[1.1rem] uppercase tracking-[0.14em] text-amber-400/60 mb-8">Contact</p>
         </BlurFade>
@@ -30,7 +41,7 @@ export default function ContactPage() {
         </BlurFade>
       </section>
 
-      <section className="mx-auto max-w-[72rem] px-6 py-24 md:px-12 border-t border-white/10">
+      <section className="relative z-[1] mx-auto max-w-[72rem] px-6 py-24 md:px-12 border-t border-white/10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           <ScrollReveal variant="fade-left" duration={0.8}>
             <h3 className="font-display text-[2rem] font-semibold text-white/90 mb-4">Headquarters</h3>

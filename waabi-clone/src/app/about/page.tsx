@@ -1,5 +1,6 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import PageShell from '@/components/PageShell';
 import { BlurFade } from '@/components/magicui/blur-fade';
 import { NumberTicker } from '@/components/magicui/number-ticker';
@@ -7,28 +8,66 @@ import { CircularGallery } from '@/components/magicui/circular-gallery';
 import { ScrollReveal } from '@/components/magicui/scroll-reveal';
 import { TextReveal } from '@/components/magicui/text-reveal';
 
+const ShaderGradient = dynamic(
+  () => import('@/components/magicui/shader-gradient').then(m => ({ default: m.ShaderGradient })),
+  { ssr: false }
+);
+
+const LiquidMetalLogo = dynamic(
+  () => import('@/components/magicui/liquid-metal-logo').then(m => ({ default: m.LiquidMetalLogo })),
+  { ssr: false }
+);
+
 export default function AboutPage() {
   return (
     <PageShell>
-      {/* ── Hero: one big line, no subtitle wall ── */}
-      <section className="mx-auto max-w-[72rem] px-6 pb-32 md:px-12">
-        <BlurFade delay={0.1} duration={0.5} blur="6px" offset={12}>
-          <p className="font-mono-accent text-[1rem] uppercase tracking-[0.14em] text-amber-400/50 mb-10">About</p>
-        </BlurFade>
-        <BlurFade delay={0.25} duration={0.8} blur="10px" offset={20}>
-          <h1 className="font-display text-[clamp(3rem,7.5vw,6.5rem)] font-semibold leading-[0.95] tracking-[-0.03em] text-white mb-8">
-            We keep your footage<br />inside your walls.
-          </h1>
-        </BlurFade>
-        <BlurFade delay={0.6} duration={0.5} blur="6px" offset={8}>
-          <p className="max-w-lg text-[1.2rem] leading-[1.7] text-white/35">
-            Kenesis Labs · Chennai · Edge AI for Indian manufacturing
-          </p>
-        </BlurFade>
+      {/* Shader gradient background */}
+      <div className="pointer-events-none fixed inset-0 z-0 opacity-30 blur-[2px]" style={{ maskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 70%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 70%, transparent 100%)' }}>
+        <ShaderGradient colorA="#f59e0b" colorB="#d97706" speed={0.04} intensity={1.2} barCount={90} />
+      </div>
+
+      {/* ── Hero: heading + liquid metal logo ── */}
+      <section className="relative z-[1] mx-auto max-w-[72rem] px-6 pb-32 md:px-12">
+        <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-12 items-end">
+          <div>
+            <BlurFade delay={0.1} duration={0.5} blur="6px" offset={12}>
+              <p className="font-mono-accent text-[1rem] uppercase tracking-[0.14em] text-amber-400/50 mb-10">About</p>
+            </BlurFade>
+            <BlurFade delay={0.25} duration={0.8} blur="10px" offset={20}>
+              <h1 className="font-display text-[clamp(3rem,7.5vw,6.5rem)] font-semibold leading-[0.95] tracking-[-0.03em] text-white mb-8">
+                We keep your footage<br />inside your walls.
+              </h1>
+            </BlurFade>
+            <BlurFade delay={0.6} duration={0.5} blur="6px" offset={8}>
+              <p className="max-w-lg text-[1.2rem] leading-[1.7] text-white/35">
+                Kenesis Labs · Chennai · Edge AI for Indian manufacturing
+              </p>
+            </BlurFade>
+          </div>
+          <BlurFade delay={0.4} duration={1} blur="12px" offset={0}>
+            <div className="hidden md:block rounded-2xl overflow-hidden">
+              <LiquidMetalLogo
+                src="/kenesis-icon.png"
+                width={280}
+                height={280}
+                colorBack="#0a0a0b"
+                colorTint="#d4d4d8"
+                speed={0.6}
+                distortion={0.04}
+                shiftRed={0.2}
+                shiftBlue={0.2}
+                softness={0.12}
+                contour={0.4}
+                angle={55}
+                scale={0.75}
+              />
+            </div>
+          </BlurFade>
+        </div>
       </section>
 
       {/* ── Manifesto: large editorial text, not cards ── */}
-      <section className="mx-auto max-w-[72rem] px-6 py-32 md:px-12 border-t border-white/[0.06]">
+      <section className="relative z-[1] mx-auto max-w-[72rem] px-6 py-32 md:px-12 border-t border-white/[0.06]">
         <div className="max-w-3xl space-y-10">
           <TextReveal
             variant="highlight"
@@ -61,7 +100,7 @@ export default function AboutPage() {
       </section>
 
       {/* ── Visual: circular gallery of factory/industrial imagery ── */}
-      <section className="py-24 overflow-hidden">
+      <section className="relative z-[1] py-24 overflow-hidden">
         <BlurFade delay={0} duration={0.6} blur="8px" offset={14} inView inViewMargin="-60px">
           <CircularGallery
             className="h-[380px] mx-auto"
@@ -81,7 +120,7 @@ export default function AboutPage() {
       </section>
 
       {/* ── Numbers: full-bleed strip ── */}
-      <section className="border-y border-white/[0.06] py-16">
+      <section className="relative z-[1] border-y border-white/[0.06] py-16">
         <div className="mx-auto max-w-[80rem] px-6 md:px-12 grid grid-cols-2 md:grid-cols-4 gap-y-10">
           <div className="text-center">
             <p className="font-display text-[clamp(2.5rem,5vw,3.5rem)] font-semibold text-white/90 leading-none mb-2">
@@ -107,7 +146,7 @@ export default function AboutPage() {
       </section>
 
       {/* ── What we believe: left-aligned list, not grid cards ── */}
-      <section className="mx-auto max-w-[72rem] px-6 py-32 md:px-12">
+      <section className="relative z-[1] mx-auto max-w-[72rem] px-6 py-32 md:px-12">
         <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-16">
           <div>
             <TextReveal
@@ -139,7 +178,7 @@ export default function AboutPage() {
       </section>
 
       {/* ── Timeline: minimal, dense ── */}
-      <section className="mx-auto max-w-[72rem] px-6 py-32 md:px-12 border-t border-white/[0.06]">
+      <section className="relative z-[1] mx-auto max-w-[72rem] px-6 py-32 md:px-12 border-t border-white/[0.06]">
         <TextReveal
           variant="word-slide"
           as="h2"
@@ -168,7 +207,7 @@ export default function AboutPage() {
       </section>
 
       {/* ── Closing: one line, not a paragraph ── */}
-      <section className="mx-auto max-w-[72rem] px-6 py-32 md:px-12 border-t border-white/[0.06]">
+      <section className="relative z-[1] mx-auto max-w-[72rem] px-6 py-32 md:px-12 border-t border-white/[0.06]">
         <BlurFade delay={0} duration={0.7} blur="10px" offset={16} inView inViewMargin="-80px">
           <p className="font-display text-[clamp(2rem,5vw,4rem)] font-semibold leading-[1.15] tracking-[-0.02em] text-white/90 max-w-3xl">
             India&apos;s factories are scaling fast.<br />

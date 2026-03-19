@@ -9,6 +9,7 @@
     "test": "vitest --run"
   },
   "dependencies": {
+    "@paper-design/shaders-react": "^0.0.72",
     "@react-three/fiber": "^9.5.0",
     "@studio-freight/lenis": "^1.0.0",
     "@types/three": "^0.183.1",
