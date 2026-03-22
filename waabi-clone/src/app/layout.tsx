@@ -1,20 +1,13 @@
 import type { Metadata } from "next";
-import { Outfit, IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
+import { JetBrains_Mono, IBM_Plex_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 
-const outfit = Outfit({
+const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
-  variable: "--font-outfit",
+  variable: "--font-jetbrains",
   display: "swap",
   weight: ["300", "400", "500", "600", "700", "800"],
-});
-
-const plexSans = IBM_Plex_Sans({
-  subsets: ["latin"],
-  variable: "--font-plex",
-  display: "swap",
-  weight: ["300", "400", "500", "600", "700"],
 });
 
 const plexMono = IBM_Plex_Mono({
@@ -43,7 +36,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${outfit.variable} ${plexSans.variable} ${plexMono.variable} ${neoWave.variable}`}>
+    <html lang="en" className={`${jetbrainsMono.variable} ${plexMono.variable} ${neoWave.variable}`}>
       <body className="antialiased">{children}</body>
     </html>
   );

@@ -3,6 +3,7 @@
 import { useEffect, useRef, useCallback } from 'react';
 import { prefersReducedMotion } from '@/lib/animations';
 import { Particles } from '@/components/magicui/particles';
+import { AsciiBlock, ASCII_ARTS } from '@/components/AsciiArt';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 

@@ -1,6 +1,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
+import { Button, Card, Input } from '@heroui/react';
 import PageShell from '@/components/PageShell';
 import { BlurFade } from '@/components/magicui/blur-fade';
 import { ScrollReveal } from '@/components/magicui/scroll-reveal';
@@ -43,19 +44,30 @@ export default function ContactPage() {
 
       <section className="relative z-[1] mx-auto max-w-[72rem] px-6 py-24 md:px-12 border-t border-white/10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          {/* Info card — glassmorphism HeroUI Card */}
           <ScrollReveal variant="fade-left" duration={0.8}>
-            <h3 className="font-display text-[2rem] font-semibold text-white/90 mb-4">Headquarters</h3>
-            <p className="font-mono-accent text-[1.2rem] leading-[1.8] text-white/40 tracking-[0.02em]">
-              Kenesis Labs Private Limited<br />
-              Chennai, Tamil Nadu, India
-            </p>
-            <p className="mt-4 font-mono-accent text-[1.2rem] text-white/50">
-              <a href="mailto:[email]" className="hover:text-amber-400 transition-colors underline">hello@kenesis.in</a>
-            </p>
-            <p className="mt-8 font-mono-accent text-[1.1rem] text-white/25 tracking-[0.04em]">
-              CIN: U62099TN2025PTC178068
-            </p>
+            <Card className="glass-card p-8">
+              <Card.Header>
+                <Card.Title className="font-display text-[2rem] font-semibold text-white/90">
+                  Headquarters
+                </Card.Title>
+              </Card.Header>
+              <Card.Content className="mt-4 space-y-4">
+                <p className="font-mono-accent text-[1.2rem] leading-[1.8] text-white/40 tracking-[0.02em]">
+                  Kenesis Labs Private Limited<br />
+                  Chennai, Tamil Nadu, India
+                </p>
+                <p className="font-mono-accent text-[1.2rem] text-white/50">
+                  <a href="mailto:[email]" className="hover:text-amber-400 transition-colors underline cursor-pointer">hello@kenesis.in</a>
+                </p>
+                <p className="font-mono-accent text-[1.1rem] text-white/25 tracking-[0.04em]">
+                  CIN: U62099TN2025PTC178068
+                </p>
+              </Card.Content>
+            </Card>
           </ScrollReveal>
+
+          {/* Contact form with HeroUI Input + Button */}
           <div>
             <TextReveal
               variant="word-blur"
@@ -67,11 +79,11 @@ export default function ContactPage() {
             <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
               {formFields.map((field, i) => (
                 <ScrollReveal key={field.ariaLabel} variant="fade-right" delay={0.1 + i * 0.08}>
-                  <input
+                  <Input
                     type={field.type}
                     placeholder={field.placeholder}
                     aria-label={field.ariaLabel}
-                    className="w-full rounded-xl bg-white/[0.04] border border-white/[0.08] px-5 py-4 text-[1.4rem] text-white/80 placeholder:text-white/25 font-mono-accent tracking-[0.02em] focus:outline-none focus:border-amber-400/40 transition-colors"
+                    fullWidth
                   />
                 </ScrollReveal>
               ))}
@@ -80,11 +92,17 @@ export default function ContactPage() {
                   placeholder="Tell us about your requirements"
                   rows={4}
                   aria-label="Message"
-                  className="w-full rounded-xl bg-white/[0.04] border border-white/[0.08] px-5 py-4 text-[1.4rem] text-white/80 placeholder:text-white/25 font-mono-accent tracking-[0.02em] resize-none focus:outline-none focus:border-amber-400/40 transition-colors"
+                  className="input w-full resize-none"
                 />
               </ScrollReveal>
               <ScrollReveal variant="fade-right" delay={0.1 + 4 * 0.08}>
-                <button type="submit" className="btn-kenesis font-mono-accent uppercase tracking-[0.1em] text-[1.2rem]">Request a demo</button>
+                <Button
+                  variant="primary"
+                  size="lg"
+                  className="font-mono-accent uppercase tracking-[0.1em] text-[1.2rem] px-[3.2rem] py-[1.4rem] rounded-[1.2rem] cursor-pointer"
+                >
+                  Request a demo
+                </Button>
               </ScrollReveal>
             </form>
           </div>

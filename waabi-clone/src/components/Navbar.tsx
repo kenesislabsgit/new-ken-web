@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import { Button, Tooltip } from "@heroui/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -144,13 +145,20 @@ export default function Navbar() {
                   </div>
                 </div>
               ) : (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  className="rounded-[0.8rem] px-[1.4rem] py-[0.8rem] font-mono-accent text-[1.2rem] font-medium uppercase tracking-[0.1em] text-white/50 transition-colors duration-200 hover:text-white/90 cursor-pointer"
-                >
-                  {link.label}
-                </Link>
+                <Tooltip key={link.label}>
+                  <Tooltip.Trigger>
+                    <Link
+                      href={link.href}
+                      className="rounded-[0.8rem] px-[1.4rem] py-[0.8rem] font-mono-accent text-[1.2rem] font-medium uppercase tracking-[0.1em] text-white/50 transition-colors duration-200 hover:text-white/90 cursor-pointer"
+                    >
+                      {link.label}
+                    </Link>
+                  </Tooltip.Trigger>
+                  <Tooltip.Content placement="bottom" offset={8}>
+                    <Tooltip.Arrow />
+                    Explore {link.label}
+                  </Tooltip.Content>
+                </Tooltip>
               )
             )}
           </nav>
@@ -165,9 +173,15 @@ export default function Navbar() {
             </Link>
             <Link
               href="/contact"
-              className="hidden rounded-[1rem] bg-gradient-to-b from-amber-400 to-amber-600 px-[2rem] py-[0.8rem] font-mono-accent text-[1.1rem] font-bold uppercase tracking-[0.08em] text-[#1a1a0e] transition-all duration-200 hover:shadow-[0_4px_20px_rgba(245,158,11,0.35)] md:block cursor-pointer"
+              className="hidden rounded-[1rem] md:block"
             >
-              Request Demo
+              <Button
+                variant="primary"
+                size="md"
+                className="font-mono-accent text-[1.1rem] font-bold uppercase tracking-[0.08em] rounded-[1rem] cursor-pointer"
+              >
+                Request Demo
+              </Button>
             </Link>
 
             {/* Hamburger */}
@@ -220,9 +234,16 @@ export default function Navbar() {
             <Link
               href="/contact"
               onClick={() => setOpen(false)}
-              className="block w-full rounded-[1.2rem] bg-gradient-to-b from-amber-400 to-amber-600 py-[1.4rem] text-center font-mono-accent text-[1.3rem] font-bold uppercase tracking-[0.08em] text-[#1a1a0e] cursor-pointer"
+              className="block w-full"
             >
-              Request Demo
+              <Button
+                variant="primary"
+                fullWidth
+                size="lg"
+                className="font-mono-accent text-[1.3rem] font-bold uppercase tracking-[0.08em] rounded-[1.2rem] cursor-pointer"
+              >
+                Request Demo
+              </Button>
             </Link>
           </div>
         </div>

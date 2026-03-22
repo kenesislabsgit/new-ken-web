@@ -3,6 +3,7 @@
 import dynamic from 'next/dynamic';
 import { ScrollReveal } from '@/components/magicui/scroll-reveal';
 import { TextReveal } from '@/components/magicui/text-reveal';
+import { AsciiDivider } from '@/components/AsciiArt';
 
 // Dynamic imports to avoid SSR issues with WebGL
 const GLSLHills = dynamic(() => import('./GLSLHills'), { ssr: false });
@@ -98,17 +99,22 @@ export default function FooterCTASection() {
           </div>
         </div>
 
-        {/* Large watermark logo — MBF Neo Wave text */}
+        {/* Brand watermark */}
         <div className="relative mx-auto max-w-[72rem] px-[2.4rem] pb-[4rem] md:px-[4.8rem]">
-          <ScrollReveal variant="blur-in" duration={1.5}>
-            <p className="text-right font-logo text-[clamp(5rem,12vw,10rem)] leading-none tracking-[0.06em] text-white/[0.06] select-none uppercase">
-              kenesis
-            </p>
-          </ScrollReveal>
+          <div className="flex items-end justify-end">
+            <ScrollReveal variant="blur-in" duration={1.5}>
+              <p className="text-right font-logo text-[clamp(5rem,12vw,10rem)] leading-none tracking-[0.06em] text-white/[0.06] select-none uppercase">
+                kenesis
+              </p>
+            </ScrollReveal>
+          </div>
         </div>
 
         {/* Bottom bar */}
         <div className="border-t border-white/10 px-[2.4rem] py-[2rem] md:px-[4.8rem]">
+          <div className="mx-auto max-w-[72rem] mb-2">
+            <AsciiDivider accent="◈" className="text-white/[0.04]" />
+          </div>
           <div className="mx-auto flex max-w-[72rem] flex-col items-center justify-between gap-[1rem] md:flex-row">
             <p className="font-mono-accent text-[1.1rem] text-white/25 tracking-[0.04em]">
               &copy; 2026 Kenesis Labs Pvt. Ltd. All Rights Reserved. Chennai, India.

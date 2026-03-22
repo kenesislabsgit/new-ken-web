@@ -7,9 +7,16 @@ import { NumberTicker } from '@/components/magicui/number-ticker';
 import { CircularGallery } from '@/components/magicui/circular-gallery';
 import { ScrollReveal } from '@/components/magicui/scroll-reveal';
 import { TextReveal } from '@/components/magicui/text-reveal';
+import { UnblurTextReveal } from '@/components/magicui/unblur-text-reveal';
+import { ImageMaskedText } from '@/components/magicui/image-masked-text';
+import { HalftoneFilter } from '@/components/magicui/halftone-filter';
+const TextFlow = dynamic(
+  () => import('@/components/magicui/text-flow').then(m => ({ default: m.TextFlow })),
+  { ssr: false }
+);
 
-const ShaderGradient = dynamic(
-  () => import('@/components/magicui/shader-gradient').then(m => ({ default: m.ShaderGradient })),
+const DitheredWaves = dynamic(
+  () => import('@/components/magicui/dithered-waves').then(m => ({ default: m.DitheredWaves })),
   { ssr: false }
 );
 
@@ -21,53 +28,75 @@ const LiquidMetalLogo = dynamic(
 export default function AboutPage() {
   return (
     <PageShell>
-      {/* Shader gradient background */}
-      <div className="pointer-events-none fixed inset-0 z-0 opacity-30 blur-[2px]" style={{ maskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 70%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 70%, transparent 100%)' }}>
-        <ShaderGradient colorA="#f59e0b" colorB="#d97706" speed={0.04} intensity={1.2} barCount={90} />
+      {/* DitheredWaves — full page background */}
+      <div className="pointer-events-none fixed inset-0 z-0 opacity-[0.12]">
+        <DitheredWaves
+          color="#f59e0b"
+          cellSize={10}
+          speed={1.2}
+          layers={3}
+          amplitude={35}
+          frequency={0.012}
+          charset=" .:=+#"
+          enableMouse={true}
+          mouseRadius={250}
+          className="h-full w-full"
+        />
       </div>
 
-      {/* ── Hero: heading + liquid metal logo ── */}
-      <section className="relative z-[1] mx-auto max-w-[72rem] px-6 pb-32 md:px-12">
-        <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-12 items-end">
-          <div>
-            <BlurFade delay={0.1} duration={0.5} blur="6px" offset={12}>
-              <p className="font-mono-accent text-[1rem] uppercase tracking-[0.14em] text-amber-400/50 mb-10">About</p>
-            </BlurFade>
-            <BlurFade delay={0.25} duration={0.8} blur="10px" offset={20}>
-              <h1 className="font-display text-[clamp(3rem,7.5vw,6.5rem)] font-semibold leading-[0.95] tracking-[-0.03em] text-white mb-8">
-                We keep your footage<br />inside your walls.
-              </h1>
-            </BlurFade>
-            <BlurFade delay={0.6} duration={0.5} blur="6px" offset={8}>
-              <p className="max-w-lg text-[1.2rem] leading-[1.7] text-white/35">
-                Kenesis Labs · Chennai · Edge AI for Indian manufacturing
-              </p>
-            </BlurFade>
-          </div>
-          <BlurFade delay={0.4} duration={1} blur="12px" offset={0}>
-            <div className="hidden md:block rounded-2xl overflow-hidden">
-              <LiquidMetalLogo
-                src="/kenesis-icon.png"
-                width={280}
-                height={280}
-                colorBack="#0a0a0b"
-                colorTint="#d4d4d8"
-                speed={0.6}
-                distortion={0.04}
-                shiftRed={0.2}
-                shiftBlue={0.2}
-                softness={0.12}
-                contour={0.4}
-                angle={55}
-                scale={0.75}
-              />
-            </div>
+      {/* ── Hero: heading ── */}
+      <section className="relative z-[2] mx-auto max-w-[72rem] px-6 pb-16 md:px-12">
+        <div>
+          <BlurFade delay={0.1} duration={0.5} blur="6px" offset={12}>
+            <p className="font-mono-accent text-[1rem] uppercase tracking-[0.14em] text-amber-400/50 mb-10">About</p>
+          </BlurFade>
+          <UnblurTextReveal
+            as="h1"
+            blurAmount={24}
+            scaleFrom={0.9}
+            scrub={false}
+            start="top 95%"
+            end="top 40%"
+            splitBy="word"
+            stagger={0.06}
+            className="font-display text-[clamp(3rem,7.5vw,6.5rem)] font-semibold leading-[0.95] tracking-[-0.03em] text-white mb-8"
+          >
+            We keep your footage inside your walls.
+          </UnblurTextReveal>
+          <BlurFade delay={0.6} duration={0.5} blur="6px" offset={8}>
+            <p className="max-w-lg text-[1.2rem] leading-[1.7] text-white/35">
+              Kenesis Labs · Chennai · Edge AI for Indian manufacturing
+            </p>
           </BlurFade>
         </div>
       </section>
 
+      {/* LiquidMetal logo — standalone contained element between hero and manifesto */}
+      <section className="relative z-[2] flex items-center justify-center py-8 overflow-hidden">
+        <div className="relative w-[700px] h-[560px] md:w-[900px] md:h-[720px]"
+          style={{ maskImage: 'radial-gradient(ellipse 80% 80% at center, black 20%, transparent 70%)', WebkitMaskImage: 'radial-gradient(ellipse 80% 80% at center, black 20%, transparent 70%)' }}
+        >
+          <LiquidMetalLogo
+            src="/kenesis-icon.png"
+            width={900}
+            height={720}
+            className="!w-full !h-full"
+            colorBack="#0a0a0b"
+            colorTint="#f59e0b"
+            speed={0.3}
+            distortion={0.02}
+            shiftRed={0.1}
+            shiftBlue={0.05}
+            softness={0.25}
+            contour={0.2}
+            angle={40}
+            scale={0.45}
+          />
+        </div>
+      </section>
+
       {/* ── Manifesto: large editorial text, not cards ── */}
-      <section className="relative z-[1] mx-auto max-w-[72rem] px-6 py-32 md:px-12 border-t border-white/[0.06]">
+      <section className="relative z-[2] mx-auto max-w-[72rem] px-6 py-32 md:px-12 border-t border-white/[0.06]">
         <div className="max-w-3xl space-y-10">
           <TextReveal
             variant="highlight"
@@ -99,28 +128,30 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ── Visual: circular gallery of factory/industrial imagery ── */}
-      <section className="relative z-[1] py-24 overflow-hidden">
+      {/* ── Visual: circular gallery with halftone overlay ── */}
+      <section className="relative z-[2] py-24 overflow-hidden">
         <BlurFade delay={0} duration={0.6} blur="8px" offset={14} inView inViewMargin="-60px">
-          <CircularGallery
-            className="h-[380px] mx-auto"
-            radius={300}
-            rotationSpeed={35}
-            images={[
-              { src: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&q=80', alt: 'Industrial automation' },
-              { src: 'https://images.unsplash.com/photo-1565043666747-69f6646db940?w=600&q=80', alt: 'Factory floor' },
-              { src: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&q=80', alt: 'Safety monitoring' },
-              { src: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&q=80', alt: 'Engineering team' },
-              { src: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=600&q=80', alt: 'Edge computing hardware' },
-              { src: 'https://images.unsplash.com/photo-1563770660941-20978e870e26?w=600&q=80', alt: 'CCTV infrastructure' },
-              { src: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80', alt: 'Analytics dashboard' },
-            ]}
-          />
+          <HalftoneFilter dotSize={2} color="#f59e0b" opacity={0.1} angle={30}>
+            <CircularGallery
+              className="h-[380px] mx-auto"
+              radius={300}
+              rotationSpeed={35}
+              images={[
+                { src: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&q=80', alt: 'Industrial automation' },
+                { src: 'https://images.unsplash.com/photo-1565043666747-69f6646db940?w=600&q=80', alt: 'Factory floor' },
+                { src: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&q=80', alt: 'Safety monitoring' },
+                { src: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&q=80', alt: 'Engineering team' },
+                { src: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=600&q=80', alt: 'Edge computing hardware' },
+                { src: 'https://images.unsplash.com/photo-1563770660941-20978e870e26?w=600&q=80', alt: 'CCTV infrastructure' },
+                { src: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80', alt: 'Analytics dashboard' },
+              ]}
+            />
+          </HalftoneFilter>
         </BlurFade>
       </section>
 
       {/* ── Numbers: full-bleed strip ── */}
-      <section className="relative z-[1] border-y border-white/[0.06] py-16">
+      <section className="relative z-[2] border-y border-white/[0.06] py-16">
         <div className="mx-auto max-w-[80rem] px-6 md:px-12 grid grid-cols-2 md:grid-cols-4 gap-y-10">
           <div className="text-center">
             <p className="font-display text-[clamp(2.5rem,5vw,3.5rem)] font-semibold text-white/90 leading-none mb-2">
@@ -145,8 +176,23 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* ── Interactive TextFlow: particle text ── */}
+      <section className="relative z-[2] py-20 flex items-center justify-center overflow-hidden">
+        <TextFlow
+          text="EDGE AI"
+          fontSize={120}
+          color="#f59e0b"
+          particleSize={1.8}
+          particleDensity={2.5}
+          mouseRadius={100}
+          mouseForce={10}
+          returnSpeed={0.05}
+          className="h-[200px] max-w-[72rem] mx-auto"
+        />
+      </section>
+
       {/* ── What we believe: left-aligned list, not grid cards ── */}
-      <section className="relative z-[1] mx-auto max-w-[72rem] px-6 py-32 md:px-12">
+      <section className="relative z-[2] mx-auto max-w-[72rem] px-6 py-32 md:px-12">
         <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-16">
           <div>
             <TextReveal
@@ -178,16 +224,18 @@ export default function AboutPage() {
       </section>
 
       {/* ── Timeline: minimal, dense ── */}
-      <section className="relative z-[1] mx-auto max-w-[72rem] px-6 py-32 md:px-12 border-t border-white/[0.06]">
-        <TextReveal
-          variant="word-slide"
-          as="h2"
-          start="top 85%"
-          duration={0.7}
-          className="font-display text-[clamp(2rem,4vw,3rem)] font-semibold tracking-[-0.02em] text-white/90 mb-12"
-        >
-          So far
-        </TextReveal>
+      <section className="relative z-[2] mx-auto max-w-[72rem] px-6 py-32 md:px-12 border-t border-white/[0.06]">
+        <div className="flex items-start justify-between gap-8 mb-12">
+          <TextReveal
+            variant="word-slide"
+            as="h2"
+            start="top 85%"
+            duration={0.7}
+            className="font-display text-[clamp(2rem,4vw,3rem)] font-semibold tracking-[-0.02em] text-white/90"
+          >
+            So far
+          </TextReveal>
+        </div>
         <div>
           {[
             ['2025 Q1', 'Incorporated in Chennai. CIN: U62099TN2025PTC178068'],
@@ -206,13 +254,22 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ── Closing: one line, not a paragraph ── */}
-      <section className="relative z-[1] mx-auto max-w-[72rem] px-6 py-32 md:px-12 border-t border-white/[0.06]">
+      {/* ── Closing: image-masked statement ── */}
+      <section className="relative z-[2] mx-auto max-w-[72rem] px-6 py-32 md:px-12 border-t border-white/[0.06]">
         <BlurFade delay={0} duration={0.7} blur="10px" offset={16} inView inViewMargin="-80px">
-          <p className="font-display text-[clamp(2rem,5vw,4rem)] font-semibold leading-[1.15] tracking-[-0.02em] text-white/90 max-w-3xl">
-            India&apos;s factories are scaling fast.<br />
-            <span className="text-white/40">Their safety infrastructure should keep up.</span>
-          </p>
+          <div className="space-y-4">
+            <ImageMaskedText
+              text="Scale fast."
+              imageSrc="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1200&q=80"
+              fontSize="clamp(3rem, 8vw, 7rem)"
+              fontWeight={800}
+              bgPosition="center 40%"
+              className="block"
+            />
+            <p className="font-display text-[clamp(1.5rem,3vw,2.5rem)] font-semibold leading-[1.3] tracking-[-0.02em] text-white/35 max-w-3xl">
+              India&apos;s factories are scaling fast. Their safety infrastructure should keep up.
+            </p>
+          </div>
         </BlurFade>
       </section>
     </PageShell>

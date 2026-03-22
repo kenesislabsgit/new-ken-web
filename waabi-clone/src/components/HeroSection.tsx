@@ -7,6 +7,7 @@ import { prefersReducedMotion } from '@/lib/animations';
 import { Particles } from '@/components/magicui/particles';
 import { ProgressiveBlur } from '@/components/magicui/progressive-blur';
 import { BlurFade } from '@/components/magicui/blur-fade';
+import { AsciiBlock, ASCII_ARTS } from '@/components/AsciiArt';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -193,6 +194,8 @@ export default function HeroSection() {
               </span>
             </div>
           </BlurFade>
+
+
         </div>
 
         {/* Parallax floating images */}
@@ -200,6 +203,14 @@ export default function HeroSection() {
           {parallaxImages.map((img, i) => (
             <ParallaxImg key={i} {...img} />
           ))}
+        </div>
+
+        {/* Floating ASCII art decorations */}
+        <div className="absolute top-[30%] right-[8%] z-[1] hidden lg:block">
+          <AsciiBlock art={ASCII_ARTS.camera} className="text-[0.55rem]" color="text-amber-400/10" />
+        </div>
+        <div className="absolute top-[55%] left-[5%] z-[1] hidden lg:block">
+          <AsciiBlock art={ASCII_ARTS.shield} className="text-[0.55rem]" color="text-amber-400/8" />
         </div>
 
         {/* Bottom gradient fade */}

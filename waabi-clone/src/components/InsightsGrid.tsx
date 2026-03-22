@@ -1,9 +1,17 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import { useEffect, useRef } from 'react';
+import { Chip } from '@heroui/react';
 import { Particles } from '@/components/magicui/particles';
 import { ScrollReveal } from '@/components/magicui/scroll-reveal';
 import { TextReveal } from '@/components/magicui/text-reveal';
+import { AsciiDivider } from '@/components/AsciiArt';
+
+const DitheredWaves = dynamic(
+  () => import('@/components/magicui/dithered-waves').then(m => ({ default: m.DitheredWaves })),
+  { ssr: false }
+);
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { prefersReducedMotion } from '@/lib/animations';
@@ -94,6 +102,7 @@ export default function InsightsGrid() {
       />
 
       <div className="relative z-[1] mx-auto max-w-[1920px] px-6 md:px-12 lg:px-[343px]">
+        <AsciiDivider className="mb-8" accent="◆" />
         {/* Header */}
         <div className="mb-12 flex items-baseline justify-between">
           <TextReveal
@@ -127,9 +136,9 @@ export default function InsightsGrid() {
               {/* Tags */}
               <div className="mb-3 flex flex-wrap gap-2">
                 {article.tags.map(tag => (
-                  <span key={tag} className="font-mono-accent rounded-full bg-white/10 px-3 py-1 text-[11px] font-medium text-white/50 uppercase tracking-[0.08em]">
+                  <Chip key={tag} variant="secondary" size="sm">
                     {tag}
-                  </span>
+                  </Chip>
                 ))}
               </div>
 

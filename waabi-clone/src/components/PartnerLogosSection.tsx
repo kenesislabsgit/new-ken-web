@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { ScrollReveal } from '@/components/magicui/scroll-reveal';
 import { TextReveal } from '@/components/magicui/text-reveal';
+import { AsciiDivider, AsciiBlock, ASCII_ARTS } from '@/components/AsciiArt';
 
 const partnerTabs = ['Manufacturing', 'Pharma', 'Logistics', 'Infrastructure'];
 
@@ -52,13 +53,22 @@ export default function PartnerLogosSection() {
   return (
     <section id="partners" className="bg-[#0a0a0b] py-32">
       <div className="mx-auto max-w-[1234px] px-6 md:px-12">
-        <TextReveal
-          variant="word-blur"
-          as="h2"
-          className="mb-16 font-display text-[clamp(2rem,4vw,3.5rem)] font-semibold leading-[1.05] tracking-[-0.02em] text-white/90"
-        >
-          Trusted by Indian industry
-        </TextReveal>
+        <AsciiDivider className="mb-12" accent="◇" />
+
+        <div className="flex items-start justify-between gap-8">
+          <TextReveal
+            variant="word-blur"
+            as="h2"
+            className="mb-16 font-display text-[clamp(2rem,4vw,3.5rem)] font-semibold leading-[1.05] tracking-[-0.02em] text-white/90"
+          >
+            Trusted by Indian industry
+          </TextReveal>
+
+          {/* Decorative ASCII factory */}
+          <div className="hidden lg:block flex-shrink-0">
+            <AsciiBlock art={ASCII_ARTS.factory} className="text-[0.5rem]" color="text-amber-400/10" />
+          </div>
+        </div>
 
         {/* Partner tabs */}
         <ScrollReveal variant="fade-up" delay={0.15}>
@@ -89,7 +99,7 @@ export default function PartnerLogosSection() {
 
             <div className="flex items-center gap-4">
               {/* Partner logo placeholder */}
-              <div className="flex h-10 w-10 items-center justify-center rounded bg-white/5 text-xs font-medium text-white/40">
+              <div className="flex h-10 w-10 items-center justify-center rounded bg-white/5 font-mono-accent text-xs font-medium text-white/40">
                 {currentTestimonial.partnerLogo.charAt(0)}
               </div>
               <div>

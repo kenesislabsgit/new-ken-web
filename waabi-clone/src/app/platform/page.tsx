@@ -1,31 +1,43 @@
 'use client';
 
 import dynamic from 'next/dynamic';
+import { Button, Card } from '@heroui/react';
 import PageShell from '@/components/PageShell';
 import { BlurFade } from '@/components/magicui/blur-fade';
 
-const ShaderGradient = dynamic(
-  () => import('@/components/magicui/shader-gradient').then(m => ({ default: m.ShaderGradient })),
-  { ssr: false }
-);
 import { BorderBeam } from '@/components/magicui/border-beam';
 import { NumberTicker } from '@/components/magicui/number-ticker';
-import { Particles } from '@/components/magicui/particles';
-import { CircularGallery } from '@/components/magicui/circular-gallery';
 import { ScrollReveal } from '@/components/magicui/scroll-reveal';
 import { TextReveal } from '@/components/magicui/text-reveal';
+import { UnblurTextReveal } from '@/components/magicui/unblur-text-reveal';
+import { AsciiDivider } from '@/components/AsciiArt';
+
+const DitheredWaves = dynamic(
+  () => import('@/components/magicui/dithered-waves').then(m => ({ default: m.DitheredWaves })),
+  { ssr: false }
+);
 
 export default function PlatformPage() {
   return (
     <PageShell>
-      {/* Shader gradient background */}
-      <div className="pointer-events-none fixed inset-0 z-0 opacity-30 blur-[2px]" style={{ maskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 70%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 70%, transparent 100%)' }}>
-        <ShaderGradient colorA="#f59e0b" colorB="#92400e" speed={0.05} intensity={1.3} barCount={100} />
+      {/* DitheredWaves full page background */}
+      <div className="pointer-events-none fixed inset-0 z-0 opacity-[0.12]">
+        <DitheredWaves
+          color="#f59e0b"
+          cellSize={10}
+          speed={1.2}
+          layers={3}
+          amplitude={35}
+          frequency={0.012}
+          charset=" .:=+#"
+          enableMouse={true}
+          mouseRadius={250}
+          className="h-full w-full"
+        />
       </div>
 
       {/* ── Hero: big statement, no fluff ── */}
       <section className="relative z-[1] mx-auto max-w-[72rem] px-6 pb-40 md:px-12">
-        <Particles className="absolute inset-0 z-0 pointer-events-none" quantity={30} color="#f59e0b" size={0.3} staticity={80} ease={80} />
         <div className="relative z-[1]">
           <BlurFade delay={0.1} duration={0.5} blur="6px" offset={12}>
             <p className="font-mono-accent text-[1rem] uppercase tracking-[0.14em] text-amber-400/50 mb-10">Platform</p>
@@ -41,27 +53,136 @@ export default function PlatformPage() {
             </p>
           </BlurFade>
           <BlurFade delay={0.75} duration={0.4} blur="4px" offset={6}>
-            <a href="/contact" className="btn-kenesis font-mono-accent uppercase tracking-[0.1em] text-[1.05rem]">Book a walkthrough</a>
+            <a href="/contact">
+              <Button variant="primary" size="lg" className="font-mono-accent uppercase tracking-[0.1em] text-[1.05rem] rounded-[1.2rem] cursor-pointer">
+                Book a walkthrough
+              </Button>
+            </a>
           </BlurFade>
         </div>
       </section>
 
-      {/* ── Visual: circular gallery showing the product in action ── */}
-      <section className="relative z-[1] py-24 overflow-hidden">
+      {/* ── Dashboard preview ── */}
+      <section className="relative z-[1] py-24 px-6 md:px-12">
         <BlurFade delay={0} duration={0.6} blur="8px" offset={14} inView inViewMargin="-60px">
-          <CircularGallery
-            className="h-[380px] mx-auto"
-            radius={300}
-            rotationSpeed={28}
-            images={[
-              { src: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&q=80', alt: 'Safety detection' },
-              { src: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80', alt: 'Real-time dashboard' },
-              { src: 'https://images.unsplash.com/photo-1565043666747-69f6646db940?w=600&q=80', alt: 'Factory deployment' },
-              { src: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&q=80', alt: 'Edge inference' },
-              { src: 'https://images.unsplash.com/photo-1563770660941-20978e870e26?w=600&q=80', alt: 'Camera feeds' },
-              { src: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=600&q=80', alt: 'On-premise hardware' },
-            ]}
-          />
+          <div className="relative mx-auto max-w-[72rem] rounded-2xl border border-white/[0.08] bg-white/[0.02] backdrop-blur-sm overflow-hidden shadow-2xl shadow-black/40">
+            <BorderBeam size={200} duration={12} colorFrom="#f59e0b" colorTo="#d97706" borderWidth={1} />
+
+            {/* Title bar */}
+            <div className="flex items-center gap-2 px-5 py-3 border-b border-white/[0.06] bg-white/[0.02]">
+              <span className="w-3 h-3 rounded-full bg-red-500/60" />
+              <span className="w-3 h-3 rounded-full bg-yellow-500/60" />
+              <span className="w-3 h-3 rounded-full bg-green-500/60" />
+              <span className="ml-4 font-mono-accent text-[0.75rem] text-white/25 tracking-wider uppercase">Kenesis Dashboard — Live</span>
+              <span className="ml-auto flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+                <span className="font-mono-accent text-[0.7rem] text-green-400/60">Connected</span>
+              </span>
+            </div>
+
+            {/* Dashboard body */}
+            <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] min-h-[480px]">
+              {/* Sidebar */}
+              <div className="hidden md:flex flex-col gap-1 p-4 border-r border-white/[0.06] bg-white/[0.01]">
+                {[
+                  { icon: '┌◉┐', label: 'Overview', active: true },
+                  { icon: '│◎│', label: 'Camera Feeds', active: false },
+                  { icon: '│⚠│', label: 'Alerts', active: false },
+                  { icon: '├─┤', label: 'Zone Map', active: false },
+                  { icon: '│▓│', label: 'Analytics', active: false },
+                  { icon: '└◉┘', label: 'Settings', active: false },
+                ].map((item) => (
+                  <div
+                    key={item.label}
+                    className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-[0.85rem] transition-colors ${
+                      item.active
+                        ? 'bg-amber-400/10 text-amber-400/80 border border-amber-400/10'
+                        : 'text-white/25 hover:text-white/40 hover:bg-white/[0.02]'
+                    }`}
+                  >
+                    <span className="text-[1rem] opacity-60">{item.icon}</span>
+                    <span className="font-mono-accent tracking-wide">{item.label}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Main content */}
+              <div className="p-5 space-y-5">
+                {/* Stats row */}
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                  {[
+                    { label: 'Active Cameras', value: '28/30', color: 'text-green-400/70' },
+                    { label: 'Alerts Today', value: '12', color: 'text-amber-400/70' },
+                    { label: 'PPE Compliance', value: '94%', color: 'text-emerald-400/70' },
+                    { label: 'Avg Latency', value: '0.3s', color: 'text-blue-400/70' },
+                  ].map((stat) => (
+                    <div key={stat.label} className="rounded-xl bg-white/[0.03] border border-white/[0.06] p-4">
+                      <p className="font-mono-accent text-[0.7rem] uppercase tracking-[0.1em] text-white/20 mb-2">{stat.label}</p>
+                      <p className={`font-display text-[1.6rem] font-semibold leading-none ${stat.color}`}>{stat.value}</p>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Camera grid + alerts */}
+                <div className="grid grid-cols-1 md:grid-cols-[1fr_280px] gap-4">
+                  {/* Camera feeds grid */}
+                  <div className="space-y-3">
+                    <p className="font-mono-accent text-[0.75rem] uppercase tracking-[0.1em] text-white/20">Live Feeds</p>
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+                      {[
+                        { id: 'CAM-01', zone: 'Welding Bay A', status: 'ok' },
+                        { id: 'CAM-02', zone: 'Assembly Line 1', status: 'alert' },
+                        { id: 'CAM-03', zone: 'Loading Dock', status: 'ok' },
+                        { id: 'CAM-04', zone: 'Chemical Store', status: 'ok' },
+                        { id: 'CAM-05', zone: 'Main Entrance', status: 'ok' },
+                        { id: 'CAM-06', zone: 'Furnace Room', status: 'alert' },
+                      ].map((cam) => (
+                        <div key={cam.id} className="relative rounded-lg bg-black/40 border border-white/[0.06] overflow-hidden aspect-video group cursor-pointer">
+                          {/* Simulated feed noise */}
+                          <div className="absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent" />
+                          <div className="absolute inset-0 flex flex-col justify-between p-2">
+                            <div className="flex items-center justify-between">
+                              <span className="font-mono-accent text-[0.6rem] text-white/30 bg-black/50 px-1.5 py-0.5 rounded">{cam.id}</span>
+                              <span className={`w-1.5 h-1.5 rounded-full ${cam.status === 'alert' ? 'bg-red-400 animate-pulse' : 'bg-green-400/60'}`} />
+                            </div>
+                            <span className="font-mono-accent text-[0.6rem] text-white/20">{cam.zone}</span>
+                          </div>
+                          {cam.status === 'alert' && (
+                            <div className="absolute inset-0 border-2 border-red-400/30 rounded-lg" />
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Recent alerts */}
+                  <div className="space-y-3">
+                    <p className="font-mono-accent text-[0.75rem] uppercase tracking-[0.1em] text-white/20">Recent Alerts</p>
+                    <div className="space-y-2">
+                      {[
+                        { time: '2m ago', msg: 'No face shield — Welding Bay A', severity: 'high' },
+                        { time: '8m ago', msg: 'Unauthorized zone entry — Furnace', severity: 'high' },
+                        { time: '15m ago', msg: 'Missing hard hat — Assembly Line 1', severity: 'medium' },
+                        { time: '23m ago', msg: 'Slip hazard detected — Loading Dock', severity: 'low' },
+                        { time: '41m ago', msg: 'PPE compliance drop below 90%', severity: 'medium' },
+                      ].map((alert, i) => (
+                        <div key={i} className="flex items-start gap-3 rounded-lg bg-white/[0.02] border border-white/[0.04] p-3 cursor-pointer hover:bg-white/[0.04] transition-colors">
+                          <span className={`mt-0.5 w-2 h-2 rounded-full flex-shrink-0 ${
+                            alert.severity === 'high' ? 'bg-red-400' :
+                            alert.severity === 'medium' ? 'bg-amber-400' : 'bg-blue-400'
+                          }`} />
+                          <div className="min-w-0">
+                            <p className="text-[0.8rem] text-white/50 leading-snug truncate">{alert.msg}</p>
+                            <p className="font-mono-accent text-[0.65rem] text-white/15 mt-0.5">{alert.time}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </BlurFade>
       </section>
 
@@ -93,9 +214,10 @@ export default function PlatformPage() {
 
       {/* ── Pipeline: horizontal flow, not numbered cards ── */}
       <section className="relative z-[1] mx-auto max-w-[72rem] px-6 py-32 md:px-12">
+        <AsciiDivider className="mb-12" accent="▸" />
         <BlurFade delay={0} duration={0.5} blur="6px" offset={10} inView inViewMargin="-80px">
           <h2 className="font-display text-[clamp(2rem,4vw,3rem)] font-semibold tracking-[-0.02em] text-white/90 mb-4">From camera to alert in one hop</h2>
-          <p className="text-[1.1rem] text-white/30 mb-16 max-w-2xl">No staging servers, no cloud queues, no round trips. Your RTSP feeds go in one end, contextual alerts come out the other.</p>
+          <p className="text-[1.1rem] text-white/30 mb-4 max-w-2xl">No staging servers, no cloud queues, no round trips. Your RTSP feeds go in one end, contextual alerts come out the other.</p>
         </BlurFade>
 
         <div className="flex flex-col md:flex-row items-stretch gap-0 md:gap-0">
@@ -162,15 +284,19 @@ export default function PlatformPage() {
 
       {/* ── Why this matters: editorial paragraphs, not feature cards ── */}
       <section className="relative z-[1] mx-auto max-w-[72rem] px-6 py-32 md:px-12 border-t border-white/[0.06]">
-        <TextReveal
-          variant="word-slide"
+        <UnblurTextReveal
           as="h2"
+          blurAmount={22}
+          scaleFrom={0.87}
+          scrub={1}
           start="top 85%"
-          duration={0.7}
+          end="top 40%"
+          splitBy="word"
+          stagger={0.06}
           className="font-display text-[clamp(2rem,4vw,3rem)] font-semibold tracking-[-0.02em] text-white/90 mb-16"
         >
           Why edge, not cloud
-        </TextReveal>
+        </UnblurTextReveal>
         <div className="max-w-3xl space-y-12">
           <TextReveal
             variant="highlight"
@@ -201,8 +327,6 @@ export default function PlatformPage() {
           </TextReveal>
         </div>
       </section>
-
-      {/* ── Pricing: simple, asymmetric ── */}
       <section className="relative z-[1] mx-auto max-w-[72rem] px-6 py-32 md:px-12 border-t border-white/[0.06]">
         <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-16 items-start">
           <div>
@@ -217,16 +341,20 @@ export default function PlatformPage() {
               </p>
             </BlurFade>
           </div>
-          <div className="relative rounded-xl bg-white/[0.02] border border-white/[0.04] p-6">
-            <p className="font-mono-accent text-[0.85rem] uppercase tracking-[0.1em] text-white/20 mb-3">Cloud equivalent</p>
-            <p className="font-display text-[2rem] font-semibold text-white/20 line-through mb-2">₹839/cam</p>
-            <ul className="space-y-2 text-[0.95rem] text-white/20">
-              <li>+ Data leaves premises</li>
-              <li>+ Internet dependent</li>
-              <li>+ Generic alerts</li>
-              <li>+ Vendor lock-in</li>
-            </ul>
-          </div>
+          <Card variant="transparent" className="relative rounded-xl bg-white/[0.02] border border-white/[0.04] p-6">
+            <Card.Header>
+              <Card.Description className="font-mono-accent text-[0.85rem] uppercase tracking-[0.1em] text-white/20 mb-3">Cloud equivalent</Card.Description>
+            </Card.Header>
+            <Card.Content>
+              <p className="font-display text-[2rem] font-semibold text-white/20 line-through mb-2">₹839/cam</p>
+              <ul className="space-y-2 text-[0.95rem] text-white/20">
+                <li>+ Data leaves premises</li>
+                <li>+ Internet dependent</li>
+                <li>+ Generic alerts</li>
+                <li>+ Vendor lock-in</li>
+              </ul>
+            </Card.Content>
+          </Card>
         </div>
       </section>
 
@@ -236,7 +364,11 @@ export default function PlatformPage() {
           <p className="font-display text-[clamp(2rem,4vw,3rem)] font-semibold tracking-[-0.02em] text-white/90 mb-6">
             See it running on your cameras.
           </p>
-          <a href="/contact" className="btn-kenesis font-mono-accent uppercase tracking-[0.1em] text-[1.05rem]">Request a demo</a>
+          <a href="/contact">
+            <Button variant="primary" size="lg" className="font-mono-accent uppercase tracking-[0.1em] text-[1.05rem] rounded-[1.2rem] cursor-pointer">
+              Request a demo
+            </Button>
+          </a>
         </BlurFade>
       </section>
     </PageShell>

@@ -1,6 +1,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
+import { Chip } from '@heroui/react';
 import PageShell from '@/components/PageShell';
 import { BlurFade } from '@/components/magicui/blur-fade';
 import { ScrollReveal } from '@/components/magicui/scroll-reveal';
@@ -49,7 +50,7 @@ export default function NewsPage() {
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-3">
-                    <span className="font-mono-accent rounded-full bg-white/[0.08] px-3 py-1 text-[1rem] text-white/45 uppercase tracking-[0.08em]">{a.tag}</span>
+                    <Chip variant="secondary" size="sm">{a.tag}</Chip>
                     <span className="font-mono-accent text-[1rem] text-white/25 tracking-[0.04em]">{a.date}</span>
                   </div>
                   <h2 className="font-display text-[1.8rem] font-semibold leading-[1.3] text-white/85 group-hover:text-amber-400 transition-colors">{a.title}</h2>
