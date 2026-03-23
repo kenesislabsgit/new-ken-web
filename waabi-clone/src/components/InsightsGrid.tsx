@@ -3,7 +3,7 @@
 import dynamic from 'next/dynamic';
 import { useEffect, useRef } from 'react';
 import { Chip } from '@heroui/react';
-import { Particles } from '@/components/magicui/particles';
+import { SpectraNoise } from '@/components/magicui/spectra-noise';
 import { ScrollReveal } from '@/components/magicui/scroll-reveal';
 import { TextReveal } from '@/components/magicui/text-reveal';
 import { AsciiDivider } from '@/components/AsciiArt';
@@ -92,14 +92,22 @@ export default function InsightsGrid() {
 
   return (
     <section className="relative bg-[#0a0a0b] py-32 overflow-hidden">
-      <Particles
-        className="absolute inset-0 z-0"
-        quantity={35}
-        color="#ffffff"
-        size={0.25}
-        staticity={80}
-        ease={80}
-      />
+      <div className="absolute inset-0 z-0 opacity-25">
+        <SpectraNoise
+          hueShift={-30}
+          noiseIntensity={0.03}
+          scanlineIntensity={0.08}
+          scanlineFrequency={0.005}
+          warpAmount={1.0}
+          speed={0.25}
+          resolutionScale={0.5}
+          primaryColor={[0.04, 0.04, 0.02]}
+          secondaryColor={[0.45, 0.38, 0.0]}
+          accentColor={[0.98, 0.80, 0.08]}
+          colorIntensity={0.9}
+          className="w-full h-full"
+        />
+      </div>
 
       <div className="relative z-[1] mx-auto max-w-[1920px] px-6 md:px-12 lg:px-[343px]">
         <AsciiDivider className="mb-8" accent="◆" />

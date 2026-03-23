@@ -9,12 +9,7 @@ import { ScrollReveal } from '@/components/magicui/scroll-reveal';
 import { TextReveal } from '@/components/magicui/text-reveal';
 import { UnblurTextReveal } from '@/components/magicui/unblur-text-reveal';
 import { ImageMaskedText } from '@/components/magicui/image-masked-text';
-import { HalftoneFilter } from '@/components/magicui/halftone-filter';
-const TextFlow = dynamic(
-  () => import('@/components/magicui/text-flow').then(m => ({ default: m.TextFlow })),
-  { ssr: false }
-);
-
+import { AsciiTextDisplay } from '@/components/magicui/ascii-text-display';
 const DitheredWaves = dynamic(
   () => import('@/components/magicui/dithered-waves').then(m => ({ default: m.DitheredWaves })),
   { ssr: false }
@@ -128,25 +123,23 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ── Visual: circular gallery with halftone overlay ── */}
+      {/* ── Visual: circular gallery ── */}
       <section className="relative z-[2] py-24 overflow-hidden">
         <BlurFade delay={0} duration={0.6} blur="8px" offset={14} inView inViewMargin="-60px">
-          <HalftoneFilter dotSize={2} color="#f59e0b" opacity={0.1} angle={30}>
-            <CircularGallery
-              className="h-[380px] mx-auto"
-              radius={300}
-              rotationSpeed={35}
-              images={[
-                { src: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&q=80', alt: 'Industrial automation' },
-                { src: 'https://images.unsplash.com/photo-1565043666747-69f6646db940?w=600&q=80', alt: 'Factory floor' },
-                { src: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&q=80', alt: 'Safety monitoring' },
-                { src: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&q=80', alt: 'Engineering team' },
-                { src: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=600&q=80', alt: 'Edge computing hardware' },
-                { src: 'https://images.unsplash.com/photo-1563770660941-20978e870e26?w=600&q=80', alt: 'CCTV infrastructure' },
-                { src: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80', alt: 'Analytics dashboard' },
-              ]}
-            />
-          </HalftoneFilter>
+          <CircularGallery
+            className="h-[380px] mx-auto"
+            radius={300}
+            rotationSpeed={35}
+            images={[
+              { src: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&q=80', alt: 'Industrial automation' },
+              { src: 'https://images.unsplash.com/photo-1565043666747-69f6646db940?w=600&q=80', alt: 'Factory floor' },
+              { src: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&q=80', alt: 'Safety monitoring' },
+              { src: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&q=80', alt: 'Engineering team' },
+              { src: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=600&q=80', alt: 'Edge computing hardware' },
+              { src: 'https://images.unsplash.com/photo-1563770660941-20978e870e26?w=600&q=80', alt: 'CCTV infrastructure' },
+              { src: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80', alt: 'Analytics dashboard' },
+            ]}
+          />
         </BlurFade>
       </section>
 
@@ -176,18 +169,17 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ── Interactive TextFlow: particle text ── */}
-      <section className="relative z-[2] py-20 flex items-center justify-center overflow-hidden">
-        <TextFlow
+      {/* ── ASCII text display ── */}
+      <section className="relative z-[2] py-16 flex items-center justify-center overflow-hidden">
+        <AsciiTextDisplay
           text="EDGE AI"
-          fontSize={120}
+          fontSize={140}
+          cellW={7}
+          cellH={13}
+          charset=" .,:;i1tfLCG08@#"
           color="#f59e0b"
-          particleSize={1.8}
-          particleDensity={2.5}
-          mouseRadius={100}
-          mouseForce={10}
-          returnSpeed={0.05}
-          className="h-[200px] max-w-[72rem] mx-auto"
+          glitchRate={0.006}
+          className="w-full max-w-[72rem] mx-auto px-6 opacity-70"
         />
       </section>
 

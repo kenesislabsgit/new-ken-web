@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useCallback } from 'react';
 import { prefersReducedMotion } from '@/lib/animations';
-import { Particles } from '@/components/magicui/particles';
+import { SpectraNoise } from '@/components/magicui/spectra-noise';
 import { AsciiBlock, ASCII_ARTS } from '@/components/AsciiArt';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -197,15 +197,23 @@ export default function CareersCTASection() {
 
   return (
     <section ref={sectionRef} className="relative bg-[#0a0a0b] overflow-hidden" data-testid="careers-cta">
-      {/* Particles background */}
-      <Particles
-        className="absolute inset-0 z-0"
-        quantity={50}
-        color="#f59e0b"
-        size={0.3}
-        staticity={60}
-        ease={70}
-      />
+      {/* SpectraNoise background */}
+      <div className="absolute inset-0 z-0 opacity-30">
+        <SpectraNoise
+          hueShift={-30}
+          noiseIntensity={0.04}
+          scanlineIntensity={0.1}
+          scanlineFrequency={0.006}
+          warpAmount={1.2}
+          speed={0.3}
+          resolutionScale={0.5}
+          primaryColor={[0.04, 0.04, 0.02]}
+          secondaryColor={[0.45, 0.38, 0.0]}
+          accentColor={[0.98, 0.80, 0.08]}
+          colorIntensity={0.9}
+          className="w-full h-full"
+        />
+      </div>
 
       <div className="relative z-[1] flex h-screen w-full flex-col items-center justify-center px-6 md:px-12">
         {/* Heading */}

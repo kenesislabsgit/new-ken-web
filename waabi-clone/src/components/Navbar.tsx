@@ -10,17 +10,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 const navLinks = [
   { label: "Platform", href: "/platform" },
-  {
-    label: "Solutions",
-    href: "/solutions/ppe-compliance",
-    children: [
-      { label: "PPE Compliance", href: "/solutions/ppe-compliance" },
-      { label: "Zone Detection", href: "/solutions/zone-detection" },
-      { label: "Analytics", href: "/solutions/analytics" },
-    ],
-  },
+  { label: "Solutions", href: "/solutions/ppe-compliance" },
   { label: "About", href: "/about" },
-  { label: "News", href: "/news" },
 ];
 
 const mobileLinks = [
@@ -29,16 +20,13 @@ const mobileLinks = [
   { label: "Zone Detection", href: "/solutions/zone-detection" },
   { label: "Analytics", href: "/solutions/analytics" },
   { label: "About", href: "/about" },
-  { label: "News", href: "/news" },
   { label: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
   const headerRef = useRef<HTMLDivElement>(null);
   const progressRef = useRef<HTMLDivElement>(null);
-  const dropdownTimeout = useRef<ReturnType<typeof setTimeout>>(undefined);
 
   useEffect(() => {
     const el = headerRef.current;
@@ -64,13 +52,7 @@ export default function Navbar() {
     return () => { trigger.kill(); };
   }, []);
 
-  const openDropdown = () => {
-    clearTimeout(dropdownTimeout.current);
-    setDropdownOpen(true);
-  };
-  const closeDropdown = () => {
-    dropdownTimeout.current = setTimeout(() => setDropdownOpen(false), 150);
-  };
+
 
   return (
     <>
@@ -99,68 +81,22 @@ export default function Navbar() {
 
           {/* Desktop nav */}
           <nav className="hidden items-center gap-[0.4rem] md:flex" aria-label="Main navigation">
-            {navLinks.map((link) =>
-              link.children ? (
-                <div
-                  key={link.label}
-                  className="relative"
-                  onMouseEnter={openDropdown}
-                  onMouseLeave={closeDropdown}
-                >
-                  <button
-                    className="flex items-center gap-[0.4rem] rounded-[0.8rem] px-[1.4rem] py-[0.8rem] font-mono-accent text-[1.2rem] font-medium uppercase tracking-[0.1em] text-white/50 transition-colors duration-200 hover:text-white/90 cursor-pointer"
-                    aria-expanded={dropdownOpen}
-                    aria-haspopup="true"
+            {navLinks.map((link) => (
+              <Tooltip key={link.label}>
+                <Tooltip.Trigger>
+                  <Link
+                    href={link.href}
+                    className="rounded-[0.8rem] px-[1.4rem] py-[0.8rem] font-mono-accent text-[1.2rem] font-medium uppercase tracking-[0.1em] text-white/50 transition-colors duration-200 hover:text-white/90 cursor-pointer"
                   >
                     {link.label}
-                    <svg width="10" height="6" viewBox="0 0 10 6" fill="none" className={`ml-[0.2rem] transition-transform duration-200 ${dropdownOpen ? "rotate-180" : ""}`}>
-                      <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </button>
-
-                  {/* Dropdown */}
-                  <div
-                    className={`absolute left-0 top-full pt-[0.6rem] transition-all duration-200 ${dropdownOpen ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-[0.4rem] pointer-events-none"}`}
-                  >
-                    <div
-                      className="min-w-[20rem] rounded-[1.2rem] p-[0.6rem]"
-                      style={{
-                        background: "rgba(20,20,22,0.95)",
-                        backdropFilter: "blur(20px)",
-                        WebkitBackdropFilter: "blur(20px)",
-                        border: "1px solid rgba(255,255,255,0.08)",
-                        boxShadow: "0 12px 40px rgba(0,0,0,0.5)",
-                      }}
-                    >
-                      {link.children.map((child) => (
-                        <Link
-                          key={child.label}
-                          href={child.href}
-                          className="block rounded-[0.8rem] px-[1.4rem] py-[1rem] font-mono-accent text-[1.2rem] font-medium tracking-[0.04em] text-white/50 transition-colors duration-150 hover:bg-white/[0.06] hover:text-white/90 cursor-pointer"
-                        >
-                          {child.label}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              ) : (
-                <Tooltip key={link.label}>
-                  <Tooltip.Trigger>
-                    <Link
-                      href={link.href}
-                      className="rounded-[0.8rem] px-[1.4rem] py-[0.8rem] font-mono-accent text-[1.2rem] font-medium uppercase tracking-[0.1em] text-white/50 transition-colors duration-200 hover:text-white/90 cursor-pointer"
-                    >
-                      {link.label}
-                    </Link>
-                  </Tooltip.Trigger>
-                  <Tooltip.Content placement="bottom" offset={8}>
-                    <Tooltip.Arrow />
-                    Explore {link.label}
-                  </Tooltip.Content>
-                </Tooltip>
-              )
-            )}
+                  </Link>
+                </Tooltip.Trigger>
+                <Tooltip.Content placement="bottom" offset={8}>
+                  <Tooltip.Arrow />
+                  Explore {link.label}
+                </Tooltip.Content>
+              </Tooltip>
+            ))}
           </nav>
 
           {/* Right side — CTA + hamburger */}

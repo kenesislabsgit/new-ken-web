@@ -1,20 +1,22 @@
 import type { Metadata } from "next";
-import { JetBrains_Mono, IBM_Plex_Mono } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 
-const jetbrainsMono = JetBrains_Mono({
+// Display + headings: Geist — sharp geometric sans, ultra-modern
+const geist = Geist({
   subsets: ["latin"],
-  variable: "--font-jetbrains",
+  variable: "--font-geist",
   display: "swap",
-  weight: ["300", "400", "500", "600", "700", "800"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
 });
 
-const plexMono = IBM_Plex_Mono({
+// UI / labels / code: Geist Mono — the perfect mono sibling
+const geistMono = Geist_Mono({
   subsets: ["latin"],
-  variable: "--font-plex-mono",
+  variable: "--font-geist-mono",
   display: "swap",
-  weight: ["400", "500", "700"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 const neoWave = localFont({
@@ -36,7 +38,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${jetbrainsMono.variable} ${plexMono.variable} ${neoWave.variable}`}>
+    <html lang="en" className={`${geist.variable} ${geistMono.variable} ${neoWave.variable}`}>
       <body className="antialiased">{children}</body>
     </html>
   );

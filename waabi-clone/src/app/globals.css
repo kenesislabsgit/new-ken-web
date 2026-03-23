@@ -33,10 +33,10 @@
   --color-glass-border: rgba(255, 255, 255, 0.3);
   --color-glass-shadow: rgba(0, 0, 0, 0.08);
 
-  /* Typography — full terminal / industrial monospace */
-  --font-sans: var(--font-jetbrains), 'JetBrains Mono', 'Courier New', monospace;
-  --font-display: var(--font-jetbrains), 'JetBrains Mono', 'Courier New', monospace;
-  --font-mono-accent: var(--font-plex-mono), 'IBM Plex Mono', 'Courier New', monospace;
+  /* Typography — Geist × Geist Mono premium pairing */
+  --font-sans: var(--font-geist), 'Geist', system-ui, sans-serif;
+  --font-display: var(--font-geist), 'Geist', system-ui, sans-serif;
+  --font-mono-accent: var(--font-geist-mono), 'Geist Mono', 'Courier New', monospace;
 
   /* Easing */
   --ease-smooth: cubic-bezier(0.25, 0.1, 0.25, 1);
@@ -305,7 +305,7 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 1.2rem;
     color: rgba(255, 255, 255, 0.8);
-    font-family: var(--font-plex-mono), 'IBM Plex Mono', monospace;
+    font-family: var(--font-geist-mono), 'Geist Mono', monospace;
     font-size: 1.4rem;
     padding: 1.4rem 2rem;
     backdrop-filter: blur(12px);
@@ -335,7 +335,7 @@ body {
   }
   .chip__label {
     color: rgba(255, 255, 255, 0.5);
-    font-family: var(--font-plex-mono), 'IBM Plex Mono', monospace;
+    font-family: var(--font-geist-mono), 'Geist Mono', monospace;
     font-size: 1.1rem;
     font-weight: 500;
     text-transform: uppercase;

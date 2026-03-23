@@ -140,42 +140,6 @@ describe('HeroSection', () => {
   });
 });
 
-// ── ParallaxGallery Tests ──────────────────────────────────────────────────
-
-describe('ParallaxGallery', () => {
-  async function renderGallery() {
-    const mod = await import('../ParallaxGallery');
-    const ParallaxGallery = mod.default;
-    return render(<ParallaxGallery />);
-  }
-
-  it('renders multiple panels', async () => {
-    const { container } = await renderGallery();
-    const panels = container.querySelectorAll('.h-screen');
-    expect(panels.length).toBeGreaterThanOrEqual(2);
-  });
-
-  it('contains no text overlays (media-only panels)', async () => {
-    const { container } = await renderGallery();
-    const section = container.querySelector('section');
-    expect(section).toBeDefined();
-    // Panels should only contain img or video, no heading/paragraph text
-    const headings = section!.querySelectorAll('h1, h2, h3, h4, h5, h6, p');
-    expect(headings.length).toBe(0);
-  });
-
-  it('video elements have autoplay, muted, loop attributes', async () => {
-    const { container } = await renderGallery();
-    const videos = container.querySelectorAll('video');
-    expect(videos.length).toBeGreaterThan(0);
-    videos.forEach((video) => {
-      expect(video.autoplay).toBe(true);
-      expect(video.muted).toBe(true);
-      expect(video.loop).toBe(true);
-    });
-  });
-});
-
 // ── PinnedFeatureTabs Tests ────────────────────────────────────────────────
 
 describe('PinnedFeatureTabs', () => {

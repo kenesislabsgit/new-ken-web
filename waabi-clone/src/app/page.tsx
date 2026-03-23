@@ -9,7 +9,6 @@ import PinnedFeatureTabs from "@/components/PinnedFeatureTabs";
 import WavePerformanceSection from "@/components/WavePerformanceSection";
 import TechCardsSection from "@/components/TechCardsSection";
 import PartnerLogosSection from "@/components/PartnerLogosSection";
-import InsightsGrid from "@/components/InsightsGrid";
 import CareersCTASection from "@/components/CareersCTASection";
 import FooterCTASection from "@/components/FooterCTASection";
 import { TextVideoMask } from "@/components/magicui/text-video-mask";
@@ -23,7 +22,7 @@ const DitheredWaves = dynamic(
 export default function Home() {
   return (
     <LenisProvider>
-      <main className="relative min-h-screen w-full bg-[#0a0a0b]">
+      <main className="relative min-h-screen w-full">
         <Navbar />
         <HeroSection />
         <PinnedFeatureTabs />
@@ -39,6 +38,7 @@ export default function Home() {
             fontSize="clamp(6rem, 14vw, 16rem)"
             fontWeight={400}
             fontFamily="var(--font-neowave), sans-serif"
+            mode="clip"
             className="h-full w-full"
           >
             <DitheredWaves
@@ -70,7 +70,6 @@ export default function Home() {
         </section>
 
         <PartnerLogosSection />
-        <InsightsGrid />
 
         {/* ── Unblur reveal before CTA ── */}
         <section className="relative z-[1] mx-auto max-w-5xl px-6 py-24 text-center">

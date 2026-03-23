@@ -15,7 +15,6 @@ const navLinks = [
   { label: 'Home', href: '/' },
   { label: 'Platform', href: '/platform' },
   { label: 'Solutions', href: '/solutions/ppe-compliance' },
-  { label: 'News', href: '/news' },
   { label: 'About', href: '/about' },
   { label: 'Contact', href: '/contact' },
 ];

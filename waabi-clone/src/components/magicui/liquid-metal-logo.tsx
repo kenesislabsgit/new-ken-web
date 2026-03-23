@@ -50,16 +50,22 @@ export function LiquidMetalLogo({
   }, []);
 
   if (!LiquidMetal || reduced) {
+    // Render an invisible placeholder — same size, no flash
     return (
-      <div ref={containerRef} className={cn("relative", className)}>
-        <img
-          src={src}
-          alt="Kenesis logo"
-          width={width}
-          height={height}
-          className="w-full h-full object-contain"
-          style={{ filter: reduced ? "none" : "brightness(0.8)" }}
-        />
+      <div
+        ref={containerRef}
+        className={cn("relative", className)}
+        style={{ width, height, visibility: reduced ? 'visible' : 'hidden' }}
+      >
+        {reduced && (
+          <img
+            src={src}
+            alt="Kenesis logo"
+            width={width}
+            height={height}
+            className="w-full h-full object-contain"
+          />
+        )}
       </div>
     );
   }
