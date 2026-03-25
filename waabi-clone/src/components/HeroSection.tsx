@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
@@ -10,6 +10,7 @@ import { ProgressiveBlur } from '@/components/magicui/progressive-blur';
 import { BlurFade } from '@/components/magicui/blur-fade';
 import { AsciiBlock, ASCII_ARTS } from '@/components/AsciiArt';
 import { AsciiImage } from '@/components/magicui/ascii-image';
+import { AmbientGlow } from '@/components/magicui/ambient-glow';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -106,6 +107,7 @@ export default function HeroSection() {
   const scrollSectionRef = useRef<HTMLDivElement>(null);
   const headingOverlayRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
+  const ambientVideoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => { setMounted(true); }, []);
 
@@ -152,27 +154,44 @@ export default function HeroSection() {
 
       {/* Intro screen */}
       <div ref={introRef} className="relative z-[2] h-screen w-full">
-        {/* KENESIS logo centered in viewport */}
+        {/* KENESIS logo centered in viewport with ambient glow */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <TextVideoMask
-            text="KENESIS"
-            fontSize="clamp(6rem, 15vw, 18rem)"
-            fontWeight={400}
-            fontFamily="var(--font-neowave), sans-serif"
-            mode="clip"
-            className="h-[clamp(10rem,25vw,28rem)] w-full"
-          >
+          <div className="relative w-full" style={{ maxWidth: '1200px', padding: '0 24px' }}>
+            {/* Hidden video source for ambient glow sampling */}
             <video
+              ref={ambientVideoRef}
               autoPlay
               loop
               muted
               playsInline
-              className="h-full w-full object-cover"
-              src="https://videos.pexels.com/video-files/3571264/3571264-uhd_2560_1440_30fps.mp4"
+              className="absolute opacity-0 w-0 h-0"
+              src="/videos/kenesis-text-fill.mp4"
             />
-          </TextVideoMask>
+            {/* Canvas-based ambient glow (YouTube-style) */}
+            <AmbientGlow
+              videoRef={ambientVideoRef}
+              blur={60}
+              opacity={0.25}
+              interval={200}
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-0"
+              style={{ width: '110%', height: '200%' }}
+            />
+            {/* Text mask with video */}
+            <div className="relative z-[1]">
+              <TextVideoMask
+                text="KENESIS"
+                fontSize="clamp(60px, 11vw, 150px)"
+                fontWeight={400}
+                fontFamily="var(--font-neowave), sans-serif"
+                mode="clip"
+                videoSrc="/videos/kenesis-text-fill.mp4"
+                className="w-full"
+                style={{ height: 'clamp(100px, 20vw, 220px)' }}
+              />
+            </div>
+          </div>
         </div>
-        {/* Heading text ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â bottom left */}
+        {/* Heading text — bottom left */}
         <div className="absolute bottom-[6rem] left-0 px-6 md:px-12 lg:px-[5rem] w-full">
           <h1 className="font-display text-[clamp(3rem,8vw,8rem)] font-semibold leading-[0.95] tracking-[-0.04em] text-amber-200/90 max-w-[90vw]">
             <BlurRevealText text="Built to detect." baseDelay={0.3} />
@@ -185,14 +204,7 @@ export default function HeroSection() {
               Real-time safety intelligence &mdash; no cloud, no data leaving your network.
             </p>
           </BlurFade>
-          <BlurFade delay={1.9} duration={0.6} blur="6px" offset={12}>
-            <div className="mt-[3rem] flex items-center gap-4">
-              <span className="inline-block h-[0.5rem] w-[0.5rem] rounded-full bg-amber-400 animate-pulse" />
-              <span className="font-mono-accent text-[1.1rem] uppercase tracking-[0.12em] text-amber-200/30">
-                Edge AI &middot; 30 cameras &middot; 35 watts
-              </span>
-            </div>
-          </BlurFade>
+
         </div>
       </div>
 
@@ -217,7 +229,7 @@ export default function HeroSection() {
         <div className="absolute bottom-0 left-0 right-0 h-[38.4rem] bg-gradient-to-b from-dark/0 to-dark z-[5]" />
       </div>
 
-      <ProgressiveBlur position="top" height="12rem" blurLevels={[0, 0.5, 1, 2, 4, 8]} />
+      <ProgressiveBlur position="top" height="80px" />
     </section>
   );
 }

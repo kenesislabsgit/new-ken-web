@@ -10,15 +10,13 @@ gsap.registerPlugin(ScrollTrigger);
 
 const navLinks = [
   { label: "Platform", href: "/platform" },
-  { label: "Solutions", href: "/solutions/ppe-compliance" },
+  { label: "Solutions", href: "/solutions" },
   { label: "About", href: "/about" },
 ];
 
 const mobileLinks = [
   { label: "Platform", href: "/platform" },
-  { label: "PPE Compliance", href: "/solutions/ppe-compliance" },
-  { label: "Zone Detection", href: "/solutions/zone-detection" },
-  { label: "Analytics", href: "/solutions/analytics" },
+  { label: "Solutions", href: "/solutions" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];

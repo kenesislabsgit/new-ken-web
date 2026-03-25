@@ -14,7 +14,7 @@ const GLSLHills = dynamic(() => import('./GLSLHills'), { ssr: false });
 const navLinks = [
   { label: 'Home', href: '/' },
   { label: 'Platform', href: '/platform' },
-  { label: 'Solutions', href: '/solutions/ppe-compliance' },
+  { label: 'Solutions', href: '/solutions' },
   { label: 'About', href: '/about' },
   { label: 'Contact', href: '/contact' },
 ];

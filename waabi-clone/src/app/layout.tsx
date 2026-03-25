@@ -1,22 +1,22 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 
-// Display + headings: Geist — sharp geometric sans, ultra-modern
-const geist = Geist({
+// SF Pro substitute: Inter — closest match on Google Fonts
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-geist",
+  variable: "--font-inter",
   display: "swap",
   weight: ["300", "400", "500", "600", "700", "800", "900"],
 });
 
-// UI / labels / code: Geist Mono — the perfect mono sibling
+// Mono: Geist Mono — only for code, labels, technical data
 const geistMono = Geist_Mono({
   subsets: ["latin"],
   variable: "--font-geist-mono",
   display: "swap",
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["300", "400", "500", "700"],
 });
 
 const neoWave = localFont({
@@ -38,7 +38,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${geist.variable} ${geistMono.variable} ${neoWave.variable}`}>
+    <html lang="en" className={`${inter.variable} ${geistMono.variable} ${neoWave.variable}`}>
       <body className="antialiased">{children}</body>
     </html>
   );

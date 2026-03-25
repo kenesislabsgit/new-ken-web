@@ -23,20 +23,20 @@
   --color-white: #FFFFFF;
   --color-muted: #71717a;
 
-  /* Accent = amber/orange */
+  /* Accent = warm amber matching video */
   --color-accent: #f59e0b;
   --color-accent-light: #fbbf24;
-  --color-accent-hot: #f97316;
+  --color-accent-hot: #ea580c;
 
   /* Glass colors */
   --color-glass-white: rgba(255, 255, 255, 0.6);
   --color-glass-border: rgba(255, 255, 255, 0.3);
   --color-glass-shadow: rgba(0, 0, 0, 0.08);
 
-  /* Typography — Geist × Geist Mono premium pairing */
-  --font-sans: var(--font-geist), 'Geist', system-ui, sans-serif;
-  --font-display: var(--font-geist), 'Geist', system-ui, sans-serif;
-  --font-mono-accent: var(--font-geist-mono), 'Geist Mono', 'Courier New', monospace;
+  /* Typography — SF Pro system stack with Inter fallback */
+  --font-sans: -apple-system, BlinkMacSystemFont, 'SF Pro Text', var(--font-inter), 'Inter', 'Helvetica Neue', system-ui, sans-serif;
+  --font-display: -apple-system, BlinkMacSystemFont, 'SF Pro Display', var(--font-inter), 'Inter', 'Helvetica Neue', system-ui, sans-serif;
+  --font-mono-accent: var(--font-geist-mono), 'Geist Mono', 'SF Mono', 'Courier New', monospace;
 
   /* Easing */
   --ease-smooth: cubic-bezier(0.25, 0.1, 0.25, 1);

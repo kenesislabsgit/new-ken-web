@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import LenisProvider from "@/components/LenisProvider";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import Navbar from "@/components/Navbar";
+import { ProgressiveBlur } from "@/components/magicui/progressive-blur";
 import HeroSection from "@/components/HeroSection";
 import PinnedFeatureTabs from "@/components/PinnedFeatureTabs";
 import WavePerformanceSection from "@/components/WavePerformanceSection";
@@ -24,6 +25,7 @@ export default function Home() {
     <LenisProvider>
       <main className="relative min-h-screen w-full">
         <Navbar />
+        <ProgressiveBlur position="top" height="150px" className="fixed top-0 left-0 right-0 z-[100]" />
         <HeroSection />
         <PinnedFeatureTabs />
         <ErrorBoundary>

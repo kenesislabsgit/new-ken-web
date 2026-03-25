@@ -9,6 +9,7 @@ interface TextVideoMaskProps {
   videoSrc?: string;
   children?: React.ReactNode;
   className?: string;
+  style?: React.CSSProperties;
   fontSize?: string;
   fontWeight?: number;
   fontFamily?: string;
@@ -21,6 +22,7 @@ export function TextVideoMask({
   videoSrc,
   children,
   className,
+  style,
   fontSize = "clamp(5rem, 12vw, 14rem)",
   fontWeight = 900,
   fontFamily,
@@ -33,10 +35,11 @@ export function TextVideoMask({
   const clipId = `clip_${maskId}`;
   const [size, setSize] = useState({ w: 1, h: 1 });
 
+  // Simple autoplay loop — video is already a forward+reverse ping-pong
   useEffect(() => {
-    if (videoRef.current && !reduced) {
-      videoRef.current.play().catch(() => {});
-    }
+    const video = videoRef.current;
+    if (!video || reduced) return;
+    video.play().catch(() => {});
   }, [reduced]);
 
   useEffect(() => {
@@ -52,11 +55,29 @@ export function TextVideoMask({
     return () => ro.disconnect();
   }, []);
 
+  // Compute font size in pixels from CSS value
+  const [computedFontSize, setComputedFontSize] = useState<string>(fontSize);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    // Create a hidden span to measure the computed font size
+    const span = document.createElement('span');
+    span.style.fontSize = fontSize;
+    span.style.position = 'absolute';
+    span.style.visibility = 'hidden';
+    el.appendChild(span);
+    const computed = getComputedStyle(span).fontSize;
+    setComputedFontSize(computed);
+    el.removeChild(span);
+  }, [fontSize, size]);
+
   const fontFam = fontFamily || "var(--font-outfit), Outfit, system-ui, sans-serif";
 
   const bgContent = videoSrc ? (
     <video ref={videoRef} src={videoSrc} autoPlay loop muted playsInline
-      className="h-full w-full object-cover" />
+      className="h-full w-full object-cover"
+      style={{ filter: 'saturate(0.9) contrast(0.9) brightness(1.5)' }} />
   ) : children ? (
     <div className="h-full w-full">{children}</div>
   ) : (
@@ -64,13 +85,20 @@ export function TextVideoMask({
   );
 
   return (
-    <div ref={containerRef} className={cn("relative overflow-hidden", className)} aria-label={text}>
+    <div ref={containerRef} className={cn("relative overflow-hidden", className)} style={style} aria-label={text}>
       {/* Background layer */}
       <div
         className="absolute inset-0 z-0"
         style={mode === "clip" ? { clipPath: `url(#${clipId})` } : undefined}
       >
         {bgContent}
+        {/* Scanline overlay */}
+        <div className="absolute inset-0 z-[1] pointer-events-none"
+          style={{
+            backgroundImage: `repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.12) 2px, rgba(0,0,0,0.12) 3px)`,
+            backgroundSize: '100% 3px',
+          }}
+        />
       </div>
 
       {/* SVG definitions + overlay */}
@@ -88,7 +116,7 @@ export function TextVideoMask({
                 y={size.h / 2}
                 textAnchor="middle"
                 dominantBaseline="central"
-                style={{ fontSize, fontWeight, fontFamily: fontFam }}
+                style={{ fontSize: computedFontSize, fontWeight, fontFamily: fontFam }}
               >
                 {text}
               </text>
@@ -102,7 +130,7 @@ export function TextVideoMask({
                 textAnchor="middle"
                 dominantBaseline="central"
                 fill="black"
-                style={{ fontSize, fontWeight, fontFamily: fontFam }}
+                style={{ fontSize: computedFontSize, fontWeight, fontFamily: fontFam }}
               >
                 {text}
               </text>

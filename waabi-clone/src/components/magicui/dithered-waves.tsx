@@ -99,16 +99,16 @@ export function DitheredWaves({
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const dpr = Math.min(window.devicePixelRatio, 2);
+    // Use DPR of 1 for performance — this is a background effect
     const w = canvas.clientWidth;
     const h = canvas.clientHeight;
 
-    if (canvas.width !== w * dpr || canvas.height !== h * dpr) {
-      canvas.width = w * dpr;
-      canvas.height = h * dpr;
+    if (canvas.width !== w || canvas.height !== h) {
+      canvas.width = w;
+      canvas.height = h;
     }
 
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.clearRect(0, 0, w, h);
 
     if (bgColor !== "transparent") {
@@ -201,7 +201,7 @@ export function DitheredWaves({
     }
 
     ctx.globalAlpha = 1;
-    timeRef.current += 0.016;
+    timeRef.current += 0.033; // ~30fps time step
     rafRef.current = requestAnimationFrame(draw);
   }, [charset, color, bgColor, cellSize, speed, layers, amplitude, frequency, enableMouse, mouseRadius]);
 
