@@ -8,6 +8,7 @@ import { CircularGallery } from '@/components/magicui/circular-gallery';
 import { ScrollReveal } from '@/components/magicui/scroll-reveal';
 import { TextReveal } from '@/components/magicui/text-reveal';
 import { UnblurTextReveal } from '@/components/magicui/unblur-text-reveal';
+import TeamSection from '@/components/TeamSection';
 import { ImageMaskedText } from '@/components/magicui/image-masked-text';
 import { AsciiTextDisplay } from '@/components/magicui/ascii-text-display';
 const DitheredWaves = dynamic(
@@ -245,6 +246,9 @@ export default function AboutPage() {
           ))}
         </div>
       </section>
+
+      {/* ── Team ── */}
+      <TeamSection />
 
       {/* ── Closing: image-masked statement ── */}
       <section className="relative z-[2] mx-auto max-w-[72rem] px-6 py-32 md:px-12 border-t border-white/[0.06]">
