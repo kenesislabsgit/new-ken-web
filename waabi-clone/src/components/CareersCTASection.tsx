@@ -96,7 +96,9 @@ export default function CareersCTASection() {
 
         <a
           ref={ctaRef}
-          href="/contact"
+          href="https://tally.so/r/Pd0Kdb"
+          target="_blank"
+          rel="noopener noreferrer"
           className="btn-kenesis mb-[48px] inline-flex font-mono-accent text-[14px] uppercase tracking-[0.1em]"
           style={{ opacity: 0 }}
         >

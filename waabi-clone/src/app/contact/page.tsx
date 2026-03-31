@@ -33,10 +33,9 @@ function FloatingField({
       </span>
       {children}
       {hint && (
-        <p className="mt-[0.6rem] font-mono-accent text-[1rem] text-white/20">{hint}</p>
+        <p className="mt-[6px] font-mono-accent text-[10px] text-white/15">{hint}</p>
       )}
-      {/* amber underline that grows on focus */}
-      <div className="absolute bottom-0 left-0 h-[1px] w-0 bg-amber-400/60 transition-all duration-300 group-focus-within:w-full" />
+      <div className="absolute bottom-0 left-0 h-[1px] w-0 bg-amber-400/50 transition-all duration-300 group-focus-within:w-full" />
     </div>
   );
 }
@@ -48,7 +47,7 @@ function CustomSelect({ options, placeholder }: { options: string[]; placeholder
   return (
     <div className="relative">
       <button type="button" onClick={() => setOpen(!open)}
-        className={`${inputCls} flex items-center justify-between cursor-pointer text-left`}
+        className={`${inputCls} flex items-center justify-between cursor-pointer text-left w-full`}
       >
         <span className={selected ? 'text-white/80' : 'text-white/20'}>{selected || placeholder}</span>
         <svg className={`w-[16px] h-[16px] text-white/20 transition-transform duration-200 ${open ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
@@ -79,10 +78,9 @@ function CustomSelect({ options, placeholder }: { options: string[]; placeholder
 }
 
 const inputCls =
-  'w-full bg-white/[0.02] border border-white/[0.06] rounded-[12px] px-[16px] pb-[12px] pt-[12px] ' +
-  'font-display text-[15px] text-white/80 placeholder:text-white/15 ' +
-  'focus:outline-none focus:border-amber-400/30 focus:bg-white/[0.04] focus:shadow-[0_0_20px_rgba(245,158,11,0.05)] ' +
-  'transition-all duration-300 backdrop-blur-sm';
+  'w-full bg-transparent border-0 border-b border-white/10 pb-[12px] pt-[4px] ' +
+  'font-display text-[16px] text-white/80 placeholder:text-white/20 ' +
+  'focus:outline-none focus:border-amber-400/40 transition-colors duration-200';
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -219,7 +217,7 @@ export default function ContactPage() {
                 </div>
               ) : (
                 <form
-                  className="space-y-[3.5rem]"
+                  className="space-y-[32px]"
                   onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }}
                 >
                   {/* Name + Email side by side on large screens */}

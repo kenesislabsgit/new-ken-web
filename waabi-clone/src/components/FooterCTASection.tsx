@@ -20,9 +20,9 @@ const navLinks = [
 ];
 
 const socialLinks = [
-  { label: 'LinkedIn', href: '#', icon: 'in' },
-  { label: 'YouTube', href: '#', icon: '▶' },
-  { label: 'X', href: '#', icon: '𝕏' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/company/thekenesis/', icon: 'in' },
+  { label: 'Instagram', href: 'https://www.instagram.com/kenesislabs', icon: '📷' },
+  { label: 'X', href: 'https://x.com/KenesisLabs', icon: '𝕏' },
 ];
 
 export function getLinkDelay(index: number): number {
@@ -99,6 +99,8 @@ export default function FooterCTASection() {
                   <a
                     key={link.label}
                     href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     aria-label={link.label}
                     className="flex h-[4rem] w-[4rem] items-center justify-center rounded-full bg-white/10 text-white text-[1.4rem] transition-all duration-200 hover:bg-amber-500 hover:scale-105"
                   >
