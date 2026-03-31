@@ -21,14 +21,14 @@ const TABS: FeatureTab[] = [
     label: 'Detect',
     title: 'Real-time safety detection',
     description:
-      'Real-time object detection runs directly on your cameras — PPE violations, restricted zone breaches, and safety incidents flagged in milliseconds, not minutes.',
+      'Real-time object detection runs directly on your cameras â€” PPE violations, restricted zone breaches, and safety incidents flagged in milliseconds, not minutes.',
   },
   {
     id: 'reason',
     label: 'Reason',
     title: 'Contextual AI reasoning',
     description:
-      'Contextual AI adds understanding to raw detections. Not just "person without helmet" — but "worker in welding zone without face shield during active operation."',
+      'Contextual AI adds understanding to raw detections. Not just "person without helmet" â€” but "worker in welding zone without face shield during active operation."',
   },
   {
     id: 'control',
@@ -58,7 +58,7 @@ export default function PinnedFeatureTabs() {
   const prevTabRef = useRef(0);
   const hasAnimatedIn = useRef(false);
 
-  /* ── Entrance animation for left column (runs once when pinned) ── */
+  /* â”€â”€ Entrance animation for left column (runs once when pinned) â”€â”€ */
   const animateEntrance = useCallback(() => {
     if (hasAnimatedIn.current || prefersReducedMotion()) return;
     hasAnimatedIn.current = true;
@@ -85,7 +85,7 @@ export default function PinnedFeatureTabs() {
     );
   }, []);
 
-  /* ── Main ScrollTrigger: pin + scrub + tab switching ── */
+  /* â”€â”€ Main ScrollTrigger: pin + scrub + tab switching â”€â”€ */
   useEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
@@ -112,7 +112,7 @@ export default function PinnedFeatureTabs() {
     return () => { trigger.kill(); };
   }, [animateEntrance]);
 
-  /* ── Tab transition animations ── */
+  /* â”€â”€ Tab transition animations â”€â”€ */
   useEffect(() => {
     const prev = prevTabRef.current;
     if (prev === activeTab) return;
@@ -215,7 +215,7 @@ export default function PinnedFeatureTabs() {
       />
 
       <div className="relative flex h-screen w-full z-[1]">
-        {/* Left column — heading + description */}
+        {/* Left column â€” heading + description */}
         <div ref={leftColRef} className="flex w-1/2 flex-col justify-center px-12 lg:pl-[343px] lg:pr-16">
           <h2
             ref={headingRef}
@@ -242,7 +242,7 @@ export default function PinnedFeatureTabs() {
           </p>
         </div>
 
-        {/* Right column — tabs + video card */}
+        {/* Right column â€” tabs + video card */}
         <div className="flex w-1/2 flex-col justify-center pr-12 lg:pr-[343px]">
           {/* Tab bar with progress indicator */}
           <div ref={tabBarRef} className="relative mb-8">
@@ -293,7 +293,7 @@ export default function PinnedFeatureTabs() {
                   style={{ clipPath: i === 0 ? 'inset(0 0% 0 0)' : 'inset(0 100% 0 0)' }}
                 >
                   <img
-                    src={`/images/features/${i + 1}.png`}
+                    src={`/images/features/${i + 1}.webp`}
                     alt={tab.title}
                     className="h-full w-full object-cover"
                     loading="lazy"

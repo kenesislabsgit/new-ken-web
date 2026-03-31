@@ -4,23 +4,23 @@ import { useState, useRef, useCallback } from 'react';
 import { BorderBeam } from '@/components/magicui/border-beam';
 import { NumberTicker } from '@/components/magicui/number-ticker';
 
-/* ── Data ── */
+/* â”€â”€ Data â”€â”€ */
 const cameras = [
-  { id: 'CAM-01', zone: 'Welding Bay A', status: 'ok', img: '/images/tech/3.png' },
-  { id: 'CAM-02', zone: 'Assembly Line', status: 'alert', img: '/images/tech/1.png' },
-  { id: 'CAM-03', zone: 'Loading Dock', status: 'ok', img: '/images/gallery/3.png' },
-  { id: 'CAM-04', zone: 'Chemical Store', status: 'ok', img: '/images/gallery/5.png' },
-  { id: 'CAM-05', zone: 'Main Entrance', status: 'ok', img: '/images/gallery/6.png' },
-  { id: 'CAM-06', zone: 'Furnace Room', status: 'alert', img: '/images/tech/2.png' },
+  { id: 'CAM-01', zone: 'Welding Bay A', status: 'ok', img: '/images/tech/3.webp' },
+  { id: 'CAM-02', zone: 'Assembly Line', status: 'alert', img: '/images/tech/1.webp' },
+  { id: 'CAM-03', zone: 'Loading Dock', status: 'ok', img: '/images/gallery/3.webp' },
+  { id: 'CAM-04', zone: 'Chemical Store', status: 'ok', img: '/images/gallery/5.webp' },
+  { id: 'CAM-05', zone: 'Main Entrance', status: 'ok', img: '/images/gallery/6.webp' },
+  { id: 'CAM-06', zone: 'Furnace Room', status: 'alert', img: '/images/tech/2.webp' },
 ];
 const alerts = [
-  { time: '2m ago', msg: 'No face shield — Welding Bay A', sev: 'high' as const, cam: 'CAM-01' },
-  { time: '8m ago', msg: 'Unauthorized zone entry — Furnace', sev: 'high' as const, cam: 'CAM-06' },
-  { time: '15m ago', msg: 'Missing hard hat — Assembly Line', sev: 'medium' as const, cam: 'CAM-02' },
-  { time: '23m ago', msg: 'Slip hazard — Loading Dock', sev: 'low' as const, cam: 'CAM-03' },
+  { time: '2m ago', msg: 'No face shield â€” Welding Bay A', sev: 'high' as const, cam: 'CAM-01' },
+  { time: '8m ago', msg: 'Unauthorized zone entry â€” Furnace', sev: 'high' as const, cam: 'CAM-06' },
+  { time: '15m ago', msg: 'Missing hard hat â€” Assembly Line', sev: 'medium' as const, cam: 'CAM-02' },
+  { time: '23m ago', msg: 'Slip hazard â€” Loading Dock', sev: 'low' as const, cam: 'CAM-03' },
   { time: '41m ago', msg: 'PPE compliance drop below 90%', sev: 'medium' as const, cam: 'ALL' },
-  { time: '1h ago', msg: 'Camera offline — Chemical Store', sev: 'low' as const, cam: 'CAM-04' },
-  { time: '2h ago', msg: 'Restricted zone breach — Bay B', sev: 'high' as const, cam: 'CAM-01' },
+  { time: '1h ago', msg: 'Camera offline â€” Chemical Store', sev: 'low' as const, cam: 'CAM-04' },
+  { time: '2h ago', msg: 'Restricted zone breach â€” Bay B', sev: 'high' as const, cam: 'CAM-01' },
 ];
 const weeklyData = [32, 18, 45, 28, 12, 38, 22];
 const zones = [
@@ -34,7 +34,7 @@ const zones = [
 const sevColor: Record<string, string> = { high: '#f87171', medium: '#fbbf24', low: '#60a5fa' };
 const tabList = ['Overview', 'Cameras', 'Alerts', 'Zones', 'Analytics', 'System'];
 
-/* ── Glass card style helper ── */
+/* â”€â”€ Glass card style helper â”€â”€ */
 const glass = (inset = false): React.CSSProperties => ({
   background: inset
     ? 'linear-gradient(145deg, rgba(255,255,255,0.025) 0%, rgba(255,255,255,0.008) 100%)'
@@ -47,7 +47,7 @@ const glass = (inset = false): React.CSSProperties => ({
     : '0 2px 0 rgba(255,255,255,0.04) inset, 0 -1px 0 rgba(0,0,0,0.2) inset, 0 8px 24px rgba(0,0,0,0.3), 0 0 1px rgba(255,255,255,0.1) inset',
 });
 
-/* ── Tab content ── */
+/* â”€â”€ Tab content â”€â”€ */
 
 function OverviewTab() {
   return (
@@ -89,7 +89,7 @@ function CamerasTab() {
   return (
     <div>
       <div className="flex items-center justify-between mb-[16px]">
-        <p className="font-mono-accent text-[10px] uppercase tracking-[0.14em] text-white/20">{cameras.filter(c => c.status === 'ok').length} Online · {cameras.filter(c => c.status === 'alert').length} Alert</p>
+        <p className="font-mono-accent text-[10px] uppercase tracking-[0.14em] text-white/20">{cameras.filter(c => c.status === 'ok').length} Online Â· {cameras.filter(c => c.status === 'alert').length} Alert</p>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-3 gap-[12px]">
         {cameras.map(c => (
@@ -104,7 +104,7 @@ function CamerasTab() {
                 <span className="font-mono-accent text-[10px] text-white/40 px-[8px] py-[3px] rounded-[8px]" style={{ ...glass(true), padding: '3px 8px' }}>{c.id}</span>
                 <span className="w-[8px] h-[8px] rounded-full" style={{ background: c.status === 'alert' ? '#f87171' : '#4ade80', boxShadow: `0 0 10px ${c.status === 'alert' ? 'rgba(248,113,113,0.6)' : 'rgba(74,222,128,0.4)'}` }} />
               </div>
-              <div><p className="text-[13px] text-white/60 font-medium">{c.zone}</p><p className="font-mono-accent text-[9px] text-white/20 mt-[2px]">{c.status === 'alert' ? '⚠ Alert active' : '● Streaming'}</p></div>
+              <div><p className="text-[13px] text-white/60 font-medium">{c.zone}</p><p className="font-mono-accent text-[9px] text-white/20 mt-[2px]">{c.status === 'alert' ? 'âš  Alert active' : 'â— Streaming'}</p></div>
             </div>
           </button>
         ))}
@@ -212,7 +212,7 @@ function SystemTab() {
   );
 }
 
-/* ── Shared ── */
+/* â”€â”€ Shared â”€â”€ */
 function CamCard({ cam }: { cam: typeof cameras[0] }) {
   return (
     <div className="relative rounded-[12px] aspect-video overflow-hidden cursor-pointer group" style={{ ...glass(true), border: cam.status === 'alert' ? '1.5px solid rgba(248,113,113,0.2)' : '1px solid rgba(255,255,255,0.05)', boxShadow: cam.status === 'alert' ? '0 4px 16px rgba(248,113,113,0.06)' : '0 4px 12px rgba(0,0,0,0.3)' }}>
@@ -238,7 +238,7 @@ function AlertRow({ a }: { a: typeof alerts[0] }) {
   );
 }
 
-/* ── Main Dashboard with cursor spotlight ── */
+/* â”€â”€ Main Dashboard with cursor spotlight â”€â”€ */
 export default function DashboardPreview() {
   const [activeTab, setActiveTab] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -267,7 +267,7 @@ export default function DashboardPreview() {
       >
         <BorderBeam size={300} duration={16} colorFrom="#f59e0b" colorTo="#d97706" borderWidth={1} />
 
-        {/* Cursor spotlight — follows mouse */}
+        {/* Cursor spotlight â€” follows mouse */}
         <div className="absolute inset-0 pointer-events-none z-[2] transition-opacity duration-300"
           style={{
             background: `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, rgba(245,158,11,0.04), transparent 60%)`,

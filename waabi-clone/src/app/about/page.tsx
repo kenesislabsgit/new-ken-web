@@ -24,7 +24,7 @@ const LiquidMetalLogo = dynamic(
 export default function AboutPage() {
   return (
     <PageShell>
-      {/* DitheredWaves — full page background */}
+      {/* DitheredWaves â€” full page background */}
       <div className="pointer-events-none fixed inset-0 z-0 opacity-[0.12]">
         <DitheredWaves
           color="#f59e0b"
@@ -40,7 +40,7 @@ export default function AboutPage() {
         />
       </div>
 
-      {/* ── Hero: heading ── */}
+      {/* â”€â”€ Hero: heading â”€â”€ */}
       <section className="relative z-[2] mx-auto max-w-[72rem] px-6 pb-16 md:px-12">
         <div>
           <BlurFade delay={0.1} duration={0.5} blur="6px" offset={12}>
@@ -61,13 +61,13 @@ export default function AboutPage() {
           </UnblurTextReveal>
           <BlurFade delay={0.6} duration={0.5} blur="6px" offset={8}>
             <p className="max-w-lg text-[1.2rem] leading-[1.7] text-white/35">
-              Kenesis Labs · Chennai · On-premise AI for Indian manufacturing
+              Kenesis Labs Â· Chennai Â· On-premise AI for Indian manufacturing
             </p>
           </BlurFade>
         </div>
       </section>
 
-      {/* LiquidMetal logo — standalone contained element between hero and manifesto */}
+      {/* LiquidMetal logo â€” standalone contained element between hero and manifesto */}
       <section className="relative z-[2] flex items-center justify-center py-8 overflow-hidden">
         <div className="relative w-[700px] h-[560px] md:w-[900px] md:h-[720px]"
           style={{ maskImage: 'radial-gradient(ellipse 80% 80% at center, black 20%, transparent 70%)', WebkitMaskImage: 'radial-gradient(ellipse 80% 80% at center, black 20%, transparent 70%)' }}
@@ -91,7 +91,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ── Manifesto: large editorial text, not cards ── */}
+      {/* â”€â”€ Manifesto: large editorial text, not cards â”€â”€ */}
       <section className="relative z-[2] mx-auto max-w-[72rem] px-6 py-32 md:px-12 border-t border-white/[0.06]">
         <div className="max-w-3xl space-y-10">
           <TextReveal
@@ -124,7 +124,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ── Visual: circular gallery ── */}
+      {/* â”€â”€ Visual: circular gallery â”€â”€ */}
       <section className="relative z-[2] py-24 overflow-hidden">
         <BlurFade delay={0} duration={0.6} blur="8px" offset={14} inView inViewMargin="-60px">
           <CircularGallery
@@ -132,19 +132,19 @@ export default function AboutPage() {
             radius={300}
             rotationSpeed={35}
             images={[
-              { src: '/images/gallery/1.png', alt: 'AI hardware' },
-              { src: '/images/gallery/2.png', alt: 'Computing hardware' },
-              { src: '/images/gallery/3.png', alt: 'Factory floor' },
-              { src: '/images/gallery/4.png', alt: 'Engineer at work' },
-              { src: '/images/gallery/5.png', alt: 'CCTV array' },
-              { src: '/images/gallery/6.png', alt: 'Robotic arm' },
-              { src: '/images/gallery/7.png', alt: 'Kenesis team' },
+              { src: '/images/gallery/1.webp', alt: 'AI hardware' },
+              { src: '/images/gallery/2.webp', alt: 'Computing hardware' },
+              { src: '/images/gallery/3.webp', alt: 'Factory floor' },
+              { src: '/images/gallery/4.webp', alt: 'Engineer at work' },
+              { src: '/images/gallery/5.webp', alt: 'CCTV array' },
+              { src: '/images/gallery/6.webp', alt: 'Robotic arm' },
+              { src: '/images/gallery/7.webp', alt: 'Kenesis team' },
             ]}
           />
         </BlurFade>
       </section>
 
-      {/* ── Numbers: full-bleed strip ── */}
+      {/* â”€â”€ Numbers: full-bleed strip â”€â”€ */}
       <section className="relative z-[2] border-y border-white/[0.06] py-16">
         <div className="mx-auto max-w-[80rem] px-6 md:px-12 grid grid-cols-2 md:grid-cols-4 gap-y-10">
           <div className="text-center">
@@ -170,7 +170,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ── ASCII text display ── */}
+      {/* â”€â”€ ASCII text display â”€â”€ */}
       <section className="relative z-[2] py-16 flex items-center justify-center overflow-hidden">
         <AsciiTextDisplay
           text="KENESIS"
@@ -184,7 +184,7 @@ export default function AboutPage() {
         />
       </section>
 
-      {/* ── What we believe: left-aligned list, not grid cards ── */}
+      {/* â”€â”€ What we believe: left-aligned list, not grid cards â”€â”€ */}
       <section className="relative z-[2] mx-auto max-w-[72rem] px-6 py-32 md:px-12">
         <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-16">
           <div>
@@ -203,7 +203,7 @@ export default function AboutPage() {
               ['Your data is yours.', 'Not ours, not AWS\'s, not anyone else\'s. The footage from your factory floor stays on your factory floor. Period.'],
               ['Context beats bounding boxes.', '"Worker in welding zone without face shield during active operation" is useful. A red rectangle around a person is not.'],
               ['The internet is optional.', 'Indian industrial zones have unreliable connectivity. A safety system that depends on it isn\'t a safety system.'],
-              ['Compliance shouldn\'t be an afterthought.', 'DPDP Act, factory safety regulations, data sovereignty requirements — we\'re built for these from day one, not retrofitted.'],
+              ['Compliance shouldn\'t be an afterthought.', 'DPDP Act, factory safety regulations, data sovereignty requirements â€” we\'re built for these from day one, not retrofitted.'],
             ].map(([title, desc], i) => (
               <ScrollReveal key={title} variant="fade-left" delay={i * 0.1} duration={0.6}>
                 <div className="border-l-2 border-white/[0.06] pl-6 hover:border-amber-400/30 transition-colors duration-300">
@@ -216,7 +216,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ── Timeline: minimal, dense ── */}
+      {/* â”€â”€ Timeline: minimal, dense â”€â”€ */}
       <section className="relative z-[2] mx-auto max-w-[72rem] px-6 py-32 md:px-12 border-t border-white/[0.06]">
         <div className="flex items-start justify-between gap-8 mb-12">
           <TextReveal
@@ -232,7 +232,7 @@ export default function AboutPage() {
         <div>
           {[
             ['2025 Q1', 'Incorporated in Chennai, India'],
-            ['2025 Q2', 'First prototype — 30 cameras, one server, 35 watts'],
+            ['2025 Q2', 'First prototype â€” 30 cameras, one server, 35 watts'],
             ['2025 Q3', 'AI pipeline validated on live factory floor'],
             ['2025 Q4', 'Platform launch: PPE, zone monitoring, shift analytics'],
             ['2026 Q1', 'First enterprise deployments across Tamil Nadu'],
@@ -247,16 +247,16 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ── Team ── */}
+      {/* â”€â”€ Team â”€â”€ */}
       <TeamSection />
 
-      {/* ── Closing: image-masked statement ── */}
+      {/* â”€â”€ Closing: image-masked statement â”€â”€ */}
       <section className="relative z-[2] mx-auto max-w-[72rem] px-6 py-32 md:px-12 border-t border-white/[0.06]">
         <BlurFade delay={0} duration={0.7} blur="10px" offset={16} inView inViewMargin="-80px">
           <div className="space-y-4">
             <ImageMaskedText
               text="Scale fast."
-              imageSrc="/images/gallery/3.png"
+              imageSrc="/images/gallery/3.webp"
               fontSize="clamp(3rem, 8vw, 7rem)"
               fontWeight={800}
               bgPosition="center 40%"

@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
@@ -39,10 +39,10 @@ function BlurRevealText({ text, className, baseDelay = 0, stagger = 0.035 }: {
 }
 
 const parallaxImages = [
-  { src: '/hero/factory-control.png', alt: 'Factory control room', start: -200, end: 200, className: 'w-1/3' },
-  { src: '/hero/cctv-closeup.png', alt: 'Industrial CCTV camera', start: 200, end: -250, className: 'mx-auto w-2/3' },
-  { src: '/hero/warehouse-wide.png', alt: 'Industrial warehouse', start: -200, end: 200, className: 'ml-auto w-1/3' },
-  { src: '/hero/pcb-assembly.png', alt: 'PCB assembly line', start: 0, end: -500, className: 'ml-[6rem] w-5/12' },
+  { src: '/hero/factory-control.webp', alt: 'Factory control room', start: -200, end: 200, className: 'w-1/3' },
+  { src: '/hero/cctv-closeup.webp', alt: 'Industrial CCTV camera', start: 200, end: -250, className: 'mx-auto w-2/3' },
+  { src: '/hero/warehouse-wide.webp', alt: 'Industrial warehouse', start: -200, end: 200, className: 'ml-auto w-1/3' },
+  { src: '/hero/pcb-assembly.webp', alt: 'PCB assembly line', start: 0, end: -500, className: 'ml-[6rem] w-5/12' },
 ];
 
 function ParallaxImg({ src, alt, start, end, className }: {
@@ -109,7 +109,7 @@ function CenterImage() {
   return (
     <div ref={containerRef} className="sticky top-0 h-screen w-full"
       style={{ clipPath: 'polygon(25% 25%, 75% 25%, 75% 75%, 25% 75%)' }}>
-      <AsciiImage src="/images/hero/1.png" alt="Kenesis industrial AI"
+      <AsciiImage src="/images/hero/1.webp" alt="Kenesis industrial AI"
         cellWidth={6} cellHeight={10} contrastExponent={1.6}
         colorMode="tinted" color="#f59e0b" bgColor="#0a0a0b"
         bgBlur={8} bgOpacity={0.3} className="w-full h-full" />
@@ -207,7 +207,7 @@ export default function HeroSection() {
             </div>
           </div>
         </div>
-        {/* Heading text — bottom left */}
+        {/* Heading text â€” bottom left */}
         <div className="absolute bottom-[6rem] left-0 px-6 md:px-12 lg:px-[5rem] w-full">
           <h1 className="font-display text-[clamp(3rem,8vw,8rem)] font-semibold leading-[0.95] tracking-[-0.04em] text-amber-200/90 max-w-[90vw]">
             <BlurRevealText text="Built to detect." baseDelay={0.3} />

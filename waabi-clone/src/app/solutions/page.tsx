@@ -84,9 +84,9 @@ export default function SolutionsPage() {
     <PageShell>
       {/* ── HERO ── */}
       <section className="relative z-[2] min-h-screen flex flex-col justify-center px-[24px] md:px-[48px] overflow-hidden -mt-[12rem]">
-        {/* Ambient bg */}
+        {/* Ambient bg — deferred */}
         <div className="absolute inset-0 z-0 opacity-[0.07] pointer-events-none">
-          <DitheredWaves color="#f59e0b" cellSize={12} speed={1} layers={3} amplitude={35} frequency={0.012} charset=" .:=+#" enableMouse mouseRadius={300} className="h-full w-full" />
+          <DitheredWaves color="#f59e0b" cellSize={18} speed={1} layers={2} amplitude={35} frequency={0.012} charset=" .:=#" enableMouse={false} className="h-full w-full" />
         </div>
         <div className="absolute top-[20%] right-[12%] w-[500px] h-[500px] rounded-full bg-amber-500/[0.03] blur-[140px] pointer-events-none" />
         <div className="absolute bottom-[25%] left-[8%] w-[350px] h-[350px] rounded-full bg-amber-600/[0.02] blur-[110px] pointer-events-none" />
@@ -140,7 +140,7 @@ export default function SolutionsPage() {
       {/* ── INTERLUDE ── */}
       <section className="relative z-[10] min-h-screen flex items-center justify-center px-[24px] md:px-[48px] overflow-hidden bg-[#0a0a0b]">
         <div className="absolute inset-0 z-0 opacity-[0.05] pointer-events-none">
-          <DitheredWaves color="#f59e0b" cellSize={14} speed={0.8} layers={2} amplitude={30} frequency={0.01} charset=" .:-=+*#" enableMouse mouseRadius={300} className="h-full w-full" />
+          <DitheredWaves color="#f59e0b" cellSize={20} speed={0.8} layers={2} amplitude={30} frequency={0.01} charset=" .:-=#" enableMouse={false} className="h-full w-full" />
         </div>
         <div className="absolute top-[30%] left-[20%] w-[500px] h-[500px] rounded-full bg-amber-500/[0.025] blur-[140px] pointer-events-none" />
 

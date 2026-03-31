@@ -9,9 +9,9 @@ import { AsciiDivider, AsciiCorners, AsciiBlock, ASCII_ARTS } from '@/components
 import { AsciiRenderer } from '@/components/magicui/ascii-renderer';
 
 const techCards = [
-  { title: 'PPE Compliance', subtitle: 'Helmets, vests, gloves, footwear — detected in real time across every camera feed.', ascii: ASCII_ARTS.shield, image: '/images/tech/3.png' },
-  { title: 'Zone Detection', subtitle: 'Restricted area breaches and perimeter intrusions flagged instantly with contextual alerts.', ascii: ASCII_ARTS.eye, image: '/images/tech/2.png' },
-  { title: 'Shift Analytics', subtitle: 'Headcount tracking, attendance, and shift-level safety reporting dashboard.', ascii: ASCII_ARTS.network, image: '/images/tech/1.png' },
+  { title: 'PPE Compliance', subtitle: 'Helmets, vests, gloves, footwear â€” detected in real time across every camera feed.', ascii: ASCII_ARTS.shield, image: '/images/tech/3.webp' },
+  { title: 'Zone Detection', subtitle: 'Restricted area breaches and perimeter intrusions flagged instantly with contextual alerts.', ascii: ASCII_ARTS.eye, image: '/images/tech/2.webp' },
+  { title: 'Shift Analytics', subtitle: 'Headcount tracking, attendance, and shift-level safety reporting dashboard.', ascii: ASCII_ARTS.network, image: '/images/tech/1.webp' },
 ];
 
 export default function TechCardsSection() {
@@ -25,7 +25,7 @@ export default function TechCardsSection() {
 
   return (
     <section ref={sectionRef} id="technology" className="w-full bg-[#0a0a0b]">
-      {/* Hero banner — "Built to think. Born to haul." */}
+      {/* Hero banner â€” "Built to think. Born to haul." */}
       <div className="relative overflow-hidden bg-cod-gray py-32 md:py-48">
         <div ref={bgRef} className="absolute inset-0 -top-[15%] h-[130%] w-full opacity-30">
           <div className="h-full w-full bg-gradient-to-br from-cod-gray via-cod-gray/80 to-cod-gray/60" />
@@ -61,7 +61,7 @@ export default function TechCardsSection() {
 
       {/* ASCII divider */}
       <div className="mx-auto max-w-[1234px] px-6 md:px-12 py-2">
-        <AsciiDivider accent="◈" />
+        <AsciiDivider accent="â—ˆ" />
       </div>
 
       {/* 3 tech insight cards */}

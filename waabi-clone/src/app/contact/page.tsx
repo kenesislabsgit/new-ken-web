@@ -1,8 +1,14 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import dynamic from 'next/dynamic';
 import PageShell from '@/components/PageShell';
 import { BlurFade } from '@/components/magicui/blur-fade';
+
+const GlitchBackground = dynamic(
+  () => import('@/components/magicui/glitch-background').then(m => ({ default: m.GlitchBackground })),
+  { ssr: false, loading: () => null }
+);
 
 const facilitySizes = [
   'Small (< 50 cameras)',
@@ -80,9 +86,36 @@ const inputCls =
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [bgReady, setBgReady] = useState(false);
+  const bgRef = useRef<HTMLDivElement>(null);
+
+  // Defer GlitchBackground until after initial paint
+  useEffect(() => {
+    const id = requestIdleCallback(() => setBgReady(true), { timeout: 2000 });
+    return () => cancelIdleCallback(id);
+  }, []);
 
   return (
     <PageShell>
+      {/* Glitch background — deferred load */}
+      {bgReady && (
+        <div
+          className="pointer-events-none fixed inset-0 z-0 opacity-[0.07]"
+          style={{
+            maskImage: 'radial-gradient(ellipse 80% 60% at 50% 40%, black 40%, transparent 100%)',
+            WebkitMaskImage: 'radial-gradient(ellipse 80% 60% at 50% 40%, black 40%, transparent 100%)',
+          }}
+        >
+          <GlitchBackground
+            glitchColors={['#f59e0b', '#d97706', '#fbbf24']}
+            glitchSpeed={80}
+            smooth
+            outerVignette={false}
+            density={0.03}
+          />
+        </div>
+      )}
+
       {/* Ambient amber glow top-right */}
       <div className="pointer-events-none fixed top-0 right-0 w-[60vw] h-[60vh] z-0"
         style={{ background: 'radial-gradient(ellipse at 80% 10%, rgba(245,158,11,0.06) 0%, transparent 65%)' }} />

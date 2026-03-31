@@ -13,11 +13,11 @@ const DitheredWaves = dynamic(
 );
 
 const images = [
-  { src: '/images/careers/4.png', alt: 'Team collaboration', cls: 'col-span-1 row-span-1 aspect-[4/3]' },
-  { src: '/images/careers/3.png', alt: 'Engineering workspace', cls: 'col-span-1 row-span-2' },
-  { src: '/images/careers/1.png', alt: 'AI development', cls: 'col-span-1 row-span-1 aspect-[4/3]' },
-  { src: '/images/careers/5.png', alt: 'Team meeting', cls: 'col-span-1 row-span-1 aspect-[4/3]' },
-  { src: '/images/careers/2.png', alt: 'Office culture', cls: 'col-span-1 row-span-1 aspect-[4/3]' },
+  { src: '/images/careers/4.webp', alt: 'Team collaboration', cls: 'col-span-1 row-span-1 aspect-[4/3]' },
+  { src: '/images/careers/3.webp', alt: 'Engineering workspace', cls: 'col-span-1 row-span-2' },
+  { src: '/images/careers/1.webp', alt: 'AI development', cls: 'col-span-1 row-span-1 aspect-[4/3]' },
+  { src: '/images/careers/5.webp', alt: 'Team meeting', cls: 'col-span-1 row-span-1 aspect-[4/3]' },
+  { src: '/images/careers/2.webp', alt: 'Office culture', cls: 'col-span-1 row-span-1 aspect-[4/3]' },
 ];
 
 export default function CareersCTASection() {
@@ -43,7 +43,7 @@ export default function CareersCTASection() {
         },
       });
 
-      // Phase 1: Heading words blur-fade in (0 → 0.25)
+      // Phase 1: Heading words blur-fade in (0 â†’ 0.25)
       const words = heading.querySelectorAll('.cta-word');
       tl.fromTo(words,
         { y: 40, opacity: 0, filter: 'blur(8px)' },
@@ -51,7 +51,7 @@ export default function CareersCTASection() {
         0
       );
 
-      // Phase 1b: CTA button (0.15 → 0.25)
+      // Phase 1b: CTA button (0.15 â†’ 0.25)
       if (ctaRef.current) {
         tl.fromTo(ctaRef.current,
           { y: 20, opacity: 0 },
@@ -60,7 +60,7 @@ export default function CareersCTASection() {
         );
       }
 
-      // Phase 2: Mosaic images stagger in (0.25 → 0.8)
+      // Phase 2: Mosaic images stagger in (0.25 â†’ 0.8)
       const cards = grid.querySelectorAll('.mosaic-card');
       cards.forEach((card, i) => {
         const start = 0.25 + i * 0.1;
