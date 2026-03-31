@@ -21,14 +21,14 @@ const TABS: FeatureTab[] = [
     label: 'Detect',
     title: 'Real-time safety detection',
     description:
-      'YOLOv8 object detection runs directly on your cameras — PPE violations, restricted zone breaches, and safety incidents flagged in milliseconds, not minutes.',
+      'Real-time object detection runs directly on your cameras — PPE violations, restricted zone breaches, and safety incidents flagged in milliseconds, not minutes.',
   },
   {
     id: 'reason',
     label: 'Reason',
     title: 'Contextual AI reasoning',
     description:
-      'Qwen2.5-VL 7B adds contextual understanding to raw detections. Not just "person without helmet" — but "worker in welding zone without face shield during active operation."',
+      'Contextual AI adds understanding to raw detections. Not just "person without helmet" — but "worker in welding zone without face shield during active operation."',
   },
   {
     id: 'control',

@@ -1,12 +1,12 @@
 'use client';
 
+import { useState, useEffect, useRef } from 'react';
 import dynamic from 'next/dynamic';
 import { ScrollReveal } from '@/components/magicui/scroll-reveal';
 import { TextReveal } from '@/components/magicui/text-reveal';
 import { AsciiDivider } from '@/components/AsciiArt';
 
-// Dynamic imports to avoid SSR issues with WebGL
-const GLSLHills = dynamic(() => import('./GLSLHills'), { ssr: false });
+const GLSLHills = dynamic(() => import('./GLSLHills'), { ssr: false, loading: () => null });
 
 
 /* ── Data ── */
@@ -32,10 +32,22 @@ export function getLinkDelay(index: number): number {
 /* ── Footer Component ── */
 
 export default function FooterCTASection() {
+  const footerRef = useRef<HTMLElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = footerRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) { setVisible(true); io.disconnect(); }
+    }, { rootMargin: '200px' });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   return (
-    <footer className="relative overflow-hidden bg-[#0a0a0b] text-white">
-      {/* GLSL Hills background — dark bg, amber hills */}
-      <GLSLHills color="#fde047" bgColor="#0a0a0b" />
+    <footer ref={footerRef} className="relative overflow-hidden bg-[#0a0a0b] text-white">
+      {visible && <GLSLHills color="#fde047" bgColor="#0a0a0b" />}
 
       {/* Content */}
       <div className="relative z-10">

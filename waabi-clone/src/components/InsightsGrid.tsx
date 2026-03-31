@@ -31,7 +31,7 @@ const articles: ArticleCard[] = [
     tags: ['Company news'],
   },
   {
-    title: 'How YOLOv8 + Qwen2.5-VL delivers contextual safety alerts on-premise',
+    title: 'How contextual AI delivers safety alerts on-premise',
     date: 'December 10, 2025',
     tags: ['Technology'],
   },

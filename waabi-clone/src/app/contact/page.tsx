@@ -1,14 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import dynamic from 'next/dynamic';
 import PageShell from '@/components/PageShell';
 import { BlurFade } from '@/components/magicui/blur-fade';
-
-const GlitchBackground = dynamic(
-  () => import('@/components/magicui/glitch-background').then(m => ({ default: m.GlitchBackground })),
-  { ssr: false }
-);
 
 const facilitySizes = [
   'Small (< 50 cameras)',
@@ -28,7 +22,7 @@ function FloatingField({
 }) {
   return (
     <div className="group relative">
-      <span className="block font-mono-accent text-[1rem] uppercase tracking-[0.12em] text-white/30 mb-[0.8rem] transition-colors group-focus-within:text-amber-400/70">
+      <span className="block font-mono-accent text-[11px] uppercase tracking-[0.14em] text-white/25 mb-[8px] transition-colors group-focus-within:text-amber-400/60">
         {label}
       </span>
       {children}
@@ -41,33 +35,54 @@ function FloatingField({
   );
 }
 
+function CustomSelect({ options, placeholder }: { options: string[]; placeholder: string }) {
+  const [open, setOpen] = useState(false);
+  const [selected, setSelected] = useState('');
+
+  return (
+    <div className="relative">
+      <button type="button" onClick={() => setOpen(!open)}
+        className={`${inputCls} flex items-center justify-between cursor-pointer text-left`}
+      >
+        <span className={selected ? 'text-white/80' : 'text-white/20'}>{selected || placeholder}</span>
+        <svg className={`w-[16px] h-[16px] text-white/20 transition-transform duration-200 ${open ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+      </button>
+      {open && (
+        <div className="absolute top-full left-0 right-0 mt-[8px] z-50 rounded-[16px] overflow-hidden"
+          style={{
+            background: 'rgba(18,18,22,0.95)',
+            backdropFilter: 'blur(24px)',
+            WebkitBackdropFilter: 'blur(24px)',
+            border: '1px solid rgba(255,255,255,0.08)',
+            boxShadow: '0 16px 48px rgba(0,0,0,0.5), 0 0 1px rgba(255,255,255,0.1) inset',
+          }}
+        >
+          {options.map(opt => (
+            <button key={opt} type="button"
+              onClick={() => { setSelected(opt); setOpen(false); }}
+              className="w-full text-left px-[20px] py-[14px] text-[14px] text-white/50 hover:text-white/80 hover:bg-white/[0.04] transition-all duration-200 cursor-pointer"
+              style={{ borderBottom: '1px solid rgba(255,255,255,0.03)' }}
+            >
+              {opt}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 const inputCls =
-  'w-full bg-transparent border-0 border-b border-white/10 pb-[1.2rem] pt-[0.4rem] ' +
-  'font-display text-[1.5rem] text-white/80 placeholder:text-white/20 ' +
-  'focus:outline-none focus:border-amber-400/40 transition-colors duration-200';
+  'w-full bg-white/[0.02] border border-white/[0.06] rounded-[12px] px-[16px] pb-[12px] pt-[12px] ' +
+  'font-display text-[15px] text-white/80 placeholder:text-white/15 ' +
+  'focus:outline-none focus:border-amber-400/30 focus:bg-white/[0.04] focus:shadow-[0_0_20px_rgba(245,158,11,0.05)] ' +
+  'transition-all duration-300 backdrop-blur-sm';
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
 
   return (
     <PageShell>
-      {/* Glitch background — very subtle */}
-      <div
-        className="pointer-events-none fixed inset-0 z-0 opacity-[0.07]"
-        style={{
-          maskImage: 'radial-gradient(ellipse 80% 60% at 50% 40%, black 40%, transparent 100%)',
-          WebkitMaskImage: 'radial-gradient(ellipse 80% 60% at 50% 40%, black 40%, transparent 100%)',
-        }}
-      >
-        <GlitchBackground
-          glitchColors={['#f59e0b', '#d97706', '#fbbf24']}
-          glitchSpeed={80}
-          smooth
-          outerVignette={false}
-          density={0.03}
-        />
-      </div>
-
       {/* Ambient amber glow top-right */}
       <div className="pointer-events-none fixed top-0 right-0 w-[60vw] h-[60vh] z-0"
         style={{ background: 'radial-gradient(ellipse at 80% 10%, rgba(245,158,11,0.06) 0%, transparent 65%)' }} />
@@ -200,19 +215,10 @@ export default function ContactPage() {
                   </FloatingField>
 
                   <FloatingField label="Facility size">
-                    <select
-                      className={inputCls + ' cursor-pointer appearance-none'}
-                      defaultValue=""
-                    >
-                      <option value="" disabled className="bg-[#0a0a0b] text-white/30">
-                        Select facility size
-                      </option>
-                      {facilitySizes.map((s) => (
-                        <option key={s} value={s} className="bg-[#0a0a0b] text-white/80">
-                          {s}
-                        </option>
-                      ))}
-                    </select>
+                    <CustomSelect
+                      options={facilitySizes}
+                      placeholder="Select facility size"
+                    />
                   </FloatingField>
 
                   <FloatingField label="Message">

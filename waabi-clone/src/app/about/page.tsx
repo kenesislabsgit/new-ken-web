@@ -231,11 +231,11 @@ export default function AboutPage() {
         </div>
         <div>
           {[
-            ['2025 Q1', 'Incorporated in Chennai. CIN: U62099TN2025PTC178068'],
-            ['2025 Q2', 'First prototype — 30 cameras on a single device at 35W'],
-            ['2025 Q3', 'YOLOv8 + Qwen2.5-VL pipeline validated on live factory floor'],
-            ['2025 Q4', 'Platform launch: PPE compliance, zone detection, shift analytics'],
-            ['2026 Q1', 'First enterprise deployments across Tamil Nadu manufacturing belt'],
+            ['2025 Q1', 'Incorporated in Chennai, India'],
+            ['2025 Q2', 'First prototype — 30 cameras, one server, 35 watts'],
+            ['2025 Q3', 'AI pipeline validated on live factory floor'],
+            ['2025 Q4', 'Platform launch: PPE, zone monitoring, shift analytics'],
+            ['2026 Q1', 'First enterprise deployments across Tamil Nadu'],
           ].map(([date, event], i) => (
             <ScrollReveal key={date} variant="fade-up" delay={i * 0.08} duration={0.5}>
               <div className="flex items-baseline gap-8 py-4 border-b border-white/[0.04]">
