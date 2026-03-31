@@ -164,7 +164,7 @@ export default function ContactPage() {
                   </p>
                   <p className="font-display text-[1.8rem] font-medium text-white/80 leading-[1.5]">
                     Kenesis Labs<br />
-                    <span className="text-white/35 font-light">Chennai, Tamil Nadu</span>
+                    <span className="text-white/35 font-light text-[1.4rem]">iTamilnadu Technology Hub (iTNT)<br />Anna University, Sir C V Raman Science Block, 3rd Floor<br />Kotturpuram, Chennai, Tamil Nadu 600025</span>
                   </p>
                 </div>
 
@@ -173,27 +173,33 @@ export default function ContactPage() {
                     Email
                   </p>
                   <a
-                    href="mailto:[email]"
+                    href="mailto:contact@kenesis.in"
                     className="font-display text-[1.8rem] font-medium text-white/70 hover:text-amber-400 transition-colors duration-200 cursor-pointer"
                   >
-                    hello@kenesis.in
+                    contact@kenesis.in
                   </a>
                 </div>
 
                 <div>
                   <p className="font-mono-accent text-[1rem] uppercase tracking-[0.14em] text-amber-400/40 mb-[2rem]">
-                    Response
+                    Phone
                   </p>
-                  <p className="font-display text-[1.8rem] font-medium text-white/50 font-light">
-                    Within 24 hours<br />
-                    <span className="text-white/25 text-[1.4rem]">on business days</span>
-                  </p>
+                  <a
+                    href="tel:+919342281662"
+                    className="font-display text-[1.8rem] font-medium text-white/70 hover:text-amber-400 transition-colors duration-200 cursor-pointer"
+                  >
+                    +91 93422 81662
+                  </a>
+                  <p className="font-display text-[1.2rem] text-white/25 mt-[0.4rem]">Available during business hours (IST)</p>
                 </div>
 
-                {/* CIN */}
-                <div className="pt-[2rem] border-t border-white/6">
-                  <p className="font-mono-accent text-[1rem] text-white/15 tracking-[0.06em]">
-                    CIN: U62099TN2025PTC178068
+                <div>
+                  <p className="font-mono-accent text-[1rem] uppercase tracking-[0.14em] text-amber-400/40 mb-[2rem]">
+                    Hours
+                  </p>
+                  <p className="font-display text-[1.6rem] font-medium text-white/50 font-light">
+                    Mon – Fri, 9:00 AM – 6:00 PM IST<br />
+                    <span className="text-white/25 text-[1.2rem]">We respond within 24–48 hours</span>
                   </p>
                 </div>
               </div>

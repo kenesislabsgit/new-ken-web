@@ -73,8 +73,11 @@ export default function Home() {
 
         <PartnerLogosSection />
 
+        {/* ── Transition fade ── */}
+        <div className="relative z-[1] h-[120px] bg-gradient-to-b from-transparent to-[#0a0a0b] pointer-events-none" />
+
         {/* ── Unblur reveal before CTA ── */}
-        <section className="relative z-[1] py-[160px] px-6 text-center bg-[#0a0a0b]">
+        <section className="relative z-[1] py-[120px] px-6 text-center bg-[#0a0a0b]">
           <div className="relative z-[1] mx-auto max-w-5xl">
             <UnblurTextReveal
               as="h2"
@@ -91,6 +94,9 @@ export default function Home() {
             </UnblurTextReveal>
           </div>
         </section>
+
+        {/* ── Transition fade into careers ── */}
+        <div className="relative z-[1] h-[80px] bg-gradient-to-b from-[#0a0a0b] to-transparent pointer-events-none" />
 
         <CareersCTASection />
         <ErrorBoundary>

@@ -66,8 +66,8 @@ export default function FooterCTASection() {
               <ScrollReveal variant="fade-up" delay={0.2}>
                 <p className="mt-[2rem] font-mono-accent text-[1.2rem] leading-relaxed text-white/35 tracking-[0.02em]">
                   Follow along or reach out directly at<br />
-                  <a href="mailto:[email]" className="text-white/60 hover:text-amber-400 transition-colors underline">
-                    hello@kenesis.in
+                  <a href="mailto:contact@kenesis.in" className="text-white/60 hover:text-amber-400 transition-colors underline">
+                    contact@kenesis.in
                   </a>
                 </p>
               </ScrollReveal>
