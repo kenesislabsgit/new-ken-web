@@ -194,7 +194,7 @@ export default function PinnedFeatureTabs() {
   }, [activeTab]);
 
   // Split heading text into words for staggered animation
-  const headingLine1 = 'Edge AI that sees';
+  const headingLine1 = 'AI that sees';
   const headingLine2 = 'what matters';
 
   return (

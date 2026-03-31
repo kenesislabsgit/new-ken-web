@@ -32,7 +32,7 @@ const HW_FRAMES = [
 ];
 
 const HW_PANELS = [
-  { step: 1, label: 'Edge Hardware', headline: 'Built to disappear.', body: 'A device engineered to be forgotten. No fans, no noise, no cloud. It sits inside your facility and simply watches.' },
+  { step: 1, label: 'The Hardware', headline: 'Built to disappear.', body: 'A device engineered to be forgotten. No fans, no noise, no cloud. It sits inside your facility and simply watches.' },
   { step: 2, label: 'Thermal Design', headline: 'Silent under pressure.', body: 'Precision-milled heatsinks dissipate continuous inference heat without moving air. Designed to run for years, not months.' },
   { step: 3, label: 'Integrated Vision', headline: 'The eye that never blinks.', body: 'An onboard optical system for direct deployment. Compatible with every camera already on your floor.' },
   { step: 4, label: 'Modular Scale', headline: 'One floor. Every floor.', body: 'Stack units to cover more. Each device runs independently. Connect them for site-wide intelligence.' },
@@ -47,7 +47,7 @@ const FUNNEL_FRAMES = [
 ];
 
 const FUNNEL_PANELS = [
-  { step: 1, label: 'The Watcher', headline: 'See everything. Discard everything.', body: 'Continuous edge detection scans every feed in real time. Millions of frames flow through. Only anomalies survive.' },
+  { step: 1, label: 'The Watcher', headline: 'See everything. Discard everything.', body: 'Continuous detection scans every feed in real time. Millions of frames flow through. Only anomalies survive.' },
   { step: 2, label: 'The Filter', headline: 'Score the risk. Kill the noise.', body: 'A rule engine assigns a threat score to every detection. Low scores vanish instantly. High scores escalate.' },
   { step: 3, label: 'The Brain', headline: 'Context, not just coordinates.', body: "The system reasons about what it sees — what they're doing, where, and whether it violates protocol." },
   { step: 4, label: 'The Result', headline: 'Thousands of frames. One call.', body: "The funnel collapses noise into signal. When your shift manager's phone rings, it means something." },
@@ -102,7 +102,7 @@ export default function SolutionsPage() {
 
           <BlurFade delay={0.7} duration={0.6} blur="8px" offset={14}>
             <p className="text-[20px] leading-[1.7] text-white/30 max-w-[600px] mb-[40px]">
-              Edge AI that{' '}
+              On-premise AI that{' '}
               <TypewriterText
                 texts={['detects PPE violations', 'monitors restricted zones', 'verifies SOPs in real-time', 'reasons about what it sees']}
                 className="text-amber-400/60"
@@ -135,7 +135,7 @@ export default function SolutionsPage() {
 
       {/* ── HARDWARE SCROLL FRAMES ── */}
       <div id="hardware" />
-      <ScrollFrameSection frameSets={HW_FRAMES} panels={HW_PANELS} sectionLabel="The Hardware" sectionTitle="WhisperEdge Device" />
+      <ScrollFrameSection frameSets={HW_FRAMES} panels={HW_PANELS} sectionLabel="The Hardware" sectionTitle="On-Premise Device" />
 
       {/* ── INTERLUDE ── */}
       <section className="relative z-[10] min-h-screen flex items-center justify-center px-[24px] md:px-[48px] overflow-hidden bg-[#0a0a0b]">

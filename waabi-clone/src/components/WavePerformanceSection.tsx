@@ -49,7 +49,7 @@ export default function WavePerformanceSection() {
               scrub={0.5}
               className="mt-[1.2rem] font-mono-accent text-[1.4rem] font-normal leading-[1.7] tracking-[0.02em] text-white/35 lg:text-[1.5rem]"
             >
-              A Mac Mini M4 Pro handles 30 camera feeds simultaneously. No GPU farm. No cloud bill. No vendor lock-in.
+              A single on-premise server handles 30 camera feeds simultaneously. No cloud. No GPU farm. No vendor lock-in.
             </TextReveal>
           </div>
 

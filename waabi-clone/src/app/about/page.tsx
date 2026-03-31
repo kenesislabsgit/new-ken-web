@@ -28,9 +28,9 @@ export default function AboutPage() {
       <div className="pointer-events-none fixed inset-0 z-0 opacity-[0.12]">
         <DitheredWaves
           color="#f59e0b"
-          cellSize={10}
+          cellSize={16}
           speed={1.2}
-          layers={3}
+          layers={2}
           amplitude={35}
           frequency={0.012}
           charset=" .:=+#"
@@ -61,7 +61,7 @@ export default function AboutPage() {
           </UnblurTextReveal>
           <BlurFade delay={0.6} duration={0.5} blur="6px" offset={8}>
             <p className="max-w-lg text-[1.2rem] leading-[1.7] text-white/35">
-              Kenesis Labs · Chennai · Edge AI for Indian manufacturing
+              Kenesis Labs · Chennai · On-premise AI for Indian manufacturing
             </p>
           </BlurFade>
         </div>
@@ -132,7 +132,7 @@ export default function AboutPage() {
             radius={300}
             rotationSpeed={35}
             images={[
-              { src: '/images/gallery/1.png', alt: 'Edge AI hardware' },
+              { src: '/images/gallery/1.png', alt: 'AI hardware' },
               { src: '/images/gallery/2.png', alt: 'Computing hardware' },
               { src: '/images/gallery/3.png', alt: 'Factory floor' },
               { src: '/images/gallery/4.png', alt: 'Engineer at work' },
@@ -158,7 +158,7 @@ export default function AboutPage() {
             <p className="font-mono-accent text-[0.85rem] uppercase tracking-[0.1em] text-white/25">Headquarters</p>
           </div>
           <div className="text-center">
-            <p className="font-display text-[clamp(2.5rem,5vw,3.5rem)] font-semibold text-white/90 leading-none mb-2">Edge AI</p>
+            <p className="font-display text-[clamp(2.5rem,5vw,3.5rem)] font-semibold text-white/90 leading-none mb-2">On-Premise AI</p>
             <p className="font-mono-accent text-[0.85rem] uppercase tracking-[0.1em] text-white/25">Focus</p>
           </div>
           <div className="text-center">
@@ -173,7 +173,7 @@ export default function AboutPage() {
       {/* ── ASCII text display ── */}
       <section className="relative z-[2] py-16 flex items-center justify-center overflow-hidden">
         <AsciiTextDisplay
-          text="EDGE AI"
+          text="KENESIS"
           fontSize={140}
           cellW={7}
           cellH={13}
@@ -232,7 +232,7 @@ export default function AboutPage() {
         <div>
           {[
             ['2025 Q1', 'Incorporated in Chennai. CIN: U62099TN2025PTC178068'],
-            ['2025 Q2', 'First edge prototype — 30 cameras on a Mac Mini M4 Pro at 35W'],
+            ['2025 Q2', 'First prototype — 30 cameras on a single device at 35W'],
             ['2025 Q3', 'YOLOv8 + Qwen2.5-VL pipeline validated on live factory floor'],
             ['2025 Q4', 'Platform launch: PPE compliance, zone detection, shift analytics'],
             ['2026 Q1', 'First enterprise deployments across Tamil Nadu manufacturing belt'],

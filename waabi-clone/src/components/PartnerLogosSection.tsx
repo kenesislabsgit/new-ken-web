@@ -28,7 +28,7 @@ const testimonials: Record<string, Testimonial> = {
     partnerLogo: 'P',
   },
   Logistics: {
-    quote: 'Our warehouse operations run 24/7. Kenesis catches safety violations across 30+ cameras simultaneously on a single edge device — the ROI was immediate.',
+    quote: 'Our warehouse operations run 24/7. Kenesis catches safety violations across 30+ cameras simultaneously on a single server — the ROI was immediate.',
     authorName: '',
     authorTitle: 'Logistics Warehouse',
     partnerLogo: 'L',

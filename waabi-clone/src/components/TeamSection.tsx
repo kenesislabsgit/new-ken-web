@@ -17,11 +17,11 @@ interface TeamMember {
 
 const TEAM: TeamMember[] = [
   { name: 'Amrish Poornachandran', role: 'CEO', bio: 'The pitch, the vision, the deal. Drives business strategy and investor relations.', image: '/team/amr.webp' },
-  { name: 'Daniel Das', role: 'CTO', bio: 'AI and backend architecture. Builds the inference pipelines that run at the edge.', image: '/team/dan.webp' },
+  { name: 'Daniel Das', role: 'CTO', bio: 'AI and backend architecture. Builds the inference pipelines that run on-premise.', image: '/team/dan.webp' },
   { name: 'Dheekshith', role: 'COO', bio: 'Operations, AI, and backend. Keeps the machine running and the models shipping.', image: '/team/dheek.webp' },
   { name: 'Aswin JD', role: 'CAIO', bio: 'Chief AI Officer. The core AI brain — model training, optimization, and research.', image: '/team/aswin.webp' },
   { name: 'Dinesh Kumar', role: 'CPO', bio: 'Visual creativity and marketing. Shapes how Kenesis looks, feels, and speaks.', image: '/team/dk.webp' },
-  { name: 'Rakesh', role: 'Operations', bio: 'Factory deployments across Tamil Nadu. Every edge node ships and runs.', image: '/team/rakesh.webp' },
+  { name: 'Rakesh', role: 'Operations', bio: 'Factory deployments across Tamil Nadu. Every server ships and runs.', image: '/team/rakesh.webp' },
 ];
 
 export default function TeamSection() {

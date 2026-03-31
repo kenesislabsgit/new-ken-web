@@ -201,8 +201,10 @@ export function DitheredWaves({
     }
 
     ctx.globalAlpha = 1;
-    timeRef.current += 0.033; // ~30fps time step
-    rafRef.current = requestAnimationFrame(draw);
+    timeRef.current += 0.033;
+    // Skip every other frame for performance
+    const skip = () => { rafRef.current = requestAnimationFrame(draw); };
+    rafRef.current = requestAnimationFrame(skip);
   }, [charset, color, bgColor, cellSize, speed, layers, amplitude, frequency, enableMouse, mouseRadius]);
 
   useEffect(() => {

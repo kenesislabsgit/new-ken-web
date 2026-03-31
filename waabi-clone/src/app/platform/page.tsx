@@ -1,7 +1,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import { Button, Card } from '@heroui/react';
+import { Button } from '@heroui/react';
 import PageShell from '@/components/PageShell';
 import { BlurFade } from '@/components/magicui/blur-fade';
 
@@ -24,9 +24,9 @@ export default function PlatformPage() {
       <div className="pointer-events-none fixed inset-0 z-0 opacity-[0.12]">
         <DitheredWaves
           color="#f59e0b"
-          cellSize={10}
+          cellSize={16}
           speed={1.2}
-          layers={3}
+          layers={2}
           amplitude={35}
           frequency={0.012}
           charset=" .:=+#"
@@ -193,7 +193,6 @@ export default function PlatformPage() {
             { val: 30, suffix: '', label: 'Camera feeds per device' },
             { val: 35, suffix: 'W', label: 'Total power draw' },
             { val: 0, suffix: 'ms', label: 'Cloud latency', sub: '<1s on-prem' },
-            { val: 1500, suffix: '₹', label: 'Per camera / month' },
           ].map((s, i) => (
             <div key={s.label} className="text-center">
               <p className="font-display text-[clamp(2.5rem,5vw,4rem)] font-semibold text-white/90 leading-none mb-2">
@@ -263,7 +262,7 @@ export default function PlatformPage() {
             {[
               ['Detection', 'YOLOv8 — real-time, multi-class'],
               ['Reasoning', 'Qwen2.5-VL 7B — contextual scene understanding'],
-              ['Hardware', 'Mac Mini M4 Pro (or equivalent ARM)'],
+              ['Hardware', 'Custom on-premise server (ARM-based, fanless)'],
               ['Cameras', '30 simultaneous RTSP feeds'],
               ['Power', '35W total system draw'],
               ['Latency', 'Sub-second from frame to alert'],
@@ -295,7 +294,7 @@ export default function PlatformPage() {
           stagger={0.06}
           className="font-display text-[clamp(2rem,4vw,3rem)] font-semibold tracking-[-0.02em] text-white/90 mb-16"
         >
-          Why edge, not cloud
+          Why on-premise, not cloud
         </UnblurTextReveal>
         <div className="max-w-3xl space-y-12">
           <TextReveal
@@ -314,7 +313,7 @@ export default function PlatformPage() {
             end="bottom 30%"
             className="text-[clamp(1.3rem,2.5vw,1.7rem)] leading-[1.6] text-white/60"
           >
-            Cloud means latency. A safety violation detected 3 seconds late is a safety violation missed. Our edge stack processes frames locally — the alert reaches your safety officer before the cloud version would have finished uploading the frame.
+            Cloud means latency. A safety violation detected 3 seconds late is a safety violation missed. Our on-premise stack processes frames locally — the alert reaches your safety officer before the cloud version would have finished uploading the frame.
           </TextReveal>
           <TextReveal
             variant="highlight"
@@ -325,36 +324,6 @@ export default function PlatformPage() {
           >
             Cloud means dependency. When your internet goes down — and in Indian industrial zones, it will — your entire safety system goes dark. Kenesis keeps running because it never needed the internet in the first place.
           </TextReveal>
-        </div>
-      </section>
-      <section className="relative z-[1] mx-auto max-w-[72rem] px-6 py-32 md:px-12 border-t border-white/[0.06]">
-        <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-16 items-start">
-          <div>
-            <BlurFade delay={0} duration={0.5} blur="6px" offset={10} inView inViewMargin="-80px">
-              <p className="font-mono-accent text-[0.9rem] uppercase tracking-[0.14em] text-amber-400/40 mb-6">Pricing</p>
-              <p className="font-display text-[clamp(3rem,6vw,5rem)] font-semibold leading-[1] tracking-[-0.03em] text-white/90 mb-3">
-                ₹1,500
-              </p>
-              <p className="text-[1.2rem] text-white/40 mb-8">per camera, per month. Hardware included.</p>
-              <p className="text-[1.1rem] text-white/30 max-w-md leading-[1.7]">
-                Full data ownership. On-premise deployment. No cloud bills, no per-API-call charges, no surprise egress fees. One number, everything included.
-              </p>
-            </BlurFade>
-          </div>
-          <Card variant="transparent" className="relative rounded-xl bg-white/[0.02] border border-white/[0.04] p-6">
-            <Card.Header>
-              <Card.Description className="font-mono-accent text-[0.85rem] uppercase tracking-[0.1em] text-white/20 mb-3">Cloud equivalent</Card.Description>
-            </Card.Header>
-            <Card.Content>
-              <p className="font-display text-[2rem] font-semibold text-white/20 line-through mb-2">₹839/cam</p>
-              <ul className="space-y-2 text-[0.95rem] text-white/20">
-                <li>+ Data leaves premises</li>
-                <li>+ Internet dependent</li>
-                <li>+ Generic alerts</li>
-                <li>+ Vendor lock-in</li>
-              </ul>
-            </Card.Content>
-          </Card>
         </div>
       </section>
 

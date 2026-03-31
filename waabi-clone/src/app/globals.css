@@ -361,6 +361,12 @@ body {
   }
 }
 
+/* GPU compositing hints for animated elements */
+.ubr-unit, .tr-unit, .wt-char, .cta-word, .mosaic-card, .team-card {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
 /* Accessibility: reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *,

@@ -26,7 +26,7 @@ interface ArticleCard {
 
 const articles: ArticleCard[] = [
   {
-    title: 'Kenesis Labs launches edge AI platform for Indian manufacturing safety',
+    title: 'Kenesis Labs launches on-premise AI platform for Indian manufacturing safety',
     date: 'January 15, 2026',
     tags: ['Company news'],
   },
@@ -46,7 +46,7 @@ const articles: ArticleCard[] = [
     tags: ['Technology'],
   },
   {
-    title: 'Running 30 cameras on a Mac Mini M4 Pro: Our edge inference benchmark',
+    title: 'Running 30 cameras on a single server: Our inference benchmark',
     date: 'September 28, 2025',
     tags: ['Technology', 'Benchmark'],
   },

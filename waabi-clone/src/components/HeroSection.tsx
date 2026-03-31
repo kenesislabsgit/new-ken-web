@@ -188,7 +188,7 @@ export default function HeroSection() {
               videoRef={ambientVideoRef}
               blur={60}
               opacity={0.25}
-              interval={200}
+              interval={300}
               className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-0"
               style={{ width: '110%', height: '200%' }}
             />

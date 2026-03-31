@@ -74,11 +74,7 @@ export default function Home() {
         <PartnerLogosSection />
 
         {/* ── Unblur reveal before CTA ── */}
-        <section className="relative z-[1] py-[160px] px-6 text-center overflow-hidden bg-[#0a0a0b]">
-          <div className="absolute inset-0 z-0 opacity-[0.12]">
-            <img src="/images/gallery/3.png" alt="" className="w-full h-full object-cover" aria-hidden="true" />
-          </div>
-          <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#0a0a0b] via-[#0a0a0b]/60 to-[#0a0a0b]" />
+        <section className="relative z-[1] py-[160px] px-6 text-center bg-[#0a0a0b]">
           <div className="relative z-[1] mx-auto max-w-5xl">
             <UnblurTextReveal
               as="h2"
@@ -91,7 +87,7 @@ export default function Home() {
               stagger={0.05}
               className="font-display text-[clamp(32px,5vw,56px)] font-semibold leading-[1.15] tracking-[-0.02em] text-white/90"
             >
-              Built for the edge. Designed for India.
+              Built for your premises. Designed for India.
             </UnblurTextReveal>
           </div>
         </section>

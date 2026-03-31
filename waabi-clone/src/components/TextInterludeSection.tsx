@@ -99,7 +99,7 @@ export default function TextInterludeSection() {
         scrub={1}
         className="font-display text-4xl font-semibold leading-[1.05] tracking-[-0.02em] text-white/90 md:text-5xl"
       >
-        Redefining factory safety with edge AI.
+        Redefining factory safety with on-premise AI.
       </TextReveal>
 
       {/* Paragraph — words fade in on scroll */}

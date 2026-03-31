@@ -95,7 +95,7 @@ export default function ContactPage() {
 
           <BlurFade delay={0.3} duration={0.6} blur="8px" offset={16}>
             <p className="mt-[3rem] max-w-[44rem] font-display text-[1.6rem] leading-[1.65] text-white/35 font-light">
-              Deploy edge AI on your factory floor. Real-time safety intelligence — no cloud, no data leaving your network.
+              Deploy on-premise AI on your factory floor. Real-time safety intelligence — no cloud, no data leaving your network.
             </p>
           </BlurFade>
         </div>

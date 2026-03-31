@@ -19,7 +19,7 @@ export default function SplitContentSection() {
             </TextReveal>
             <ScrollReveal variant="fade-up" delay={0.2}>
               <p className="text-lg leading-relaxed text-neutral-600">
-                Our platform combines cutting-edge AI with rigorous safety standards
+                Our platform combines advanced AI with rigorous safety standards
                 to deliver autonomous driving solutions that scale. From simulation
                 to real-world deployment, every mile is backed by data-driven
                 confidence.
