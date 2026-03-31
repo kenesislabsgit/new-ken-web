@@ -39,10 +39,10 @@ function BlurRevealText({ text, className, baseDelay = 0, stagger = 0.035 }: {
 }
 
 const parallaxImages = [
-  { src: 'https://images.unsplash.com/photo-1484600899469-230e8d1d59c0?q=80&w=2670&auto=format&fit=crop', alt: 'Industrial AI monitoring', start: -200, end: 200, className: 'w-1/3' },
-  { src: 'https://images.unsplash.com/photo-1446776709462-d6b525c57bd3?q=80&w=2670&auto=format&fit=crop', alt: 'Visual intelligence system', start: 200, end: -250, className: 'mx-auto w-2/3' },
-  { src: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?q=80&w=2370&auto=format&fit=crop', alt: 'Safety monitoring', start: -200, end: 200, className: 'ml-auto w-1/3' },
-  { src: 'https://images.unsplash.com/photo-1494022299300-899b96e49893?q=80&w=2670&auto=format&fit=crop', alt: 'AI detection', start: 0, end: -500, className: 'ml-[6rem] w-5/12' },
+  { src: '/hero/factory-control.png', alt: 'Factory control room', start: -200, end: 200, className: 'w-1/3' },
+  { src: '/hero/cctv-closeup.png', alt: 'Industrial CCTV camera', start: 200, end: -250, className: 'mx-auto w-2/3' },
+  { src: '/hero/warehouse-wide.png', alt: 'Industrial warehouse', start: -200, end: 200, className: 'ml-auto w-1/3' },
+  { src: '/hero/pcb-assembly.png', alt: 'PCB assembly line', start: 0, end: -500, className: 'ml-[6rem] w-5/12' },
 ];
 
 function ParallaxImg({ src, alt, start, end, className }: {
@@ -66,7 +66,23 @@ function ParallaxImg({ src, alt, start, end, className }: {
       fadeTween.scrollTrigger?.kill(); fadeTween.kill();
     };
   }, [start, end]);
-  return <img ref={imgRef} src={src} alt={alt} className={`rounded-xl ${className}`} loading="eager" />;
+  return (
+    <div ref={imgRef} className={`rounded-xl overflow-hidden ${className}`}>
+      <AsciiImage
+        src={src}
+        alt={alt}
+        cellWidth={4}
+        cellHeight={6}
+        contrastExponent={1.6}
+        colorMode="tinted"
+        color="#c9a04e"
+        bgColor="#0a0a0b"
+        bgBlur={0}
+        bgOpacity={0}
+        className="w-full h-full"
+      />
+    </div>
+  );
 }
 function CenterImage() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -93,7 +109,7 @@ function CenterImage() {
   return (
     <div ref={containerRef} className="sticky top-0 h-screen w-full"
       style={{ clipPath: 'polygon(25% 25%, 75% 25%, 75% 75%, 25% 75%)' }}>
-      <AsciiImage src="/hero-ascii.jpg" alt="Kenesis industrial AI"
+      <AsciiImage src="/images/hero/1.png" alt="Kenesis industrial AI"
         cellWidth={6} cellHeight={10} contrastExponent={1.6}
         colorMode="tinted" color="#f59e0b" bgColor="#0a0a0b"
         bgBlur={8} bgOpacity={0.3} className="w-full h-full" />

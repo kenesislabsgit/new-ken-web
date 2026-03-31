@@ -132,13 +132,13 @@ export default function AboutPage() {
             radius={300}
             rotationSpeed={35}
             images={[
-              { src: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&q=80', alt: 'Industrial automation' },
-              { src: 'https://images.unsplash.com/photo-1565043666747-69f6646db940?w=600&q=80', alt: 'Factory floor' },
-              { src: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&q=80', alt: 'Safety monitoring' },
-              { src: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&q=80', alt: 'Engineering team' },
-              { src: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=600&q=80', alt: 'Edge computing hardware' },
-              { src: 'https://images.unsplash.com/photo-1563770660941-20978e870e26?w=600&q=80', alt: 'CCTV infrastructure' },
-              { src: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80', alt: 'Analytics dashboard' },
+              { src: '/images/gallery/1.png', alt: 'Edge AI hardware' },
+              { src: '/images/gallery/2.png', alt: 'Computing hardware' },
+              { src: '/images/gallery/3.png', alt: 'Factory floor' },
+              { src: '/images/gallery/4.png', alt: 'Engineer at work' },
+              { src: '/images/gallery/5.png', alt: 'CCTV array' },
+              { src: '/images/gallery/6.png', alt: 'Robotic arm' },
+              { src: '/images/gallery/7.png', alt: 'Kenesis team' },
             ]}
           />
         </BlurFade>
@@ -256,7 +256,7 @@ export default function AboutPage() {
           <div className="space-y-4">
             <ImageMaskedText
               text="Scale fast."
-              imageSrc="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1200&q=80"
+              imageSrc="/images/gallery/3.png"
               fontSize="clamp(3rem, 8vw, 7rem)"
               fontWeight={800}
               bgPosition="center 40%"

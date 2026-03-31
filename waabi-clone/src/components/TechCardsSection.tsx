@@ -9,9 +9,9 @@ import { AsciiDivider, AsciiCorners, AsciiBlock, ASCII_ARTS } from '@/components
 import { AsciiRenderer } from '@/components/magicui/ascii-renderer';
 
 const techCards = [
-  { title: 'PPE Compliance', subtitle: 'Helmets, vests, gloves, footwear — detected in real time across every camera feed.', ascii: ASCII_ARTS.shield, image: 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=400&q=60' },
-  { title: 'Zone Detection', subtitle: 'Restricted area breaches and perimeter intrusions flagged instantly with contextual alerts.', ascii: ASCII_ARTS.eye, image: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=400&q=60' },
-  { title: 'Shift Analytics', subtitle: 'Headcount tracking, attendance, and shift-level safety reporting dashboard.', ascii: ASCII_ARTS.network, image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&q=60' },
+  { title: 'PPE Compliance', subtitle: 'Helmets, vests, gloves, footwear — detected in real time across every camera feed.', ascii: ASCII_ARTS.shield, image: '/images/tech/3.png' },
+  { title: 'Zone Detection', subtitle: 'Restricted area breaches and perimeter intrusions flagged instantly with contextual alerts.', ascii: ASCII_ARTS.eye, image: '/images/tech/2.png' },
+  { title: 'Shift Analytics', subtitle: 'Headcount tracking, attendance, and shift-level safety reporting dashboard.', ascii: ASCII_ARTS.network, image: '/images/tech/1.png' },
 ];
 
 export default function TechCardsSection() {
@@ -73,17 +73,9 @@ export default function TechCardsSection() {
                 <Card
                   className="group relative overflow-hidden rounded-2xl aspect-[608/841] cursor-pointer glass-card border-0"
                 >
-                  {/* ASCII-rendered image background */}
-                  <div className="absolute inset-0 z-0 flex items-center justify-center opacity-30 group-hover:opacity-50 transition-opacity duration-500">
-                    <AsciiRenderer
-                      src={card.image}
-                      columns={60}
-                      fontSize={6}
-                      lineHeight={0.9}
-                      color="#f59e0b"
-                      animate={true}
-                      className="w-full h-full overflow-hidden"
-                    />
+                  {/* Full image background */}
+                  <div className="absolute inset-0 z-0">
+                    <img src={card.image} alt={card.title} className="w-full h-full object-cover opacity-40 group-hover:opacity-60 group-hover:scale-105 transition-all duration-700" loading="lazy" />
                   </div>
                   {/* ASCII art watermark */}
                   <div className="absolute top-6 right-6 z-[1] opacity-0 group-hover:opacity-100 transition-opacity duration-500">

@@ -36,31 +36,31 @@ const mosaicImages: MosaicImage[] = [
   {
     position: 'top-left',
     className: 'col-span-1 row-span-1 aspect-[4/3]',
-    image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80',
+    image: '/images/careers/4.png',
     alt: 'Team collaboration',
   },
   {
     position: 'top-center',
     className: 'col-span-1 row-span-2 aspect-auto',
-    image: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&q=80',
+    image: '/images/careers/3.png',
     alt: 'Engineering workspace',
   },
   {
     position: 'top-right',
     className: 'col-span-1 row-span-1 aspect-[4/3]',
-    image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&q=80',
+    image: '/images/careers/1.png',
     alt: 'AI development',
   },
   {
     position: 'bottom-left',
     className: 'col-span-1 row-span-1 aspect-[4/3]',
-    image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&q=80',
+    image: '/images/careers/5.png',
     alt: 'Team meeting',
   },
   {
     position: 'bottom-right',
     className: 'col-span-1 row-span-1 aspect-[4/3]',
-    image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&q=80',
+    image: '/images/careers/2.png',
     alt: 'Office culture',
   },
 ];

@@ -34,7 +34,7 @@ export default function Home() {
         <TechCardsSection />
 
         {/* ── Dramatic text mask break with dithered waves ── */}
-        <section className="relative z-[1] h-[300px] my-8">
+        <section className="relative z-[1] h-[300px]">
           <TextVideoMask
             text="KENESIS"
             fontSize="clamp(6rem, 14vw, 16rem)"
@@ -57,7 +57,7 @@ export default function Home() {
         </section>
 
         {/* ── Dithered waves ambient section ── */}
-        <section className="relative z-[1] h-[200px] overflow-hidden opacity-40 pointer-events-none">
+        <section className="relative z-[1] h-[200px] overflow-hidden opacity-40 pointer-events-none bg-[#0a0a0b]">
           <DitheredWaves
             color="#f59e0b"
             cellSize={12}
@@ -74,20 +74,26 @@ export default function Home() {
         <PartnerLogosSection />
 
         {/* ── Unblur reveal before CTA ── */}
-        <section className="relative z-[1] mx-auto max-w-5xl px-6 py-24 text-center">
-          <UnblurTextReveal
-            as="h2"
-            blurAmount={18}
-            scaleFrom={0.88}
-            scrub={1}
-            start="top 85%"
-            end="top 35%"
-            splitBy="word"
-            stagger={0.05}
-            className="font-display text-[clamp(2rem,5vw,3.5rem)] font-semibold leading-[1.15] tracking-[-0.02em] text-white/80"
-          >
-            Built for the edge. Designed for India.
-          </UnblurTextReveal>
+        <section className="relative z-[1] py-[160px] px-6 text-center overflow-hidden bg-[#0a0a0b]">
+          <div className="absolute inset-0 z-0 opacity-[0.12]">
+            <img src="/images/gallery/3.png" alt="" className="w-full h-full object-cover" aria-hidden="true" />
+          </div>
+          <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#0a0a0b] via-[#0a0a0b]/60 to-[#0a0a0b]" />
+          <div className="relative z-[1] mx-auto max-w-5xl">
+            <UnblurTextReveal
+              as="h2"
+              blurAmount={18}
+              scaleFrom={0.88}
+              scrub={1}
+              start="top 85%"
+              end="top 35%"
+              splitBy="word"
+              stagger={0.05}
+              className="font-display text-[clamp(32px,5vw,56px)] font-semibold leading-[1.15] tracking-[-0.02em] text-white/90"
+            >
+              Built for the edge. Designed for India.
+            </UnblurTextReveal>
+          </div>
         </section>
 
         <CareersCTASection />

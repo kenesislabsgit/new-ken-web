@@ -32,7 +32,7 @@ export default function SplitContentSection() {
         <ScrollReveal variant="clip-left" duration={1.2}>
           <div className="overflow-hidden rounded-2xl">
             <img
-              src="https://images.unsplash.com/photo-1549317661-bd32c8ce0afa?w=1200&q=80"
+              src="/images/split/1.png"
               alt="Autonomous vehicle technology"
               className="h-full w-full object-cover"
             />

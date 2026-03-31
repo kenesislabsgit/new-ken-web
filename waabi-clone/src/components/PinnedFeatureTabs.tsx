@@ -292,11 +292,12 @@ export default function PinnedFeatureTabs() {
                   className="mb-6 aspect-video w-full overflow-hidden rounded-2xl bg-white/5 border border-white/[0.06]"
                   style={{ clipPath: i === 0 ? 'inset(0 0% 0 0)' : 'inset(0 100% 0 0)' }}
                 >
-                  <div className="flex h-full w-full items-center justify-center text-white/20">
-                    <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
-                  </div>
+                  <img
+                    src={`/images/features/${i + 1}.png`}
+                    alt={tab.title}
+                    className="h-full w-full object-cover"
+                    loading="lazy"
+                  />
                 </div>
                 <h3
                   ref={el => { titleRefs.current[i] = el; }}
