@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import dynamic from 'next/dynamic';
+import { Linkedin, Instagram, Twitter } from 'lucide-react';
 import { ScrollReveal } from '@/components/magicui/scroll-reveal';
 import { TextReveal } from '@/components/magicui/text-reveal';
 import { AsciiDivider } from '@/components/AsciiArt';
@@ -20,9 +21,9 @@ const navLinks = [
 ];
 
 const socialLinks = [
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/company/thekenesis/', icon: 'in' },
-  { label: 'Instagram', href: 'https://www.instagram.com/kenesislabs', icon: '📷' },
-  { label: 'X', href: 'https://x.com/KenesisLabs', icon: '𝕏' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/company/thekenesis/', icon: <Linkedin size={20} /> },
+  { label: 'Instagram', href: 'https://www.instagram.com/kenesislabs', icon: <Instagram size={20} /> },
+  { label: 'X', href: 'https://x.com/KenesisLabs', icon: <Twitter size={20} /> },
 ];
 
 export function getLinkDelay(index: number): number {
