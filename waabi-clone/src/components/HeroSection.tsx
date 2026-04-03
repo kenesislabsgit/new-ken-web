@@ -172,7 +172,7 @@ export default function HeroSection() {
       <div ref={introRef} className="relative z-[2] h-screen w-full">
         {/* KENESIS logo centered in viewport with ambient glow */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <div className="relative w-full" style={{ maxWidth: '1200px', padding: '0 24px' }}>
+          <div className="relative w-full overflow-hidden" style={{ maxWidth: '1200px', padding: '0 24px' }}>
             {/* Hidden video source for ambient glow sampling */}
             <video
               ref={ambientVideoRef}
@@ -189,8 +189,7 @@ export default function HeroSection() {
               blur={60}
               opacity={0.25}
               interval={300}
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-0"
-              style={{ width: '110%', height: '200%' }}
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-0 w-full h-full"
             />
             {/* Text mask with video */}
             <div className="relative z-[1]">

@@ -9,7 +9,7 @@ import { ProgressiveBlur } from '@/components/magicui/progressive-blur';
 export default function PageShell({ children }: { children: React.ReactNode }) {
   return (
     <LenisProvider>
-      <main className="relative min-h-screen w-full">
+      <main className="relative min-h-screen w-full overflow-x-hidden">
         <Navbar />
         <ProgressiveBlur position="top" height="150px" className="fixed top-0 left-0 right-0 z-[100]" />
         <div className="pt-[12rem]">{children}</div>

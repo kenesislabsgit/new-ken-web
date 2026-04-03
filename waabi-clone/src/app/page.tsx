@@ -23,7 +23,7 @@ const DitheredWaves = dynamic(
 export default function Home() {
   return (
     <LenisProvider>
-      <main className="relative min-h-screen w-full">
+      <main className="relative min-h-screen w-full overflow-x-hidden">
         <Navbar />
         <ProgressiveBlur position="top" height="150px" className="fixed top-0 left-0 right-0 z-[100]" />
         <HeroSection />

@@ -253,7 +253,7 @@ export default function DashboardPreview() {
   const content = [<OverviewTab key={0} />, <CamerasTab key={1} />, <AlertsTab key={2} />, <ZonesTab key={3} />, <AnalyticsTab key={4} />, <SystemTab key={5} />];
 
   return (
-    <div className="relative mx-auto max-w-[1100px]">
+    <div className="relative mx-auto max-w-[1100px] overflow-hidden">
       {/* Ambient glow */}
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[600px] rounded-full bg-amber-500/[0.025] blur-[100px] pointer-events-none" />
 
