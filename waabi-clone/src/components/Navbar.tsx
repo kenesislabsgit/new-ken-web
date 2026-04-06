@@ -11,6 +11,7 @@ gsap.registerPlugin(ScrollTrigger);
 const navLinks = [
   { label: "Platform", href: "/platform" },
   { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
 ];
 
 const mobileLinks = [
@@ -103,12 +104,6 @@ export default function Navbar() {
 
           {/* Right side — CTA + hamburger */}
           <div className="flex items-center gap-[1.2rem]">
-            <Link
-              href="/contact"
-              className="hidden rounded-[0.8rem] px-[1.6rem] py-[0.7rem] font-mono-accent text-[1.1rem] font-bold uppercase tracking-[0.1em] text-white/50 transition-colors duration-200 hover:text-white/90 sm:block cursor-pointer"
-            >
-              Contact
-            </Link>
             <Link
               href="/contact"
               className="hidden rounded-[1rem] md:block"
