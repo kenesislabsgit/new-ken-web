@@ -1,17 +1,12 @@
 'use client';
 
-import dynamic from 'next/dynamic';
 import { useEffect, useRef } from 'react';
 import { Chip } from '@heroui/react';
 import { SpectraNoise } from '@/components/magicui/spectra-noise';
 import { ScrollReveal } from '@/components/magicui/scroll-reveal';
 import { TextReveal } from '@/components/magicui/text-reveal';
 import { AsciiDivider } from '@/components/AsciiArt';
-
-const DitheredWaves = dynamic(
-  () => import('@/components/magicui/dithered-waves').then(m => ({ default: m.DitheredWaves })),
-  { ssr: false }
-);
+import { DitheredWaves } from '@/components/magicui/dithered-waves';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { prefersReducedMotion } from '@/lib/animations';

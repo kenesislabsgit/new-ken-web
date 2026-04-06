@@ -1,6 +1,5 @@
 'use client';
 
-import dynamic from 'next/dynamic';
 import { Button } from '@heroui/react';
 import PageShell from '@/components/PageShell';
 import { BlurFade } from '@/components/magicui/blur-fade';
@@ -12,11 +11,7 @@ import { TextReveal } from '@/components/magicui/text-reveal';
 import { UnblurTextReveal } from '@/components/magicui/unblur-text-reveal';
 import { AsciiDivider } from '@/components/AsciiArt';
 import { TypewriterText } from '@/components/magicui/typewriter-text';
-
-const DitheredWaves = dynamic(
-  () => import('@/components/magicui/dithered-waves').then(m => ({ default: m.DitheredWaves })),
-  { ssr: false }
-);
+import { DitheredWaves } from '@/components/magicui/dithered-waves';
 
 const SPECS = [
   ['Response Time', '<100ms'],
@@ -48,7 +43,7 @@ export default function PlatformPage() {
         </BlurFade>
         <BlurFade delay={0.25} duration={0.8} blur="10px" offset={20}>
           <h1 className="font-display text-[clamp(3rem,7.5vw,6.5rem)] font-semibold leading-[0.95] tracking-[-0.03em] text-white mb-6">
-            The device your factory forgets is there.
+            The platform behind intelligent safety.
           </h1>
         </BlurFade>
         <BlurFade delay={0.55} duration={0.6} blur="6px" offset={10}>
@@ -107,8 +102,8 @@ export default function PlatformPage() {
       <section className="relative z-[1] mx-auto max-w-[72rem] px-6 py-32 md:px-12">
         <AsciiDivider className="mb-12" accent="&#9656;" />
         <BlurFade delay={0} duration={0.5} blur="6px" offset={10} inView inViewMargin="-80px">
-          <h2 className="font-display text-[clamp(2rem,4vw,3rem)] font-semibold tracking-[-0.02em] text-white/90 mb-4">From camera to alert in one hop</h2>
-          <p className="text-[1.1rem] text-white/30 mb-4 max-w-2xl">No staging servers, no cloud queues, no round trips. Your camera feeds go in one end, contextual alerts come out the other.</p>
+          <h2 className="font-display text-[clamp(2rem,4vw,3rem)] font-semibold tracking-[-0.02em] text-white/90 mb-4">From camera feed to safety alert</h2>
+          <p className="text-[1.1rem] text-white/30 mb-4 max-w-2xl">A streamlined pipeline with no cloud intermediaries. Camera feeds enter, contextual safety alerts emerge — all processed locally.</p>
         </BlurFade>
         <div className="flex flex-col md:flex-row items-stretch gap-0">
           {[
@@ -139,7 +134,7 @@ export default function PlatformPage() {
       <section className="relative z-[2] py-[160px] px-[24px] md:px-[48px] bg-[#0a0a0b]">
         <div className="mx-auto max-w-[1100px]">
           <UnblurTextReveal as="h2" blurAmount={16} scaleFrom={0.93} scrub={1} start="top 85%" end="top 55%" splitBy="word" stagger={0.05} className="font-display text-[clamp(32px,5vw,56px)] font-semibold tracking-[-0.025em] text-white/90 mb-[64px]">
-            Under the hood
+            Technical specifications
           </UnblurTextReveal>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[16px]">
             {SPECS.map(([label, value], i) => (
@@ -157,17 +152,17 @@ export default function PlatformPage() {
       {/* Why on-premise */}
       <section className="relative z-[1] mx-auto max-w-[72rem] px-6 py-32 md:px-12 border-t border-white/[0.06]">
         <UnblurTextReveal as="h2" blurAmount={22} scaleFrom={0.87} scrub={1} start="top 85%" end="top 40%" splitBy="word" stagger={0.06} className="font-display text-[clamp(2rem,4vw,3rem)] font-semibold tracking-[-0.02em] text-white/90 mb-16">
-          Why on-premise, not cloud
+          Why on-premise matters
         </UnblurTextReveal>
         <div className="max-w-3xl space-y-12">
           <TextReveal variant="highlight" scrub={1} start="top 85%" end="bottom 30%" className="text-[clamp(1.3rem,2.5vw,1.7rem)] leading-[1.6] text-white/60">
-            Cloud means your footage travels. To a data center you don&apos;t control, processed by models you can&apos;t inspect. For Indian manufacturers under DPDP Act compliance, that&apos;s not a feature &mdash; it&apos;s a liability.
+            Cloud processing means your factory footage travels to data centers you don&apos;t control, processed by models you can&apos;t audit. Under India&apos;s DPDP Act, that creates significant compliance liability.
           </TextReveal>
           <TextReveal variant="highlight" scrub={1} start="top 85%" end="bottom 30%" className="text-[clamp(1.3rem,2.5vw,1.7rem)] leading-[1.6] text-white/60">
-            Cloud means latency. A safety violation detected 3 seconds late is a safety violation missed. Our on-premise stack processes frames locally &mdash; the alert reaches your safety officer before the cloud version would have finished uploading.
+            Cloud means latency. A safety violation detected three seconds late is a safety violation missed. Our on-premise processing delivers alerts to your safety team before a cloud solution would finish uploading the frame.
           </TextReveal>
           <TextReveal variant="highlight" scrub={1} start="top 85%" end="bottom 30%" className="text-[clamp(1.3rem,2.5vw,1.7rem)] leading-[1.6] text-white/60">
-            Cloud means dependency. When your internet goes down &mdash; and in Indian industrial zones, it will &mdash; your entire safety system goes dark. Kenesis keeps running because it never needed the internet in the first place.
+            Cloud means dependency. When your internet connection drops — a common reality in Indian industrial zones — your entire safety system goes offline. Kenesis continues operating because it was never dependent on connectivity.
           </TextReveal>
         </div>
       </section>
@@ -176,7 +171,7 @@ export default function PlatformPage() {
       <section className="relative z-[1] mx-auto max-w-[72rem] px-6 py-24 md:px-12 border-t border-white/[0.06]">
         <BlurFade delay={0} duration={0.6} blur="8px" offset={14} inView inViewMargin="-80px">
           <p className="font-display text-[clamp(2rem,4vw,3rem)] font-semibold tracking-[-0.02em] text-white/90 mb-6">
-            See it running on your cameras.
+            See it in action on your factory floor.
           </p>
           <a href="/contact">
             <Button variant="primary" size="lg" className="font-mono-accent uppercase tracking-[0.1em] text-[1.05rem] rounded-[1.2rem] cursor-pointer">

@@ -16,25 +16,25 @@ interface Testimonial {
 
 const testimonials: Record<string, Testimonial> = {
   Manufacturing: {
-    quote: 'Kenesis transformed our factory floor safety monitoring overnight. The on-premise deployment meant zero concerns about our production data leaving the facility — and the alerts are actually actionable.',
+    quote: 'Kenesis transformed our safety monitoring within days of deployment. The on-premise approach eliminated our data privacy concerns entirely, and the alerts are precise enough to act on immediately.',
     authorName: 'Rajesh Kumar',
     authorTitle: 'Plant Head, Manufacturing Unit',
     partnerLogo: 'M',
   },
   Pharma: {
-    quote: 'In pharmaceutical manufacturing, compliance is everything. Kenesis gives us real-time PPE monitoring without any cloud dependency — exactly what our data policies require.',
+    quote: 'In pharma manufacturing, regulatory compliance is non-negotiable. Kenesis delivers real-time PPE monitoring without any cloud dependency — exactly what our data governance policies demand.',
     authorName: '',
     authorTitle: 'Pharmaceutical Plant',
     partnerLogo: 'P',
   },
   Logistics: {
-    quote: 'Our warehouse operations run 24/7. Kenesis catches safety violations across 30+ cameras simultaneously on a single server — the ROI was immediate.',
+    quote: 'Our warehouse runs around the clock. Kenesis monitors 30+ cameras on a single device — we saw measurable safety improvements within the first week.',
     authorName: '',
     authorTitle: 'Logistics Warehouse',
     partnerLogo: 'L',
   },
   Infrastructure: {
-    quote: 'For construction sites with poor connectivity, cloud-based solutions were never an option. Kenesis works offline, on-premise, and delivers alerts that our safety officers actually trust.',
+    quote: 'At remote construction sites with unreliable internet, cloud solutions simply don\'t work. Kenesis runs fully offline and delivers alerts our safety team can rely on.',
     authorName: '',
     authorTitle: 'Infrastructure Project',
     partnerLogo: 'I',
@@ -61,7 +61,7 @@ export default function PartnerLogosSection() {
             as="h2"
             className="mb-16 font-display text-[clamp(2rem,4vw,3.5rem)] font-semibold leading-[1.05] tracking-[-0.02em] text-white/90"
           >
-            Trusted by Indian industry
+            Trusted across Indian industry
           </TextReveal>
 
           {/* Decorative ASCII factory */}

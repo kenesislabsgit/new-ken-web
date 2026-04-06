@@ -120,16 +120,15 @@ export default function HeroSection() {
         <div className="absolute bottom-[6rem] left-0 px-6 md:px-12 lg:px-[5rem] w-full">
           <h1 className="font-display text-[clamp(2.8rem,7vw,7rem)] font-light leading-[1.0] tracking-[-0.03em] text-white/90 max-w-[90vw]">
             <BlurFade delay={0.3} duration={0.7} blur="12px" offset={20}>
-              <span className="block">Built to detect.</span>
+              <span className="block">Industrial AI.</span>
             </BlurFade>
             <BlurFade delay={0.6} duration={0.7} blur="12px" offset={20}>
-              <span className="block">Born to protect.</span>
+              <span className="block">On your terms.</span>
             </BlurFade>
           </h1>
           <BlurFade delay={1.5} duration={0.7} blur="8px" offset={16}>
             <p className="mt-[2.4rem] max-w-[44rem] text-[1.4rem] leading-[1.7] text-white/30 font-light md:text-[1.6rem]">
-              Kenesis deploys on-premise AI video analytics for Indian factories.
-              Real-time safety intelligence &mdash; no cloud, no data leaving your network.
+              AI-powered safety monitoring that runs entirely on your premises. No cloud dependency, no data leaving your facility, no compromises.
             </p>
           </BlurFade>
         </div>

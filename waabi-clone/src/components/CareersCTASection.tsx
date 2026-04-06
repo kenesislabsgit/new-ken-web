@@ -1,16 +1,11 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import dynamic from 'next/dynamic';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { DitheredWaves } from '@/components/magicui/dithered-waves';
 
 gsap.registerPlugin(ScrollTrigger);
-
-const DitheredWaves = dynamic(
-  () => import('@/components/magicui/dithered-waves').then(m => ({ default: m.DitheredWaves })),
-  { ssr: false }
-);
 
 const images = [
   { src: '/images/careers/4.webp', alt: 'Team collaboration', cls: 'col-span-1 row-span-1 aspect-[4/3]' },
@@ -43,7 +38,7 @@ export default function CareersCTASection() {
         },
       });
 
-      // Phase 1: Heading words blur-fade in (0 â†’ 0.25)
+      // Phase 1: Heading words blur-fade in (0 → 0.25)
       const words = heading.querySelectorAll('.cta-word');
       tl.fromTo(words,
         { y: 40, opacity: 0, filter: 'blur(8px)' },
@@ -51,7 +46,7 @@ export default function CareersCTASection() {
         0
       );
 
-      // Phase 1b: CTA button (0.15 â†’ 0.25)
+      // Phase 1b: CTA button (0.15 → 0.25)
       if (ctaRef.current) {
         tl.fromTo(ctaRef.current,
           { y: 20, opacity: 0 },
@@ -60,7 +55,7 @@ export default function CareersCTASection() {
         );
       }
 
-      // Phase 2: Mosaic images stagger in (0.25 â†’ 0.8)
+      // Phase 2: Mosaic images stagger in (0.25 → 0.8)
       const cards = grid.querySelectorAll('.mosaic-card');
       cards.forEach((card, i) => {
         const start = 0.25 + i * 0.1;
@@ -86,7 +81,7 @@ export default function CareersCTASection() {
         {/* Heading */}
         <div ref={headingRef} className="mb-[32px] text-center">
           <h2 className="font-display text-[clamp(40px,7vw,80px)] font-semibold leading-[1] tracking-[-0.03em]">
-            {'Build on-premise AI with us.'.split(' ').map((word, i) => (
+            {'Help us make factories safer.'.split(' ').map((word, i) => (
               <span key={i} className="cta-word inline-block mr-[0.3em] text-white/90" style={{ opacity: 0 }}>
                 {word}
               </span>

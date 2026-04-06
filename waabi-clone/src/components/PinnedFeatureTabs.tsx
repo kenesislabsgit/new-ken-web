@@ -21,21 +21,21 @@ const TABS: FeatureTab[] = [
     label: 'Detect',
     title: 'Real-time safety detection',
     description:
-      'Real-time object detection runs directly on your cameras â€” PPE violations, restricted zone breaches, and safety incidents flagged in milliseconds, not minutes.',
+      'Identify PPE violations, unauthorized zone entries, and safety hazards across all camera feeds simultaneously — with sub-second response times.',
   },
   {
     id: 'reason',
     label: 'Reason',
     title: 'Contextual AI reasoning',
     description:
-      'Contextual AI adds understanding to raw detections. Not just "person without helmet" â€” but "worker in welding zone without face shield during active operation."',
+      'Go beyond simple object detection. Our AI understands context — who is where, what they\'re doing, and whether it violates your safety protocols.',
   },
   {
     id: 'control',
     label: 'Control',
     title: 'Your data, your premises',
     description:
-      'Everything runs on a server you own. No cloud. No footage leaving your network. No internet dependency. Full data sovereignty for Indian compliance requirements.',
+      'Your footage stays on your hardware. No cloud uploads, no third-party access, no internet required. Fully compliant with DPDP Act and Indian data sovereignty requirements.',
   },
 ];
 
@@ -193,8 +193,8 @@ export default function PinnedFeatureTabs() {
   }, [activeTab]);
 
   // Split heading text into words for staggered animation
-  const headingLine1 = 'AI that sees';
-  const headingLine2 = 'what matters';
+  const headingLine1 = 'Intelligence that';
+  const headingLine2 = 'understands context';
 
   return (
     <section
@@ -216,7 +216,7 @@ export default function PinnedFeatureTabs() {
       />
 
       <div className="relative flex flex-col md:flex-row h-screen w-full z-[1]">
-        {/* Left column â€” heading + description */}
+        {/* Left column — heading + description */}
         <div ref={leftColRef} className="flex w-full md:w-1/2 flex-col justify-center px-6 md:px-12 lg:pl-[343px] lg:pr-16 pt-16 md:pt-0">
           <h2
             ref={headingRef}
@@ -238,11 +238,11 @@ export default function PinnedFeatureTabs() {
             ref={subtitleRef}
             className="font-mono-accent text-[13px] leading-relaxed text-white/40 uppercase tracking-[0.08em]"
           >
-            On-premise video analytics that turns your existing CCTV into an intelligent safety system. No cloud dependency. No data leaving your network.
+            Transform your existing camera infrastructure into an intelligent safety system. Fully on-premise, fully autonomous.
           </p>
         </div>
 
-        {/* Right column â€” tabs + video card */}
+        {/* Right column — tabs + video card */}
         <div className="flex w-full md:w-1/2 flex-col justify-center px-6 md:pr-12 lg:pr-[343px]">
           {/* Tab bar with progress indicator */}
           <div ref={tabBarRef} className="relative mb-8">

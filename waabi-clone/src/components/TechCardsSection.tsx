@@ -9,9 +9,9 @@ import { AsciiDivider, AsciiCorners, AsciiBlock, ASCII_ARTS } from '@/components
 import { AsciiRenderer } from '@/components/magicui/ascii-renderer';
 
 const techCards = [
-  { title: 'PPE Compliance', subtitle: 'Helmets, vests, gloves, footwear â€” detected in real time across every camera feed.', ascii: ASCII_ARTS.shield, image: '/images/tech/3.webp' },
-  { title: 'Zone Detection', subtitle: 'Restricted area breaches and perimeter intrusions flagged instantly with contextual alerts.', ascii: ASCII_ARTS.eye, image: '/images/tech/2.webp' },
-  { title: 'Shift Analytics', subtitle: 'Headcount tracking, attendance, and shift-level safety reporting dashboard.', ascii: ASCII_ARTS.network, image: '/images/tech/1.webp' },
+  { title: 'PPE Compliance', subtitle: 'Automated monitoring of helmets, vests, gloves, and safety gear across every camera feed in real time.', ascii: ASCII_ARTS.shield, image: '/images/tech/3.webp' },
+  { title: 'Zone Detection', subtitle: 'Instant alerts when personnel enter restricted zones or breach safety perimeters, with full context.', ascii: ASCII_ARTS.eye, image: '/images/tech/2.webp' },
+  { title: 'Shift Analytics', subtitle: 'Comprehensive shift-level analytics including headcount, attendance patterns, and safety compliance trends.', ascii: ASCII_ARTS.network, image: '/images/tech/1.webp' },
 ];
 
 export default function TechCardsSection() {
@@ -25,7 +25,7 @@ export default function TechCardsSection() {
 
   return (
     <section ref={sectionRef} id="technology" className="w-full bg-[#0a0a0b]">
-      {/* Hero banner â€” "Built to think. Born to haul." */}
+      {/* Hero banner — "Built to think. Born to haul." */}
       <div className="relative overflow-hidden bg-cod-gray py-32 md:py-48">
         <div ref={bgRef} className="absolute inset-0 -top-[15%] h-[130%] w-full opacity-30">
           <div className="h-full w-full bg-gradient-to-br from-cod-gray via-cod-gray/80 to-cod-gray/60" />
@@ -45,15 +45,15 @@ export default function TechCardsSection() {
             <h2
               className="font-display text-[clamp(3rem,8vw,9rem)] font-semibold leading-[0.92] tracking-[-0.03em] text-white"
             >
-              Built to detect.<br />Born to protect.
+              Real-time safety intelligence.
             </h2>
           </ScrollReveal>
           <ScrollReveal variant="fade-up" delay={0.2}>
             <a
-              href="#"
+              href="/platform"
               className="btn-kenesis mt-10 inline-flex font-mono-accent text-[1.3rem] uppercase tracking-[0.1em]"
             >
-              Explore solutions
+              Explore platform
             </a>
           </ScrollReveal>
         </div>
@@ -61,7 +61,7 @@ export default function TechCardsSection() {
 
       {/* ASCII divider */}
       <div className="mx-auto max-w-[1234px] px-6 md:px-12 py-2">
-        <AsciiDivider accent="â—ˆ" />
+        <AsciiDivider accent="◈" />
       </div>
 
       {/* 3 tech insight cards */}
@@ -76,10 +76,6 @@ export default function TechCardsSection() {
                   {/* Full image background */}
                   <div className="absolute inset-0 z-0">
                     <img src={card.image} alt={card.title} className="w-full h-full object-cover opacity-40 group-hover:opacity-60 group-hover:scale-105 transition-all duration-700" loading="lazy" />
-                  </div>
-                  {/* ASCII art watermark */}
-                  <div className="absolute top-6 right-6 z-[1] opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    <AsciiBlock art={card.ascii} className="text-[0.5rem]" color="text-amber-400/20" />
                   </div>
                   {/* Dark overlay */}
                   <div className="absolute inset-0 bg-black/20 transition-opacity duration-300 group-hover:bg-black/40" />

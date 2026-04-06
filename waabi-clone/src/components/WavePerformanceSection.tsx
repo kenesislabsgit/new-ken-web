@@ -1,10 +1,8 @@
 'use client';
 
-import dynamic from 'next/dynamic';
 import { ScrollReveal } from '@/components/magicui/scroll-reveal';
 import { TextReveal } from '@/components/magicui/text-reveal';
-
-const ColorfulWave = dynamic(() => import('./ColorfulWave'), { ssr: false });
+import ColorfulWave from './ColorfulWave';
 
 export default function WavePerformanceSection() {
   return (

@@ -36,17 +36,15 @@ export default function ScrollFrameSection({ frameSets, panels, sectionLabel, se
     sets.forEach(set => {
       for (let i = 1; i <= set.count; i++) {
         const img = new Image();
-        img.src = `${set.path}/f_${String(i).padStart(3, '0')}.jpg`;
+        img.src = `${set.path}/f_${String(i).padStart(3, '0')}.webp`;
         img.onload = img.onerror = () => {
           remaining--;
-          // Show as soon as we have enough frames to start (10% loaded)
-          if (!cancelled && !firstFrameDrawn && (total - remaining) >= Math.min(10, total)) {
-            imagesRef.current = allImgs.filter(im => im.complete && im.naturalWidth > 0);
+          // Update available frames continuously
+          imagesRef.current = allImgs.filter(im => im.complete && im.naturalWidth > 0);
+          // Show component once we have enough to start
+          if (!cancelled && !firstFrameDrawn && imagesRef.current.length >= Math.min(10, total)) {
             firstFrameDrawn = true;
             setLoaded(true);
-          }
-          if (!cancelled && remaining === 0) {
-            imagesRef.current = allImgs.filter(im => im.complete && im.naturalWidth > 0);
           }
         };
         allImgs.push(img);
@@ -139,7 +137,7 @@ export default function ScrollFrameSection({ frameSets, panels, sectionLabel, se
     return () => { ctx.revert(); window.removeEventListener('resize', onResize); };
   }, [loaded, panels, drawFrame]);
 
-  const scrollHeight = panels.length * 180; // vh
+  const scrollHeight = panels.length * 120; // vh — tighter for smoother frame transitions
 
   return (
     <div ref={outerRef} className="relative bg-[#0a0a0b]" style={{ height: `${scrollHeight}vh` }}>

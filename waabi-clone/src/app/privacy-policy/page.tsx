@@ -1,15 +1,10 @@
 'use client';
 
-import dynamic from 'next/dynamic';
 import PageShell from '@/components/PageShell';
 import { BlurFade } from '@/components/magicui/blur-fade';
 import { ScrollReveal } from '@/components/magicui/scroll-reveal';
 import { TextReveal } from '@/components/magicui/text-reveal';
-
-const GradientStrips = dynamic(
-  () => import('@/components/magicui/gradient-strips').then(m => ({ default: m.GradientStrips })),
-  { ssr: false }
-);
+import { GradientStrips } from '@/components/magicui/gradient-strips';
 
 export default function PrivacyPolicyPage() {
   return (

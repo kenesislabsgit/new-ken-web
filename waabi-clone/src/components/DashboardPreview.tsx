@@ -14,13 +14,13 @@ const cameras = [
   { id: 'CAM-06', zone: 'Furnace Room', status: 'alert', img: '/images/tech/2.webp' },
 ];
 const alerts = [
-  { time: '2m ago', msg: 'No face shield â€” Welding Bay A', sev: 'high' as const, cam: 'CAM-01' },
-  { time: '8m ago', msg: 'Unauthorized zone entry â€” Furnace', sev: 'high' as const, cam: 'CAM-06' },
-  { time: '15m ago', msg: 'Missing hard hat â€” Assembly Line', sev: 'medium' as const, cam: 'CAM-02' },
-  { time: '23m ago', msg: 'Slip hazard â€” Loading Dock', sev: 'low' as const, cam: 'CAM-03' },
+  { time: '2m ago', msg: 'No face shield — Welding Bay A', sev: 'high' as const, cam: 'CAM-01' },
+  { time: '8m ago', msg: 'Unauthorized zone entry — Furnace', sev: 'high' as const, cam: 'CAM-06' },
+  { time: '15m ago', msg: 'Missing hard hat — Assembly Line', sev: 'medium' as const, cam: 'CAM-02' },
+  { time: '23m ago', msg: 'Slip hazard — Loading Dock', sev: 'low' as const, cam: 'CAM-03' },
   { time: '41m ago', msg: 'PPE compliance drop below 90%', sev: 'medium' as const, cam: 'ALL' },
-  { time: '1h ago', msg: 'Camera offline â€” Chemical Store', sev: 'low' as const, cam: 'CAM-04' },
-  { time: '2h ago', msg: 'Restricted zone breach â€” Bay B', sev: 'high' as const, cam: 'CAM-01' },
+  { time: '1h ago', msg: 'Camera offline — Chemical Store', sev: 'low' as const, cam: 'CAM-04' },
+  { time: '2h ago', msg: 'Restricted zone breach — Bay B', sev: 'high' as const, cam: 'CAM-01' },
 ];
 const weeklyData = [32, 18, 45, 28, 12, 38, 22];
 const zones = [
@@ -89,7 +89,7 @@ function CamerasTab() {
   return (
     <div>
       <div className="flex items-center justify-between mb-[16px]">
-        <p className="font-mono-accent text-[10px] uppercase tracking-[0.14em] text-white/20">{cameras.filter(c => c.status === 'ok').length} Online Â· {cameras.filter(c => c.status === 'alert').length} Alert</p>
+        <p className="font-mono-accent text-[10px] uppercase tracking-[0.14em] text-white/20">{cameras.filter(c => c.status === 'ok').length} Online · {cameras.filter(c => c.status === 'alert').length} Alert</p>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-3 gap-[12px]">
         {cameras.map(c => (
@@ -104,7 +104,7 @@ function CamerasTab() {
                 <span className="font-mono-accent text-[10px] text-white/40 px-[8px] py-[3px] rounded-[8px]" style={{ ...glass(true), padding: '3px 8px' }}>{c.id}</span>
                 <span className="w-[8px] h-[8px] rounded-full" style={{ background: c.status === 'alert' ? '#f87171' : '#4ade80', boxShadow: `0 0 10px ${c.status === 'alert' ? 'rgba(248,113,113,0.6)' : 'rgba(74,222,128,0.4)'}` }} />
               </div>
-              <div><p className="text-[13px] text-white/60 font-medium">{c.zone}</p><p className="font-mono-accent text-[9px] text-white/20 mt-[2px]">{c.status === 'alert' ? 'âš  Alert active' : 'â— Streaming'}</p></div>
+              <div><p className="text-[13px] text-white/60 font-medium">{c.zone}</p><p className="font-mono-accent text-[9px] text-white/20 mt-[2px]">{c.status === 'alert' ? '⚠ Alert active' : '● Streaming'}</p></div>
             </div>
           </button>
         ))}
@@ -267,7 +267,7 @@ export default function DashboardPreview() {
       >
         <BorderBeam size={300} duration={16} colorFrom="#f59e0b" colorTo="#d97706" borderWidth={1} />
 
-        {/* Cursor spotlight â€” follows mouse */}
+        {/* Cursor spotlight — follows mouse */}
         <div className="absolute inset-0 pointer-events-none z-[2] transition-opacity duration-300"
           style={{
             background: `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, rgba(245,158,11,0.04), transparent 60%)`,

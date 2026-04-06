@@ -1,14 +1,13 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import dynamic from 'next/dynamic';
 import { ScrollReveal } from '@/components/magicui/scroll-reveal';
 import { TextReveal } from '@/components/magicui/text-reveal';
 import { AsciiDivider } from '@/components/AsciiArt';
 import { TextVideoMask } from '@/components/magicui/text-video-mask';
 import { DitheredWaves } from '@/components/magicui/dithered-waves';
 
-const GLSLHills = dynamic(() => import('./GLSLHills'), { ssr: false, loading: () => null });
+import GLSLHills from './GLSLHills';
 
 
 /* ── Data ── */
@@ -62,13 +61,13 @@ export default function FooterCTASection() {
                 as="h2"
                 className="font-display text-[4rem] font-semibold leading-[1.05] tracking-[-0.02em] text-white/90 md:text-[5.6rem]"
               >
-                We're just getting started
+                Let\'s talk about your facility
               </TextReveal>
               <ScrollReveal variant="fade-up" delay={0.2}>
                 <p className="mt-[2rem] font-mono-accent text-[1.2rem] leading-relaxed text-white/35 tracking-[0.02em]">
-                  Follow along or reach out directly at<br />
-                  <a href="mailto:contact@kenesis.in" className="text-white/60 hover:text-amber-400 transition-colors underline">
-                    contact@kenesis.in
+                  Ready to see Kenesis in action? Reach out at<br />
+                  <a href="mailto:admin@kenesis.ai" className="text-white/60 hover:text-amber-400 transition-colors underline">
+                    admin@kenesis.ai
                   </a>
                 </p>
               </ScrollReveal>

@@ -1,19 +1,14 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import dynamic from 'next/dynamic';
 import { FlickeringGrid } from '@/components/magicui/flickering-grid';
 import { TextReveal } from '@/components/magicui/text-reveal';
+import { LiquidMetalLogo } from '@/components/magicui/liquid-metal-logo';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { prefersReducedMotion } from '@/lib/animations';
 
 gsap.registerPlugin(ScrollTrigger);
-
-const LiquidMetalLogo = dynamic(
-  () => import('@/components/magicui/liquid-metal-logo').then(m => ({ default: m.LiquidMetalLogo })),
-  { ssr: false }
-);
 
 export default function TextInterludeSection() {
   const sectionRef = useRef<HTMLElement>(null);

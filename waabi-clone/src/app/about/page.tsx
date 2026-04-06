@@ -1,6 +1,5 @@
 'use client';
 
-import dynamic from 'next/dynamic';
 import PageShell from '@/components/PageShell';
 import { BlurFade } from '@/components/magicui/blur-fade';
 import { NumberTicker } from '@/components/magicui/number-ticker';
@@ -11,17 +10,14 @@ import { UnblurTextReveal } from '@/components/magicui/unblur-text-reveal';
 import TeamSection from '@/components/TeamSection';
 import { ImageMaskedText } from '@/components/magicui/image-masked-text';
 import { AsciiTextDisplay } from '@/components/magicui/ascii-text-display';
-const DitheredWaves = dynamic(
-  () => import('@/components/magicui/dithered-waves').then(m => ({ default: m.DitheredWaves })),
-  { ssr: false }
-);
+import { DitheredWaves } from '@/components/magicui/dithered-waves';
 
 import { LiquidMetalLogo } from '@/components/magicui/liquid-metal-logo';
 
 export default function AboutPage() {
   return (
     <PageShell>
-      {/* DitheredWaves â€” full page background */}
+      {/* DitheredWaves — full page background */}
       <div className="pointer-events-none fixed inset-0 z-0 opacity-[0.12]">
         <DitheredWaves
           color="#f59e0b"
@@ -54,17 +50,17 @@ export default function AboutPage() {
             stagger={0.06}
             className="font-display text-[clamp(3rem,7.5vw,6.5rem)] font-semibold leading-[0.95] tracking-[-0.03em] text-white mb-8"
           >
-            We keep your footage inside your walls.
+            On-premise AI for Indian manufacturing.
           </UnblurTextReveal>
           <BlurFade delay={0.6} duration={0.5} blur="6px" offset={8}>
             <p className="max-w-lg text-[1.2rem] leading-[1.7] text-white/35">
-              Kenesis Labs &middot; Chennai &middot; On-premise AI for Indian manufacturing
+              Founded in Chennai. Built for Indian factories. Designed for complete data sovereignty.
             </p>
           </BlurFade>
         </div>
       </section>
 
-      {/* LiquidMetal logo â€” standalone contained element between hero and manifesto */}
+      {/* LiquidMetal logo — standalone contained element between hero and manifesto */}
       <section className="relative z-[2] flex items-center justify-center py-8 overflow-hidden">
         <div className="relative w-[700px] h-[560px] md:w-[900px] md:h-[720px]"
           style={{ maskImage: 'radial-gradient(ellipse 80% 80% at center, black 20%, transparent 70%)', WebkitMaskImage: 'radial-gradient(ellipse 80% 80% at center, black 20%, transparent 70%)' }}
@@ -98,7 +94,7 @@ export default function AboutPage() {
             end="top 40%"
             className="text-[clamp(1.5rem,3vw,2.2rem)] leading-[1.5] text-white/70 font-display tracking-[-0.01em]"
           >
-            Factory floors are dangerous and full of blind spots. The cameras are already there. The intelligence isn&apos;t.
+            Indian factories have cameras everywhere. What they lack is intelligence — the ability to understand what those cameras see and act on it in real time.
           </TextReveal>
           <TextReveal
             variant="highlight"
@@ -107,7 +103,7 @@ export default function AboutPage() {
             end="top 10%"
             className="text-[clamp(1.5rem,3vw,2.2rem)] leading-[1.5] text-white/50 font-display tracking-[-0.01em]"
           >
-            Cloud-based CCTV analytics send your footage to remote servers, process it with generic models, and return generic alerts. That&apos;s a privacy risk, a latency problem, and a compliance nightmare.
+            Cloud-based analytics require your footage to leave your facility, get processed on shared infrastructure, and return generic results. For Indian manufacturers, that means privacy risk, latency, and compliance challenges.
           </TextReveal>
           <TextReveal
             variant="highlight"
@@ -116,7 +112,7 @@ export default function AboutPage() {
             end="bottom 60%"
             className="text-[clamp(1.5rem,3vw,2.2rem)] leading-[1.5] text-white/90 font-display tracking-[-0.01em]"
           >
-            We run everything on a server you own. Footage never leaves. Detection works when the internet doesn&apos;t.
+            Kenesis runs entirely on hardware you own. Your footage never leaves your premises. And when the internet goes down, your safety system keeps running.
           </TextReveal>
         </div>
       </section>
@@ -197,10 +193,10 @@ export default function AboutPage() {
           </div>
           <div className="space-y-8">
             {[
-              ['Your data is yours.', 'Not ours, not AWS\'s, not anyone else\'s. The footage from your factory floor stays on your factory floor. Period.'],
-              ['Context beats bounding boxes.', '"Worker in welding zone without face shield during active operation" is useful. A red rectangle around a person is not.'],
-              ['The internet is optional.', 'Indian industrial zones have unreliable connectivity. A safety system that depends on it isn\'t a safety system.'],
-              ['Compliance shouldn\'t be an afterthought.', 'DPDP Act, factory safety regulations, data sovereignty requirements â€” we\'re built for these from day one, not retrofitted.'],
+              ['Complete data sovereignty.', 'Your camera footage is processed and stored exclusively on your hardware. No cloud provider, no third party, no external entity ever accesses your data.'],
+              ['Contextual intelligence.', 'Our AI doesn\'t just detect objects — it understands context. "Worker in welding zone without face shield during active operation" is actionable. A generic bounding box is not.'],
+              ['Zero internet dependency.', 'Many Indian industrial zones have unreliable connectivity. Kenesis is designed to operate completely offline — your safety system should never depend on your ISP.'],
+              ['Compliance shouldn\'t be an afterthought.', 'DPDP Act, factory safety regulations, data sovereignty requirements — we\'re built for these from day one, not retrofitted.'],
             ].map(([title, desc], i) => (
               <ScrollReveal key={title} variant="fade-up" delay={i * 0.1} duration={0.6}>
                 <div className="border-l-2 border-white/[0.06] pl-6 hover:border-amber-400/30 transition-colors duration-300">
@@ -229,7 +225,7 @@ export default function AboutPage() {
         <div>
           {[
             ['2025 Q1', 'Incorporated in Chennai, India'],
-            ['2025 Q2', 'First prototype â€” 30 cameras, one server, 35 watts'],
+            ['2025 Q2', 'First prototype — 30 cameras, one server, 35 watts'],
             ['2025 Q3', 'AI pipeline validated on live factory floor'],
             ['2025 Q4', 'Platform launch: PPE, zone monitoring, shift analytics'],
             ['2026 Q1', 'First enterprise deployments across Tamil Nadu'],
@@ -260,7 +256,7 @@ export default function AboutPage() {
               className="block"
             />
             <p className="font-display text-[clamp(1.5rem,3vw,2.5rem)] font-semibold leading-[1.3] tracking-[-0.02em] text-white/35 max-w-3xl">
-              India&apos;s factories are scaling fast. Their safety infrastructure should keep up.
+              India&apos;s manufacturing sector is growing rapidly. Safety infrastructure needs to keep pace.
             </p>
           </div>
         </BlurFade>
