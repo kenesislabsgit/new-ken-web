@@ -93,7 +93,7 @@ export default function HeroSection() {
                 {mounted ? (
                   <DitheredWaves
                     color="#f59e0b"
-                    cellSize={8}
+                    cellSize={4}
                     speed={0.8}
                     layers={4}
                     amplitude={50}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect, useId, useState } from "react";
+import { useRef, useEffect, useState, useCallback } from "react";
 import { cn } from "@/lib/utils";
 import { prefersReducedMotion } from "@/lib/animations";
 
@@ -13,7 +13,6 @@ interface TextVideoMaskProps {
   fontSize?: string;
   fontWeight?: number;
   fontFamily?: string;
-  /** "cutout" (default): dark overlay with text holes. "clip": only text visible, rest transparent. */
   mode?: "cutout" | "clip";
 }
 
@@ -30,49 +29,95 @@ export function TextVideoMask({
 }: TextVideoMaskProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [maskUrl, setMaskUrl] = useState<string>("");
   const reduced = prefersReducedMotion();
-  const maskId = useId().replace(/:/g, "_");
-  const clipId = `clip_${maskId}`;
-  const [size, setSize] = useState({ w: 1, h: 1 });
 
-  // Simple autoplay loop — video is already a forward+reverse ping-pong
   useEffect(() => {
     const video = videoRef.current;
     if (!video || reduced) return;
     video.play().catch(() => {});
   }, [reduced]);
 
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-    const update = () => {
-      const r = el.getBoundingClientRect();
-      setSize({ w: Math.max(r.width, 1), h: Math.max(r.height, 1) });
-    };
-    update();
-    const ro = new ResizeObserver(update);
-    ro.observe(el);
-    return () => ro.disconnect();
-  }, []);
-
-  // Compute font size in pixels from CSS value
-  const [computedFontSize, setComputedFontSize] = useState<string>(fontSize);
-
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-    // Create a hidden span to measure the computed font size
-    const span = document.createElement('span');
-    span.style.fontSize = fontSize;
-    span.style.position = 'absolute';
-    span.style.visibility = 'hidden';
-    el.appendChild(span);
-    const computed = getComputedStyle(span).fontSize;
-    setComputedFontSize(computed);
-    el.removeChild(span);
-  }, [fontSize, size]);
-
   const fontFam = fontFamily || "var(--font-outfit), Outfit, system-ui, sans-serif";
+
+  // Generate mask from canvas with the correct font
+  const generateMask = useCallback(async () => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const rect = container.getBoundingClientRect();
+    const w = Math.round(rect.width);
+    const h = Math.round(rect.height);
+    if (w === 0 || h === 0) return;
+
+    // Load font explicitly via FontFace API for canvas use
+    const fontName = "MBFNeoWaveCanvas";
+    try {
+      const face = new FontFace(fontName, "url(/fonts/MBFNeoWave-Regular.otf)");
+      await face.load();
+      document.fonts.add(face);
+    } catch (e) {
+      console.warn("Font load failed, using fallback", e);
+    }
+
+    // Wait for all fonts to be ready
+    await document.fonts.ready;
+
+    const canvas = document.createElement("canvas");
+    const dpr = 2;
+    canvas.width = w * dpr;
+    canvas.height = h * dpr;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    ctx.scale(dpr, dpr);
+
+    // Measure font size from CSS
+    const span = document.createElement("span");
+    span.style.fontSize = fontSize;
+    span.style.position = "absolute";
+    span.style.visibility = "hidden";
+    container.appendChild(span);
+    const computedSize = parseFloat(getComputedStyle(span).fontSize);
+    container.removeChild(span);
+
+    if (mode === "clip") {
+      ctx.fillStyle = "#ffffff";
+    } else {
+      ctx.fillStyle = "#ffffff";
+      ctx.fillRect(0, 0, w, h);
+      ctx.fillStyle = "#000000";
+    }
+
+    ctx.font = `${fontWeight} ${computedSize}px ${fontName}, sans-serif`;
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText(text, w / 2, h / 2);
+
+    setMaskUrl(canvas.toDataURL());
+  }, [text, fontSize, fontWeight, mode]);
+
+  // Generate mask after fonts load and on resize
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const doGenerate = () => {
+      // Small delay to ensure layout is stable
+      requestAnimationFrame(generateMask);
+    };
+
+    if (document.fonts?.ready) {
+      document.fonts.ready.then(doGenerate);
+    } else {
+      doGenerate();
+    }
+
+    const ro = new ResizeObserver(doGenerate);
+    ro.observe(container);
+    return () => ro.disconnect();
+  }, [generateMask]);
 
   const bgContent = videoSrc ? (
     <video ref={videoRef} src={videoSrc} autoPlay loop muted playsInline
@@ -86,59 +131,19 @@ export function TextVideoMask({
 
   return (
     <div ref={containerRef} className={cn("relative overflow-hidden", className)} style={style} aria-label={text}>
-      {/* Background layer */}
       <div
         className="absolute inset-0 z-0"
-        style={mode === "clip" ? { clipPath: `url(#${clipId})` } : undefined}
+        style={maskUrl ? {
+          WebkitMaskImage: `url(${maskUrl})`,
+          maskImage: `url(${maskUrl})`,
+          WebkitMaskSize: 'cover',
+          maskSize: 'cover',
+          WebkitMaskRepeat: 'no-repeat',
+          maskRepeat: 'no-repeat',
+        } : { opacity: 0 }}
       >
         {bgContent}
       </div>
-
-      {/* SVG definitions + overlay */}
-      <svg
-        className="absolute inset-0 z-[1] w-full h-full pointer-events-none"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox={`0 0 ${size.w} ${size.h}`}
-        preserveAspectRatio="none"
-      >
-        <defs>
-          {mode === "clip" ? (
-            <clipPath id={clipId}>
-              <text
-                x={size.w / 2}
-                y={size.h / 2}
-                textAnchor="middle"
-                dominantBaseline="central"
-                style={{ fontSize: computedFontSize, fontWeight, fontFamily: fontFam }}
-              >
-                {text}
-              </text>
-            </clipPath>
-          ) : (
-            <mask id={maskId}>
-              <rect width={size.w} height={size.h} fill="white" />
-              <text
-                x={size.w / 2}
-                y={size.h / 2}
-                textAnchor="middle"
-                dominantBaseline="central"
-                fill="black"
-                style={{ fontSize: computedFontSize, fontWeight, fontFamily: fontFam }}
-              >
-                {text}
-              </text>
-            </mask>
-          )}
-        </defs>
-        {mode === "cutout" && (
-          <rect
-            width={size.w}
-            height={size.h}
-            fill="#0a0a0b"
-            mask={`url(#${maskId})`}
-          />
-        )}
-      </svg>
     </div>
   );
 }

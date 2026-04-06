@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { BlurFade } from '@/components/magicui/blur-fade';
@@ -23,6 +23,49 @@ const TEAM: TeamMember[] = [
   { name: 'Dinesh Kumar', role: 'CPO', bio: 'Visual creativity and marketing. Shapes how Kenesis looks, feels, and speaks.', image: '/team/dk.webp' },
   { name: 'Rakesh', role: 'Operations', bio: 'Factory deployments across Tamil Nadu. Every server ships and runs.', image: '/team/rakesh.webp' },
 ];
+
+function TeamCard({ member }: { member: TeamMember }) {
+  const [tapped, setTapped] = useState(false);
+  const active = tapped ? 'active' : '';
+
+  return (
+    <div
+      className={`team-card group cursor-pointer ${active}`}
+      style={{ opacity: 0 }}
+      onClick={() => setTapped(prev => !prev)}
+    >
+      <div className="relative aspect-[3/4] rounded-[16px] overflow-hidden mb-[20px] bg-[#0a0a0b]">
+        <AsciiImage
+          src={member.image}
+          alt={member.name}
+          cellWidth={4}
+          cellHeight={6}
+          contrastExponent={1.8}
+          colorMode="tinted"
+          color="#c9a04e"
+          bgColor="#0a0a0b"
+          bgBlur={0}
+          bgOpacity={0}
+          className={`w-full h-full transition-opacity duration-700 ${tapped ? 'opacity-0' : 'group-hover:opacity-0'}`}
+        />
+        <img
+          src={member.image}
+          alt=""
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${tapped ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}
+          loading="lazy"
+          aria-hidden="true"
+        />
+        <div className={`absolute inset-0 rounded-[16px] border transition-colors duration-500 pointer-events-none z-[2] ${tapped ? 'border-amber-400/25' : 'border-white/[0.04] group-hover:border-amber-400/25'}`} />
+        <div className={`absolute inset-0 bg-gradient-to-t from-[#0a0a0b]/80 via-transparent to-transparent transition-opacity duration-500 ${tapped ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`} />
+        <div className={`absolute bottom-0 left-0 right-0 p-[20px] transition-all duration-500 ${tapped ? 'translate-y-0 opacity-100' : 'translate-y-[10px] opacity-0 group-hover:translate-y-0 group-hover:opacity-100'}`}>
+          <p className="text-[14px] leading-[1.6] text-white/60">{member.bio}</p>
+        </div>
+      </div>
+      <h3 className={`font-display text-[18px] font-semibold mb-[4px] transition-colors ${tapped ? 'text-white' : 'text-white/85 group-hover:text-white'}`}>{member.name}</h3>
+      <p className={`font-mono-accent text-[12px] uppercase tracking-[0.14em] transition-colors duration-500 ${tapped ? 'text-amber-400/50' : 'text-white/25 group-hover:text-amber-400/50'}`}>{member.role}</p>
+    </div>
+  );
+}
 
 export default function TeamSection() {
   const gridRef = useRef<HTMLDivElement>(null);
@@ -65,50 +108,9 @@ export default function TeamSection() {
           </h2>
         </BlurFade>
 
-        <div ref={gridRef} className="grid grid-cols-2 md:grid-cols-3 gap-[24px] md:gap-[32px]">
+        <div ref={gridRef} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-[20px] sm:gap-[24px] md:gap-[32px]">
           {TEAM.map((member) => (
-            <div
-              key={member.name}
-              className="team-card group cursor-pointer"
-              style={{ opacity: 0 }}
-            >
-              {/* Image */}
-              <div className="relative aspect-[3/4] rounded-[16px] overflow-hidden mb-[20px] bg-[#0a0a0b]">
-                {/* ASCII art portrait */}
-                <AsciiImage
-                  src={member.image}
-                  alt={member.name}
-                  cellWidth={3}
-                  cellHeight={5}
-                  contrastExponent={1.8}
-                  colorMode="tinted"
-                  color="#c9a04e"
-                  bgColor="#0a0a0b"
-                  bgBlur={0}
-                  bgOpacity={0}
-                  className="w-full h-full transition-opacity duration-700 group-hover:opacity-0"
-                />
-                {/* Real photo on hover */}
-                <img
-                  src={member.image}
-                  alt=""
-                  className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-700"
-                  loading="lazy"
-                  aria-hidden="true"
-                />
-                {/* Border */}
-                <div className="absolute inset-0 rounded-[16px] border border-white/[0.04] group-hover:border-amber-400/25 transition-colors duration-500 pointer-events-none z-[2]" />
-                {/* Bottom gradient + bio on hover */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                {/* Bio on hover */}
-                <div className="absolute bottom-0 left-0 right-0 p-[20px] translate-y-[10px] opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-                  <p className="text-[14px] leading-[1.6] text-white/60">{member.bio}</p>
-                </div>
-              </div>
-              {/* Name + role */}
-              <h3 className="font-display text-[18px] font-semibold text-white/85 mb-[4px] group-hover:text-white transition-colors">{member.name}</h3>
-              <p className="font-mono-accent text-[12px] uppercase tracking-[0.14em] text-white/25 group-hover:text-amber-400/50 transition-colors duration-500">{member.role}</p>
-            </div>
+            <TeamCard key={member.name} member={member} />
           ))}
         </div>
       </div>

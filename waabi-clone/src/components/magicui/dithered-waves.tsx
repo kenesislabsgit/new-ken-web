@@ -249,14 +249,29 @@ export function DitheredWaves({
       mouseRef.current = { x: e.clientX - rect.left, y: e.clientY - rect.top };
     };
 
+    const handleTouch = (e: TouchEvent) => {
+      if (!visibleRef.current || !e.touches.length) return;
+      const rect = canvas.getBoundingClientRect();
+      const touch = e.touches[0];
+      mouseRef.current = { x: touch.clientX - rect.left, y: touch.clientY - rect.top };
+    };
+
+    const handleTouchEnd = () => {
+      mouseRef.current = { x: -9999, y: -9999 };
+    };
+
     if (enableMouse) {
       window.addEventListener("mousemove", handleMouse);
+      window.addEventListener("touchmove", handleTouch, { passive: true });
+      window.addEventListener("touchend", handleTouchEnd);
     }
 
     return () => {
       cancelAnimationFrame(rafRef.current);
       rafRef.current = 0;
       window.removeEventListener("mousemove", handleMouse);
+      window.removeEventListener("touchmove", handleTouch);
+      window.removeEventListener("touchend", handleTouchEnd);
       io.disconnect();
     };
   }, [draw, enableMouse]);
