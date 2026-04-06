@@ -84,6 +84,7 @@ export function DitheredWaves({
   const mouseRef = useRef({ x: -9999, y: -9999 });
   const smoothMouseRef = useRef({ x: -9999, y: -9999 });
   const rafRef = useRef(0);
+  const frameStartRef = useRef(0);
   const timeRef = useRef(0);
   const noiseRef = useRef<{ perm: Uint8Array; permMod8: Uint8Array } | null>(null);
 
@@ -93,6 +94,7 @@ export function DitheredWaves({
   }
 
   const draw = useCallback(() => {
+    frameStartRef.current = performance.now();
     const canvas = canvasRef.current;
     const noise = noiseRef.current;
     if (!canvas || !noise) return;
@@ -119,8 +121,8 @@ export function DitheredWaves({
     // Smooth mouse interpolation for liquid feel
     const sm = smoothMouseRef.current;
     const rm = mouseRef.current;
-    sm.x += (rm.x - sm.x) * 0.08;
-    sm.y += (rm.y - sm.y) * 0.08;
+    sm.x += (rm.x - sm.x) * 0.15;
+    sm.y += (rm.y - sm.y) * 0.15;
 
     const cols = Math.ceil(w / cellSize);
     const rows = Math.ceil(h / cellSize);
@@ -202,9 +204,18 @@ export function DitheredWaves({
 
     ctx.globalAlpha = 1;
     timeRef.current += 0.033;
-    // Skip every other frame for performance
-    const skip = () => { rafRef.current = requestAnimationFrame(draw); };
-    rafRef.current = requestAnimationFrame(skip);
+    // Adaptive frame rate — skip frame if previous took too long
+    const frameEnd = performance.now();
+    const frameDuration = frameEnd - (frameStartRef.current || 0);
+    if (frameDuration > 20) {
+      // Frame took >20ms, skip next to maintain responsiveness
+      rafRef.current = requestAnimationFrame(() => {
+        frameStartRef.current = performance.now();
+        rafRef.current = requestAnimationFrame(draw);
+      });
+    } else {
+      rafRef.current = requestAnimationFrame(draw);
+    }
   }, [charset, color, bgColor, cellSize, speed, layers, amplitude, frequency, enableMouse, mouseRadius]);
 
   useEffect(() => {

@@ -10,13 +10,11 @@ gsap.registerPlugin(ScrollTrigger);
 
 const navLinks = [
   { label: "Platform", href: "/platform" },
-  { label: "Solutions", href: "/solutions" },
   { label: "About", href: "/about" },
 ];
 
 const mobileLinks = [
   { label: "Platform", href: "/platform" },
-  { label: "Solutions", href: "/solutions" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
@@ -43,11 +41,17 @@ export default function Navbar() {
     const trigger = ScrollTrigger.create({
       start: "top top",
       end: "max",
+      invalidateOnRefresh: true,
       onUpdate(self) {
         gsap.set(bar, { width: `${self.progress * 100}%` });
       },
     });
-    return () => { trigger.kill(); };
+
+    // Recalculate after dynamic content loads
+    const refreshTimer = setTimeout(() => ScrollTrigger.refresh(), 3000);
+    const refreshTimer2 = setTimeout(() => ScrollTrigger.refresh(), 8000);
+
+    return () => { trigger.kill(); clearTimeout(refreshTimer); clearTimeout(refreshTimer2); };
   }, []);
 
 
@@ -78,7 +82,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden items-center gap-[0.4rem] md:flex" aria-label="Main navigation">
+          <nav className="hidden items-center gap-[2.4rem] md:flex" aria-label="Main navigation">
             {navLinks.map((link) => (
               <Tooltip key={link.label}>
                 <Tooltip.Trigger>

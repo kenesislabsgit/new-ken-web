@@ -58,6 +58,7 @@ export function BlurFade({
     const toVars: gsap.TweenVars = {
       opacity: 1, filter: "blur(0px)", [axis]: 0,
       duration, delay, ease: "power3.out",
+      onComplete: () => { if (el) el.style.willChange = 'auto'; },
     }
 
     const tween = gsap.fromTo(el, fromVars, toVars)
@@ -68,7 +69,7 @@ export function BlurFade({
     <div
       ref={ref}
       className={cn(className)}
-      style={{ opacity: 0, filter: `blur(${blur})` }}
+      style={{ opacity: 0, filter: `blur(${blur})`, willChange: 'filter, opacity, transform', transform: 'translateZ(0)' }}
     >
       {children}
     </div>

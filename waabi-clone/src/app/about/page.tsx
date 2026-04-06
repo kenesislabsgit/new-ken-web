@@ -16,10 +16,7 @@ const DitheredWaves = dynamic(
   { ssr: false }
 );
 
-const LiquidMetalLogo = dynamic(
-  () => import('@/components/magicui/liquid-metal-logo').then(m => ({ default: m.LiquidMetalLogo })),
-  { ssr: false }
-);
+import { LiquidMetalLogo } from '@/components/magicui/liquid-metal-logo';
 
 export default function AboutPage() {
   return (
@@ -61,7 +58,7 @@ export default function AboutPage() {
           </UnblurTextReveal>
           <BlurFade delay={0.6} duration={0.5} blur="6px" offset={8}>
             <p className="max-w-lg text-[1.2rem] leading-[1.7] text-white/35">
-              Kenesis Labs Â· Chennai Â· On-premise AI for Indian manufacturing
+              Kenesis Labs &middot; Chennai &middot; On-premise AI for Indian manufacturing
             </p>
           </BlurFade>
         </div>
@@ -98,7 +95,7 @@ export default function AboutPage() {
             variant="highlight"
             scrub={1}
             start="top 85%"
-            end="bottom 30%"
+            end="top 40%"
             className="text-[clamp(1.5rem,3vw,2.2rem)] leading-[1.5] text-white/70 font-display tracking-[-0.01em]"
           >
             Factory floors are dangerous and full of blind spots. The cameras are already there. The intelligence isn&apos;t.
@@ -106,8 +103,8 @@ export default function AboutPage() {
           <TextReveal
             variant="highlight"
             scrub={1}
-            start="top 85%"
-            end="bottom 30%"
+            start="top 55%"
+            end="top 10%"
             className="text-[clamp(1.5rem,3vw,2.2rem)] leading-[1.5] text-white/50 font-display tracking-[-0.01em]"
           >
             Cloud-based CCTV analytics send your footage to remote servers, process it with generic models, and return generic alerts. That&apos;s a privacy risk, a latency problem, and a compliance nightmare.
@@ -115,8 +112,8 @@ export default function AboutPage() {
           <TextReveal
             variant="highlight"
             scrub={1}
-            start="top 85%"
-            end="bottom 30%"
+            start="top 35%"
+            end="bottom 60%"
             className="text-[clamp(1.5rem,3vw,2.2rem)] leading-[1.5] text-white/90 font-display tracking-[-0.01em]"
           >
             We run everything on a server you own. Footage never leaves. Detection works when the internet doesn&apos;t.
@@ -205,7 +202,7 @@ export default function AboutPage() {
               ['The internet is optional.', 'Indian industrial zones have unreliable connectivity. A safety system that depends on it isn\'t a safety system.'],
               ['Compliance shouldn\'t be an afterthought.', 'DPDP Act, factory safety regulations, data sovereignty requirements â€” we\'re built for these from day one, not retrofitted.'],
             ].map(([title, desc], i) => (
-              <ScrollReveal key={title} variant="fade-left" delay={i * 0.1} duration={0.6}>
+              <ScrollReveal key={title} variant="fade-up" delay={i * 0.1} duration={0.6}>
                 <div className="border-l-2 border-white/[0.06] pl-6 hover:border-amber-400/30 transition-colors duration-300">
                   <p className="text-[1.2rem] text-white/80 mb-1 font-medium">{title}</p>
                   <p className="text-[1.05rem] text-white/35 leading-[1.6]">{desc}</p>

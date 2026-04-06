@@ -38,7 +38,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${geistMono.variable} ${neoWave.variable}`}>
+    <html lang="en" className={`${inter.variable} ${geistMono.variable} ${neoWave.variable}`} suppressHydrationWarning>
+      <head>
+        <link rel="preload" href="/fonts/MBFNeoWave-Regular.otf" as="font" type="font/otf" crossOrigin="anonymous" />
+      </head>
       <body className="antialiased">{children}</body>
     </html>
   );

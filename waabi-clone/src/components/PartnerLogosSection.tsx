@@ -72,7 +72,7 @@ export default function PartnerLogosSection() {
 
         {/* Partner tabs */}
         <ScrollReveal variant="fade-up" delay={0.15}>
-          <div className="mb-12 flex gap-8 border-b border-white/10">
+          <div className="mb-12 flex gap-4 md:gap-8 border-b border-white/10 overflow-x-auto scrollbar-hide">
             {partnerTabs.map(tab => (
               <button
                 key={tab}

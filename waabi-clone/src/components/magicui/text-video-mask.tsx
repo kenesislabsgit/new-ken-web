@@ -77,7 +77,7 @@ export function TextVideoMask({
   const bgContent = videoSrc ? (
     <video ref={videoRef} src={videoSrc} autoPlay loop muted playsInline
       className="h-full w-full object-cover"
-      style={{ filter: 'saturate(0.9) contrast(0.9) brightness(1.5)' }} />
+      style={{ filter: 'saturate(0.8) contrast(1.1) brightness(1.2)' }} />
   ) : children ? (
     <div className="h-full w-full">{children}</div>
   ) : (
@@ -92,18 +92,11 @@ export function TextVideoMask({
         style={mode === "clip" ? { clipPath: `url(#${clipId})` } : undefined}
       >
         {bgContent}
-        {/* Scanline overlay */}
-        <div className="absolute inset-0 z-[1] pointer-events-none"
-          style={{
-            backgroundImage: `repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.12) 2px, rgba(0,0,0,0.12) 3px)`,
-            backgroundSize: '100% 3px',
-          }}
-        />
       </div>
 
       {/* SVG definitions + overlay */}
       <svg
-        className="absolute inset-0 z-[1] w-full h-full"
+        className="absolute inset-0 z-[1] w-full h-full pointer-events-none"
         xmlns="http://www.w3.org/2000/svg"
         viewBox={`0 0 ${size.w} ${size.h}`}
         preserveAspectRatio="none"

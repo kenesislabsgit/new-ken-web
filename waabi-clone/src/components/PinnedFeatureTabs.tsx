@@ -93,10 +93,9 @@ export default function PinnedFeatureTabs() {
 
     const trigger = ScrollTrigger.create({
       trigger: section,
-      pin: true,
       scrub: true,
       start: 'top top',
-      end: '+=300vh',
+      end: 'bottom bottom',
       onEnter: animateEntrance,
       onEnterBack: () => { hasAnimatedIn.current = true; },
       onUpdate(self) {
@@ -202,8 +201,10 @@ export default function PinnedFeatureTabs() {
       ref={sectionRef}
       id="platform"
       className="relative w-full bg-[#0a0a0b]"
+      style={{ height: '300vh' }}
       data-testid="pinned-feature-tabs"
     >
+      <div className="sticky top-0 h-screen w-full overflow-hidden">
       {/* Flickering grid background */}
       <FlickeringGrid
         className="absolute inset-0 z-0 opacity-30"
@@ -214,21 +215,21 @@ export default function PinnedFeatureTabs() {
         flickerChance={0.15}
       />
 
-      <div className="relative flex h-screen w-full z-[1]">
+      <div className="relative flex flex-col md:flex-row h-screen w-full z-[1]">
         {/* Left column â€” heading + description */}
-        <div ref={leftColRef} className="flex w-1/2 flex-col justify-center px-12 lg:pl-[343px] lg:pr-16">
+        <div ref={leftColRef} className="flex w-full md:w-1/2 flex-col justify-center px-6 md:px-12 lg:pl-[343px] lg:pr-16 pt-16 md:pt-0">
           <h2
             ref={headingRef}
             className="mb-6 font-display text-[clamp(2rem,4vw,3.5rem)] font-semibold leading-[1.05] tracking-[-0.02em] text-white/90"
           >
             {headingLine1.split(' ').map((word, i) => (
-              <span key={i} className="word-reveal inline-block mr-[0.3em]" style={{ opacity: 0 }}>
+              <span key={i} className="word-reveal inline-block mr-[0.3em]">
                 {word}
               </span>
             ))}
             <br />
             {headingLine2.split(' ').map((word, i) => (
-              <span key={`l2-${i}`} className="word-reveal inline-block mr-[0.3em]" style={{ opacity: 0 }}>
+              <span key={`l2-${i}`} className="word-reveal inline-block mr-[0.3em]">
                 {word}
               </span>
             ))}
@@ -236,14 +237,13 @@ export default function PinnedFeatureTabs() {
           <p
             ref={subtitleRef}
             className="font-mono-accent text-[13px] leading-relaxed text-white/40 uppercase tracking-[0.08em]"
-            style={{ opacity: 0 }}
           >
             On-premise video analytics that turns your existing CCTV into an intelligent safety system. No cloud dependency. No data leaving your network.
           </p>
         </div>
 
         {/* Right column â€” tabs + video card */}
-        <div className="flex w-1/2 flex-col justify-center pr-12 lg:pr-[343px]">
+        <div className="flex w-full md:w-1/2 flex-col justify-center px-6 md:pr-12 lg:pr-[343px]">
           {/* Tab bar with progress indicator */}
           <div ref={tabBarRef} className="relative mb-8">
             <div className="flex gap-8 border-b border-white/10">
@@ -253,6 +253,15 @@ export default function PinnedFeatureTabs() {
                   className="relative pb-3 text-[15px] font-medium transition-colors duration-300 cursor-pointer"
                   style={{ color: activeTab === i ? '#ffffff' : 'rgba(255,255,255,0.35)' }}
                   data-tab-button={i}
+                  onClick={() => {
+                    const section = sectionRef.current;
+                    if (!section) return;
+                    const rect = section.getBoundingClientRect();
+                    const sectionTop = window.scrollY + rect.top;
+                    const sectionHeight = rect.height - window.innerHeight;
+                    const targetScroll = sectionTop + (sectionHeight * (i / 3)) + 1;
+                    window.scrollTo({ top: targetScroll, behavior: 'smooth' });
+                  }}
                 >
                   {tab.label}
                   {/* Individual tab underline */}
@@ -315,6 +324,7 @@ export default function PinnedFeatureTabs() {
             ))}
           </div>
         </div>
+      </div>
       </div>
     </section>
   );

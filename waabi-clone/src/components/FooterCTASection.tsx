@@ -5,6 +5,8 @@ import dynamic from 'next/dynamic';
 import { ScrollReveal } from '@/components/magicui/scroll-reveal';
 import { TextReveal } from '@/components/magicui/text-reveal';
 import { AsciiDivider } from '@/components/AsciiArt';
+import { TextVideoMask } from '@/components/magicui/text-video-mask';
+import { DitheredWaves } from '@/components/magicui/dithered-waves';
 
 const GLSLHills = dynamic(() => import('./GLSLHills'), { ssr: false, loading: () => null });
 
@@ -14,7 +16,6 @@ const GLSLHills = dynamic(() => import('./GLSLHills'), { ssr: false, loading: ()
 const navLinks = [
   { label: 'Home', href: '/' },
   { label: 'Platform', href: '/platform' },
-  { label: 'Solutions', href: '/solutions' },
   { label: 'About', href: '/about' },
   { label: 'Contact', href: '/contact' },
 ];
@@ -116,9 +117,27 @@ export default function FooterCTASection() {
         <div className="relative mx-auto max-w-[72rem] px-[2.4rem] pb-[4rem] md:px-[4.8rem]">
           <div className="flex items-end justify-end">
             <ScrollReveal variant="blur-in" duration={1.5}>
-              <p className="text-right font-logo text-[clamp(5rem,12vw,10rem)] leading-none tracking-[0.06em] text-white/[0.06] select-none uppercase">
-                kenesis
-              </p>
+              <div className="w-full" style={{ height: 'clamp(60px, 12vw, 120px)' }}>
+                <TextVideoMask
+                  text="KENESIS"
+                  fontSize="clamp(5rem, 12vw, 10rem)"
+                  fontWeight={400}
+                  fontFamily="'MBF Neo Wave', var(--font-neowave), sans-serif"
+                  mode="clip"
+                  className="w-full h-full"
+                >
+                  <DitheredWaves
+                    color="#f59e0b"
+                    cellSize={8}
+                    speed={0.8}
+                    layers={5}
+                    amplitude={50}
+                    frequency={0.025}
+                    charset=" .:-=+*#%@█"
+                    className="h-full w-full"
+                  />
+                </TextVideoMask>
+              </div>
             </ScrollReveal>
           </div>
         </div>

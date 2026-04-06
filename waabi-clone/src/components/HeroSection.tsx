@@ -8,13 +8,9 @@ import { SpectraNoise } from '@/components/magicui/spectra-noise';
 import { TextVideoMask } from '@/components/magicui/text-video-mask';
 import { ProgressiveBlur } from '@/components/magicui/progressive-blur';
 import { BlurFade } from '@/components/magicui/blur-fade';
-import { AsciiBlock, ASCII_ARTS } from '@/components/AsciiArt';
-import { AsciiImage } from '@/components/magicui/ascii-image';
-import { AmbientGlow } from '@/components/magicui/ambient-glow';
+import { DitheredWaves } from '@/components/magicui/dithered-waves';
 
 gsap.registerPlugin(ScrollTrigger);
-
-const SECTION_HEIGHT = 1500;
 
 function BlurRevealText({ text, className, baseDelay = 0, stagger = 0.035 }: {
   text: string; className?: string; baseDelay?: number; stagger?: number;
@@ -38,94 +34,18 @@ function BlurRevealText({ text, className, baseDelay = 0, stagger = 0.035 }: {
   );
 }
 
-const parallaxImages = [
-  { src: '/hero/factory-control.webp', alt: 'Factory control room', start: -200, end: 200, className: 'w-1/3' },
-  { src: '/hero/cctv-closeup.webp', alt: 'Industrial CCTV camera', start: 200, end: -250, className: 'mx-auto w-2/3' },
-  { src: '/hero/warehouse-wide.webp', alt: 'Industrial warehouse', start: -200, end: 200, className: 'ml-auto w-1/3' },
-  { src: '/hero/pcb-assembly.webp', alt: 'PCB assembly line', start: 0, end: -500, className: 'ml-[6rem] w-5/12' },
-];
-
-function ParallaxImg({ src, alt, start, end, className }: {
-  src: string; alt: string; start: number; end: number; className: string;
-}) {
-  const imgRef = useRef<HTMLImageElement>(null);
-  useEffect(() => {
-    const el = imgRef.current;
-    if (!el || prefersReducedMotion()) return;
-    gsap.set(el, { y: start });
-    const tween = gsap.to(el, {
-      y: end, ease: 'none',
-      scrollTrigger: { trigger: el, start: `${start}px bottom`, end: `bottom ${-end}px`, scrub: true },
-    });
-    const fadeTween = gsap.to(el, {
-      opacity: 0, scale: 0.85, ease: 'none',
-      scrollTrigger: { trigger: el, start: '75% bottom', end: 'bottom top', scrub: true },
-    });
-    return () => {
-      tween.scrollTrigger?.kill(); tween.kill();
-      fadeTween.scrollTrigger?.kill(); fadeTween.kill();
-    };
-  }, [start, end]);
-  return (
-    <div ref={imgRef} className={`rounded-xl overflow-hidden ${className}`}>
-      <AsciiImage
-        src={src}
-        alt={alt}
-        cellWidth={4}
-        cellHeight={6}
-        contrastExponent={1.6}
-        colorMode="tinted"
-        color="#c9a04e"
-        bgColor="#0a0a0b"
-        bgBlur={0}
-        bgOpacity={0}
-        className="w-full h-full"
-      />
-    </div>
-  );
-}
-function CenterImage() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el || prefersReducedMotion()) {
-      if (el) { el.style.clipPath = 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)'; }
-      return;
-    }
-    const clipTrigger = ScrollTrigger.create({
-      start: 'top top', end: `${SECTION_HEIGHT}px top`, scrub: true,
-      onUpdate(self) {
-        const p = self.progress;
-        const c1 = 25 - 25 * p; const c2 = 75 + 25 * p;
-        el.style.clipPath = `polygon(${c1}% ${c1}%, ${c2}% ${c1}%, ${c2}% ${c2}%, ${c1}% ${c2}%)`;
-      },
-    });
-    const opacityTrigger = ScrollTrigger.create({
-      start: `${SECTION_HEIGHT}px top`, end: `${SECTION_HEIGHT + 500}px top`, scrub: true,
-      onUpdate(self) { el.style.opacity = `${1 - self.progress}`; },
-    });
-    return () => { clipTrigger.kill(); opacityTrigger.kill(); };
-  }, []);
-  return (
-    <div ref={containerRef} className="sticky top-0 h-screen w-full"
-      style={{ clipPath: 'polygon(25% 25%, 75% 25%, 75% 75%, 25% 75%)' }}>
-      <AsciiImage src="/images/hero/1.webp" alt="Kenesis industrial AI"
-        cellWidth={6} cellHeight={10} contrastExponent={1.6}
-        colorMode="tinted" color="#f59e0b" bgColor="#0a0a0b"
-        bgBlur={8} bgOpacity={0.3} className="w-full h-full" />
-    </div>
-  );
-}
-
 export default function HeroSection() {
   const [mounted, setMounted] = useState(false);
+  const [shaderReady, setShaderReady] = useState(false);
   const introRef = useRef<HTMLDivElement>(null);
-  const scrollSectionRef = useRef<HTMLDivElement>(null);
-  const headingOverlayRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
-  const ambientVideoRef = useRef<HTMLVideoElement>(null);
 
-  useEffect(() => { setMounted(true); }, []);
+  useEffect(() => {
+    setMounted(true);
+    // Delay shader init to let blur animations run smooth first
+    const t = setTimeout(() => setShaderReady(true), 800);
+    return () => clearTimeout(t);
+  }, []);
 
   useEffect(() => {
     const intro = introRef.current;
@@ -140,27 +60,13 @@ export default function HeroSection() {
     return () => { trigger.kill(); };
   }, []);
 
-  useEffect(() => {
-    const el = headingOverlayRef.current;
-    const section = sectionRef.current;
-    if (!el || !section || prefersReducedMotion()) return;
-    const trigger = ScrollTrigger.create({
-      trigger: section, start: 'top top', end: `${SECTION_HEIGHT * 0.4}px top`, scrub: true,
-      onUpdate(self) {
-        el.style.opacity = `${1 - self.progress}`;
-        el.style.transform = `translateY(${-self.progress * 60}px)`;
-      },
-    });
-    return () => { trigger.kill(); };
-  }, []);
-
   return (
     <section ref={sectionRef} className="relative w-full">
-      {/* SpectraNoise fixed background */}
-      {mounted && (
-        <div className="fixed inset-0 z-0 pointer-events-none">
+      {/* SpectraNoise fixed background — delayed to avoid competing with initial animations */}
+      {shaderReady && (
+        <div className="fixed inset-0 z-0 pointer-events-none will-change-transform">
           <SpectraNoise hueShift={-30} noiseIntensity={0.05} scanlineIntensity={0.12}
-            scanlineFrequency={0.006} warpAmount={1.5} speed={0.4} resolutionScale={0.75}
+            scanlineFrequency={0.006} warpAmount={1.5} speed={0.4} resolutionScale={0.5}
             primaryColor={[0.04, 0.04, 0.02]} secondaryColor={[0.45, 0.38, 0.0]}
             accentColor={[0.98, 0.80, 0.08]} colorIntensity={0.9}
             mouseRadius={0} mouseStrength={0}
@@ -169,79 +75,74 @@ export default function HeroSection() {
       )}
 
       {/* Intro screen */}
-      <div ref={introRef} className="relative z-[2] h-screen w-full">
-        {/* KENESIS logo centered in viewport with ambient glow */}
+      <div ref={introRef} className="relative z-[2] h-screen w-full will-change-[opacity,transform]">
+        {/* KENESIS logo centered in viewport */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <div className="relative w-full overflow-hidden" style={{ maxWidth: '1200px', padding: '0 24px' }}>
-            {/* Hidden video source for ambient glow sampling */}
-            <video
-              ref={ambientVideoRef}
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="absolute opacity-0 w-0 h-0"
-              src="/videos/kenesis-text-fill.mp4"
-            />
-            {/* Canvas-based ambient glow (YouTube-style) */}
-            <AmbientGlow
-              videoRef={ambientVideoRef}
-              blur={60}
-              opacity={0.25}
-              interval={300}
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-0 w-full h-full"
-            />
-            {/* Text mask with video */}
-            <div className="relative z-[1]">
+          <div className="relative w-full" style={{ maxWidth: '100%', padding: '0 24px' }}>
+            {/* Text mask with dithered waves */}
+            <div className="relative z-[1] pointer-events-auto">
               <TextVideoMask
                 text="KENESIS"
-                fontSize="clamp(60px, 11vw, 150px)"
+                fontSize="clamp(80px, 15vw, 240px)"
                 fontWeight={400}
-                fontFamily="var(--font-neowave), sans-serif"
+                fontFamily="'MBF Neo Wave', var(--font-neowave), sans-serif"
                 mode="clip"
-                videoSrc="/videos/kenesis-text-fill.mp4"
                 className="w-full"
-                style={{ height: 'clamp(100px, 20vw, 220px)' }}
-              />
+                style={{ height: 'clamp(120px, 26vw, 320px)' }}
+              >
+                {mounted ? (
+                  <DitheredWaves
+                    color="#f59e0b"
+                    cellSize={8}
+                    speed={0.8}
+                    layers={4}
+                    amplitude={50}
+                    frequency={0.025}
+                    enableMouse={true}
+                    mouseRadius={300}
+                    charset=" .:-=+*#%@█"
+                    className="h-full w-full"
+                  />
+                ) : (
+                  <div className="h-full w-full bg-[#0a0a0b]" />
+                )}
+              </TextVideoMask>
             </div>
+            {/* Tagline under the logo */}
+            <BlurFade delay={1.2} duration={0.8} blur="6px" offset={10}>
+              <p className="mt-[1.6rem] text-center font-mono-accent text-[clamp(11px,1.2vw,14px)] uppercase tracking-[0.25em] text-amber-400/40">
+                On-Premise AI &middot; Industrial Safety &middot; Zero Cloud
+              </p>
+            </BlurFade>
           </div>
         </div>
-        {/* Heading text â€” bottom left */}
+        {/* Heading text - bottom left */}
         <div className="absolute bottom-[6rem] left-0 px-6 md:px-12 lg:px-[5rem] w-full">
-          <h1 className="font-display text-[clamp(3rem,8vw,8rem)] font-semibold leading-[0.95] tracking-[-0.04em] text-amber-200/90 max-w-[90vw]">
-            <BlurRevealText text="Built to detect." baseDelay={0.3} />
-            <br />
-            <BlurRevealText text="Born to protect." baseDelay={0.85} />
+          <h1 className="font-display text-[clamp(2.8rem,7vw,7rem)] font-light leading-[1.0] tracking-[-0.03em] text-white/90 max-w-[90vw]">
+            <BlurFade delay={0.3} duration={0.7} blur="12px" offset={20}>
+              <span className="block">Built to detect.</span>
+            </BlurFade>
+            <BlurFade delay={0.6} duration={0.7} blur="12px" offset={20}>
+              <span className="block">Born to protect.</span>
+            </BlurFade>
           </h1>
           <BlurFade delay={1.5} duration={0.7} blur="8px" offset={16}>
-            <p className="mt-[2rem] max-w-[48rem] text-[1.5rem] leading-[1.6] text-amber-100/40 md:text-[1.7rem]">
+            <p className="mt-[2.4rem] max-w-[44rem] text-[1.4rem] leading-[1.7] text-white/30 font-light md:text-[1.6rem]">
               Kenesis deploys on-premise AI video analytics for Indian factories.
               Real-time safety intelligence &mdash; no cloud, no data leaving your network.
             </p>
           </BlurFade>
+        </div>
 
-        </div>
-      </div>
-
-      {/* Hero scroll area */}
-      <div ref={scrollSectionRef} style={{ height: `calc(${SECTION_HEIGHT}px + 100vh)` }}
-        className="relative z-[1] w-full">
-        <CenterImage />
-        <div ref={headingOverlayRef}
-          className="fixed top-0 left-0 w-full h-screen z-[3] flex flex-col justify-end pointer-events-none pb-[8rem] px-6 md:px-12 lg:px-[5rem]">
-        </div>
-        <div className="mx-auto max-w-[80rem] px-[1.6rem] pt-[20rem]">
-          {parallaxImages.map((img, i) => (
-            <ParallaxImg key={i} {...img} />
-          ))}
-        </div>
-        <div className="absolute top-[30%] right-[8%] z-[1] hidden lg:block">
-          <AsciiBlock art={ASCII_ARTS.camera} className="text-[0.55rem]" color="text-amber-400/10" />
-        </div>
-        <div className="absolute top-[55%] left-[5%] z-[1] hidden lg:block">
-          <AsciiBlock art={ASCII_ARTS.shield} className="text-[0.55rem]" color="text-amber-400/8" />
-        </div>
-        <div className="absolute bottom-0 left-0 right-0 h-[38.4rem] bg-gradient-to-b from-dark/0 to-dark z-[5]" />
+        {/* Scroll indicator */}
+        <BlurFade delay={2.2} duration={0.6} blur="4px" offset={8}>
+          <div className="absolute bottom-[2rem] left-1/2 -translate-x-1/2 flex flex-col items-center gap-[0.6rem] animate-pulse">
+            <span className="font-mono-accent text-[10px] uppercase tracking-[0.2em] text-white/20">Scroll</span>
+            <svg width="16" height="24" viewBox="0 0 16 24" fill="none" className="text-white/20">
+              <path d="M8 4V20M8 20L2 14M8 20L14 14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </div>
+        </BlurFade>
       </div>
 
       <ProgressiveBlur position="top" height="80px" />

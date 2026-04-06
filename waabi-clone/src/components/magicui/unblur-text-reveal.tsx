@@ -98,7 +98,7 @@ export function UnblurTextReveal({
           </span>
         ))
       : children.split(" ").map((word, i) => (
-          <span key={i} className="inline-block overflow-hidden mr-[0.3em]">
+          <span key={i} className="inline-block mr-[0.3em]">
             <span
               className="ubr-unit inline-block"
               style={{ opacity: 0, filter: `blur(${blurAmount}px)`, transform: `scale(${scaleFrom})` }}

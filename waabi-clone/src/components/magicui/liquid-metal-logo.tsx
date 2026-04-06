@@ -39,59 +39,51 @@ export function LiquidMetalLogo({
 }: LiquidMetalLogoProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [LiquidMetal, setLiquidMetal] = useState<React.ComponentType<Record<string, unknown>> | null>(null);
+  const [shaderRendered, setShaderRendered] = useState(false);
   const reduced = prefersReducedMotion();
 
   useEffect(() => {
+    if (reduced) return;
     import("@paper-design/shaders-react").then((mod) => {
       if (mod.LiquidMetal) {
         setLiquidMetal(() => mod.LiquidMetal);
+        // Give the shader 2 frames to render before showing
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            setShaderRendered(true);
+          });
+        });
       }
     });
-  }, []);
-
-  if (!LiquidMetal || reduced) {
-    // Render an invisible placeholder — same size, no flash
-    return (
-      <div
-        ref={containerRef}
-        className={cn("relative", className)}
-        style={{ width, height, visibility: reduced ? 'visible' : 'hidden' }}
-      >
-        {reduced && (
-          <img
-            src={src}
-            alt="Kenesis logo"
-            width={width}
-            height={height}
-            className="w-full h-full object-contain"
-          />
-        )}
-      </div>
-    );
-  }
+  }, [reduced]);
 
   return (
     <div
       ref={containerRef}
-      className={cn("relative overflow-hidden", className)}
-      style={{ width, height }}
+      className={cn("relative overflow-hidden transition-opacity duration-500", className)}
+      style={{ width, height, opacity: shaderRendered ? 1 : 0 }}
     >
-      <LiquidMetal
-        width={width}
-        height={height}
-        image={src}
-        colorBack={colorBack}
-        colorTint={colorTint}
-        softness={softness}
-        shiftRed={shiftRed}
-        shiftBlue={shiftBlue}
-        distortion={distortion}
-        contour={contour}
-        angle={angle}
-        speed={speed}
-        scale={scale}
-        fit="contain"
-      />
+      {/* Only render when shader is ready — no static fallback */}
+      {LiquidMetal && !reduced && (
+        <div>
+          <LiquidMetal
+            width={width}
+            height={height}
+            image={src}
+            colorBack={colorBack}
+            colorTint={colorTint}
+            softness={softness}
+            shiftRed={shiftRed}
+            shiftBlue={shiftBlue}
+            distortion={distortion}
+            contour={contour}
+            angle={angle}
+            speed={speed}
+            scale={scale}
+            fit="contain"
+          />
+        </div>
+      )}
     </div>
   );
 }

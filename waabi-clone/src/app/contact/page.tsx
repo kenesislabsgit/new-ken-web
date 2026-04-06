@@ -147,8 +147,8 @@ export default function ContactPage() {
         </div>
 
         {/* ── Main grid ── */}
-        <div className="mx-auto max-w-[88rem] px-8 md:px-16 pb-[12rem]">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-[6rem] lg:gap-[10rem]">
+        <div className="mx-auto max-w-[88rem] px-4 md:px-8 lg:px-16 pb-[12rem]">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-[4rem] lg:gap-[10rem]">
 
             {/* Left — info */}
             <BlurFade delay={0.2} duration={0.8} blur="10px" offset={20}>
