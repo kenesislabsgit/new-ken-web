@@ -95,6 +95,11 @@ export function DitheredWaves({
 
   const draw = useCallback(() => {
     frameStartRef.current = performance.now();
+    // Skip drawing if not visible
+    if (!visibleRef.current) {
+      rafRef.current = 0;
+      return;
+    }
     const canvas = canvasRef.current;
     const noise = noiseRef.current;
     if (!canvas || !noise) return;
@@ -218,14 +223,28 @@ export function DitheredWaves({
     }
   }, [charset, color, bgColor, cellSize, speed, layers, amplitude, frequency, enableMouse, mouseRadius]);
 
+  // Visibility-based animation — pause when off-screen
+  const visibleRef = useRef(true);
+
   useEffect(() => {
     if (prefersReducedMotion()) return;
+
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    // Only animate when visible
+    const io = new IntersectionObserver(([entry]) => {
+      visibleRef.current = entry.isIntersecting;
+      if (entry.isIntersecting && !rafRef.current) {
+        rafRef.current = requestAnimationFrame(draw);
+      }
+    }, { rootMargin: '200px' });
+    io.observe(canvas);
 
     rafRef.current = requestAnimationFrame(draw);
 
     const handleMouse = (e: MouseEvent) => {
-      const canvas = canvasRef.current;
-      if (!canvas) return;
+      if (!visibleRef.current) return;
       const rect = canvas.getBoundingClientRect();
       mouseRef.current = { x: e.clientX - rect.left, y: e.clientY - rect.top };
     };
@@ -236,7 +255,9 @@ export function DitheredWaves({
 
     return () => {
       cancelAnimationFrame(rafRef.current);
+      rafRef.current = 0;
       window.removeEventListener("mousemove", handleMouse);
+      io.disconnect();
     };
   }, [draw, enableMouse]);
 
