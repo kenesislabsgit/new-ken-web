@@ -7,6 +7,7 @@ import Navbar from "@/components/Navbar";
 import { ProgressiveBlur } from "@/components/magicui/progressive-blur";
 import HeroSection from "@/components/HeroSection";
 import PinnedFeatureTabs from "@/components/PinnedFeatureTabs";
+import WavePerformanceSection from "@/components/WavePerformanceSection";
 import TechCardsSection from "@/components/TechCardsSection";
 import PartnerLogosSection from "@/components/PartnerLogosSection";
 import CareersCTASection from "@/components/CareersCTASection";
@@ -84,6 +85,11 @@ export default function Home() {
         />
 
         <TechCardsSection />
+
+        {/* ── Flowing light performance section ── */}
+        <ErrorBoundary>
+          <WavePerformanceSection />
+        </ErrorBoundary>
 
         {/* ── Intelligence Funnel interlude ── */}
         <section className="relative z-[10] min-h-screen flex items-center justify-center px-[24px] md:px-[48px] overflow-hidden bg-[#0a0a0b]">
