@@ -27,10 +27,11 @@ export function GlitchBackground({
 }: GlitchBackgroundProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number>(0);
+  const visibleRef = useRef(true);
   const letters = useRef<{ char: string; color: string; targetColor: string; colorProgress: number }[]>([]);
   const grid = useRef({ columns: 0, rows: 0 });
   const context = useRef<CanvasRenderingContext2D | null>(null);
-  const lastGlitchTime = useRef(Date.now());
+  const lastGlitchTime = useRef(0);
   const colorsRef = useRef(glitchColors);
 
   const fontSize = 16;
@@ -72,12 +73,12 @@ export function GlitchBackground({
       if (!parent) return;
       const w = parent.offsetWidth;
       const h = parent.offsetHeight;
-      const dpr = window.devicePixelRatio || 1;
-      canvas.width = w * dpr;
-      canvas.height = h * dpr;
+      // Use DPR of 1 for performance — this is a subtle background effect at low opacity
+      canvas.width = w;
+      canvas.height = h;
       canvas.style.width = `${w}px`;
       canvas.style.height = `${h}px`;
-      context.current?.setTransform(dpr, 0, 0, dpr, 0, 0);
+      context.current?.setTransform(1, 0, 0, 1, 0, 0);
 
       const columns = Math.ceil(w / charWidth);
       const rows = Math.ceil(h / charHeight);
@@ -126,9 +127,14 @@ export function GlitchBackground({
 
     const handleSmoothTransitions = () => {
       let needsRedraw = false;
-      letters.current.forEach(letter => {
+      // Only process a subset each frame for performance
+      const len = letters.current.length;
+      const batchSize = Math.min(len, Math.ceil(len / 4));
+      const offset = Math.floor(Math.random() * len);
+      for (let i = 0; i < batchSize; i++) {
+        const letter = letters.current[(offset + i) % len];
         if (letter.colorProgress < 1) {
-          letter.colorProgress += 0.05;
+          letter.colorProgress += 0.15;
           if (letter.colorProgress > 1) letter.colorProgress = 1;
           const startRgb = hexToRgb(letter.color);
           const endRgb = hexToRgb(letter.targetColor);
@@ -137,23 +143,40 @@ export function GlitchBackground({
             needsRedraw = true;
           }
         }
-      });
+      }
       if (needsRedraw) drawLetters();
     };
 
-    const animate = () => {
-      const now = Date.now();
-      if (now - lastGlitchTime.current >= glitchSpeed) {
-        updateLetters();
-        drawLetters();
-        lastGlitchTime.current = now;
+    let lastAnimTime = 0;
+    const ANIM_INTERVAL = 1000 / 24; // Cap at 24fps — subtle background effect
+
+    const animate = (now: number) => {
+      if (!visibleRef.current) {
+        animationRef.current = requestAnimationFrame(animate);
+        return;
       }
-      if (smooth) handleSmoothTransitions();
+      if (now - lastAnimTime >= ANIM_INTERVAL) {
+        lastAnimTime = now;
+        if (now - lastGlitchTime.current >= glitchSpeed) {
+          updateLetters();
+          drawLetters();
+          lastGlitchTime.current = now;
+        } else if (smooth) {
+          handleSmoothTransitions();
+        }
+      }
       animationRef.current = requestAnimationFrame(animate);
     };
 
     resizeCanvas();
-    animate();
+    animationRef.current = requestAnimationFrame(animate);
+
+    // Pause when not visible
+    const io = new IntersectionObserver(([entry]) => {
+      visibleRef.current = entry.isIntersecting;
+    }, { rootMargin: '100px' });
+    const parent = canvas.parentElement;
+    if (parent) io.observe(parent);
 
     let resizeTimeout: ReturnType<typeof setTimeout>;
     const handleResize = () => {
@@ -161,7 +184,7 @@ export function GlitchBackground({
       resizeTimeout = setTimeout(() => {
         cancelAnimationFrame(animationRef.current);
         resizeCanvas();
-        animate();
+        animationRef.current = requestAnimationFrame(animate);
       }, 100);
     };
     window.addEventListener('resize', handleResize);
@@ -169,6 +192,7 @@ export function GlitchBackground({
     return () => {
       cancelAnimationFrame(animationRef.current);
       window.removeEventListener('resize', handleResize);
+      io.disconnect();
     };
   }, [glitchSpeed, smooth, density, customCharacters]);
 
