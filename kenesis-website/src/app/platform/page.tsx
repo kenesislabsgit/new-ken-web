@@ -7,11 +7,11 @@ import DashboardPreview from '@/components/DashboardPreview';
 import { BorderBeam } from '@/components/magicui/border-beam';
 import { NumberTicker } from '@/components/magicui/number-ticker';
 import { ScrollReveal } from '@/components/magicui/scroll-reveal';
-import { TextReveal } from '@/components/magicui/text-reveal';
 import { UnblurTextReveal } from '@/components/magicui/unblur-text-reveal';
 import { AsciiDivider } from '@/components/AsciiArt';
 import { TypewriterText } from '@/components/magicui/typewriter-text';
 import { DitheredWaves } from '@/components/magicui/dithered-waves';
+import SequentialHighlight from '@/components/SequentialHighlight';
 
 const SPECS = [
   ['Response Time', '<100ms'],
@@ -149,23 +149,15 @@ export default function PlatformPage() {
         </div>
       </section>
 
-      {/* Why on-premise */}
-      <section className="relative z-[1] mx-auto max-w-[72rem] px-6 py-32 md:px-12 border-t border-white/[0.06]">
-        <UnblurTextReveal as="h2" blurAmount={22} scaleFrom={0.87} scrub={1} start="top 85%" end="top 40%" splitBy="word" stagger={0.06} className="font-display text-[clamp(2rem,4vw,3rem)] font-semibold tracking-[-0.02em] text-white/90 mb-16">
-          Why on-premise matters
-        </UnblurTextReveal>
-        <div className="max-w-3xl space-y-[8rem]">
-          <TextReveal variant="highlight" scrub={1} start="top 85%" end="top 25%" className="text-[clamp(1.3rem,2.5vw,1.7rem)] leading-[1.6] text-white/60">
-            Cloud processing means your factory footage travels to data centers you don&apos;t control, processed by models you can&apos;t audit. Under India&apos;s DPDP Act, that creates significant compliance liability.
-          </TextReveal>
-          <TextReveal variant="highlight" scrub={1} start="top 85%" end="top 25%" className="text-[clamp(1.3rem,2.5vw,1.7rem)] leading-[1.6] text-white/60">
-            Cloud means latency. A safety violation detected three seconds late is a safety violation missed. Our on-premise processing delivers alerts to your safety team before a cloud solution would finish uploading the frame.
-          </TextReveal>
-          <TextReveal variant="highlight" scrub={1} start="top 85%" end="top 25%" className="text-[clamp(1.3rem,2.5vw,1.7rem)] leading-[1.6] text-white/60">
-            Cloud means dependency. When your internet connection drops — a common reality in Indian industrial zones — your entire safety system goes offline. Kenesis continues operating because it was never dependent on connectivity.
-          </TextReveal>
-        </div>
-      </section>
+      {/* Why on-premise — sequential pinned reveal */}
+      <SequentialHighlight
+        heading="Why on-premise matters"
+        paragraphs={[
+          "Cloud processing means your factory footage travels to data centers you don't control, processed by models you can't audit. Under India's DPDP Act, that creates significant compliance liability.",
+          "Cloud means latency. A safety violation detected three seconds late is a safety violation missed. Our on-premise processing delivers alerts to your safety team before a cloud solution would finish uploading the frame.",
+          "Cloud means dependency. When your internet connection drops — a common reality in Indian industrial zones — your entire safety system goes offline. Kenesis continues operating because it was never dependent on connectivity.",
+        ]}
+      />
 
       {/* CTA */}
       <section className="relative z-[1] mx-auto max-w-[72rem] px-6 py-24 md:px-12 border-t border-white/[0.06]">
