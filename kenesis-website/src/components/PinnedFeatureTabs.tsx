@@ -283,12 +283,12 @@ export default function PinnedFeatureTabs() {
           </div>
 
           {/* Tab content */}
-          <div className="relative min-h-[200px] sm:min-h-[240px] md:min-h-[200px] flex-1 md:flex-none">
+          <div className="relative flex-1 md:flex-none overflow-hidden">
             {TABS.map((tab, i) => (
               <div
                 key={tab.id}
                 ref={el => { contentRefs.current[i] = el; }}
-                className="absolute inset-0"
+                className="absolute inset-0 flex flex-col"
                 style={{
                   opacity: activeTab === i ? 1 : 0,
                   pointerEvents: activeTab === i ? 'auto' : 'none',
@@ -298,8 +298,8 @@ export default function PinnedFeatureTabs() {
                 {/* Video placeholder card with clip-path reveal */}
                 <div
                   ref={el => { videoCardRefs.current[i] = el; }}
-                  className="mb-4 sm:mb-6 aspect-[16/10] sm:aspect-video w-full overflow-hidden rounded-xl sm:rounded-2xl bg-white/5 border border-white/[0.06]"
-                  style={{ clipPath: i === 0 ? 'inset(0 0% 0 0)' : 'inset(0 100% 0 0)' }}
+                  className="mb-3 sm:mb-4 w-full overflow-hidden rounded-xl sm:rounded-2xl bg-white/5 border border-white/[0.06] flex-shrink-0"
+                  style={{ clipPath: i === 0 ? 'inset(0 0% 0 0)' : 'inset(0 100% 0 0)', height: 'clamp(140px, 28vh, 320px)' }}
                 >
                   <img
                     src={`/images/features/${i + 1}.webp`}
@@ -310,7 +310,7 @@ export default function PinnedFeatureTabs() {
                 </div>
                 <h3
                   ref={el => { titleRefs.current[i] = el; }}
-                  className="mb-2 text-xl font-display font-semibold text-white/90"
+                  className="mb-1 sm:mb-2 text-base sm:text-xl font-display font-semibold text-white/90"
                 >
                   {tab.title}
                 </h3>
