@@ -21,33 +21,48 @@ export default function ScrollFrameSection({ frameSets, panels, sectionLabel, se
   const canvasSizeRef = useRef({ w: 0, h: 0 });
   const [loaded, setLoaded] = useState(false);
 
+  // Total expected frames from props — don't rely on loaded count
+  const totalExpectedFrames = useMemo(() => 
+    frameSets.reduce((sum, set) => sum + set.count, 0),
+    [frameSets]
+  );
+
   const frameKey = useMemo(() => JSON.stringify(frameSets), [frameSets]);
 
-  // Preload frames — show content as soon as first set loads
+  // Preload frames — ordered array, show content as soon as first batch loads
   useEffect(() => {
     let cancelled = false;
-    const allImgs: HTMLImageElement[] = [];
-    let remaining = 0;
     const sets: FrameSet[] = JSON.parse(frameKey);
-    sets.forEach(set => { remaining += set.count; });
-    const total = remaining;
-    let firstFrameDrawn = false;
+    const total = sets.reduce((s, set) => s + set.count, 0);
+    // Pre-allocate ordered slots
+    const orderedImgs: (HTMLImageElement | null)[] = new Array(total).fill(null);
+    let loadedCount = 0;
+    let firstBatchReady = false;
 
+    let idx = 0;
     sets.forEach(set => {
       for (let i = 1; i <= set.count; i++) {
+        const slotIdx = idx++;
         const img = new Image();
         img.src = `${set.path}/f_${String(i).padStart(3, '0')}.webp`;
-        img.onload = img.onerror = () => {
-          remaining--;
-          // Update available frames continuously
-          imagesRef.current = allImgs.filter(im => im.complete && im.naturalWidth > 0);
-          // Show component once we have enough to start
-          if (!cancelled && !firstFrameDrawn && imagesRef.current.length >= Math.min(10, total)) {
-            firstFrameDrawn = true;
+        img.onload = () => {
+          if (cancelled) return;
+          orderedImgs[slotIdx] = img;
+          loadedCount++;
+          // Update ref with all successfully loaded images in order
+          imagesRef.current = orderedImgs.filter((im): im is HTMLImageElement => im !== null && im.complete && im.naturalWidth > 0);
+          if (!firstBatchReady && loadedCount >= Math.min(10, total)) {
+            firstBatchReady = true;
             setLoaded(true);
           }
         };
-        allImgs.push(img);
+        img.onerror = () => {
+          loadedCount++;
+          if (!cancelled && !firstBatchReady && loadedCount >= Math.min(10, total)) {
+            firstBatchReady = true;
+            setLoaded(true);
+          }
+        };
       }
     });
     return () => { cancelled = true; };
@@ -91,7 +106,8 @@ export default function ScrollFrameSection({ frameSets, panels, sectionLabel, se
     });
 
     const n = panels.length;
-    const totalFrames = imagesRef.current.length - 1;
+    // Use expected total from props, not the (possibly incomplete) loaded array
+    const totalFrames = totalExpectedFrames - 1;
 
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
@@ -135,7 +151,7 @@ export default function ScrollFrameSection({ frameSets, panels, sectionLabel, se
     };
     window.addEventListener('resize', onResize);
     return () => { ctx.revert(); window.removeEventListener('resize', onResize); };
-  }, [loaded, panels, drawFrame]);
+  }, [loaded, panels, drawFrame, totalExpectedFrames]);
 
   const scrollHeight = panels.length * 120; // vh — tighter for smoother frame transitions
 
