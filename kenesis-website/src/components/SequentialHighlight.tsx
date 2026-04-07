@@ -89,10 +89,32 @@ export default function SequentialHighlight({ heading, paragraphs }: Props) {
           segStart
         );
 
+        // Show cursor for this paragraph
+        if (cursorRef.current) {
+          tl.to(cursorRef.current, { opacity: 1, duration: 0.15 }, segStart + 0.2);
+        }
+
         // Each word: blur → scramble → deblur → settle
         words.forEach((word, j) => {
           const originalText = word.getAttribute('data-text') || word.textContent || '';
           const wordStart = segStart + 0.3 + j * wordDelay;
+
+          // Move cursor to track this word
+          if (cursorRef.current) {
+            tl.to(cursorRef.current, {
+              duration: 0.01,
+              onUpdate: () => {
+                const cursor = cursorRef.current;
+                const container = word.closest('.relative');
+                if (!cursor || !container) return;
+                const wordRect = word.getBoundingClientRect();
+                const containerRect = container.getBoundingClientRect();
+                cursor.style.left = `${wordRect.right - containerRect.left + 2}px`;
+                cursor.style.top = `${wordRect.top - containerRect.top}px`;
+                cursor.style.transform = 'none';
+              },
+            }, wordStart);
+          }
 
           // Phase 1: Deblur — word goes from blurred/dim to sharp/bright
           tl.fromTo(word,
@@ -141,6 +163,11 @@ export default function SequentialHighlight({ heading, paragraphs }: Props) {
 
         // Fade out (skip for last)
         if (i < n - 1) {
+          // Hide cursor during transition
+          if (cursorRef.current) {
+            tl.to(cursorRef.current, { opacity: 0, duration: 0.2 }, segStart + 3.9);
+          }
+
           // Words blur back out
           tl.to(words, {
             filter: 'blur(6px)',
@@ -216,11 +243,11 @@ export default function SequentialHighlight({ heading, paragraphs }: Props) {
             </p>
           ))}
 
-          {/* Terminal cursor */}
+          {/* Terminal cursor — positioned dynamically by GSAP */}
           <span
             ref={cursorRef}
-            className="absolute bottom-0 left-1/2 -translate-x-1/2 font-mono-accent text-amber-400/60 text-[1.4rem] animate-pulse"
-            style={{ opacity: 0 }}
+            className="absolute font-mono-accent text-amber-400/70 text-[1.3rem] pointer-events-none"
+            style={{ opacity: 0, animation: 'cursor-blink 1s step-end infinite' }}
           >
             ▌
           </span>
