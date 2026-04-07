@@ -16,7 +16,6 @@ import { BlurFade } from "@/components/magicui/blur-fade";
 import { ScrollReveal } from "@/components/magicui/scroll-reveal";
 import { TextReveal } from "@/components/magicui/text-reveal";
 import { BorderBeam } from "@/components/magicui/border-beam";
-import { DitheredWaves } from "@/components/magicui/dithered-waves";
 const ScrollFrameSection = dynamic(
   () => import(/* webpackPrefetch: true */ "@/components/ScrollFrameSection"),
   {
@@ -90,49 +89,6 @@ export default function Home() {
         <ErrorBoundary>
           <WavePerformanceSection />
         </ErrorBoundary>
-
-        {/* ── Intelligence Funnel interlude ── */}
-        <section className="relative z-[10] min-h-screen flex items-center justify-center px-[24px] md:px-[48px] overflow-hidden bg-[#0a0a0b]">
-          <div className="absolute inset-0 z-0 opacity-[0.05] pointer-events-none">
-            <DitheredWaves color="#f59e0b" cellSize={20} speed={0.8} layers={2} amplitude={30} frequency={0.01} charset=" .:-=#" enableMouse={false} className="h-full w-full" />
-          </div>
-          <div className="absolute top-[30%] left-[20%] w-[500px] h-[500px] rounded-full bg-amber-500/[0.025] blur-[140px] pointer-events-none" />
-
-          <div className="relative z-[1] text-center max-w-[900px]">
-            <BlurFade delay={0} duration={0.5} blur="6px" offset={10} inView inViewMargin="-60px">
-              <p className="font-mono-accent text-[12px] uppercase tracking-[0.22em] text-amber-400/50 mb-[40px]">How it works</p>
-            </BlurFade>
-
-            <TextReveal variant="word-slide" as="h2" start="top 90%" duration={0.9} stagger={0.08} className="font-display text-[clamp(48px,9vw,100px)] font-semibold tracking-[-0.04em] text-white mb-[48px] leading-[1.05]">
-              The Processing Pipeline
-            </TextReveal>
-
-            <BlurFade delay={0} duration={0.6} blur="8px" offset={14} inView inViewMargin="-60px">
-              <p className="text-[20px] leading-[1.7] text-white/30 max-w-[560px] mx-auto mb-[56px]">
-                A three-stage pipeline that transforms raw camera feeds into actionable safety intelligence.
-              </p>
-            </BlurFade>
-
-            <BlurFade delay={0} duration={0.5} blur="4px" offset={8} inView inViewMargin="-60px">
-              <div className="flex flex-wrap items-start justify-center gap-[24px] md:gap-[40px]">
-                {[
-                  { val: '10,000', unit: 'frames' },
-                  { val: '100', unit: 'detections' },
-                  { val: '5', unit: 'anomalies' },
-                  { val: '1', unit: 'call' },
-                ].map((item, i, arr) => (
-                  <div key={i} className="flex items-center gap-[24px] md:gap-[40px]">
-                    <div className="flex flex-col items-center gap-[8px]">
-                      <span className="font-display text-[clamp(32px,4vw,48px)] font-bold text-white/75">{item.val}</span>
-                      <span className="font-mono-accent text-[10px] uppercase tracking-[0.16em] text-white/20">{item.unit}</span>
-                    </div>
-                    {i < arr.length - 1 && <span className="text-amber-400/25 text-[24px]">&rarr;</span>}
-                  </div>
-                ))}
-              </div>
-            </BlurFade>
-          </div>
-        </section>
 
         {/* ── Features / Capabilities ── */}
         <section className="relative z-[2] py-[160px] px-[24px] md:px-[48px] border-t border-white/[0.04] bg-[#0a0a0b]">
