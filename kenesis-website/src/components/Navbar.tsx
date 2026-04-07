@@ -16,7 +16,6 @@ const navLinks = [
 const mobileLinks = [
   { label: "Platform", href: "/platform" },
   { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
@@ -145,9 +144,9 @@ export default function Navbar() {
       {open && (
         <div className="fixed inset-0 z-[499] flex flex-col pt-[10rem] px-[2.4rem] pb-[3rem] md:hidden"
           style={{
-            background: "rgba(10,10,11,0.97)",
-            backdropFilter: "blur(20px)",
-            WebkitBackdropFilter: "blur(20px)",
+            background: "rgba(10,10,11,0.6)",
+            backdropFilter: "blur(40px) saturate(1.6)",
+            WebkitBackdropFilter: "blur(40px) saturate(1.6)",
           }}
         >
           <nav className="flex flex-col gap-[0.4rem]" aria-label="Mobile navigation">
