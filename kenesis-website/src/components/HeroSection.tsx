@@ -108,12 +108,6 @@ export default function HeroSection() {
                 )}
               </TextVideoMask>
             </div>
-            {/* Tagline under the logo */}
-            <BlurFade delay={1.2} duration={0.8} blur="6px" offset={10}>
-              <p className="mt-[1.6rem] text-center font-mono-accent text-[clamp(11px,1.2vw,14px)] uppercase tracking-[0.25em] text-amber-400/40">
-                On-Premise AI &middot; Industrial Safety &middot; Zero Cloud
-              </p>
-            </BlurFade>
           </div>
         </div>
         {/* Heading text - bottom left */}

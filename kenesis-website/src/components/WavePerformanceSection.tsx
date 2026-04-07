@@ -26,7 +26,9 @@ export default function WavePerformanceSection() {
 
       {/* Content — centered */}
       <div className="relative z-10 flex h-full items-center justify-center pointer-events-none">
-        <div className="text-center max-w-[900px] px-6 md:px-12 pointer-events-auto">
+        {/* Dark scrim behind text for contrast */}
+        <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse 70% 80% at 50% 50%, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 60%, transparent 100%)' }} />
+        <div className="relative text-center max-w-[900px] px-6 md:px-12 pointer-events-auto">
           {/* Label */}
           <BlurFade delay={0} duration={0.5} blur="6px" offset={10} inView inViewMargin="-60px">
             <p className="font-mono-accent text-[12px] uppercase tracking-[0.22em] text-amber-400/50 mb-[40px]">How it works</p>
