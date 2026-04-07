@@ -195,16 +195,16 @@ export default function SequentialHighlight({ heading, paragraphs }: Props) {
         style={{ backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.03) 2px, rgba(255,255,255,0.03) 4px)', backgroundSize: '100% 4px' }} />
 
       <div className="relative z-[1] mx-auto max-w-[64rem] px-6 md:px-12 w-full">
-        <h2 ref={headingRef} className="font-display text-[clamp(2.4rem,5vw,4rem)] font-semibold tracking-[-0.03em] text-white/95 mb-20 text-center" style={{ opacity: 0 }}>
+        <h2 ref={headingRef} className="font-display text-[clamp(1.8rem,5vw,4rem)] font-semibold tracking-[-0.03em] text-white/95 mb-10 md:mb-20 text-center" style={{ opacity: 0 }}>
           {heading}
         </h2>
 
-        <div className="relative min-h-[280px] md:min-h-[240px]">
+        <div className="relative min-h-[360px] sm:min-h-[300px] md:min-h-[240px]">
           {paragraphs.map((text, i) => (
             <p
               key={i}
               ref={el => { paraRefs.current[i] = el; }}
-              className="absolute inset-0 text-[clamp(1.25rem,2.2vw,1.65rem)] leading-[1.75] text-center max-w-[52rem] mx-auto font-light"
+              className="absolute inset-0 text-[clamp(1rem,2.2vw,1.65rem)] leading-[1.75] text-center max-w-[52rem] mx-auto font-light px-2 sm:px-0"
               style={{ opacity: 0 }}
             >
               {text.split(' ').map((word, j) => (

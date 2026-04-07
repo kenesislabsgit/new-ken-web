@@ -37,7 +37,7 @@ export default function PlatformPage() {
       </div>
 
       {/* Hero */}
-      <section className="relative z-[1] mx-auto max-w-[72rem] px-6 pb-40 md:px-12">
+      <section className="relative z-[1] mx-auto max-w-[72rem] px-4 sm:px-6 pb-24 sm:pb-40 md:px-12">
         <BlurFade delay={0.1} duration={0.5} blur="6px" offset={12}>
           <p className="font-mono-accent text-[1rem] uppercase tracking-[0.14em] text-amber-400/50 mb-10">Platform</p>
         </BlurFade>

@@ -117,7 +117,7 @@ export default function ContactPage() {
 
       <div className="relative z-[1] min-h-screen">
         {/* ── Top bar ── */}
-        <div className="mx-auto max-w-[88rem] px-8 md:px-16 pt-[14rem] pb-[6rem]">
+        <div className="mx-auto max-w-[88rem] px-4 sm:px-8 md:px-16 pt-[10rem] sm:pt-[14rem] pb-[4rem] sm:pb-[6rem]">
           <BlurFade delay={0.05} duration={0.5} blur="6px" offset={10}>
             <div className="flex items-center gap-3 mb-[4rem]">
               <span className="h-[1px] w-[3rem] bg-amber-400/40" />
@@ -129,7 +129,7 @@ export default function ContactPage() {
 
           {/* ── Hero headline ── */}
           <BlurFade delay={0.1} duration={0.7} blur="12px" offset={24}>
-            <h1 className="font-display text-[clamp(4rem,9vw,9rem)] font-semibold leading-[0.95] tracking-[-0.04em] text-white/90 max-w-[16ch]">
+            <h1 className="font-display text-[clamp(2.4rem,9vw,9rem)] font-semibold leading-[0.95] tracking-[-0.04em] text-white/90 max-w-[16ch]">
               Let&apos;s discuss<br />
               <span className="text-amber-400/80">your safety</span><br />
               infrastructure.
@@ -137,7 +137,7 @@ export default function ContactPage() {
           </BlurFade>
 
           <BlurFade delay={0.3} duration={0.6} blur="8px" offset={16}>
-            <p className="mt-[3rem] max-w-[44rem] font-display text-[1.6rem] leading-[1.65] text-white/35 font-light">
+            <p className="mt-[2rem] sm:mt-[3rem] max-w-[44rem] font-display text-[1.2rem] sm:text-[1.6rem] leading-[1.65] text-white/35 font-light">
               Schedule a walkthrough of our platform. We\'ll connect to your cameras and show you what Kenesis sees — no commitment required.
             </p>
           </BlurFade>
@@ -157,9 +157,9 @@ export default function ContactPage() {
                   <p className="font-mono-accent text-[1rem] uppercase tracking-[0.14em] text-amber-400/40 mb-[2rem]">
                     Office
                   </p>
-                  <p className="font-display text-[1.8rem] font-medium text-white/80 leading-[1.5]">
+                  <p className="font-display text-[1.4rem] sm:text-[1.8rem] font-medium text-white/80 leading-[1.5]">
                     Kenesis Labs<br />
-                    <span className="text-white/35 font-light text-[1.4rem]">iTamilnadu Technology Hub (iTNT)<br />Anna University, Sir C V Raman Science Block, 3rd Floor<br />Kotturpuram, Chennai, Tamil Nadu 600025</span>
+                    <span className="text-white/35 font-light text-[1.1rem] sm:text-[1.4rem]">iTamilnadu Technology Hub (iTNT)<br />Anna University, Sir C V Raman Science Block, 3rd Floor<br />Kotturpuram, Chennai, Tamil Nadu 600025</span>
                   </p>
                 </div>
 
@@ -285,11 +285,11 @@ export default function ContactPage() {
                   </FloatingField>
 
                   {/* Submit */}
-                  <div className="pt-[1rem] flex items-center gap-6">
+                  <div className="pt-[1rem] flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
                     <button
                       type="submit"
                       disabled={sending}
-                      className="group relative overflow-hidden rounded-full px-[3.2rem] py-[1.4rem] font-mono-accent text-[1.2rem] uppercase tracking-[0.12em] font-semibold text-[#0a0a0b] cursor-pointer transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="group relative overflow-hidden rounded-full px-[2.4rem] sm:px-[3.2rem] py-[1.2rem] sm:py-[1.4rem] font-mono-accent text-[1rem] sm:text-[1.2rem] uppercase tracking-[0.12em] font-semibold text-[#0a0a0b] cursor-pointer transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto"
                       style={{
                         background: 'linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%)',
                         boxShadow: '0 0 40px rgba(245,158,11,0.25), 0 4px 16px rgba(245,158,11,0.2)',

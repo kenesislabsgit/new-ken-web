@@ -60,12 +60,12 @@ export default function Navbar() {
     <>
       <div
         ref={headerRef}
-        className="fixed top-[2rem] left-0 right-0 z-[500] mx-auto w-[calc(100vw-4rem)] max-w-[72rem] sm:top-[2.8rem]"
+        className="fixed top-[1.2rem] left-0 right-0 z-[500] mx-auto w-[calc(100vw-2rem)] max-w-[72rem] sm:top-[2.8rem] sm:w-[calc(100vw-4rem)]"
         style={{ opacity: 0, transform: "translateY(-80px)" }}
       >
         {/* Glass panel */}
         <div
-          className="relative flex items-center justify-between rounded-[1.6rem] px-[2rem] py-[1.2rem] sm:px-[2.4rem]"
+          className="relative flex items-center justify-between rounded-[1.2rem] sm:rounded-[1.6rem] px-[1.4rem] py-[1rem] sm:px-[2.4rem] sm:py-[1.2rem]"
           style={{
             background: "rgba(10, 10, 11, 0.65)",
             backdropFilter: "blur(32px) saturate(1.4)",
@@ -76,7 +76,7 @@ export default function Navbar() {
         >
           {/* Logo */}
           <Link href="/" className="flex items-center gap-[0.8rem] cursor-pointer" aria-label="Kenesis Labs home">
-            <span className="font-logo text-[2.2rem] tracking-[0.12em] uppercase text-white/90 leading-none sm:text-[2.6rem]">
+            <span className="font-logo text-[1.8rem] tracking-[0.12em] uppercase text-white/90 leading-none sm:text-[2.6rem]">
               Kenesis
             </span>
           </Link>
