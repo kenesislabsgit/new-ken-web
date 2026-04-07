@@ -147,6 +147,7 @@ export function SpectraNoise({
 }: SpectraNoiseProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const mouseRef = useRef({ x: 0.5, y: 0.5, targetX: 0.5, targetY: 0.5 });
+  const visibleRef = useRef(true);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -225,6 +226,12 @@ export function SpectraNoise({
     window.addEventListener('resize', resize);
     resize();
 
+    // Pause rendering when canvas is not visible
+    const io = new IntersectionObserver(([entry]) => {
+      visibleRef.current = entry.isIntersecting;
+    }, { rootMargin: '100px' });
+    io.observe(canvas);
+
     const onMouseMove = (e: MouseEvent) => {
       mouseRef.current.targetX = e.clientX / window.innerWidth;
       mouseRef.current.targetY = 1.0 - (e.clientY / window.innerHeight);
@@ -233,10 +240,21 @@ export function SpectraNoise({
 
     const startTime = performance.now();
     let raf: number;
+    let lastRenderTime = 0;
+    // Throttle to ~30fps — this is a subtle background effect
+    const FRAME_INTERVAL = 1000 / 30;
 
     const useCustom = !!(primaryColor && secondaryColor && accentColor);
 
     const render = () => {
+      const now = performance.now();
+      const elapsed = now - lastRenderTime;
+      if (elapsed < FRAME_INTERVAL) {
+        raf = requestAnimationFrame(render);
+        return;
+      }
+      lastRenderTime = now - (elapsed % FRAME_INTERVAL);
+
       // Smooth mouse interpolation
       const m = mouseRef.current;
       m.x += (m.targetX - m.x) * 0.08;
@@ -268,6 +286,7 @@ export function SpectraNoise({
       cancelAnimationFrame(raf);
       window.removeEventListener('resize', resize);
       window.removeEventListener('mousemove', onMouseMove);
+      io.disconnect();
     };
   }, [hueShift, noiseIntensity, scanlineIntensity, speed, scanlineFrequency, warpAmount, resolutionScale, primaryColor, secondaryColor, accentColor, colorIntensity, mouseRadius, mouseStrength]);
 

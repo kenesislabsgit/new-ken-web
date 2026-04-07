@@ -80,11 +80,14 @@ export function DitheredWaves({
   enableMouse = true,
   mouseRadius = 200,
 }: DitheredWavesProps) {
+  // Clamp layers to max 3 for performance — 4+ octaves of simplex is very expensive
+  const effectiveLayers = Math.min(layers, 3);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const mouseRef = useRef({ x: -9999, y: -9999 });
   const smoothMouseRef = useRef({ x: -9999, y: -9999 });
   const rafRef = useRef(0);
   const frameStartRef = useRef(0);
+  const lastDrawRef = useRef(0);
   const timeRef = useRef(0);
   const noiseRef = useRef<{ perm: Uint8Array; permMod8: Uint8Array } | null>(null);
 
@@ -94,7 +97,13 @@ export function DitheredWaves({
   }
 
   const draw = useCallback(() => {
-    frameStartRef.current = performance.now();
+    const now = performance.now();
+    // Throttle to ~30fps for consistent performance
+    if (now - lastDrawRef.current < 30) {
+      rafRef.current = requestAnimationFrame(draw);
+      return;
+    }
+    lastDrawRef.current = now;
     // Skip drawing if not visible
     if (!visibleRef.current) {
       rafRef.current = 0;
@@ -158,7 +167,7 @@ export function DitheredWaves({
         let amp = 1;
         let freq = 1;
         let maxAmp = 0;
-        for (let l = 0; l < layers; l++) {
+        for (let l = 0; l < effectiveLayers; l++) {
           val += amp * simplex2D(
             (nx + warpX) * freq + t * speed * 0.6 * (1 + l * 0.4),
             (ny + warpY) * freq + t * speed * 0.5 * (1 + l * 0.3) + l * 3.7,
@@ -209,19 +218,8 @@ export function DitheredWaves({
 
     ctx.globalAlpha = 1;
     timeRef.current += 0.033;
-    // Adaptive frame rate — skip frame if previous took too long
-    const frameEnd = performance.now();
-    const frameDuration = frameEnd - (frameStartRef.current || 0);
-    if (frameDuration > 20) {
-      // Frame took >20ms, skip next to maintain responsiveness
-      rafRef.current = requestAnimationFrame(() => {
-        frameStartRef.current = performance.now();
-        rafRef.current = requestAnimationFrame(draw);
-      });
-    } else {
-      rafRef.current = requestAnimationFrame(draw);
-    }
-  }, [charset, color, bgColor, cellSize, speed, layers, amplitude, frequency, enableMouse, mouseRadius]);
+    rafRef.current = requestAnimationFrame(draw);
+  }, [charset, color, bgColor, cellSize, speed, effectiveLayers, amplitude, frequency, enableMouse, mouseRadius]);
 
   // Visibility-based animation — pause when off-screen
   const visibleRef = useRef(true);

@@ -66,7 +66,7 @@ export default function HeroSection() {
       {shaderReady && (
         <div className="fixed inset-0 z-0 pointer-events-none will-change-transform">
           <SpectraNoise hueShift={-30} noiseIntensity={0.05} scanlineIntensity={0.12}
-            scanlineFrequency={0.006} warpAmount={1.5} speed={0.4} resolutionScale={0.5}
+            scanlineFrequency={0.006} warpAmount={1.5} speed={0.4} resolutionScale={0.35}
             primaryColor={[0.04, 0.04, 0.02]} secondaryColor={[0.45, 0.38, 0.0]}
             accentColor={[0.98, 0.80, 0.08]} colorIntensity={0.9}
             mouseRadius={0} mouseStrength={0}
@@ -93,13 +93,13 @@ export default function HeroSection() {
                 {mounted ? (
                   <DitheredWaves
                     color="#f59e0b"
-                    cellSize={4}
+                    cellSize={8}
                     speed={0.8}
-                    layers={4}
+                    layers={3}
                     amplitude={50}
                     frequency={0.025}
                     enableMouse={true}
-                    mouseRadius={300}
+                    mouseRadius={250}
                     charset=" .:-=+*#%@█"
                     className="h-full w-full"
                   />

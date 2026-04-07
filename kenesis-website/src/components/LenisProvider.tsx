@@ -63,8 +63,8 @@ export default function LenisProvider({ children }: LenisProviderProps) {
     };
     gsap.ticker.add(tickerCallback);
 
-    // Disable GSAP lag smoothing for consistent frame timing
-    gsap.ticker.lagSmoothing(0);
+    // Enable GSAP lag smoothing — drop frames if behind by >500ms, reset to 33ms
+    gsap.ticker.lagSmoothing(500, 33);
 
     // Cleanup on unmount
     return () => {
