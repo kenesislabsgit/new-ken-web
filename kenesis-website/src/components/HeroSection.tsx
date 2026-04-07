@@ -78,17 +78,17 @@ export default function HeroSection() {
       <div ref={introRef} className="relative z-[2] h-screen w-full will-change-[opacity,transform]">
         {/* KENESIS logo centered in viewport */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <div className="relative w-full" style={{ maxWidth: '100%', padding: '0 24px' }}>
+          <div className="relative w-full" style={{ maxWidth: '100%', padding: '0 16px' }}>
             {/* Text mask with dithered waves */}
             <div className="relative z-[1] pointer-events-auto">
               <TextVideoMask
                 text="KENESIS"
-                fontSize="clamp(80px, 15vw, 240px)"
+                fontSize="clamp(48px, 14vw, 240px)"
                 fontWeight={400}
                 fontFamily="'MBF Neo Wave', var(--font-neowave), sans-serif"
                 mode="clip"
                 className="w-full"
-                style={{ height: 'clamp(120px, 26vw, 320px)' }}
+                style={{ height: 'clamp(70px, 22vw, 320px)' }}
               >
                 {mounted ? (
                   <DitheredWaves
