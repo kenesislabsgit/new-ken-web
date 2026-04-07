@@ -16,15 +16,15 @@ export default function WavePerformanceSection() {
   return (
     <section
       className="relative w-full overflow-hidden bg-[#0a0a0b]"
-      style={{ height: '100vh', minHeight: '50rem' }}
+      style={{ height: '100vh', minHeight: '40rem' }}
     >
       {/* Wave — boosted, receives all mouse events */}
       <div className="absolute inset-0" style={{ filter: 'brightness(1.5) saturate(1.3)' }}>
         <ColorfulWave className="absolute inset-0 h-full w-full" bgColor="#000000" />
       </div>
 
-      {/* Mobile gradient for text readability */}
-      <div className="absolute inset-0 z-[1] pointer-events-none sm:hidden" style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, transparent 80%)' }} />
+      {/* Mobile gradient — strong enough to read text over the bright wave */}
+      <div className="absolute inset-0 z-[1] pointer-events-none sm:hidden" style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.7) 40%, rgba(0,0,0,0.3) 70%, transparent 100%)' }} />
 
       {/* Content — right side, vertically centered, pointer-events-none so wave gets cursor */}
       <div className="relative z-10 flex h-full items-end sm:items-center pointer-events-none">

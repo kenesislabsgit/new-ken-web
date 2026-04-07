@@ -217,10 +217,10 @@ export default function PinnedFeatureTabs() {
 
       <div className="relative flex flex-col md:flex-row h-screen w-full z-[1]">
         {/* Left column — heading + description */}
-        <div ref={leftColRef} className="flex w-full md:w-1/2 flex-col justify-center px-6 md:px-12 lg:pl-[343px] lg:pr-16 pt-24 md:pt-0">
+        <div ref={leftColRef} className="flex w-full md:w-1/2 flex-col justify-center px-5 sm:px-6 md:px-12 lg:pl-16 xl:pl-24 lg:pr-16 pt-20 sm:pt-24 md:pt-0">
           <h2
             ref={headingRef}
-            className="mb-6 font-display text-[clamp(2rem,4vw,3.5rem)] font-semibold leading-[1.05] tracking-[-0.02em] text-white/90"
+            className="mb-4 sm:mb-6 font-display text-[clamp(1.6rem,4vw,3.5rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-white/90"
           >
             {headingLine1.split(' ').map((word, i) => (
               <span key={i} className="word-reveal inline-block mr-[0.3em]">
@@ -236,14 +236,14 @@ export default function PinnedFeatureTabs() {
           </h2>
           <p
             ref={subtitleRef}
-            className="font-mono-accent text-[13px] leading-relaxed text-white/40 uppercase tracking-[0.08em]"
+            className="font-mono-accent text-[11px] sm:text-[13px] leading-relaxed text-white/40 uppercase tracking-[0.08em]"
           >
             Transform your existing camera infrastructure into an intelligent safety system. Fully on-premise, fully autonomous.
           </p>
         </div>
 
         {/* Right column — tabs + video card */}
-        <div className="flex w-full md:w-1/2 flex-col justify-center px-6 md:pr-12 lg:pr-[343px] pb-8 md:pb-0">
+        <div className="flex w-full md:w-1/2 flex-col justify-center px-5 sm:px-6 md:pr-12 lg:pr-16 xl:pr-24 pb-6 md:pb-0">
           {/* Tab bar with progress indicator */}
           <div ref={tabBarRef} className="relative mb-6 sm:mb-8">
             <div className="flex gap-4 sm:gap-8 border-b border-white/10 overflow-x-auto scrollbar-hide">
