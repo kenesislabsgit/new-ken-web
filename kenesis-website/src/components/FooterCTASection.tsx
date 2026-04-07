@@ -52,14 +52,14 @@ export default function FooterCTASection() {
       {/* Content */}
       <div className="relative z-10">
         {/* Top section — heading + nav + socials */}
-        <div className="mx-auto max-w-[72rem] px-[2.4rem] pt-[8rem] pb-[12rem] md:px-[4.8rem]">
-          <div className="grid grid-cols-1 gap-[4rem] md:grid-cols-[1fr_auto_auto]">
+        <div className="mx-auto max-w-[72rem] px-[1.6rem] sm:px-[2.4rem] pt-[5rem] sm:pt-[8rem] pb-[6rem] sm:pb-[12rem] md:px-[4.8rem]">
+          <div className="grid grid-cols-1 gap-[2.4rem] sm:gap-[4rem] md:grid-cols-[1fr_auto_auto]">
             {/* Left — heading + contact */}
             <div>
               <TextReveal
                 variant="word-slide"
                 as="h2"
-                className="font-display text-[4rem] font-semibold leading-[1.05] tracking-[-0.02em] text-white/90 md:text-[5.6rem]"
+                className="font-display text-[clamp(2rem,5.5vw,5.6rem)] font-semibold leading-[1.05] tracking-[-0.02em] text-white/90"
               >
                 Let\'s talk about your facility
               </TextReveal>

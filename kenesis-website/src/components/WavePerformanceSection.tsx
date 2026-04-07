@@ -23,9 +23,12 @@ export default function WavePerformanceSection() {
         <ColorfulWave className="absolute inset-0 h-full w-full" bgColor="#000000" />
       </div>
 
+      {/* Mobile gradient for text readability */}
+      <div className="absolute inset-0 z-[1] pointer-events-none sm:hidden" style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, transparent 80%)' }} />
+
       {/* Content — right side, vertically centered, pointer-events-none so wave gets cursor */}
-      <div className="relative z-10 flex h-full items-center pointer-events-none">
-        <div className="ml-auto w-full sm:w-[55%] md:w-[50%] max-w-[580px] pr-6 sm:pr-10 md:pr-16 lg:pr-20 pl-6 sm:pl-0 pointer-events-auto">
+      <div className="relative z-10 flex h-full items-end sm:items-center pointer-events-none">
+        <div className="w-full sm:ml-auto sm:w-[55%] md:w-[50%] max-w-[580px] px-5 sm:pr-10 sm:pl-0 md:pr-16 lg:pr-20 pb-10 sm:pb-0 pointer-events-auto">
           {/* Label */}
           <BlurFade delay={0} duration={0.5} blur="6px" offset={10} inView inViewMargin="-60px">
             <div className="flex items-center gap-3 mb-6 sm:mb-8">
@@ -48,11 +51,11 @@ export default function WavePerformanceSection() {
 
           {/* Funnel — horizontal strip */}
           <BlurFade delay={0} duration={0.5} blur="4px" offset={8} inView inViewMargin="-60px">
-            <div className="flex items-center gap-3 sm:gap-4 md:gap-5 mb-8 sm:mb-10">
+            <div className="flex flex-wrap items-center gap-2 sm:gap-4 md:gap-5 mb-8 sm:mb-10">
               {FUNNEL.map((item, i, arr) => (
-                <div key={i} className="flex items-center gap-3 sm:gap-4 md:gap-5 shrink-0">
+                <div key={i} className="flex items-center gap-2 sm:gap-4 md:gap-5 shrink-0">
                   <div className="flex flex-col items-center">
-                    <span className="font-display text-[clamp(1.4rem,2.5vw,2.4rem)] font-bold text-white/85 tabular-nums">{item.val}</span>
+                    <span className="font-display text-[clamp(1.2rem,2.5vw,2.4rem)] font-bold text-white/85 tabular-nums">{item.val}</span>
                     <span className="font-mono-accent text-[8px] sm:text-[9px] uppercase tracking-[0.18em] text-white/20 mt-1">{item.unit}</span>
                   </div>
                   {i < arr.length - 1 && (

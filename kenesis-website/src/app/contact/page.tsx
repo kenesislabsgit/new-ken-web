@@ -169,7 +169,7 @@ export default function ContactPage() {
                   </p>
                   <a
                     href="mailto:admin@kenesis.ai"
-                    className="font-display text-[1.8rem] font-medium text-white/70 hover:text-amber-400 transition-colors duration-200 cursor-pointer"
+                    className="font-display text-[1.4rem] sm:text-[1.8rem] font-medium text-white/70 hover:text-amber-400 transition-colors duration-200 cursor-pointer break-all"
                   >
                     admin@kenesis.ai
                   </a>
@@ -181,7 +181,7 @@ export default function ContactPage() {
                   </p>
                   <a
                     href="tel:+919342281662"
-                    className="font-display text-[1.8rem] font-medium text-white/70 hover:text-amber-400 transition-colors duration-200 cursor-pointer"
+                    className="font-display text-[1.4rem] sm:text-[1.8rem] font-medium text-white/70 hover:text-amber-400 transition-colors duration-200 cursor-pointer"
                   >
                     +91 93422 81662
                   </a>

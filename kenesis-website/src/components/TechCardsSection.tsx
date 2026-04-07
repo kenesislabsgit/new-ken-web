@@ -26,7 +26,7 @@ export default function TechCardsSection() {
   return (
     <section ref={sectionRef} id="technology" className="w-full bg-[#0a0a0b]">
       {/* Hero banner — "Built to think. Born to haul." */}
-      <div className="relative overflow-hidden bg-cod-gray py-32 md:py-48">
+      <div className="relative overflow-hidden bg-cod-gray py-20 sm:py-32 md:py-48">
         <div ref={bgRef} className="absolute inset-0 -top-[15%] h-[130%] w-full opacity-30">
           <div className="h-full w-full bg-gradient-to-br from-cod-gray via-cod-gray/80 to-cod-gray/60" />
         </div>
@@ -43,7 +43,7 @@ export default function TechCardsSection() {
         <div className="relative z-10 mx-auto max-w-[1234px] px-6 md:px-12">
           <ScrollReveal variant="clip-up" duration={1}>
             <h2
-              className="font-display text-[clamp(3rem,8vw,9rem)] font-semibold leading-[0.92] tracking-[-0.03em] text-white"
+              className="font-display text-[clamp(2.4rem,8vw,9rem)] font-semibold leading-[0.95] tracking-[-0.03em] text-white"
             >
               Real-time safety intelligence.
             </h2>

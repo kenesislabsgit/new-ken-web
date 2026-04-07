@@ -105,7 +105,7 @@ export default function PlatformPage() {
           <h2 className="font-display text-[clamp(2rem,4vw,3rem)] font-semibold tracking-[-0.02em] text-white/90 mb-4">From camera feed to safety alert</h2>
           <p className="text-[1.1rem] text-white/30 mb-4 max-w-2xl">A streamlined pipeline with no cloud intermediaries. Camera feeds enter, contextual safety alerts emerge — all processed locally.</p>
         </BlurFade>
-        <div className="flex flex-col md:flex-row items-stretch gap-0">
+        <div className="flex flex-col md:flex-row items-stretch gap-4 md:gap-0">
           {[
             { label: 'Camera Feeds', sub: 'Existing cameras', accent: false },
             { label: 'Detection', sub: 'Object detection', accent: true },
@@ -114,7 +114,7 @@ export default function PlatformPage() {
           ].map((node, i, arr) => (
             <div key={node.label} className="flex items-center flex-1">
               <ScrollReveal variant="scale-up" delay={i * 0.12} duration={0.5}>
-                <div className={`relative flex-1 rounded-xl p-6 text-center ${node.accent ? 'bg-amber-400/[0.06] border border-amber-400/15' : 'bg-white/[0.03] border border-white/[0.06]'}`}>
+                <div className={`relative flex-1 rounded-xl p-4 sm:p-6 text-center ${node.accent ? 'bg-amber-400/[0.06] border border-amber-400/15' : 'bg-white/[0.03] border border-white/[0.06]'}`}>
                   {node.accent && <BorderBeam size={120} duration={8} colorFrom="#f59e0b" colorTo="#d97706" borderWidth={1} />}
                   <p className={`font-display text-[1.3rem] font-semibold mb-1 ${node.accent ? 'text-white/90' : 'text-white/60'}`}>{node.label}</p>
                   <p className="font-mono-accent text-[0.85rem] text-white/30">{node.sub}</p>
@@ -131,7 +131,7 @@ export default function PlatformPage() {
       </section>
 
       {/* Specs */}
-      <section className="relative z-[2] py-[160px] px-[24px] md:px-[48px] bg-[#0a0a0b]">
+      <section className="relative z-[2] py-[80px] sm:py-[120px] md:py-[160px] px-[16px] sm:px-[24px] md:px-[48px] bg-[#0a0a0b]">
         <div className="mx-auto max-w-[1100px]">
           <UnblurTextReveal as="h2" blurAmount={16} scaleFrom={0.93} scrub={1} start="top 85%" end="top 55%" splitBy="word" stagger={0.05} className="font-display text-[clamp(32px,5vw,56px)] font-semibold tracking-[-0.025em] text-white/90 mb-[64px]">
             Technical specifications

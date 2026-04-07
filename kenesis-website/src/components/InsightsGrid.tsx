@@ -107,7 +107,7 @@ export default function InsightsGrid() {
       <div className="relative z-[1] mx-auto max-w-[1920px] px-6 md:px-12 lg:px-[343px]">
         <AsciiDivider className="mb-8" accent="◆" />
         {/* Header */}
-        <div className="mb-12 flex items-baseline justify-between">
+        <div className="mb-12 flex items-baseline justify-between gap-4">
           <TextReveal
             variant="word-slide"
             as="h2"
@@ -115,7 +115,7 @@ export default function InsightsGrid() {
           >
             Insights.
           </TextReveal>
-          <a href="#" className="text-[15px] font-medium text-white/40 hover:text-white transition-colors">
+          <a href="#" className="text-[15px] font-medium text-white/40 hover:text-white transition-colors shrink-0">
             View all
           </a>
         </div>
@@ -124,15 +124,15 @@ export default function InsightsGrid() {
       {/* Horizontal scroll container */}
       <div
         ref={scrollRef}
-        className="relative z-[1] flex gap-6 overflow-x-auto px-6 pb-4 md:px-12 lg:px-[343px] scrollbar-hide"
+        className="relative z-[1] flex gap-4 sm:gap-6 overflow-x-auto px-6 pb-4 md:px-12 lg:px-[343px] scrollbar-hide"
       >
         {articles.map((article, i) => (
           <ScrollReveal key={i} variant="fade-up" delay={i * 0.08}>
             <article
-              className="group w-[450px] flex-shrink-0 cursor-pointer"
+              className="group w-[280px] sm:w-[350px] md:w-[450px] flex-shrink-0 cursor-pointer"
             >
               {/* Thumbnail placeholder */}
-              <div className="mb-4 h-[280px] w-full overflow-hidden rounded-xl bg-white/5">
+              <div className="mb-4 h-[180px] sm:h-[220px] md:h-[280px] w-full overflow-hidden rounded-xl bg-white/5">
                 <div className="h-full w-full bg-gradient-to-br from-white/[0.03] to-white/[0.08] transition-transform duration-300 group-hover:scale-105" />
               </div>
 
@@ -146,7 +146,7 @@ export default function InsightsGrid() {
               </div>
 
               {/* Title */}
-              <h3 className="mb-2 font-display text-[17px] font-semibold leading-snug text-white/90 group-hover:text-amber-400 transition-colors">
+              <h3 className="mb-2 font-display text-[14px] sm:text-[15px] md:text-[17px] font-semibold leading-snug text-white/90 group-hover:text-amber-400 transition-colors line-clamp-3">
                 {article.title}
               </h3>
 

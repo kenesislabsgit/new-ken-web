@@ -91,7 +91,7 @@ export default function Home() {
         </ErrorBoundary>
 
         {/* ── Features / Capabilities ── */}
-        <section className="relative z-[2] py-[160px] px-[24px] md:px-[48px] border-t border-white/[0.04] bg-[#0a0a0b]">
+        <section className="relative z-[2] py-[80px] sm:py-[120px] md:py-[160px] px-[16px] sm:px-[24px] md:px-[48px] border-t border-white/[0.04] bg-[#0a0a0b]">
           <div className="mx-auto max-w-[1100px]">
             <BlurFade delay={0} duration={0.5} blur="6px" offset={10} inView inViewMargin="-80px">
               <p className="font-mono-accent text-[11px] uppercase tracking-[0.2em] text-amber-400/40 mb-[12px]">Capabilities</p>
@@ -103,16 +103,16 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-[24px]">
               {FEATURES.map((f, i) => (
                 <ScrollReveal key={f.num} variant="scale-up" delay={i * 0.08} duration={0.5}>
-                  <div className="relative glass-card rounded-[16px] p-[40px] md:p-[48px] h-full group cursor-pointer hover:border-amber-400/20 hover:bg-white/[0.06] transition-all duration-400">
+                  <div className="relative glass-card rounded-[16px] p-[24px] sm:p-[40px] md:p-[48px] h-full group cursor-pointer hover:border-amber-400/20 hover:bg-white/[0.06] transition-all duration-400">
                     <BorderBeam size={180} duration={14} colorFrom="#f59e0b" colorTo="#d97706" borderWidth={1} />
-                    <div className="flex items-start justify-between mb-[32px]">
-                      <p className="font-mono-accent text-[48px] font-bold text-amber-400/[0.06] group-hover:text-amber-400/15 transition-colors duration-400 leading-none">{f.num}</p>
+                    <div className="flex items-start justify-between mb-[20px] sm:mb-[32px]">
+                      <p className="font-mono-accent text-[36px] sm:text-[48px] font-bold text-amber-400/[0.06] group-hover:text-amber-400/15 transition-colors duration-400 leading-none">{f.num}</p>
                       <div className="w-[40px] h-[40px] rounded-full border border-white/[0.06] flex items-center justify-center group-hover:border-amber-400/25 group-hover:bg-amber-400/[0.04] transition-all duration-400">
                         <span className="text-white/15 group-hover:text-amber-400/50 transition-colors text-[16px]">&rarr;</span>
                       </div>
                     </div>
-                    <h3 className="font-display text-[22px] font-semibold text-white/85 mb-[16px] group-hover:text-white transition-colors">{f.title}</h3>
-                    <p className="text-[16px] leading-[1.75] text-white/30 group-hover:text-white/45 transition-colors duration-400">{f.desc}</p>
+                    <h3 className="font-display text-[18px] sm:text-[22px] font-semibold text-white/85 mb-[12px] sm:mb-[16px] group-hover:text-white transition-colors">{f.title}</h3>
+                    <p className="text-[14px] sm:text-[16px] leading-[1.75] text-white/30 group-hover:text-white/45 transition-colors duration-400">{f.desc}</p>
                   </div>
                 </ScrollReveal>
               ))}

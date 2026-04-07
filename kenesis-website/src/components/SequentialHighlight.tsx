@@ -199,12 +199,12 @@ export default function SequentialHighlight({ heading, paragraphs }: Props) {
           {heading}
         </h2>
 
-        <div className="relative min-h-[360px] sm:min-h-[300px] md:min-h-[240px]">
+        <div className="relative min-h-[280px] sm:min-h-[300px] md:min-h-[240px]">
           {paragraphs.map((text, i) => (
             <p
               key={i}
               ref={el => { paraRefs.current[i] = el; }}
-              className="absolute inset-0 text-[clamp(1rem,2.2vw,1.65rem)] leading-[1.75] text-center max-w-[52rem] mx-auto font-light px-2 sm:px-0"
+              className="absolute inset-0 text-[clamp(1.3rem,2.2vw,1.65rem)] leading-[1.75] text-center max-w-[52rem] mx-auto font-light px-4 sm:px-2"
               style={{ opacity: 0 }}
             >
               {text.split(' ').map((word, j) => (

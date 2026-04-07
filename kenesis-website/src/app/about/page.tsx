@@ -62,7 +62,7 @@ export default function AboutPage() {
 
       {/* LiquidMetal logo — standalone contained element between hero and manifesto */}
       <section className="relative z-[2] flex items-center justify-center py-8 overflow-hidden">
-        <div className="relative w-[700px] h-[560px] md:w-[900px] md:h-[720px]"
+        <div className="relative w-[320px] h-[260px] sm:w-[700px] sm:h-[560px] md:w-[900px] md:h-[720px]"
           style={{ maskImage: 'radial-gradient(ellipse 80% 80% at center, black 20%, transparent 70%)', WebkitMaskImage: 'radial-gradient(ellipse 80% 80% at center, black 20%, transparent 70%)' }}
         >
           <LiquidMetalLogo
@@ -121,7 +121,7 @@ export default function AboutPage() {
       <section className="relative z-[2] py-24 overflow-hidden">
         <BlurFade delay={0} duration={0.6} blur="8px" offset={14} inView inViewMargin="-60px">
           <CircularGallery
-            className="h-[380px] mx-auto"
+            className="h-[280px] sm:h-[380px] mx-auto"
             radius={300}
             rotationSpeed={35}
             images={[
@@ -139,7 +139,7 @@ export default function AboutPage() {
 
       {/* â”€â”€ Numbers: full-bleed strip â”€â”€ */}
       <section className="relative z-[2] border-y border-white/[0.06] py-16">
-        <div className="mx-auto max-w-[80rem] px-6 md:px-12 grid grid-cols-2 md:grid-cols-4 gap-y-10">
+        <div className="mx-auto max-w-[80rem] px-6 md:px-12 grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-4">
           <div className="text-center">
             <p className="font-display text-[clamp(2.5rem,5vw,3.5rem)] font-semibold text-white/90 leading-none mb-2">
               <NumberTicker value={2025} delay={0.1} />
@@ -173,7 +173,7 @@ export default function AboutPage() {
           charset=" .,:;i1tfLCG08@#"
           color="#f59e0b"
           glitchRate={0.006}
-          className="w-full max-w-[72rem] mx-auto px-6 opacity-70"
+          className="w-full max-w-[72rem] mx-auto px-6 opacity-70 overflow-hidden"
         />
       </section>
 
@@ -231,8 +231,8 @@ export default function AboutPage() {
             ['2026 Q1', 'First enterprise deployments across Tamil Nadu'],
           ].map(([date, event], i) => (
             <ScrollReveal key={date} variant="fade-up" delay={i * 0.08} duration={0.5}>
-              <div className="flex items-baseline gap-8 py-4 border-b border-white/[0.04]">
-                <span className="font-mono-accent text-[0.9rem] text-amber-400/40 w-[80px] flex-shrink-0">{date}</span>
+              <div className="flex items-baseline gap-4 sm:gap-8 py-4 border-b border-white/[0.04]">
+                <span className="font-mono-accent text-[0.9rem] text-amber-400/40 w-[70px] sm:w-[80px] flex-shrink-0">{date}</span>
                 <span className="text-[1.1rem] text-white/50">{event}</span>
               </div>
             </ScrollReveal>

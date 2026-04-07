@@ -79,8 +79,8 @@ export default function CareersCTASection() {
 
       <div className="relative z-[1] flex h-screen w-full flex-col items-center justify-center px-[24px] md:px-[48px]">
         {/* Heading */}
-        <div ref={headingRef} className="mb-[32px] text-center">
-          <h2 className="font-display text-[clamp(40px,7vw,80px)] font-semibold leading-[1] tracking-[-0.03em]">
+        <div ref={headingRef} className="mb-[32px] text-center max-w-full">
+          <h2 className="font-display text-[clamp(28px,7vw,80px)] font-semibold leading-[1.05] tracking-[-0.03em]">
             {'Help us make factories safer.'.split(' ').map((word, i) => (
               <span key={i} className="cta-word inline-block mr-[0.3em] text-white/90" style={{ opacity: 0 }}>
                 {word}
@@ -101,7 +101,7 @@ export default function CareersCTASection() {
         </a>
 
         {/* Mosaic grid */}
-        <div ref={gridRef} className="mx-auto grid w-full max-w-[900px] grid-cols-3 gap-[16px]">
+        <div ref={gridRef} className="mx-auto grid w-full max-w-[900px] grid-cols-2 sm:grid-cols-3 gap-[12px] sm:gap-[16px]">
           {images.map((img, i) => (
             <div
               key={i}

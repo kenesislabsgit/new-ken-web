@@ -290,12 +290,12 @@ export default function DashboardPreview() {
           </span>
         </div>
 
-        <div className="relative z-[3] grid grid-cols-1 md:grid-cols-[180px_1fr] min-h-[520px]">
-          {/* Sidebar */}
-          <div className="hidden md:flex flex-col gap-[3px] p-[14px]" style={{ borderRight: '1px solid rgba(255,255,255,0.03)', background: 'rgba(0,0,0,0.1)' }}>
+        <div className="relative z-[3] grid grid-cols-1 md:grid-cols-[180px_1fr] min-h-[400px] md:min-h-[520px]">
+          {/* Sidebar — horizontal scroll on mobile, vertical on desktop */}
+          <div className="flex md:flex-col gap-[3px] p-[10px] md:p-[14px] overflow-x-auto scrollbar-hide md:overflow-x-visible" style={{ borderBottom: '1px solid rgba(255,255,255,0.03)', borderRight: 'none', background: 'rgba(0,0,0,0.1)' }}>
             {tabList.map((tab, i) => (
               <button key={tab} onClick={() => setActiveTab(i)}
-                className="text-left px-[12px] py-[10px] rounded-[10px] text-[12px] cursor-pointer transition-all duration-300 relative overflow-hidden"
+                className="text-left px-[12px] py-[8px] md:py-[10px] rounded-[10px] text-[11px] md:text-[12px] cursor-pointer transition-all duration-300 relative overflow-hidden whitespace-nowrap shrink-0"
                 style={i === activeTab ? {
                   background: 'linear-gradient(135deg, rgba(245,158,11,0.1) 0%, rgba(245,158,11,0.03) 100%)',
                   border: '1px solid rgba(245,158,11,0.12)',
@@ -307,7 +307,7 @@ export default function DashboardPreview() {
           </div>
 
           {/* Content area */}
-          <div className="p-[22px]">{content[activeTab]}</div>
+          <div className="p-[12px] sm:p-[16px] md:p-[22px] overflow-x-auto">{content[activeTab]}</div>
         </div>
       </div>
     </div>
