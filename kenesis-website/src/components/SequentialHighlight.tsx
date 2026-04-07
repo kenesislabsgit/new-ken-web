@@ -22,46 +22,65 @@ export default function SequentialHighlight({ heading, paragraphs }: Props) {
     if (!section || prefersReducedMotion()) return;
 
     const ctx = gsap.context(() => {
+      const n = paragraphs.length;
+
+      // Total scroll distance: heading + n paragraphs with breathing room
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: section,
           start: 'top top',
-          end: `+=${paragraphs.length * 100}%`,
+          end: `+=${(n + 1) * 100}%`,
           pin: true,
-          scrub: 1,
+          scrub: 0.5,
           anticipatePin: 1,
         },
       });
 
-      // Heading fades in first
+      // ── Phase 0: Heading reveals ──
       if (headingRef.current) {
         tl.fromTo(headingRef.current,
-          { opacity: 0, y: 30, filter: 'blur(12px)' },
-          { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.3, ease: 'power2.out' },
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, duration: 1, ease: 'power2.out' },
           0
         );
       }
 
-      // Each paragraph: fade in words sequentially, hold, then fade out
-      const n = paragraphs.length;
+      // ── Phase 1–N: Each paragraph gets an equal segment ──
+      // Each segment: [reveal words] → [hold] → [fade out]
+      // Segment size = 3 units each, starting after heading (1 unit)
+      const headingDur = 1;
+      const segmentDur = 3;
+
       paragraphs.forEach((_, i) => {
         const el = paraRefs.current[i];
         if (!el) return;
         const words = el.querySelectorAll('.sh-word');
-        const segmentStart = 0.3 + i * (1 / n);
+        const wordCount = words.length;
+        if (wordCount === 0) return;
 
-        // Fade in all words with stagger
+        const segStart = headingDur + i * segmentDur;
+
+        // Reveal: all words go from dim to bright, staggered
+        // Total stagger span = 1.5 units, each word's own tween = short
         tl.fromTo(words,
-          { opacity: 0.15, color: 'rgba(255,255,255,0.15)' },
-          { opacity: 1, color: 'rgba(255,255,255,0.85)', stagger: 0.02, duration: 0.25, ease: 'none' },
-          segmentStart
+          { opacity: 0.1, color: 'rgba(255,255,255,0.1)' },
+          {
+            opacity: 1,
+            color: 'rgba(255,255,255,0.9)',
+            duration: 1.5 / wordCount, // each word's individual duration
+            stagger: 1.5 / wordCount,  // total spread = 1.5 units
+            ease: 'none',
+          },
+          segStart
         );
 
-        // Fade out (except last paragraph)
+        // Hold fully visible for 0.5 units (implicit — gap between reveal end and fade start)
+
+        // Fade out (skip for last paragraph — it stays visible)
         if (i < n - 1) {
           tl.to(words,
-            { opacity: 0.08, color: 'rgba(255,255,255,0.08)', duration: 0.1, ease: 'power1.in' },
-            segmentStart + 0.3
+            { opacity: 0.06, color: 'rgba(255,255,255,0.06)', duration: 0.8, ease: 'power1.in' },
+            segStart + 2.2
           );
         }
       });
@@ -96,7 +115,7 @@ export default function SequentialHighlight({ heading, paragraphs }: Props) {
             className="text-[clamp(1.3rem,2.5vw,1.7rem)] leading-[1.6]"
           >
             {text.split(' ').map((word, j) => (
-              <span key={j} className="sh-word inline-block mr-[0.25em]" style={{ opacity: 0.15, color: 'rgba(255,255,255,0.15)' }}>
+              <span key={j} className="sh-word inline-block mr-[0.25em]" style={{ opacity: 0.1, color: 'rgba(255,255,255,0.1)' }}>
                 {word}
               </span>
             ))}
