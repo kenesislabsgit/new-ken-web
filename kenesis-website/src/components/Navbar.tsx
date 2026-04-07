@@ -11,7 +11,6 @@ gsap.registerPlugin(ScrollTrigger);
 const navLinks = [
   { label: "Platform", href: "/platform" },
   { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" },
 ];
 
 const mobileLinks = [
