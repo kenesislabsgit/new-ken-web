@@ -73,8 +73,6 @@ export default function Home() {
         <ProgressiveBlur position="top" height="150px" className="fixed top-0 left-0 right-0 z-[100]" />
         <HeroSection />
 
-        <PinnedFeatureTabs />
-
         {/* ── Scroll frame section — continuous ── */}
         <ScrollFrameSection
           frameSets={[...HW_FRAMES, ...FUNNEL_FRAMES]}
@@ -82,6 +80,8 @@ export default function Home() {
           sectionLabel="Kenesis Vision"
           sectionTitle="Hardware + Intelligence"
         />
+
+        <PinnedFeatureTabs />
 
         <TechCardsSection />
 
