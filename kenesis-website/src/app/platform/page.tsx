@@ -154,14 +154,14 @@ export default function PlatformPage() {
         <UnblurTextReveal as="h2" blurAmount={22} scaleFrom={0.87} scrub={1} start="top 85%" end="top 40%" splitBy="word" stagger={0.06} className="font-display text-[clamp(2rem,4vw,3rem)] font-semibold tracking-[-0.02em] text-white/90 mb-16">
           Why on-premise matters
         </UnblurTextReveal>
-        <div className="max-w-3xl space-y-12">
-          <TextReveal variant="highlight" scrub={1} start="top 85%" end="bottom 30%" className="text-[clamp(1.3rem,2.5vw,1.7rem)] leading-[1.6] text-white/60">
+        <div className="max-w-3xl space-y-[8rem]">
+          <TextReveal variant="highlight" scrub={1} start="top 85%" end="top 25%" className="text-[clamp(1.3rem,2.5vw,1.7rem)] leading-[1.6] text-white/60">
             Cloud processing means your factory footage travels to data centers you don&apos;t control, processed by models you can&apos;t audit. Under India&apos;s DPDP Act, that creates significant compliance liability.
           </TextReveal>
-          <TextReveal variant="highlight" scrub={1} start="top 85%" end="bottom 30%" className="text-[clamp(1.3rem,2.5vw,1.7rem)] leading-[1.6] text-white/60">
+          <TextReveal variant="highlight" scrub={1} start="top 85%" end="top 25%" className="text-[clamp(1.3rem,2.5vw,1.7rem)] leading-[1.6] text-white/60">
             Cloud means latency. A safety violation detected three seconds late is a safety violation missed. Our on-premise processing delivers alerts to your safety team before a cloud solution would finish uploading the frame.
           </TextReveal>
-          <TextReveal variant="highlight" scrub={1} start="top 85%" end="bottom 30%" className="text-[clamp(1.3rem,2.5vw,1.7rem)] leading-[1.6] text-white/60">
+          <TextReveal variant="highlight" scrub={1} start="top 85%" end="top 25%" className="text-[clamp(1.3rem,2.5vw,1.7rem)] leading-[1.6] text-white/60">
             Cloud means dependency. When your internet connection drops — a common reality in Indian industrial zones — your entire safety system goes offline. Kenesis continues operating because it was never dependent on connectivity.
           </TextReveal>
         </div>
