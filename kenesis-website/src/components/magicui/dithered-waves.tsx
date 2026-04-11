@@ -260,16 +260,18 @@ export function DitheredWaves({
 
     if (enableMouse) {
       window.addEventListener("mousemove", handleMouse);
-      window.addEventListener("touchmove", handleTouch, { passive: true });
-      window.addEventListener("touchend", handleTouchEnd);
+      canvas.addEventListener("touchstart", handleTouch, { passive: true });
+      canvas.addEventListener("touchmove", handleTouch, { passive: true });
+      canvas.addEventListener("touchend", handleTouchEnd);
     }
 
     return () => {
       cancelAnimationFrame(rafRef.current);
       rafRef.current = 0;
       window.removeEventListener("mousemove", handleMouse);
-      window.removeEventListener("touchmove", handleTouch);
-      window.removeEventListener("touchend", handleTouchEnd);
+      canvas.removeEventListener("touchstart", handleTouch);
+      canvas.removeEventListener("touchmove", handleTouch);
+      canvas.removeEventListener("touchend", handleTouchEnd);
       io.disconnect();
     };
   }, [draw, enableMouse]);

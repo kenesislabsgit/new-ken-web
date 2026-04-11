@@ -37,12 +37,13 @@ function BlurRevealText({ text, className, baseDelay = 0, stagger = 0.035 }: {
 export default function HeroSection() {
   const [mounted, setMounted] = useState(false);
   const [shaderReady, setShaderReady] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const introRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     setMounted(true);
-    // Delay shader init to let blur animations run smooth first
+    setIsMobile(window.innerWidth < 640);
     const t = setTimeout(() => setShaderReady(true), 800);
     return () => clearTimeout(t);
   }, []);
@@ -93,13 +94,13 @@ export default function HeroSection() {
                 {mounted ? (
                   <DitheredWaves
                     color="#f59e0b"
-                    cellSize={8}
+                    cellSize={isMobile ? 5 : 8}
                     speed={0.8}
-                    layers={3}
+                    layers={isMobile ? 2 : 3}
                     amplitude={50}
                     frequency={0.025}
                     enableMouse={true}
-                    mouseRadius={250}
+                    mouseRadius={isMobile ? 120 : 250}
                     charset=" .:-=+*#%@█"
                     className="h-full w-full"
                   />
