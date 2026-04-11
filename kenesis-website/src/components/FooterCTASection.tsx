@@ -102,7 +102,7 @@ export default function FooterCTASection() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={link.label}
-                    className="flex h-[4rem] w-[4rem] items-center justify-center rounded-full bg-white/10 text-white text-[1.4rem] transition-all duration-200 hover:bg-amber-500 hover:scale-105"
+                    className="flex h-[3.2rem] w-[3.2rem] sm:h-[4rem] sm:w-[4rem] items-center justify-center rounded-full bg-white/10 text-white text-[1.4rem] transition-all duration-200 hover:bg-amber-500 hover:scale-105"
                   >
                     {link.icon}
                   </a>
@@ -119,7 +119,7 @@ export default function FooterCTASection() {
               <div className="w-full" style={{ height: 'clamp(60px, 12vw, 120px)' }}>
                 <TextVideoMask
                   text="KENESIS"
-                  fontSize="clamp(5rem, 12vw, 10rem)"
+                  fontSize="clamp(3rem, 12vw, 10rem)"
                   fontWeight={400}
                   fontFamily="'MBF Neo Wave', var(--font-neowave), sans-serif"
                   mode="clip"
@@ -129,7 +129,7 @@ export default function FooterCTASection() {
                     color="#f59e0b"
                     cellSize={8}
                     speed={0.8}
-                    layers={5}
+                    layers={2}
                     amplitude={50}
                     frequency={0.025}
                     charset=" .:-=+*#%@█"

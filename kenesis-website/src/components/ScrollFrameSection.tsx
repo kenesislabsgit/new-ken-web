@@ -164,24 +164,24 @@ export default function ScrollFrameSection({ frameSets, panels, sectionLabel, se
         <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0b]/75 via-[#0a0a0b]/30 to-transparent pointer-events-none hidden md:block" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b]/80 via-[#0a0a0b]/20 to-transparent pointer-events-none md:hidden" />
 
-        <div className="absolute inset-0 flex items-end md:items-center pointer-events-none pb-[80px] md:pb-0">
-          <div className="w-full md:w-[48%] px-[16px] sm:px-[24px] md:px-[48px] lg:px-[64px]">
+        <div className="absolute inset-0 flex items-end md:items-center pointer-events-none pb-[60px] sm:pb-[80px] md:pb-0">
+          <div className="w-full md:w-[48%] px-4 sm:px-[24px] md:px-[48px] lg:px-[64px]">
             {sectionLabel && (
               <p className="font-mono-accent text-[12px] uppercase tracking-[0.2em] text-amber-400/40 mb-[4px]">{sectionLabel}</p>
             )}
             {sectionTitle && (
               <p className="font-display text-[16px] text-white/15 mb-[40px] hidden md:block">{sectionTitle}</p>
             )}
-            <div className="relative h-[240px] sm:h-[320px] md:h-[400px]">
+            <div className="relative h-[180px] sm:h-[280px] md:h-[400px]">
               {panels.map((panel, i) => (
                 <div key={panel.step} ref={el => { cardRefs.current[i] = el; }} className="absolute inset-0" style={{ opacity: 0 }}>
-                  <div className="flex items-center gap-[16px] mb-[32px]">
-                    <span className="font-mono-accent text-[13px] tracking-[0.16em] text-amber-400/70">{String(panel.step).padStart(2, '0')}</span>
-                    <span className="h-[1px] w-[40px] bg-amber-400/25" />
-                    <span className="font-mono-accent text-[13px] uppercase tracking-[0.12em] text-white/25">{panel.label}</span>
+                  <div className="flex items-center gap-[12px] sm:gap-[16px] mb-[16px] sm:mb-[32px]">
+                    <span className="font-mono-accent text-[11px] sm:text-[13px] tracking-[0.16em] text-amber-400/70">{String(panel.step).padStart(2, '0')}</span>
+                    <span className="h-[1px] w-[24px] sm:w-[40px] bg-amber-400/25" />
+                    <span className="font-mono-accent text-[11px] sm:text-[13px] uppercase tracking-[0.12em] text-white/25">{panel.label}</span>
                   </div>
-                  <h2 className="font-display text-[clamp(24px,6vw,72px)] font-semibold leading-[1.05] tracking-[-0.03em] text-white mb-[16px] md:mb-[24px]">{panel.headline}</h2>
-                  <p className="text-[14px] sm:text-[16px] md:text-[18px] leading-[1.7] text-white/35 max-w-[460px]">{panel.body}</p>
+                  <h2 className="font-display text-[clamp(20px,5vw,72px)] font-semibold leading-[1.1] tracking-[-0.03em] text-white mb-[10px] sm:mb-[16px] md:mb-[24px]">{panel.headline}</h2>
+                  <p className="text-[13px] sm:text-[15px] md:text-[18px] leading-[1.65] text-white/35 max-w-[460px]">{panel.body}</p>
                 </div>
               ))}
             </div>

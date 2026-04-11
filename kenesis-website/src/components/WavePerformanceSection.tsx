@@ -53,8 +53,8 @@ export default function WavePerformanceSection() {
           <BlurFade delay={0} duration={0.5} blur="4px" offset={8} inView inViewMargin="-60px">
             <div className="flex flex-wrap items-center gap-2 sm:gap-4 md:gap-5 mb-8 sm:mb-10">
               {FUNNEL.map((item, i, arr) => (
-                <div key={i} className="flex items-center gap-2 sm:gap-4 md:gap-5 shrink-0">
-                  <div className="flex flex-col items-center">
+                <div key={i} className="flex items-center gap-2 sm:gap-4 md:gap-5">
+                  <div className="flex flex-col items-center min-w-[40px]">
                     <span className="font-display text-[clamp(1.2rem,2.5vw,2.4rem)] font-bold text-white/85 tabular-nums">{item.val}</span>
                     <span className="font-mono-accent text-[8px] sm:text-[9px] uppercase tracking-[0.18em] text-white/20 mt-1">{item.unit}</span>
                   </div>

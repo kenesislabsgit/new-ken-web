@@ -51,8 +51,8 @@ export default function PartnerLogosSection() {
   const currentTestimonial = testimonials[activePartner];
 
   return (
-    <section id="partners" className="bg-[#0a0a0b] py-32">
-      <div className="mx-auto max-w-[1234px] px-6 md:px-12">
+    <section id="partners" className="bg-[#0a0a0b] py-16 sm:py-24 md:py-32">
+      <div className="mx-auto max-w-[1234px] px-4 sm:px-6 md:px-12">
         <AsciiDivider className="mb-12" accent="◇" />
 
         <div className="flex items-start justify-between gap-8">

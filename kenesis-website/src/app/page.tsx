@@ -96,7 +96,7 @@ export default function Home() {
             <BlurFade delay={0} duration={0.5} blur="6px" offset={10} inView inViewMargin="-80px">
               <p className="font-mono-accent text-[11px] uppercase tracking-[0.2em] text-amber-400/40 mb-[12px]">Capabilities</p>
             </BlurFade>
-            <TextReveal variant="word-slide" as="h2" start="top 85%" duration={0.8} stagger={0.06} className="font-display text-[clamp(32px,5vw,56px)] font-semibold tracking-[-0.025em] text-white/90 mb-[64px]">
+            <TextReveal variant="word-slide" as="h2" start="top 85%" duration={0.8} stagger={0.06} className="font-display text-[clamp(24px,5vw,56px)] font-semibold tracking-[-0.025em] text-white/90 mb-[32px] sm:mb-[48px] md:mb-[64px]">
               Core capabilities
             </TextReveal>
 
