@@ -181,7 +181,7 @@ export default function ScrollFrameSection({ frameSets, panels, sectionLabel, se
                     <span className="font-mono-accent text-[11px] sm:text-[13px] uppercase tracking-[0.12em] text-white/25">{panel.label}</span>
                   </div>
                   <h2 className="font-display text-[clamp(20px,5vw,72px)] font-semibold leading-[1.1] tracking-[-0.03em] text-white mb-[10px] sm:mb-[16px] md:mb-[24px]">{panel.headline}</h2>
-                  <p className="text-[13px] sm:text-[15px] md:text-[18px] leading-[1.65] text-white/35 max-w-[460px]">{panel.body}</p>
+                  <p className="text-[14px] sm:text-[16px] md:text-[18px] leading-[1.65] text-white/35 max-w-[460px]">{panel.body}</p>
                 </div>
               ))}
             </div>

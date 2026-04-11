@@ -44,7 +44,7 @@ export default function WavePerformanceSection() {
 
           {/* Description */}
           <BlurFade delay={0} duration={0.6} blur="8px" offset={14} inView inViewMargin="-60px">
-            <p className="text-[0.95rem] sm:text-[1.1rem] leading-[1.75] text-white/35 mb-8 sm:mb-10 max-w-[420px]">
+            <p className="text-[1rem] sm:text-[1.1rem] leading-[1.75] text-white/35 mb-8 sm:mb-10 max-w-[420px]">
               Every frame passes through three stages of refinement. Noise collapses into signal. When your phone rings, it means something.
             </p>
           </BlurFade>
@@ -56,7 +56,7 @@ export default function WavePerformanceSection() {
                 <div key={i} className="flex items-center gap-2 sm:gap-4 md:gap-5">
                   <div className="flex flex-col items-center min-w-[40px]">
                     <span className="font-display text-[clamp(1.2rem,2.5vw,2.4rem)] font-bold text-white/85 tabular-nums">{item.val}</span>
-                    <span className="font-mono-accent text-[8px] sm:text-[9px] uppercase tracking-[0.18em] text-white/20 mt-1">{item.unit}</span>
+                    <span className="font-mono-accent text-[9px] sm:text-[10px] uppercase tracking-[0.18em] text-white/25 mt-1">{item.unit}</span>
                   </div>
                   {i < arr.length - 1 && (
                     <svg width="18" height="12" viewBox="0 0 20 12" fill="none" className="text-amber-400/30 shrink-0">

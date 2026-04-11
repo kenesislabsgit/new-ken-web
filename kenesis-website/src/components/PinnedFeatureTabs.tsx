@@ -236,7 +236,7 @@ export default function PinnedFeatureTabs() {
           </h2>
           <p
             ref={subtitleRef}
-            className="font-mono-accent text-[11px] sm:text-[13px] leading-relaxed text-white/40 uppercase tracking-[0.08em] mb-0"
+            className="font-mono-accent text-[12px] sm:text-[13px] leading-relaxed text-white/40 uppercase tracking-[0.08em] mb-0"
           >
             Transform your existing camera infrastructure into an intelligent safety system. Fully on-premise, fully autonomous.
           </p>
@@ -299,24 +299,24 @@ export default function PinnedFeatureTabs() {
                 <div
                   ref={el => { videoCardRefs.current[i] = el; }}
                   className="mb-3 sm:mb-4 w-full overflow-hidden rounded-xl sm:rounded-2xl bg-white/5 border border-white/[0.06] flex-shrink-0"
-                  style={{ clipPath: i === 0 ? 'inset(0 0% 0 0)' : 'inset(0 100% 0 0)', height: 'clamp(140px, 28vh, 320px)' }}
+                  style={{ clipPath: i === 0 ? 'inset(0 0% 0 0)' : 'inset(0 100% 0 0)', height: 'clamp(160px, 30vh, 320px)' }}
                 >
                   <img
                     src={`/images/features/${i + 1}.webp`}
                     alt={tab.title}
-                    className="h-full w-full object-cover"
+                    className="h-full w-full object-cover object-center"
                     loading="lazy"
                   />
                 </div>
                 <h3
                   ref={el => { titleRefs.current[i] = el; }}
-                  className="mb-1 sm:mb-2 text-base sm:text-xl font-display font-semibold text-white/90"
+                  className="mb-1 sm:mb-2 text-[16px] sm:text-[20px] font-display font-semibold text-white/90"
                 >
                   {tab.title}
                 </h3>
                 <p
                   ref={el => { descRefs.current[i] = el; }}
-                  className="font-mono-accent text-[12px] sm:text-[13px] leading-relaxed text-white/40 tracking-[0.02em]"
+                  className="font-mono-accent text-[13px] sm:text-[14px] leading-[1.6] text-white/40 tracking-[0.02em]"
                 >
                   {tab.description}
                 </p>

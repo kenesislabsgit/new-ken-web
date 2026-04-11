@@ -121,7 +121,7 @@ export default function HeroSection() {
             </BlurFade>
           </h1>
           <BlurFade delay={1.5} duration={0.7} blur="8px" offset={16}>
-            <p className="mt-[1.2rem] sm:mt-[1.6rem] md:mt-[2.4rem] max-w-[44rem] text-[0.95rem] sm:text-[1.1rem] md:text-[1.4rem] leading-[1.7] text-white/30 font-light lg:text-[1.6rem]">
+            <p className="mt-[1.2rem] sm:mt-[1.6rem] md:mt-[2.4rem] max-w-[44rem] text-[1.05rem] sm:text-[1.2rem] md:text-[1.4rem] leading-[1.7] text-white/30 font-light lg:text-[1.6rem]">
               AI-powered safety monitoring that runs entirely on your premises. No cloud dependency, no data leaving your facility, no compromises.
             </p>
           </BlurFade>

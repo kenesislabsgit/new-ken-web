@@ -112,7 +112,7 @@ export default function Home() {
                       </div>
                     </div>
                     <h3 className="font-display text-[18px] sm:text-[22px] font-semibold text-white/85 mb-[12px] sm:mb-[16px] group-hover:text-white transition-colors">{f.title}</h3>
-                    <p className="text-[14px] sm:text-[16px] leading-[1.75] text-white/30 group-hover:text-white/45 transition-colors duration-400">{f.desc}</p>
+                    <p className="text-[14px] sm:text-[15px] md:text-[16px] leading-[1.75] text-white/30 group-hover:text-white/45 transition-colors duration-400">{f.desc}</p>
                   </div>
                 </ScrollReveal>
               ))}
