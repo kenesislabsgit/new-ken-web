@@ -52,19 +52,19 @@ export default function FooterCTASection() {
       {/* Content */}
       <div className="relative z-10">
         {/* Top section — heading + nav + socials */}
-        <div className="mx-auto max-w-[72rem] px-[1.6rem] sm:px-[2.4rem] pt-[5rem] sm:pt-[8rem] pb-[6rem] sm:pb-[12rem] md:px-[4.8rem]">
-          <div className="grid grid-cols-1 gap-[2.4rem] sm:gap-[4rem] md:grid-cols-[1fr_auto_auto]">
+        <div className="mx-auto max-w-[1152px] px-4 sm:px-6 pt-[60px] sm:pt-[80px] pb-[60px] sm:pb-[100px] md:px-12">
+          <div className="grid grid-cols-1 gap-8 sm:gap-10 md:grid-cols-[1fr_auto_auto]">
             {/* Left — heading + contact */}
             <div>
               <TextReveal
                 variant="word-slide"
                 as="h2"
-                className="font-display text-[clamp(2rem,5.5vw,5.6rem)] font-semibold leading-[1.05] tracking-[-0.02em] text-white/90"
+                className="font-display text-[clamp(28px,5.5vw,56px)] font-semibold leading-[1.05] tracking-[-0.02em] text-white/90"
               >
                 Let\'s talk about your facility
               </TextReveal>
               <ScrollReveal variant="fade-up" delay={0.2}>
-                <p className="mt-[2rem] font-mono-accent text-[1.2rem] leading-relaxed text-white/35 tracking-[0.02em]">
+                <p className="mt-5 font-mono-accent text-[14px] leading-relaxed text-white/35 tracking-[0.02em]">
                   Ready to see Kenesis in action? Reach out at<br />
                   <a href="mailto:admin@kenesis.ai" className="text-white/60 hover:text-amber-400 transition-colors underline">
                     admin@kenesis.ai
@@ -75,15 +75,15 @@ export default function FooterCTASection() {
 
             {/* Center — nav links */}
             <div>
-              <p className="mb-[1.6rem] font-mono-accent text-[1.1rem] font-bold uppercase tracking-[0.14em] text-white/25">
+              <p className="mb-4 font-mono-accent text-[12px] font-bold uppercase tracking-[0.14em] text-white/25">
                 About us
               </p>
-              <nav className="flex flex-col gap-[1rem]" aria-label="Footer navigation">
+              <nav className="flex flex-col gap-3" aria-label="Footer navigation">
                 {navLinks.map((link, i) => (
                   <ScrollReveal key={link.label} variant="fade-right" delay={i * 0.08 + 0.3}>
                     <a
                       href={link.href}
-                      className="text-[1.5rem] font-medium text-white/60 hover:text-amber-400 transition-colors"
+                      className="text-[16px] font-medium text-white/60 hover:text-amber-400 transition-colors"
                     >
                       {link.label}
                     </a>
@@ -102,7 +102,7 @@ export default function FooterCTASection() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={link.label}
-                    className="flex h-[3.2rem] w-[3.2rem] sm:h-[4rem] sm:w-[4rem] items-center justify-center rounded-full bg-white/10 text-white text-[1.4rem] transition-all duration-200 hover:bg-amber-500 hover:scale-105"
+                    className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-all duration-200 hover:bg-amber-500 hover:scale-105"
                   >
                     {link.icon}
                   </a>
@@ -113,7 +113,7 @@ export default function FooterCTASection() {
         </div>
 
         {/* Brand watermark */}
-        <div className="relative mx-auto max-w-[72rem] px-[2.4rem] pb-[4rem] md:px-[4.8rem]">
+        <div className="relative mx-auto max-w-[1152px] px-6 pb-8 md:px-12">
           <div className="flex items-end justify-end">
             <ScrollReveal variant="blur-in" duration={1.5}>
               <div className="w-full" style={{ height: 'clamp(60px, 12vw, 120px)' }}>
@@ -142,15 +142,15 @@ export default function FooterCTASection() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-white/10 px-[2.4rem] py-[2rem] md:px-[4.8rem]">
-          <div className="mx-auto max-w-[72rem] mb-2">
+        <div className="border-t border-white/10 px-6 py-5 md:px-12">
+          <div className="mx-auto max-w-[1152px] mb-2">
             <AsciiDivider accent="◈" className="text-white/[0.04]" />
           </div>
-          <div className="mx-auto flex max-w-[72rem] flex-col items-center justify-between gap-[1rem] md:flex-row">
-            <p className="font-mono-accent text-[1.1rem] text-white/25 tracking-[0.04em]">
+          <div className="mx-auto flex max-w-[1152px] flex-col items-center justify-between gap-3 md:flex-row">
+            <p className="font-mono-accent text-[12px] text-white/25 tracking-[0.04em]">
               &copy; 2026 Kenesis Labs Pvt. Ltd. All Rights Reserved. Chennai, India.
             </p>
-            <a href="/privacy-policy" className="font-mono-accent text-[1.1rem] font-medium text-white/35 underline hover:text-white transition-colors tracking-[0.04em]">
+            <a href="/privacy-policy" className="font-mono-accent text-[12px] font-medium text-white/35 underline hover:text-white transition-colors tracking-[0.04em]">
               Privacy Policy
             </a>
           </div>

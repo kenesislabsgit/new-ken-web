@@ -45,26 +45,20 @@ export default function Navbar() {
         gsap.set(bar, { width: `${self.progress * 100}%` });
       },
     });
-
-    // Recalculate after dynamic content loads
     const refreshTimer = setTimeout(() => ScrollTrigger.refresh(), 3000);
     const refreshTimer2 = setTimeout(() => ScrollTrigger.refresh(), 8000);
-
     return () => { trigger.kill(); clearTimeout(refreshTimer); clearTimeout(refreshTimer2); };
   }, []);
-
-
 
   return (
     <>
       <div
         ref={headerRef}
-        className="fixed top-[1.2rem] left-0 right-0 z-[500] mx-auto w-[calc(100vw-2rem)] max-w-[72rem] sm:top-[2.8rem] sm:w-[calc(100vw-4rem)]"
+        className="fixed top-[12px] left-0 right-0 z-[500] mx-auto w-[calc(100vw-24px)] max-w-[1152px] sm:top-[20px] sm:w-[calc(100vw-48px)]"
         style={{ opacity: 0, transform: "translateY(-80px)" }}
       >
-        {/* Glass panel */}
         <div
-          className="relative flex items-center justify-between rounded-[1.2rem] sm:rounded-[1.6rem] px-[1.4rem] py-[1rem] sm:px-[2.4rem] sm:py-[1.2rem]"
+          className="relative flex items-center justify-between rounded-[12px] sm:rounded-[16px] px-[14px] py-[10px] sm:px-[20px] sm:py-[12px]"
           style={{
             background: "rgba(10, 10, 11, 0.65)",
             backdropFilter: "blur(32px) saturate(1.4)",
@@ -73,21 +67,19 @@ export default function Navbar() {
             boxShadow: "0 8px 32px rgba(0,0,0,0.4), 0 1px 0 0 rgba(255,255,255,0.03) inset",
           }}
         >
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-[0.8rem] cursor-pointer" aria-label="Kenesis Labs home">
-            <span className="font-logo text-[1.8rem] tracking-[0.12em] uppercase text-white/90 leading-none sm:text-[2.6rem]">
+          <Link href="/" className="flex items-center gap-2 cursor-pointer" aria-label="Kenesis Labs home">
+            <span className="font-logo text-[18px] tracking-[0.12em] uppercase text-white/90 leading-none sm:text-[22px]">
               Kenesis
             </span>
           </Link>
 
-          {/* Desktop nav */}
-          <nav className="hidden items-center gap-[2.4rem] md:flex" aria-label="Main navigation">
+          <nav className="hidden items-center gap-6 md:flex" aria-label="Main navigation">
             {navLinks.map((link) => (
               <Tooltip key={link.label}>
                 <Tooltip.Trigger>
                   <Link
                     href={link.href}
-                    className="rounded-[0.8rem] px-[1.4rem] py-[0.8rem] font-mono-accent text-[1.2rem] font-medium uppercase tracking-[0.1em] text-white/50 transition-colors duration-200 hover:text-white/90 cursor-pointer"
+                    className="rounded-lg px-3 py-2 font-mono-accent text-[13px] font-medium uppercase tracking-[0.1em] text-white/50 transition-colors duration-200 hover:text-white/90 cursor-pointer"
                   >
                     {link.label}
                   </Link>
@@ -100,78 +92,65 @@ export default function Navbar() {
             ))}
           </nav>
 
-          {/* Right side — CTA + hamburger */}
-          <div className="flex items-center gap-[1.2rem]">
-            <Link
-              href="/contact"
-              className="hidden rounded-[1rem] md:block"
-            >
+          <div className="flex items-center gap-3">
+            <Link href="/contact" className="hidden rounded-xl md:block">
               <Button
                 variant="primary"
                 size="md"
-                className="font-mono-accent text-[1.1rem] font-bold uppercase tracking-[0.08em] rounded-[1rem] cursor-pointer"
+                className="font-mono-accent text-[12px] font-bold uppercase tracking-[0.08em] rounded-xl cursor-pointer"
               >
                 Request Demo
               </Button>
             </Link>
 
-            {/* Hamburger */}
             <button
               onClick={() => setOpen(!open)}
-              className="flex h-[3.6rem] w-[3.6rem] flex-col items-center justify-center gap-[0.5rem] rounded-[0.8rem] transition-colors hover:bg-white/[0.06] md:hidden cursor-pointer"
+              className="flex h-9 w-9 flex-col items-center justify-center gap-[5px] rounded-lg transition-colors hover:bg-white/[0.06] md:hidden cursor-pointer"
               aria-label={open ? "Close menu" : "Open menu"}
               aria-expanded={open}
             >
-              <span className={`block h-[1.5px] w-[1.8rem] bg-white/70 transition-all duration-300 ${open ? "translate-y-[3.5px] rotate-45" : ""}`} />
-              <span className={`block h-[1.5px] w-[1.8rem] bg-white/70 transition-all duration-300 ${open ? "-translate-y-[3.5px] -rotate-45" : ""}`} />
+              <span className={`block h-[1.5px] w-[18px] bg-white/70 transition-all duration-300 ${open ? "translate-y-[3.5px] rotate-45" : ""}`} />
+              <span className={`block h-[1.5px] w-[18px] bg-white/70 transition-all duration-300 ${open ? "-translate-y-[3.5px] -rotate-45" : ""}`} />
             </button>
           </div>
-        {/* Progress bar — inside glass panel at bottom */}
-        <div className="absolute bottom-0 left-[1.2rem] right-[1.2rem] h-[2px] overflow-hidden rounded-full bg-white/[0.04]">
-          <div
-            ref={progressRef}
-            className="h-full rounded-full"
-            style={{
-              width: "0%",
-              background: "linear-gradient(90deg, #fbbf24, #f59e0b, #d97706)",
-            }}
-          />
-        </div>
+
+          <div className="absolute bottom-0 left-3 right-3 h-[2px] overflow-hidden rounded-full bg-white/[0.04]">
+            <div
+              ref={progressRef}
+              className="h-full rounded-full"
+              style={{ width: "0%", background: "linear-gradient(90deg, #fbbf24, #f59e0b, #d97706)" }}
+            />
+          </div>
         </div>
       </div>
 
-      {/* Mobile overlay */}
       {open && (
-        <div className="fixed inset-0 z-[499] flex flex-col pt-[10rem] px-[2.4rem] pb-[3rem] md:hidden"
+        <div className="fixed inset-0 z-[499] flex flex-col pt-[80px] px-6 pb-6 md:hidden"
           style={{
             background: "rgba(10,10,11,0.6)",
             backdropFilter: "blur(40px) saturate(1.6)",
             WebkitBackdropFilter: "blur(40px) saturate(1.6)",
           }}
         >
-          <nav className="flex flex-col gap-[0.4rem]" aria-label="Mobile navigation">
+          <nav className="flex flex-col gap-1" aria-label="Mobile navigation">
             {mobileLinks.map((link) => (
               <Link
                 key={link.label}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="rounded-[1rem] px-[2rem] py-[1.4rem] font-mono-accent text-[1.4rem] font-medium uppercase tracking-[0.1em] text-white/60 transition-colors hover:bg-white/[0.06] hover:text-white/90 cursor-pointer"
+                className="rounded-xl px-5 py-4 font-mono-accent text-[16px] font-medium uppercase tracking-[0.1em] text-white/60 transition-colors hover:bg-white/[0.06] hover:text-white/90 cursor-pointer"
               >
                 {link.label}
               </Link>
             ))}
           </nav>
           <div className="mt-auto">
-            <Link
-              href="/contact"
-              onClick={() => setOpen(false)}
-              className="block w-full"
-            >
+            <Link href="/contact" onClick={() => setOpen(false)} className="block w-full">
               <Button
                 variant="primary"
                 fullWidth
                 size="lg"
-                className="font-mono-accent text-[1.3rem] font-bold uppercase tracking-[0.08em] rounded-[1.2rem] cursor-pointer"
+                className="font-mono-accent text-[14px] font-bold uppercase tracking-[0.08em] rounded-xl cursor-pointer"
               >
                 Request Demo
               </Button>
