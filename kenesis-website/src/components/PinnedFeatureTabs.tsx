@@ -217,7 +217,7 @@ export default function PinnedFeatureTabs() {
 
       <div className="relative flex flex-col md:flex-row h-screen w-full z-[1]">
         {/* Left column — heading + description */}
-        <div ref={leftColRef} className="flex w-full md:w-1/2 flex-col justify-end md:justify-center px-5 sm:px-6 md:px-12 lg:pl-16 xl:pl-24 lg:pr-16 pt-20 sm:pt-24 md:pt-0 pb-4 md:pb-0">
+        <div ref={leftColRef} className="flex w-full md:w-[45%] flex-col justify-end md:justify-center px-5 sm:px-6 md:px-12 lg:pl-16 xl:pl-24 lg:pr-12 pt-24 md:pt-0 pb-4 md:pb-0">
           <h2
             ref={headingRef}
             className="mb-3 sm:mb-6 font-display text-[clamp(1.5rem,4vw,3.5rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-white/90"
@@ -243,7 +243,7 @@ export default function PinnedFeatureTabs() {
         </div>
 
         {/* Right column — tabs + video card */}
-        <div className="flex w-full md:w-1/2 flex-col justify-start md:justify-center px-5 sm:px-6 md:pr-12 lg:pr-16 xl:pr-24 pb-6 md:pb-0 flex-1 md:flex-none overflow-hidden">
+        <div className="flex w-full md:w-[55%] flex-col justify-start md:justify-center px-5 sm:px-6 md:pl-8 md:pr-12 lg:pr-16 xl:pr-24 pb-6 md:pb-0 flex-1 overflow-hidden">
           {/* Tab bar with progress indicator */}
           <div ref={tabBarRef} className="relative mb-6 sm:mb-8">
             <div className="flex gap-4 sm:gap-8 border-b border-white/10 overflow-x-auto scrollbar-hide">
@@ -283,7 +283,7 @@ export default function PinnedFeatureTabs() {
           </div>
 
           {/* Tab content */}
-          <div className="relative flex-1 md:flex-none overflow-hidden">
+          <div className="relative flex-1 overflow-hidden">
             {TABS.map((tab, i) => (
               <div
                 key={tab.id}
@@ -299,7 +299,7 @@ export default function PinnedFeatureTabs() {
                 <div
                   ref={el => { videoCardRefs.current[i] = el; }}
                   className="mb-3 sm:mb-4 w-full overflow-hidden rounded-xl sm:rounded-2xl bg-white/5 border border-white/[0.06] flex-shrink-0"
-                  style={{ clipPath: i === 0 ? 'inset(0 0% 0 0)' : 'inset(0 100% 0 0)', height: 'clamp(160px, 30vh, 320px)' }}
+                  style={{ clipPath: i === 0 ? 'inset(0 0% 0 0)' : 'inset(0 100% 0 0)', height: 'clamp(160px, 35vh, 400px)' }}
                 >
                   <img
                     src={`/images/features/${i + 1}.webp`}
