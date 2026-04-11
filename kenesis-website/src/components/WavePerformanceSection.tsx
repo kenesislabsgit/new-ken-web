@@ -33,7 +33,7 @@ export default function WavePerformanceSection() {
           <BlurFade delay={0} duration={0.5} blur="6px" offset={10} inView inViewMargin="-60px">
             <div className="flex items-center gap-3 mb-6 sm:mb-8">
               <span className="h-[1px] w-8 bg-amber-400/40" />
-              <span className="font-mono-accent text-[11px] uppercase tracking-[0.22em] text-amber-400/50">How it works</span>
+              <span className="font-mono-accent text-[12px] uppercase tracking-[0.22em] text-amber-400/50">How it works</span>
             </div>
           </BlurFade>
 
@@ -44,7 +44,7 @@ export default function WavePerformanceSection() {
 
           {/* Description */}
           <BlurFade delay={0} duration={0.6} blur="8px" offset={14} inView inViewMargin="-60px">
-            <p className="text-[1rem] sm:text-[1.1rem] leading-[1.75] text-white/35 mb-8 sm:mb-10 max-w-[420px]">
+            <p className="text-[15px] sm:text-[17px] leading-[1.75] text-white/35 mb-8 sm:mb-10 max-w-[420px]">
               Every frame passes through three stages of refinement. Noise collapses into signal. When your phone rings, it means something.
             </p>
           </BlurFade>
@@ -56,7 +56,7 @@ export default function WavePerformanceSection() {
                 <div key={i} className="flex items-center gap-2 sm:gap-4 md:gap-5">
                   <div className="flex flex-col items-center min-w-[40px]">
                     <span className="font-display text-[clamp(1.2rem,2.5vw,2.4rem)] font-bold text-white/85 tabular-nums">{item.val}</span>
-                    <span className="font-mono-accent text-[9px] sm:text-[10px] uppercase tracking-[0.18em] text-white/25 mt-1">{item.unit}</span>
+                    <span className="font-mono-accent text-[10px] sm:text-[11px] uppercase tracking-[0.18em] text-white/30 mt-1">{item.unit}</span>
                   </div>
                   {i < arr.length - 1 && (
                     <svg width="18" height="12" viewBox="0 0 20 12" fill="none" className="text-amber-400/30 shrink-0">
@@ -72,7 +72,7 @@ export default function WavePerformanceSection() {
           <ScrollReveal variant="scale-up" delay={0.3}>
             <a
               href="/platform"
-              className="group inline-flex items-center gap-3 font-mono-accent text-[0.9rem] sm:text-[1.05rem] font-medium tracking-[0.06em] uppercase text-white/50 transition-all duration-300 hover:text-white cursor-pointer"
+              className="group inline-flex items-center gap-3 font-mono-accent text-[13px] sm:text-[15px] font-medium tracking-[0.06em] uppercase text-white/50 transition-all duration-300 hover:text-white cursor-pointer"
             >
               <span>Explore the platform</span>
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="transition-transform duration-300 group-hover:translate-x-1">

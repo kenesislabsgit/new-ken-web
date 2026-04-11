@@ -236,7 +236,7 @@ export default function PinnedFeatureTabs() {
           </h2>
           <p
             ref={subtitleRef}
-            className="font-mono-accent text-[12px] sm:text-[13px] leading-relaxed text-white/40 uppercase tracking-[0.08em]"
+            className="font-mono-accent text-[13px] sm:text-[14px] leading-relaxed text-white/40 uppercase tracking-[0.08em]"
           >
             Transform your existing camera infrastructure into an intelligent safety system. Fully on-premise, fully autonomous.
           </p>
@@ -313,7 +313,7 @@ export default function PinnedFeatureTabs() {
                 </h3>
                 <p
                   ref={el => { descRefs.current[i] = el; }}
-                  className="font-mono-accent text-[13px] sm:text-[14px] leading-[1.6] text-white/40 tracking-[0.02em]"
+                  className="font-mono-accent text-[14px] sm:text-[15px] leading-[1.6] text-white/40 tracking-[0.02em]"
                 >
                   {tab.description}
                 </p>
