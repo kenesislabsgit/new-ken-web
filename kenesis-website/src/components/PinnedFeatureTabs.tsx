@@ -215,9 +215,9 @@ export default function PinnedFeatureTabs() {
         flickerChance={0.15}
       />
 
-      <div className="relative z-[1] h-full flex flex-col md:grid md:grid-cols-2 md:items-center md:gap-8 px-5 sm:px-6 md:px-12 lg:px-16 xl:px-24 pt-20 md:pt-0">
+      <div className="relative z-[1] h-full grid grid-rows-[auto_1fr] md:grid-rows-none md:grid-cols-2 gap-0 md:gap-8 px-5 sm:px-6 md:px-12 lg:px-16 xl:px-24">
           {/* Left column — heading + description */}
-          <div ref={leftColRef} className="mb-2 md:mb-0">
+          <div ref={leftColRef} className="flex flex-col justify-end md:justify-center pt-20 md:pt-0 pb-4 md:pb-0">
             <h2
               ref={headingRef}
               className="mb-3 sm:mb-6 font-display text-[clamp(1.5rem,4vw,3.5rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-white/90"
@@ -236,21 +236,21 @@ export default function PinnedFeatureTabs() {
           </h2>
           <p
             ref={subtitleRef}
-            className="font-mono-accent text-[12px] sm:text-[13px] leading-relaxed text-white/40 uppercase tracking-[0.08em] mb-0"
+            className="font-mono-accent text-[12px] sm:text-[13px] leading-relaxed text-white/40 uppercase tracking-[0.08em]"
           >
             Transform your existing camera infrastructure into an intelligent safety system. Fully on-premise, fully autonomous.
           </p>
         </div>
 
         {/* Right column — tabs + video card */}
-        <div className="flex flex-col flex-1 md:flex-none overflow-hidden">
+        <div className="flex flex-col justify-start md:justify-center overflow-hidden pb-6 md:pb-0">
           {/* Tab bar with progress indicator */}
-          <div ref={tabBarRef} className="relative mb-6 sm:mb-8">
+          <div ref={tabBarRef} className="relative mb-4 sm:mb-6 md:mb-8">
             <div className="flex gap-4 sm:gap-8 border-b border-white/10 overflow-x-auto scrollbar-hide">
               {TABS.map((tab, i) => (
                 <button
                   key={tab.id}
-                  className="relative pb-3 text-[15px] font-medium transition-colors duration-300 cursor-pointer"
+                  className="relative pb-3 text-[15px] font-medium transition-colors duration-300 cursor-pointer whitespace-nowrap"
                   style={{ color: activeTab === i ? '#ffffff' : 'rgba(255,255,255,0.35)' }}
                   data-tab-button={i}
                   onClick={() => {
@@ -264,7 +264,6 @@ export default function PinnedFeatureTabs() {
                   }}
                 >
                   {tab.label}
-                  {/* Individual tab underline */}
                   <div
                     className="absolute bottom-0 left-0 h-[2px] w-full origin-left bg-amber-400 transition-transform duration-300"
                     style={{ transform: activeTab === i ? 'scaleX(1)' : 'scaleX(0)' }}
@@ -272,7 +271,6 @@ export default function PinnedFeatureTabs() {
                 </button>
               ))}
             </div>
-            {/* Continuous scroll progress bar */}
             <div className="absolute bottom-0 left-0 h-[2px] w-full overflow-hidden">
               <div
                 ref={progressBarRef}
@@ -282,8 +280,8 @@ export default function PinnedFeatureTabs() {
             </div>
           </div>
 
-          {/* Tab content */}
-          <div className="relative flex-1 overflow-hidden">
+          {/* Tab content — fixed height so image + text always visible */}
+          <div className="relative" style={{ height: 'clamp(280px, 55vh, 520px)' }}>
             {TABS.map((tab, i) => (
               <div
                 key={tab.id}
@@ -295,11 +293,10 @@ export default function PinnedFeatureTabs() {
                 }}
                 data-tab-content={i}
               >
-                {/* Video placeholder card with clip-path reveal */}
                 <div
                   ref={el => { videoCardRefs.current[i] = el; }}
                   className="mb-3 sm:mb-4 w-full overflow-hidden rounded-xl sm:rounded-2xl bg-white/5 border border-white/[0.06] flex-shrink-0"
-                  style={{ clipPath: i === 0 ? 'inset(0 0% 0 0)' : 'inset(0 100% 0 0)', height: 'clamp(160px, 35vh, 400px)' }}
+                  style={{ clipPath: i === 0 ? 'inset(0 0% 0 0)' : 'inset(0 100% 0 0)', height: 'clamp(150px, 32vh, 360px)' }}
                 >
                   <img
                     src={`/images/features/${i + 1}.webp`}
