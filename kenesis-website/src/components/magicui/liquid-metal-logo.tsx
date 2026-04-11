@@ -44,17 +44,26 @@ export function LiquidMetalLogo({
 
   useEffect(() => {
     if (reduced) return;
+    // Timeout fallback — show container even if shader fails
+    const timeout = setTimeout(() => setShaderRendered(true), 3000);
     import("@paper-design/shaders-react").then((mod) => {
       if (mod.LiquidMetal) {
         setLiquidMetal(() => mod.LiquidMetal);
-        // Give the shader 2 frames to render before showing
         requestAnimationFrame(() => {
           requestAnimationFrame(() => {
             setShaderRendered(true);
+            clearTimeout(timeout);
           });
         });
+      } else {
+        setShaderRendered(true);
+        clearTimeout(timeout);
       }
+    }).catch(() => {
+      setShaderRendered(true);
+      clearTimeout(timeout);
     });
+    return () => clearTimeout(timeout);
   }, [reduced]);
 
   return (
@@ -63,7 +72,10 @@ export function LiquidMetalLogo({
       className={cn("relative overflow-hidden transition-opacity duration-500", className)}
       style={{ width, height, opacity: shaderRendered ? 1 : 0 }}
     >
-      {/* Only render when shader is ready — no static fallback */}
+      {/* Only render when shader is ready — static fallback if shader fails */}
+      {!LiquidMetal && shaderRendered && (
+        <img src={src} alt="" className="w-full h-full object-contain opacity-30" />
+      )}
       {LiquidMetal && !reduced && (
         <div>
           <LiquidMetal
