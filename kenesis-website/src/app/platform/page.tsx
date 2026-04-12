@@ -13,20 +13,26 @@ import { TypewriterText } from '@/components/magicui/typewriter-text';
 import { DitheredWaves } from '@/components/magicui/dithered-waves';
 import SequentialHighlight from '@/components/SequentialHighlight';
 
-const SPECS = [
-  ['Response Time', '<100ms'],
-  ['Camera Streams', 'Up to 64'],
-  ['Processing', 'On-premise'],
-  ['Deployment', '48 hours'],
-  ['Storage', 'Local + encrypted'],
-  ['Alert Latency', '<3 seconds'],
-  ['Cameras', 'Any IP camera'],
-  ['Compliance', 'DPDP Act ready'],
-  ['Cloud Dependency', 'Zero'],
-  ['False Positives', 'Near-zero'],
-  ['Internet Required', 'No'],
-  ['Uptime', 'Always-on'],
-];
+const SPECS: Record<string, { label: string; value: string; unit?: string; highlight: boolean }[]> = {
+  performance: [
+    { label: 'Response Time', value: '<100ms', highlight: true },
+    { label: 'Camera Streams', value: '64', unit: 'concurrent', highlight: false },
+    { label: 'Alert Latency', value: '<3s', highlight: false },
+    { label: 'Deployment', value: '48hrs', highlight: false },
+  ],
+  architecture: [
+    { label: 'Processing', value: 'On-premise', highlight: true },
+    { label: 'Cloud Dependency', value: 'None', highlight: true },
+    { label: 'Internet Required', value: 'No', highlight: false },
+    { label: 'Uptime', value: '99.9%', highlight: false },
+  ],
+  compatibility: [
+    { label: 'Cameras', value: 'Any IP camera', highlight: false },
+    { label: 'Storage', value: 'Local + AES-256', highlight: false },
+    { label: 'Compliance', value: 'DPDP Act', highlight: true },
+    { label: 'False Positive Rate', value: '<2%', highlight: false },
+  ],
+};
 
 export default function PlatformPage() {
   return (
@@ -165,17 +171,36 @@ export default function PlatformPage() {
       {/* Specs */}
       <section className="relative z-[2] py-[80px] sm:py-[120px] md:py-[160px] px-[16px] sm:px-[24px] md:px-[48px] bg-[#0a0a0b]">
         <div className="mx-auto max-w-[1100px]">
-          <UnblurTextReveal as="h2" blurAmount={16} scaleFrom={0.93} scrub={1} start="top 85%" end="top 55%" splitBy="word" stagger={0.05} className="font-display text-[clamp(32px,5vw,56px)] font-semibold tracking-[-0.025em] text-white/90 mb-[64px]">
+          <UnblurTextReveal as="h2" blurAmount={16} scaleFrom={0.93} scrub={1} start="top 85%" end="top 55%" splitBy="word" stagger={0.05} className="font-display text-[clamp(32px,5vw,56px)] font-semibold tracking-[-0.035em] text-white/95 mb-6">
             Technical specifications
           </UnblurTextReveal>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[16px]">
-            {SPECS.map(([label, value], i) => (
-              <ScrollReveal key={label} variant="scale-up" delay={i * 0.03} duration={0.4}>
-                <div className="group rounded-[12px] border border-white/[0.04] bg-white/[0.015] p-[24px] hover:border-amber-400/15 hover:bg-white/[0.035] transition-all duration-300 cursor-pointer">
-                  <p className="font-mono-accent text-[10px] uppercase tracking-[0.14em] text-white/20 group-hover:text-amber-400/40 transition-colors mb-[12px]">{label}</p>
-                  <p className="font-display text-[18px] font-semibold text-white/75 group-hover:text-white transition-colors">{value}</p>
+          <BlurFade delay={0} duration={0.5} blur="6px" offset={8} inView inViewMargin="-60px">
+            <p className="text-[15px] sm:text-[16px] text-white/35 mb-12 sm:mb-16 max-w-xl">Numbers that matter to your engineering and procurement teams.</p>
+          </BlurFade>
+
+          <div className="space-y-10 sm:space-y-14">
+            {Object.entries(SPECS).map(([category, items], ci) => (
+              <div key={category}>
+                <ScrollReveal variant="fade-up" delay={ci * 0.1} duration={0.4}>
+                  <div className="flex items-center gap-3 mb-5">
+                    <span className="h-[1px] w-5 bg-amber-400/30" />
+                    <span className="font-mono-accent text-[11px] uppercase tracking-[0.2em] text-amber-400/50">{category}</span>
+                  </div>
+                </ScrollReveal>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+                  {items.map((spec, i) => (
+                    <ScrollReveal key={spec.label} variant="scale-up" delay={ci * 0.08 + i * 0.04} duration={0.4}>
+                      <div className={`group rounded-[14px] p-5 sm:p-6 transition-all duration-300 cursor-default ${spec.highlight ? 'bg-amber-400/[0.04] border border-amber-400/10 hover:border-amber-400/25' : 'bg-white/[0.02] border border-white/[0.05] hover:border-white/[0.12]'}`}>
+                        <p className="font-mono-accent text-[10px] uppercase tracking-[0.16em] text-white/25 mb-3">{spec.label}</p>
+                        <div className="flex items-baseline gap-1">
+                          <p className={`font-display text-[20px] sm:text-[22px] font-bold tracking-[-0.02em] ${spec.highlight ? 'text-amber-400/90' : 'text-white/80'}`}>{spec.value}</p>
+                          {spec.unit && <span className="font-mono-accent text-[10px] text-white/20">{spec.unit}</span>}
+                        </div>
+                      </div>
+                    </ScrollReveal>
+                  ))}
                 </div>
-              </ScrollReveal>
+              </div>
             ))}
           </div>
         </div>
