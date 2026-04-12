@@ -61,8 +61,30 @@ export default function AboutPage() {
       </section>
 
       {/* LiquidMetal logo */}
-      <section className="relative z-[2] flex items-center justify-center py-8 sm:py-8 overflow-hidden">
-        <div className="relative w-[280px] h-[280px] sm:w-[700px] sm:h-[560px] md:w-[900px] md:h-[720px]"
+      <section className="relative z-[2] flex items-center justify-center py-8 overflow-hidden">
+        {/* Mobile */}
+        <div className="sm:hidden relative w-[280px] h-[280px]"
+          style={{ maskImage: 'radial-gradient(ellipse 90% 90% at center, black 40%, transparent 85%)', WebkitMaskImage: 'radial-gradient(ellipse 90% 90% at center, black 40%, transparent 85%)' }}
+        >
+          <LiquidMetalLogo
+            src="/kenesis-icon.png"
+            width={280}
+            height={280}
+            className="!w-full !h-full"
+            colorBack="#0a0a0b"
+            colorTint="#f59e0b"
+            speed={0.3}
+            distortion={0.02}
+            shiftRed={0.1}
+            shiftBlue={0.05}
+            softness={0.25}
+            contour={0.2}
+            angle={40}
+            scale={0.85}
+          />
+        </div>
+        {/* Desktop */}
+        <div className="hidden sm:block relative w-[700px] h-[560px] md:w-[900px] md:h-[720px]"
           style={{ maskImage: 'radial-gradient(ellipse 90% 90% at center, black 30%, transparent 80%)', WebkitMaskImage: 'radial-gradient(ellipse 90% 90% at center, black 30%, transparent 80%)' }}
         >
           <LiquidMetalLogo
