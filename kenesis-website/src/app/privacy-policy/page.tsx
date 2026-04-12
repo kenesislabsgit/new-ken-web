@@ -19,12 +19,12 @@ export default function PrivacyPolicyPage() {
           <p className="font-mono-accent text-[1.1rem] uppercase tracking-[0.14em] text-white/30 mb-8">Legal</p>
         </BlurFade>
         <BlurFade delay={0.15} duration={0.7} blur="10px" offset={20}>
-          <h1 className="font-display font-semibold text-[clamp(3rem,7vw,5rem)] leading-[1.05] tracking-[-0.02em] text-white/90 mb-12">
+          <h1 className="font-display font-semibold text-[clamp(32px,7vw,56px)] leading-[1.05] tracking-[-0.02em] text-white/90 mb-12">
             Privacy Policy
           </h1>
         </BlurFade>
-        <div className="space-y-8 text-[1.4rem] leading-[1.8] text-white/50">
-          <TextReveal variant="word-fade" scrub={0.5} className="text-[1.4rem] leading-[1.8] text-white/50">
+        <div className="space-y-8 text-[16px] leading-[1.8] text-white/50">
+          <TextReveal variant="word-fade" scrub={0.5} className="text-[16px] leading-[1.8] text-white/50">
             Kenesis is committed to protecting your privacy. This policy describes how we collect, use, and share information when you use our website and services.
           </TextReveal>
 
@@ -64,3 +64,4 @@ export default function PrivacyPolicyPage() {
     </PageShell>
   );
 }
+

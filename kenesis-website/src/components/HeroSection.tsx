@@ -113,7 +113,7 @@ export default function HeroSection() {
         </div>
         {/* Heading text - bottom left */}
         <div className="absolute bottom-[3rem] sm:bottom-[4rem] md:bottom-[6rem] left-0 px-4 sm:px-6 md:px-12 lg:px-[5rem] w-full">
-          <h1 className="font-display text-[clamp(1.8rem,6vw,7rem)] font-medium leading-[1.02] tracking-[-0.04em] text-white/95 max-w-[90vw]">
+          <h1 className="font-display text-[clamp(28px,6vw,72px)] font-medium leading-[1.02] tracking-[-0.04em] text-white/95 max-w-[90vw]">
             <BlurFade delay={0.3} duration={0.7} blur="12px" offset={20}>
               <span className="block">Industrial AI.</span>
             </BlurFade>

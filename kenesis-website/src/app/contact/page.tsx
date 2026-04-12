@@ -117,7 +117,7 @@ export default function ContactPage() {
 
       <div className="relative z-[1] min-h-screen">
         {/* ── Top bar ── */}
-        <div className="mx-auto max-w-[88rem] px-4 sm:px-8 md:px-16 pt-[10rem] sm:pt-[14rem] pb-[4rem] sm:pb-[6rem]">
+        <div className="mx-auto max-w-[1280px] px-4 sm:px-8 md:px-16 pt-[10rem] sm:pt-[14rem] pb-[4rem] sm:pb-[6rem]">
           <BlurFade delay={0.05} duration={0.5} blur="6px" offset={10}>
             <div className="flex items-center gap-3 mb-[4rem]">
               <span className="h-[1px] w-[3rem] bg-amber-400/40" />
@@ -129,7 +129,7 @@ export default function ContactPage() {
 
           {/* ── Hero headline ── */}
           <BlurFade delay={0.1} duration={0.7} blur="12px" offset={24}>
-            <h1 className="font-display text-[clamp(2.4rem,9vw,9rem)] font-semibold leading-[0.95] tracking-[-0.04em] text-white/90 max-w-[16ch]">
+            <h1 className="font-display text-[clamp(28px,9vw,72px)] font-semibold leading-[0.95] tracking-[-0.04em] text-white/90 max-w-[16ch]">
               Let&apos;s discuss<br />
               <span className="text-amber-400/80">your safety</span><br />
               infrastructure.
@@ -137,14 +137,14 @@ export default function ContactPage() {
           </BlurFade>
 
           <BlurFade delay={0.3} duration={0.6} blur="8px" offset={16}>
-            <p className="mt-[2rem] sm:mt-[3rem] max-w-[44rem] font-display text-[1.2rem] sm:text-[1.6rem] leading-[1.65] text-white/35 font-light">
+            <p className="mt-[2rem] sm:mt-[3rem] max-w-[640px] font-display text-[14px] sm:text-[18px] leading-[1.65] text-white/35 font-light">
               Schedule a walkthrough of our platform. We\'ll connect to your cameras and show you what Kenesis sees — no commitment required.
             </p>
           </BlurFade>
         </div>
 
         {/* ── Main grid ── */}
-        <div className="mx-auto max-w-[88rem] px-4 md:px-8 lg:px-16 pb-[12rem]">
+        <div className="mx-auto max-w-[1280px] px-4 md:px-8 lg:px-16 pb-[12rem]">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-[4rem] lg:gap-[10rem]">
 
             {/* Left — info */}
@@ -157,9 +157,9 @@ export default function ContactPage() {
                   <p className="font-mono-accent text-[1rem] uppercase tracking-[0.14em] text-amber-400/40 mb-[2rem]">
                     Office
                   </p>
-                  <p className="font-display text-[1.4rem] sm:text-[1.8rem] font-medium text-white/80 leading-[1.5]">
+                  <p className="font-display text-[16px] sm:text-[20px] font-medium text-white/80 leading-[1.5]">
                     Kenesis Labs<br />
-                    <span className="text-white/35 font-light text-[1.1rem] sm:text-[1.4rem]">iTamilnadu Technology Hub (iTNT)<br />Anna University, Sir C V Raman Science Block, 3rd Floor<br />Kotturpuram, Chennai, Tamil Nadu 600025</span>
+                    <span className="text-white/35 font-light text-[1.1rem] sm:text-[16px]">iTamilnadu Technology Hub (iTNT)<br />Anna University, Sir C V Raman Science Block, 3rd Floor<br />Kotturpuram, Chennai, Tamil Nadu 600025</span>
                   </p>
                 </div>
 
@@ -169,7 +169,7 @@ export default function ContactPage() {
                   </p>
                   <a
                     href="mailto:admin@kenesis.ai"
-                    className="font-display text-[1.4rem] sm:text-[1.8rem] font-medium text-white/70 hover:text-amber-400 transition-colors duration-200 cursor-pointer break-all"
+                    className="font-display text-[16px] sm:text-[20px] font-medium text-white/70 hover:text-amber-400 transition-colors duration-200 cursor-pointer break-all"
                   >
                     admin@kenesis.ai
                   </a>
@@ -181,20 +181,20 @@ export default function ContactPage() {
                   </p>
                   <a
                     href="tel:+919342281662"
-                    className="font-display text-[1.4rem] sm:text-[1.8rem] font-medium text-white/70 hover:text-amber-400 transition-colors duration-200 cursor-pointer"
+                    className="font-display text-[16px] sm:text-[20px] font-medium text-white/70 hover:text-amber-400 transition-colors duration-200 cursor-pointer"
                   >
                     +91 93422 81662
                   </a>
-                  <p className="font-display text-[1.2rem] text-white/25 mt-[0.4rem]">Available during business hours (IST)</p>
+                  <p className="font-display text-[14px] text-white/25 mt-[0.4rem]">Available during business hours (IST)</p>
                 </div>
 
                 <div>
                   <p className="font-mono-accent text-[1rem] uppercase tracking-[0.14em] text-amber-400/40 mb-[2rem]">
                     Hours
                   </p>
-                  <p className="font-display text-[1.6rem] font-medium text-white/50 font-light">
+                  <p className="font-display text-[18px] font-medium text-white/50 font-light">
                     Mon – Fri, 9:00 AM – 6:00 PM IST<br />
-                    <span className="text-white/25 text-[1.2rem]">We respond within 24–48 hours</span>
+                    <span className="text-white/25 text-[14px]">We respond within 24–48 hours</span>
                   </p>
                 </div>
               </div>
@@ -205,10 +205,10 @@ export default function ContactPage() {
               {submitted ? (
                 <div className="flex flex-col items-start justify-center h-full min-h-[40rem] gap-6">
                   <div className="h-[1px] w-[6rem] bg-amber-400/60" />
-                  <p className="font-display text-[3.5rem] font-semibold text-white/90 leading-[1.1]">
+                  <p className="font-display text-[36px] font-semibold text-white/90 leading-[1.1]">
                     Message<br />received.
                   </p>
-                  <p className="font-display text-[1.5rem] text-white/35 font-light">
+                  <p className="font-display text-[17px] text-white/35 font-light">
                     We&apos;ll be in touch within 24 hours.
                   </p>
                 </div>
@@ -289,7 +289,7 @@ export default function ContactPage() {
                     <button
                       type="submit"
                       disabled={sending}
-                      className="group relative overflow-hidden rounded-full px-[2.4rem] sm:px-[3.2rem] py-[1.2rem] sm:py-[1.4rem] font-mono-accent text-[1rem] sm:text-[1.2rem] uppercase tracking-[0.12em] font-semibold text-[#0a0a0b] cursor-pointer transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto"
+                      className="group relative overflow-hidden rounded-full px-[2.4rem] sm:px-[3.2rem] py-[1.2rem] sm:py-[1.4rem] font-mono-accent text-[1rem] sm:text-[14px] uppercase tracking-[0.12em] font-semibold text-[#0a0a0b] cursor-pointer transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto"
                       style={{
                         background: 'linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%)',
                         boxShadow: '0 0 40px rgba(245,158,11,0.25), 0 4px 16px rgba(245,158,11,0.2)',
@@ -313,3 +313,4 @@ export default function ContactPage() {
     </PageShell>
   );
 }
+

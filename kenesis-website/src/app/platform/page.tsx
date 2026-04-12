@@ -37,17 +37,17 @@ export default function PlatformPage() {
       </div>
 
       {/* Hero */}
-      <section className="relative z-[1] mx-auto max-w-[72rem] px-4 sm:px-6 pb-24 sm:pb-40 md:px-12">
+      <section className="relative z-[1] mx-auto max-w-[1152px] px-4 sm:px-6 pb-24 sm:pb-40 md:px-12">
         <BlurFade delay={0.1} duration={0.5} blur="6px" offset={12}>
-          <p className="font-mono-accent text-[1rem] uppercase tracking-[0.14em] text-amber-400/50 mb-10">Platform</p>
+          <p className="font-mono-accent text-[14px] uppercase tracking-[0.14em] text-amber-400/50 mb-10">Platform</p>
         </BlurFade>
         <BlurFade delay={0.25} duration={0.8} blur="10px" offset={20}>
-          <h1 className="font-display text-[clamp(3rem,7.5vw,6.5rem)] font-semibold leading-[0.95] tracking-[-0.03em] text-white mb-6">
+          <h1 className="font-display text-[clamp(32px,7.5vw,64px)] font-semibold leading-[0.95] tracking-[-0.03em] text-white mb-6">
             The platform behind intelligent safety.
           </h1>
         </BlurFade>
         <BlurFade delay={0.55} duration={0.6} blur="6px" offset={10}>
-          <p className="max-w-xl text-[1.25rem] leading-[1.7] text-white/40 mb-10">
+          <p className="max-w-xl text-[16px] leading-[1.7] text-white/40 mb-10">
             On-premise AI that{' '}
             <TypewriterText
               texts={['detects PPE violations', 'monitors restricted zones', 'verifies SOPs in real-time', 'reasons about what it sees']}
@@ -61,7 +61,7 @@ export default function PlatformPage() {
         </BlurFade>
         <BlurFade delay={0.75} duration={0.4} blur="4px" offset={6}>
           <a href="/contact">
-            <Button variant="primary" size="lg" className="font-mono-accent uppercase tracking-[0.1em] text-[1.05rem] rounded-[1.2rem] cursor-pointer">
+            <Button variant="primary" size="lg" className="font-mono-accent uppercase tracking-[0.1em] text-[15px] rounded-[1.2rem] cursor-pointer">
               Book a walkthrough
             </Button>
           </a>
@@ -77,28 +77,28 @@ export default function PlatformPage() {
 
       {/* Numbers strip */}
       <section className="relative z-[1] border-y border-white/[0.06] py-16">
-        <div className="mx-auto max-w-[80rem] px-6 md:px-12 grid grid-cols-1 sm:grid-cols-3 gap-y-10 gap-x-6">
+        <div className="mx-auto max-w-[1280px] px-6 md:px-12 grid grid-cols-1 sm:grid-cols-3 gap-y-10 gap-x-6">
           {[
             { val: 64, suffix: '', label: 'Camera feeds analyzed' },
             { val: 100, suffix: 'ms', label: 'Detection speed' },
             { val: 48, suffix: 'hrs', label: 'Deployment time' },
           ].map((s, i) => (
             <div key={s.label} className="text-center">
-              <p className="font-display text-[clamp(2.5rem,5vw,4rem)] font-semibold text-white/90 leading-none mb-2">
+              <p className="font-display text-[clamp(28px,5vw,48px)] font-semibold text-white/90 leading-none mb-2">
                 <NumberTicker value={s.val} delay={0.2 + i * 0.15} />{s.suffix}
               </p>
-              <p className="font-mono-accent text-[0.85rem] uppercase tracking-[0.1em] text-white/25">{s.label}</p>
+              <p className="font-mono-accent text-[13px] uppercase tracking-[0.1em] text-white/25">{s.label}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* Pipeline */}
-      <section className="relative z-[1] mx-auto max-w-[72rem] px-6 py-32 md:px-12">
+      <section className="relative z-[1] mx-auto max-w-[1152px] px-6 py-32 md:px-12">
         <AsciiDivider className="mb-12" accent="&#9656;" />
         <BlurFade delay={0} duration={0.5} blur="6px" offset={10} inView inViewMargin="-80px">
-          <h2 className="font-display text-[clamp(2rem,4vw,3rem)] font-semibold tracking-[-0.02em] text-white/90 mb-4">From camera feed to safety alert</h2>
-          <p className="text-[1.1rem] text-white/30 mb-4 max-w-2xl">A streamlined pipeline with no cloud intermediaries. Camera feeds enter, contextual safety alerts emerge — all processed locally.</p>
+          <h2 className="font-display text-[clamp(24px,4vw,36px)] font-semibold tracking-[-0.02em] text-white/90 mb-4">From camera feed to safety alert</h2>
+          <p className="text-[16px] text-white/30 mb-4 max-w-2xl">A streamlined pipeline with no cloud intermediaries. Camera feeds enter, contextual safety alerts emerge — all processed locally.</p>
         </BlurFade>
         <div className="flex flex-col md:flex-row items-stretch gap-4 md:gap-0">
           {[
@@ -111,8 +111,8 @@ export default function PlatformPage() {
               <ScrollReveal variant="scale-up" delay={i * 0.12} duration={0.5}>
                 <div className={`relative flex-1 rounded-xl p-4 sm:p-6 text-center ${node.accent ? 'bg-amber-400/[0.06] border border-amber-400/15' : 'bg-white/[0.03] border border-white/[0.06]'}`}>
                   {node.accent && <BorderBeam size={120} duration={8} colorFrom="#f59e0b" colorTo="#d97706" borderWidth={1} />}
-                  <p className={`font-display text-[1.3rem] font-semibold mb-1 ${node.accent ? 'text-white/90' : 'text-white/60'}`}>{node.label}</p>
-                  <p className="font-mono-accent text-[0.85rem] text-white/30">{node.sub}</p>
+                  <p className={`font-display text-[16px] font-semibold mb-1 ${node.accent ? 'text-white/90' : 'text-white/60'}`}>{node.label}</p>
+                  <p className="font-mono-accent text-[13px] text-white/30">{node.sub}</p>
                 </div>
               </ScrollReveal>
               {i < arr.length - 1 && (
@@ -155,13 +155,13 @@ export default function PlatformPage() {
       />
 
       {/* CTA */}
-      <section className="relative z-[1] mx-auto max-w-[72rem] px-6 py-24 md:px-12 border-t border-white/[0.06]">
+      <section className="relative z-[1] mx-auto max-w-[1152px] px-6 py-24 md:px-12 border-t border-white/[0.06]">
         <BlurFade delay={0} duration={0.6} blur="8px" offset={14} inView inViewMargin="-80px">
-          <p className="font-display text-[clamp(2rem,4vw,3rem)] font-semibold tracking-[-0.02em] text-white/90 mb-6">
+          <p className="font-display text-[clamp(24px,4vw,36px)] font-semibold tracking-[-0.02em] text-white/90 mb-6">
             See it in action on your factory floor.
           </p>
           <a href="/contact">
-            <Button variant="primary" size="lg" className="font-mono-accent uppercase tracking-[0.1em] text-[1.05rem] rounded-[1.2rem] cursor-pointer">
+            <Button variant="primary" size="lg" className="font-mono-accent uppercase tracking-[0.1em] text-[15px] rounded-[1.2rem] cursor-pointer">
               Book a walkthrough
             </Button>
           </a>
@@ -170,3 +170,4 @@ export default function PlatformPage() {
     </PageShell>
   );
 }
+

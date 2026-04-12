@@ -119,7 +119,7 @@ export default function FooterCTASection() {
               <div className="w-full" style={{ height: 'clamp(60px, 12vw, 120px)' }}>
                 <TextVideoMask
                   text="KENESIS"
-                  fontSize="clamp(3rem, 12vw, 10rem)"
+                  fontSize="clamp(32px, 12vw, 100px)"
                   fontWeight={400}
                   fontFamily="'MBF Neo Wave', var(--font-neowave), sans-serif"
                   mode="clip"

@@ -34,10 +34,10 @@ export default function AboutPage() {
       </div>
 
       {/* â”€â”€ Hero: heading â”€â”€ */}
-      <section className="relative z-[2] mx-auto max-w-[72rem] px-6 pb-16 md:px-12">
+      <section className="relative z-[2] mx-auto max-w-[1152px] px-6 pb-16 md:px-12">
         <div>
           <BlurFade delay={0.1} duration={0.5} blur="6px" offset={12}>
-            <p className="font-mono-accent text-[1rem] uppercase tracking-[0.14em] text-amber-400/50 mb-10">About</p>
+            <p className="font-mono-accent text-[14px] uppercase tracking-[0.14em] text-amber-400/50 mb-10">About</p>
           </BlurFade>
           <UnblurTextReveal
             as="h1"
@@ -48,12 +48,12 @@ export default function AboutPage() {
             end="top 40%"
             splitBy="word"
             stagger={0.06}
-            className="font-display text-[clamp(3rem,7.5vw,6.5rem)] font-semibold leading-[0.95] tracking-[-0.03em] text-white mb-8"
+            className="font-display text-[clamp(32px,7.5vw,64px)] font-semibold leading-[0.95] tracking-[-0.03em] text-white mb-8"
           >
             Visual intelligence for Indian factories.
           </UnblurTextReveal>
           <BlurFade delay={0.6} duration={0.5} blur="6px" offset={8}>
-            <p className="max-w-lg text-[1.2rem] leading-[1.7] text-white/35">
+            <p className="max-w-lg text-[16px] leading-[1.7] text-white/35">
               Founded in Chennai. We build AI software that turns existing CCTV cameras into intelligent safety systems — no cloud, no new hardware.
             </p>
           </BlurFade>
@@ -102,14 +102,14 @@ export default function AboutPage() {
       </section>
 
       {/* â”€â”€ Manifesto: large editorial text, not cards â”€â”€ */}
-      <section className="relative z-[2] mx-auto max-w-[72rem] px-6 py-32 md:px-12 border-t border-white/[0.06]">
+      <section className="relative z-[2] mx-auto max-w-[1152px] px-6 py-32 md:px-12 border-t border-white/[0.06]">
         <div className="max-w-3xl space-y-10">
           <TextReveal
             variant="highlight"
             scrub={1}
             start="top 85%"
             end="top 40%"
-            className="text-[clamp(1.5rem,3vw,2.2rem)] leading-[1.5] text-white/70 font-display tracking-[-0.01em]"
+            className="text-[clamp(18px,3vw,26px)] leading-[1.5] text-white/70 font-display tracking-[-0.01em]"
           >
             Indian factories have cameras everywhere. What they lack is intelligence — the ability to understand what those cameras see and act on it in real time.
           </TextReveal>
@@ -118,7 +118,7 @@ export default function AboutPage() {
             scrub={1}
             start="top 55%"
             end="top 10%"
-            className="text-[clamp(1.5rem,3vw,2.2rem)] leading-[1.5] text-white/50 font-display tracking-[-0.01em]"
+            className="text-[clamp(18px,3vw,26px)] leading-[1.5] text-white/50 font-display tracking-[-0.01em]"
           >
             Cloud-based analytics require your footage to leave your facility, get processed on shared infrastructure, and return generic results. For Indian manufacturers, that means privacy risk, latency, and compliance challenges.
           </TextReveal>
@@ -127,7 +127,7 @@ export default function AboutPage() {
             scrub={1}
             start="top 35%"
             end="bottom 60%"
-            className="text-[clamp(1.5rem,3vw,2.2rem)] leading-[1.5] text-white/90 font-display tracking-[-0.01em]"
+            className="text-[clamp(18px,3vw,26px)] leading-[1.5] text-white/90 font-display tracking-[-0.01em]"
           >
             Kenesis runs entirely on your premises. Your footage never leaves your network. And when the internet goes down, your safety system keeps running.
           </TextReveal>
@@ -156,26 +156,26 @@ export default function AboutPage() {
 
       {/* â”€â”€ Numbers: full-bleed strip â”€â”€ */}
       <section className="relative z-[2] border-y border-white/[0.06] py-16">
-        <div className="mx-auto max-w-[80rem] px-6 md:px-12 grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-4">
+        <div className="mx-auto max-w-[1280px] px-6 md:px-12 grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-4">
           <div className="text-center">
-            <p className="font-display text-[clamp(2.5rem,5vw,3.5rem)] font-semibold text-white/90 leading-none mb-2">
+            <p className="font-display text-[clamp(28px,5vw,40px)] font-semibold text-white/90 leading-none mb-2">
               2025
             </p>
-            <p className="font-mono-accent text-[0.85rem] uppercase tracking-[0.1em] text-white/25">Founded</p>
+            <p className="font-mono-accent text-[13px] uppercase tracking-[0.1em] text-white/25">Founded</p>
           </div>
           <div className="text-center">
-            <p className="font-display text-[clamp(2.5rem,5vw,3.5rem)] font-semibold text-white/90 leading-none mb-2">Chennai</p>
-            <p className="font-mono-accent text-[0.85rem] uppercase tracking-[0.1em] text-white/25">Headquarters</p>
+            <p className="font-display text-[clamp(28px,5vw,40px)] font-semibold text-white/90 leading-none mb-2">Chennai</p>
+            <p className="font-mono-accent text-[13px] uppercase tracking-[0.1em] text-white/25">Headquarters</p>
           </div>
           <div className="text-center">
-            <p className="font-display text-[clamp(2.5rem,5vw,3.5rem)] font-semibold text-white/90 leading-none mb-2">On-Premise AI</p>
-            <p className="font-mono-accent text-[0.85rem] uppercase tracking-[0.1em] text-white/25">Focus</p>
+            <p className="font-display text-[clamp(28px,5vw,40px)] font-semibold text-white/90 leading-none mb-2">On-Premise AI</p>
+            <p className="font-mono-accent text-[13px] uppercase tracking-[0.1em] text-white/25">Focus</p>
           </div>
           <div className="text-center">
-            <p className="font-display text-[clamp(2.5rem,5vw,3.5rem)] font-semibold text-white/90 leading-none mb-2">
+            <p className="font-display text-[clamp(28px,5vw,40px)] font-semibold text-white/90 leading-none mb-2">
               64
             </p>
-            <p className="font-mono-accent text-[0.85rem] uppercase tracking-[0.1em] text-white/25">Concurrent streams</p>
+            <p className="font-mono-accent text-[13px] uppercase tracking-[0.1em] text-white/25">Concurrent streams</p>
           </div>
         </div>
       </section>
@@ -190,12 +190,12 @@ export default function AboutPage() {
           charset=" .,:;i1tfLCG08@#"
           color="#f59e0b"
           glitchRate={0.006}
-          className="w-full max-w-[72rem] mx-auto px-6 opacity-70 overflow-hidden"
+          className="w-full max-w-[1152px] mx-auto px-6 opacity-70 overflow-hidden"
         />
       </section>
 
       {/* â”€â”€ What we believe: left-aligned list, not grid cards â”€â”€ */}
-      <section className="relative z-[2] mx-auto max-w-[72rem] px-6 py-32 md:px-12">
+      <section className="relative z-[2] mx-auto max-w-[1152px] px-6 py-32 md:px-12">
         <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-16">
           <div>
             <TextReveal
@@ -203,7 +203,7 @@ export default function AboutPage() {
               as="h2"
               start="top 85%"
               duration={0.7}
-              className="font-display text-[clamp(2rem,4vw,3rem)] font-semibold tracking-[-0.02em] text-white/90 sticky top-32"
+              className="font-display text-[clamp(24px,4vw,36px)] font-semibold tracking-[-0.02em] text-white/90 sticky top-32"
             >
               What we believe
             </TextReveal>
@@ -217,8 +217,8 @@ export default function AboutPage() {
             ].map(([title, desc], i) => (
               <ScrollReveal key={title} variant="fade-up" delay={i * 0.1} duration={0.6}>
                 <div className="border-l-2 border-white/[0.06] pl-6 hover:border-amber-400/30 transition-colors duration-300">
-                  <p className="text-[1.2rem] text-white/80 mb-1 font-medium">{title}</p>
-                  <p className="text-[1.05rem] text-white/35 leading-[1.6]">{desc}</p>
+                  <p className="text-[16px] text-white/80 mb-1 font-medium">{title}</p>
+                  <p className="text-[15px] text-white/35 leading-[1.6]">{desc}</p>
                 </div>
               </ScrollReveal>
             ))}
@@ -227,14 +227,14 @@ export default function AboutPage() {
       </section>
 
       {/* â”€â”€ Timeline: minimal, dense â”€â”€ */}
-      <section className="relative z-[2] mx-auto max-w-[72rem] px-6 py-32 md:px-12 border-t border-white/[0.06]">
+      <section className="relative z-[2] mx-auto max-w-[1152px] px-6 py-32 md:px-12 border-t border-white/[0.06]">
         <div className="flex items-start justify-between gap-8 mb-12">
           <TextReveal
             variant="word-slide"
             as="h2"
             start="top 85%"
             duration={0.7}
-            className="font-display text-[clamp(2rem,4vw,3rem)] font-semibold tracking-[-0.02em] text-white/90"
+            className="font-display text-[clamp(24px,4vw,36px)] font-semibold tracking-[-0.02em] text-white/90"
           >
             So far
           </TextReveal>
@@ -249,8 +249,8 @@ export default function AboutPage() {
           ].map(([date, event], i) => (
             <ScrollReveal key={date} variant="fade-up" delay={i * 0.08} duration={0.5}>
               <div className="flex items-baseline gap-4 sm:gap-8 py-4 border-b border-white/[0.04]">
-                <span className="font-mono-accent text-[0.9rem] text-amber-400/40 w-[70px] sm:w-[80px] flex-shrink-0">{date}</span>
-                <span className="text-[1.1rem] text-white/50">{event}</span>
+                <span className="font-mono-accent text-[13px] text-amber-400/40 w-[70px] sm:w-[80px] flex-shrink-0">{date}</span>
+                <span className="text-[16px] text-white/50">{event}</span>
               </div>
             </ScrollReveal>
           ))}
@@ -261,7 +261,7 @@ export default function AboutPage() {
       <TeamSection />
 
       {/* â”€â”€ Closing: image-masked statement â”€â”€ */}
-      <section className="relative z-[2] mx-auto max-w-[72rem] px-6 py-32 md:px-12 border-t border-white/[0.06]">
+      <section className="relative z-[2] mx-auto max-w-[1152px] px-6 py-32 md:px-12 border-t border-white/[0.06]">
         <BlurFade delay={0} duration={0.7} blur="10px" offset={16} inView inViewMargin="-80px">
           <div className="space-y-4">
             <ImageMaskedText
@@ -272,7 +272,7 @@ export default function AboutPage() {
               bgPosition="center 40%"
               className="block"
             />
-            <p className="font-display text-[clamp(1.5rem,3vw,2.5rem)] font-semibold leading-[1.3] tracking-[-0.02em] text-white/35 max-w-3xl">
+            <p className="font-display text-[clamp(18px,3vw,28px)] font-semibold leading-[1.3] tracking-[-0.02em] text-white/35 max-w-3xl">
               India&apos;s manufacturing sector is growing rapidly. Safety infrastructure needs to keep pace.
             </p>
           </div>
@@ -281,3 +281,4 @@ export default function AboutPage() {
     </PageShell>
   );
 }
+
