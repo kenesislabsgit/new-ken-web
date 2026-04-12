@@ -62,14 +62,20 @@ export default function AboutPage() {
 
       {/* LiquidMetal logo — shader on desktop, static image on mobile */}
       <section className="relative z-[2] flex items-center justify-center py-12 sm:py-8 overflow-hidden">
-        {/* Mobile: static logo with glow */}
-        <div className="block sm:hidden relative w-[200px] h-[200px]">
-          <div className="absolute inset-0 rounded-full bg-amber-500/10 blur-[60px]" />
+        {/* Mobile: styled logo with metallic glow effect */}
+        <div className="block sm:hidden relative w-[220px] h-[220px]">
+          {/* Outer glow */}
+          <div className="absolute inset-[-30px] rounded-full bg-amber-500/8 blur-[50px] animate-pulse" style={{ animationDuration: '4s' }} />
+          {/* Inner glow ring */}
+          <div className="absolute inset-[-10px] rounded-full" style={{ background: 'radial-gradient(circle, rgba(245,158,11,0.12) 0%, transparent 70%)' }} />
+          {/* Logo with metallic tint */}
           <img
             src="/kenesis-icon.png"
             alt="Kenesis logo"
-            className="relative w-full h-full object-contain opacity-80"
-            style={{ filter: 'drop-shadow(0 0 40px rgba(245,158,11,0.3))' }}
+            className="relative w-full h-full object-contain"
+            style={{
+              filter: 'brightness(1.3) contrast(1.1) sepia(0.3) saturate(2) hue-rotate(-10deg) drop-shadow(0 0 30px rgba(245,158,11,0.4)) drop-shadow(0 0 60px rgba(245,158,11,0.15))',
+            }}
           />
         </div>
         {/* Desktop: liquid metal shader */}
