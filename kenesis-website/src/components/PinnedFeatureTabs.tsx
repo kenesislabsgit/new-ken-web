@@ -220,7 +220,7 @@ export default function PinnedFeatureTabs() {
           <div ref={leftColRef} className="flex flex-col justify-end md:justify-center pt-20 md:pt-0 pb-4 md:pb-0">
             <h2
               ref={headingRef}
-              className="mb-3 sm:mb-6 font-display text-[clamp(1.5rem,4vw,3.5rem)] font-semibold leading-[1.05] tracking-[-0.035em] text-white/95"
+              className="mb-3 sm:mb-6 font-display text-[clamp(18px,4vw,40px)] font-semibold leading-[1.05] tracking-[-0.035em] text-white/95"
             >
             {headingLine1.split(' ').map((word, i) => (
               <span key={i} className="word-reveal inline-block mr-[0.3em]">
@@ -326,3 +326,4 @@ export default function PinnedFeatureTabs() {
     </section>
   );
 }
+

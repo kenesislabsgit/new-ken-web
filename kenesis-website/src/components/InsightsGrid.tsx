@@ -111,7 +111,7 @@ export default function InsightsGrid() {
           <TextReveal
             variant="word-slide"
             as="h2"
-            className="font-display text-[clamp(2.5rem,5vw,4rem)] font-semibold tracking-[-0.02em] text-white/90"
+            className="font-display text-[clamp(28px,5vw,48px)] font-semibold tracking-[-0.02em] text-white/90"
           >
             Insights.
           </TextReveal>

@@ -8,7 +8,6 @@ import { ProgressiveBlur } from "@/components/magicui/progressive-blur";
 import HeroSection from "@/components/HeroSection";
 import PinnedFeatureTabs from "@/components/PinnedFeatureTabs";
 import WavePerformanceSection from "@/components/WavePerformanceSection";
-import TechCardsSection from "@/components/TechCardsSection";
 import PartnerLogosSection from "@/components/PartnerLogosSection";
 import CareersCTASection from "@/components/CareersCTASection";
 import FooterCTASection from "@/components/FooterCTASection";
@@ -82,8 +81,6 @@ export default function Home() {
         />
 
         <PinnedFeatureTabs />
-
-        <TechCardsSection />
 
         {/* ── Flowing light performance section ── */}
         <ErrorBoundary>

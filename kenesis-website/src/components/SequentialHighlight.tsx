@@ -174,11 +174,11 @@ export default function SequentialHighlight({ heading, paragraphs }: Props) {
 
   if (prefersReducedMotion()) {
     return (
-      <section className="relative z-[1] mx-auto max-w-[72rem] px-6 py-32 md:px-12 border-t border-white/[0.06]">
-        <h2 className="font-display text-[clamp(2rem,4vw,3rem)] font-semibold tracking-[-0.02em] text-white/90 mb-16">{heading}</h2>
+      <section className="relative z-[1] mx-auto max-w-[1152px] px-6 py-32 md:px-12 border-t border-white/[0.06]">
+        <h2 className="font-display text-[clamp(24px,4vw,36px)] font-semibold tracking-[-0.02em] text-white/90 mb-16">{heading}</h2>
         <div className="max-w-3xl space-y-8">
           {paragraphs.map((p, i) => (
-            <p key={i} className="text-[clamp(1.3rem,2.5vw,1.7rem)] leading-[1.6] text-white/60">{p}</p>
+            <p key={i} className="text-[clamp(16px,2.5vw,22px)] leading-[1.6] text-white/60">{p}</p>
           ))}
         </div>
       </section>
@@ -194,8 +194,8 @@ export default function SequentialHighlight({ heading, paragraphs }: Props) {
       <div className="absolute inset-0 pointer-events-none opacity-[0.03]"
         style={{ backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.03) 2px, rgba(255,255,255,0.03) 4px)', backgroundSize: '100% 4px' }} />
 
-      <div className="relative z-[1] mx-auto max-w-[64rem] px-6 md:px-12 w-full">
-        <h2 ref={headingRef} className="font-display text-[clamp(1.8rem,5vw,4rem)] font-semibold tracking-[-0.03em] text-white/95 mb-10 md:mb-20 text-center" style={{ opacity: 0 }}>
+      <div className="relative z-[1] mx-auto max-w-[1024px] px-6 md:px-12 w-full">
+        <h2 ref={headingRef} className="font-display text-[clamp(22px,5vw,48px)] font-semibold tracking-[-0.03em] text-white/95 mb-10 md:mb-20 text-center" style={{ opacity: 0 }}>
           {heading}
         </h2>
 
@@ -204,7 +204,7 @@ export default function SequentialHighlight({ heading, paragraphs }: Props) {
             <p
               key={i}
               ref={el => { paraRefs.current[i] = el; }}
-              className="absolute inset-0 text-[clamp(1.3rem,2.2vw,1.65rem)] leading-[1.75] text-center max-w-[52rem] mx-auto font-light px-4 sm:px-2"
+              className="absolute inset-0 text-[clamp(16px,2.2vw,22px)] leading-[1.75] text-center max-w-[832px] mx-auto font-light px-4 sm:px-2"
               style={{ opacity: 0 }}
             >
               {text.split(' ').map((word, j) => (
@@ -245,3 +245,4 @@ export default function SequentialHighlight({ heading, paragraphs }: Props) {
     </div>
   );
 }
+

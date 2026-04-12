@@ -38,7 +38,7 @@ export default function WavePerformanceSection() {
           </BlurFade>
 
           {/* Heading */}
-          <TextReveal variant="word-slide" as="h2" start="top 90%" duration={0.9} stagger={0.08} className="font-display text-[clamp(2.4rem,5vw,4.4rem)] font-semibold tracking-[-0.04em] text-white/95 leading-[1.02] mb-5">
+          <TextReveal variant="word-slide" as="h2" start="top 90%" duration={0.9} stagger={0.08} className="font-display text-[clamp(28px,5vw,48px)] font-semibold tracking-[-0.04em] text-white/95 leading-[1.02] mb-5">
             The Intelligence Funnel
           </TextReveal>
 
@@ -55,7 +55,7 @@ export default function WavePerformanceSection() {
               {FUNNEL.map((item, i, arr) => (
                 <div key={i} className="flex items-center gap-2 sm:gap-4 md:gap-5">
                   <div className="flex flex-col items-center min-w-[40px]">
-                    <span className="font-display text-[clamp(1.2rem,2.5vw,2.4rem)] font-bold text-white/85 tabular-nums">{item.val}</span>
+                    <span className="font-display text-[clamp(16px,2.5vw,28px)] font-bold text-white/85 tabular-nums">{item.val}</span>
                     <span className="font-mono-accent text-[10px] sm:text-[11px] uppercase tracking-[0.18em] text-white/30 mt-1">{item.unit}</span>
                   </div>
                   {i < arr.length - 1 && (
@@ -85,3 +85,4 @@ export default function WavePerformanceSection() {
     </section>
   );
 }
+
