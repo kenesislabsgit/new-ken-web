@@ -119,9 +119,21 @@ export default function PlatformPage() {
             ].map((node, i, arr) => (
               <ScrollReveal key={node.label} variant="scale-up" delay={i * 0.12} duration={0.5}>
                 <div className="relative flex flex-col items-center text-center px-3">
-                  {/* Step number */}
-                  <div className={`w-12 h-12 rounded-full flex items-center justify-center mb-4 ${node.accent ? 'bg-amber-400/10 border border-amber-400/25' : 'bg-white/[0.04] border border-white/[0.08]'}`}>
-                    <span className={`font-mono-accent text-[11px] font-bold ${node.accent ? 'text-amber-400/80' : 'text-white/30'}`}>{node.num}</span>
+                  {/* Step number — glass circle */}
+                  <div
+                    className="w-14 h-14 rounded-full flex items-center justify-center mb-5 relative"
+                    style={{
+                      background: node.accent
+                        ? 'linear-gradient(135deg, rgba(245,158,11,0.12) 0%, rgba(245,158,11,0.04) 100%)'
+                        : 'linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%)',
+                      border: node.accent ? '1px solid rgba(245,158,11,0.2)' : '1px solid rgba(255,255,255,0.08)',
+                      boxShadow: node.accent
+                        ? '0 4px 16px rgba(245,158,11,0.1), 0 1px 0 rgba(255,255,255,0.06) inset, 0 -1px 0 rgba(0,0,0,0.3) inset'
+                        : '0 4px 12px rgba(0,0,0,0.3), 0 1px 0 rgba(255,255,255,0.04) inset, 0 -1px 0 rgba(0,0,0,0.3) inset',
+                      backdropFilter: 'blur(12px)',
+                    }}
+                  >
+                    <span className={`font-mono-accent text-[12px] font-bold ${node.accent ? 'text-amber-400/90' : 'text-white/35'}`}>{node.num}</span>
                   </div>
                   {/* Connector line */}
                   {i < arr.length - 1 && (
@@ -148,8 +160,19 @@ export default function PlatformPage() {
                 <div className="flex items-start gap-4 py-5">
                   {/* Left: number + line */}
                   <div className="flex flex-col items-center flex-shrink-0">
-                    <div className={`w-10 h-10 rounded-full flex items-center justify-center ${node.accent ? 'bg-amber-400/10 border border-amber-400/25' : 'bg-white/[0.04] border border-white/[0.08]'}`}>
-                      <span className={`font-mono-accent text-[10px] font-bold ${node.accent ? 'text-amber-400/80' : 'text-white/30'}`}>{node.num}</span>
+                    <div
+                      className="w-11 h-11 rounded-full flex items-center justify-center"
+                      style={{
+                        background: node.accent
+                          ? 'linear-gradient(135deg, rgba(245,158,11,0.12) 0%, rgba(245,158,11,0.04) 100%)'
+                          : 'linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%)',
+                        border: node.accent ? '1px solid rgba(245,158,11,0.2)' : '1px solid rgba(255,255,255,0.08)',
+                        boxShadow: node.accent
+                          ? '0 3px 12px rgba(245,158,11,0.1), 0 1px 0 rgba(255,255,255,0.06) inset'
+                          : '0 3px 10px rgba(0,0,0,0.3), 0 1px 0 rgba(255,255,255,0.04) inset',
+                      }}
+                    >
+                      <span className={`font-mono-accent text-[10px] font-bold ${node.accent ? 'text-amber-400/90' : 'text-white/35'}`}>{node.num}</span>
                     </div>
                     {i < arr.length - 1 && (
                       <div className="w-[1px] h-8 mt-2" style={{ background: node.accent ? 'rgba(245,158,11,0.15)' : 'rgba(255,255,255,0.06)' }} />
@@ -190,12 +213,28 @@ export default function PlatformPage() {
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
                   {items.map((spec, i) => (
                     <ScrollReveal key={spec.label} variant="scale-up" delay={ci * 0.08 + i * 0.04} duration={0.4}>
-                      <div className={`group rounded-[14px] p-5 sm:p-6 transition-all duration-300 cursor-default ${spec.highlight ? 'bg-amber-400/[0.04] border border-amber-400/10 hover:border-amber-400/25' : 'bg-white/[0.02] border border-white/[0.05] hover:border-white/[0.12]'}`}>
+                      <div
+                        className={`group relative rounded-[16px] p-5 sm:p-6 transition-all duration-400 cursor-default overflow-hidden ${spec.highlight ? 'hover:scale-[1.02]' : 'hover:scale-[1.01]'}`}
+                        style={{
+                          background: spec.highlight
+                            ? 'linear-gradient(135deg, rgba(245,158,11,0.08) 0%, rgba(245,158,11,0.02) 100%)'
+                            : 'linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%)',
+                          backdropFilter: 'blur(20px) saturate(1.4)',
+                          WebkitBackdropFilter: 'blur(20px) saturate(1.4)',
+                          border: spec.highlight ? '1px solid rgba(245,158,11,0.15)' : '1px solid rgba(255,255,255,0.08)',
+                          boxShadow: spec.highlight
+                            ? '0 4px 24px rgba(245,158,11,0.06), 0 1px 0 rgba(255,255,255,0.04) inset, 0 -1px 0 rgba(0,0,0,0.2) inset'
+                            : '0 4px 20px rgba(0,0,0,0.3), 0 1px 0 rgba(255,255,255,0.04) inset, 0 -1px 0 rgba(0,0,0,0.2) inset',
+                        }}
+                      >
+                        {/* Glass shine */}
+                        <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
                         <p className="font-mono-accent text-[10px] uppercase tracking-[0.16em] text-white/25 mb-3">{spec.label}</p>
                         <div className="flex items-baseline gap-1">
                           <p className={`font-display text-[20px] sm:text-[22px] font-bold tracking-[-0.02em] ${spec.highlight ? 'text-amber-400/90' : 'text-white/80'}`}>{spec.value}</p>
                           {spec.unit && <span className="font-mono-accent text-[10px] text-white/20">{spec.unit}</span>}
                         </div>
+                        {spec.highlight && <div className="absolute -bottom-8 -right-8 w-24 h-24 rounded-full bg-amber-400/[0.04] blur-[20px]" />}
                       </div>
                     </ScrollReveal>
                   ))}
