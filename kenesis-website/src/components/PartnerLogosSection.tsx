@@ -59,7 +59,7 @@ export default function PartnerLogosSection() {
           <TextReveal
             variant="word-blur"
             as="h2"
-            className="mb-16 font-display text-[clamp(2rem,4vw,3.5rem)] font-semibold leading-[1.05] tracking-[-0.02em] text-white/90"
+            className="mb-16 font-display text-[clamp(2rem,4vw,3.5rem)] font-semibold leading-[1.02] tracking-[-0.035em] text-white/95"
           >
             Trusted across Indian industry
           </TextReveal>
@@ -93,7 +93,7 @@ export default function PartnerLogosSection() {
         {/* Testimonial */}
         <ScrollReveal variant="blur-in" delay={0.3}>
           <div className="max-w-3xl">
-            <blockquote className="mb-8 font-display text-[clamp(1.25rem,2.5vw,1.75rem)] font-medium leading-relaxed text-white/70">
+            <blockquote className="mb-8 font-display text-[clamp(1.25rem,2.5vw,1.75rem)] font-normal leading-[1.55] text-white/60 tracking-[-0.01em]">
               &ldquo;{currentTestimonial.quote}&rdquo;
             </blockquote>
 

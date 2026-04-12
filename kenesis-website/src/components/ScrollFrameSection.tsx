@@ -180,8 +180,8 @@ export default function ScrollFrameSection({ frameSets, panels, sectionLabel, se
                     <span className="h-[1px] w-[24px] sm:w-[40px] bg-amber-400/25" />
                     <span className="font-mono-accent text-[11px] sm:text-[13px] uppercase tracking-[0.12em] text-white/25">{panel.label}</span>
                   </div>
-                  <h2 className="font-display text-[clamp(20px,5vw,72px)] font-semibold leading-[1.1] tracking-[-0.03em] text-white mb-[10px] sm:mb-[16px] md:mb-[24px]">{panel.headline}</h2>
-                  <p className="text-[15px] sm:text-[16px] md:text-[18px] leading-[1.65] text-white/35 max-w-[460px]">{panel.body}</p>
+                  <h2 className="font-display text-[clamp(20px,5vw,72px)] font-semibold leading-[1.05] tracking-[-0.035em] text-white/95 mb-[10px] sm:mb-[16px] md:mb-[24px]">{panel.headline}</h2>
+                  <p className="text-[15px] sm:text-[16px] md:text-[18px] leading-[1.6] text-white/40 max-w-[460px]">{panel.body}</p>
                 </div>
               ))}
             </div>

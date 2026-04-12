@@ -38,13 +38,13 @@ export default function WavePerformanceSection() {
           </BlurFade>
 
           {/* Heading */}
-          <TextReveal variant="word-slide" as="h2" start="top 90%" duration={0.9} stagger={0.08} className="font-display text-[clamp(2.4rem,5vw,4.4rem)] font-semibold tracking-[-0.035em] text-white leading-[1.05] mb-5">
+          <TextReveal variant="word-slide" as="h2" start="top 90%" duration={0.9} stagger={0.08} className="font-display text-[clamp(2.4rem,5vw,4.4rem)] font-semibold tracking-[-0.04em] text-white/95 leading-[1.02] mb-5">
             The Intelligence Funnel
           </TextReveal>
 
           {/* Description */}
           <BlurFade delay={0} duration={0.6} blur="8px" offset={14} inView inViewMargin="-60px">
-            <p className="text-[15px] sm:text-[17px] leading-[1.75] text-white/35 mb-8 sm:mb-10 max-w-[420px]">
+            <p className="text-[15px] sm:text-[17px] leading-[1.65] text-white/40 mb-8 sm:mb-10 max-w-[420px]">
               Every frame passes through three stages of refinement. Noise collapses into signal. When your phone rings, it means something.
             </p>
           </BlurFade>

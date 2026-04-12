@@ -59,7 +59,7 @@ export default function FooterCTASection() {
               <TextReveal
                 variant="word-slide"
                 as="h2"
-                className="font-display text-[clamp(28px,5.5vw,56px)] font-semibold leading-[1.05] tracking-[-0.02em] text-white/90"
+                className="font-display text-[clamp(28px,5.5vw,56px)] font-semibold leading-[1.02] tracking-[-0.035em] text-white/95"
               >
                 Let&apos;s talk about your facility
               </TextReveal>

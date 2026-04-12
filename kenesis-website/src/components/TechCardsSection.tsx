@@ -43,7 +43,7 @@ export default function TechCardsSection() {
         <div className="relative z-10 mx-auto max-w-[1234px] px-6 md:px-12">
           <ScrollReveal variant="clip-up" duration={1}>
             <h2
-              className="font-display text-[clamp(2.4rem,8vw,9rem)] font-semibold leading-[0.95] tracking-[-0.03em] text-white"
+              className="font-display text-[clamp(2.4rem,8vw,9rem)] font-semibold leading-[0.92] tracking-[-0.04em] text-white"
             >
               Real-time safety intelligence.
             </h2>

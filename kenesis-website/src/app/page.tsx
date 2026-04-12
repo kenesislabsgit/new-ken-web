@@ -96,7 +96,7 @@ export default function Home() {
             <BlurFade delay={0} duration={0.5} blur="6px" offset={10} inView inViewMargin="-80px">
               <p className="font-mono-accent text-[11px] uppercase tracking-[0.2em] text-amber-400/40 mb-[12px]">Capabilities</p>
             </BlurFade>
-            <TextReveal variant="word-slide" as="h2" start="top 85%" duration={0.8} stagger={0.06} className="font-display text-[clamp(24px,5vw,56px)] font-semibold tracking-[-0.025em] text-white/90 mb-[32px] sm:mb-[48px] md:mb-[64px]">
+            <TextReveal variant="word-slide" as="h2" start="top 85%" duration={0.8} stagger={0.06} className="font-display text-[clamp(24px,5vw,56px)] font-semibold tracking-[-0.035em] text-white/95 mb-[32px] sm:mb-[48px] md:mb-[64px]">
               Core capabilities
             </TextReveal>
 
@@ -111,8 +111,8 @@ export default function Home() {
                         <span className="text-white/15 group-hover:text-amber-400/50 transition-colors text-[16px]">&rarr;</span>
                       </div>
                     </div>
-                    <h3 className="font-display text-[18px] sm:text-[22px] font-semibold text-white/85 mb-[12px] sm:mb-[16px] group-hover:text-white transition-colors">{f.title}</h3>
-                    <p className="text-[15px] sm:text-[16px] leading-[1.75] text-white/30 group-hover:text-white/45 transition-colors duration-400">{f.desc}</p>
+                    <h3 className="font-display text-[18px] sm:text-[22px] font-semibold text-white/90 mb-[12px] sm:mb-[16px] group-hover:text-white transition-colors tracking-[-0.02em]">{f.title}</h3>
+                    <p className="text-[15px] sm:text-[16px] leading-[1.7] text-white/40 group-hover:text-white/55 transition-colors duration-400">{f.desc}</p>
                   </div>
                 </ScrollReveal>
               ))}

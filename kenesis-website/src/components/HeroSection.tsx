@@ -113,7 +113,7 @@ export default function HeroSection() {
         </div>
         {/* Heading text - bottom left */}
         <div className="absolute bottom-[3rem] sm:bottom-[4rem] md:bottom-[6rem] left-0 px-4 sm:px-6 md:px-12 lg:px-[5rem] w-full">
-          <h1 className="font-display text-[clamp(1.8rem,6vw,7rem)] font-light leading-[1.05] tracking-[-0.03em] text-white/90 max-w-[90vw]">
+          <h1 className="font-display text-[clamp(1.8rem,6vw,7rem)] font-medium leading-[1.02] tracking-[-0.04em] text-white/95 max-w-[90vw]">
             <BlurFade delay={0.3} duration={0.7} blur="12px" offset={20}>
               <span className="block">Industrial AI.</span>
             </BlurFade>
@@ -122,7 +122,7 @@ export default function HeroSection() {
             </BlurFade>
           </h1>
           <BlurFade delay={1.5} duration={0.7} blur="8px" offset={16}>
-            <p className="mt-[12px] sm:mt-[16px] md:mt-[24px] max-w-[44rem] text-[16px] sm:text-[17px] md:text-[20px] leading-[1.7] text-white/30 font-light lg:text-[22px]">
+            <p className="mt-[12px] sm:mt-[16px] md:mt-[24px] max-w-[44rem] text-[16px] sm:text-[17px] md:text-[20px] leading-[1.65] text-white/40 font-normal lg:text-[22px]">
               AI-powered safety monitoring that runs entirely on your premises. No cloud dependency, no data leaving your facility, no compromises.
             </p>
           </BlurFade>
