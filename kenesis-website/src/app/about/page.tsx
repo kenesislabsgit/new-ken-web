@@ -60,26 +60,9 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* LiquidMetal logo — shader on desktop, static image on mobile */}
-      <section className="relative z-[2] flex items-center justify-center py-12 sm:py-8 overflow-hidden">
-        {/* Mobile: styled logo with metallic glow effect */}
-        <div className="block sm:hidden relative w-[220px] h-[220px]">
-          {/* Outer glow */}
-          <div className="absolute inset-[-30px] rounded-full bg-amber-500/8 blur-[50px] animate-pulse" style={{ animationDuration: '4s' }} />
-          {/* Inner glow ring */}
-          <div className="absolute inset-[-10px] rounded-full" style={{ background: 'radial-gradient(circle, rgba(245,158,11,0.12) 0%, transparent 70%)' }} />
-          {/* Logo with metallic tint */}
-          <img
-            src="/kenesis-icon.png"
-            alt="Kenesis logo"
-            className="relative w-full h-full object-contain"
-            style={{
-              filter: 'brightness(1.3) contrast(1.1) sepia(0.3) saturate(2) hue-rotate(-10deg) drop-shadow(0 0 30px rgba(245,158,11,0.4)) drop-shadow(0 0 60px rgba(245,158,11,0.15))',
-            }}
-          />
-        </div>
-        {/* Desktop: liquid metal shader */}
-        <div className="hidden sm:block relative w-[700px] h-[560px] md:w-[900px] md:h-[720px]"
+      {/* LiquidMetal logo */}
+      <section className="relative z-[2] flex items-center justify-center py-8 sm:py-8 overflow-hidden">
+        <div className="relative w-[280px] h-[280px] sm:w-[700px] sm:h-[560px] md:w-[900px] md:h-[720px]"
           style={{ maskImage: 'radial-gradient(ellipse 90% 90% at center, black 30%, transparent 80%)', WebkitMaskImage: 'radial-gradient(ellipse 90% 90% at center, black 30%, transparent 80%)' }}
         >
           <LiquidMetalLogo
@@ -96,7 +79,7 @@ export default function AboutPage() {
             softness={0.25}
             contour={0.2}
             angle={40}
-            scale={0.65}
+            scale={0.8}
           />
         </div>
       </section>
