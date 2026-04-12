@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { cn } from "@/lib/utils";
@@ -147,19 +147,27 @@ export function TextReveal({
     }
 
     return words.map((word, i, arr) => (
-      <span key={i} className="tr-unit inline" style={
-            variant === "word-slide"
-              ? { opacity: 0, transform: "translateY(100%)" }
-              : variant === "word-fade" || variant === "highlight"
-              ? { opacity: 0.15 }
-              : variant === "word-blur"
-              ? { opacity: 0, filter: "blur(10px)" }
-              : variant === "line-mask"
-              ? { clipPath: "inset(0 0 100% 0)" }
-              : { opacity: 0 }
-          }>
-        {word}{i < arr.length - 1 ? ' ' : ''}
-      </span>
+      <React.Fragment key={i}>
+        <span className="inline-block overflow-hidden">
+          <span
+            className="tr-unit inline-block"
+            style={
+              variant === "word-slide"
+                ? { opacity: 0, transform: "translateY(100%)" }
+                : variant === "word-fade" || variant === "highlight"
+                ? { opacity: 0.15 }
+                : variant === "word-blur"
+                ? { opacity: 0, filter: "blur(10px)" }
+                : variant === "line-mask"
+                ? { clipPath: "inset(0 0 100% 0)" }
+                : { opacity: 0 }
+            }
+          >
+            {word}
+          </span>
+        </span>
+        {i < arr.length - 1 ? ' ' : null}
+      </React.Fragment>
     ));
   };
 

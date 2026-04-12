@@ -9,3 +9,7 @@ figtoken.txt
 
 # Kiro settings (may contain API keys)
 .kiro/settings/
+
+# IDE / AI agent configs
+.kiro/
+.agents/

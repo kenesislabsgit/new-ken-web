@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { cn } from "@/lib/utils";
@@ -98,9 +98,15 @@ export function UnblurTextReveal({
           </span>
         ))
       : children.split(" ").map((word, i, arr) => (
-          <span key={i} className="ubr-unit inline" style={{ opacity: 0, filter: `blur(${blurAmount}px)`, transform: `scale(${scaleFrom})` }}>
-            {word}{i < arr.length - 1 ? ' ' : ''}
-          </span>
+          <React.Fragment key={i}>
+            <span
+              className="ubr-unit inline-block"
+              style={{ opacity: 0, filter: `blur(${blurAmount}px)`, transform: `scale(${scaleFrom})` }}
+            >
+              {word}
+            </span>
+            {i < arr.length - 1 ? ' ' : null}
+          </React.Fragment>
         ));
 
   return (

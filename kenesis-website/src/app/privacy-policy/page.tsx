@@ -53,7 +53,7 @@ export default function PrivacyPolicyPage() {
             <h2 className="font-display font-semibold text-[2rem] text-white/80 pt-4">Contact</h2>
           </ScrollReveal>
           <ScrollReveal variant="fade-up" delay={0.05}>
-            <p>For privacy-related inquiries, contact us at <a href="mailto:[email]" className="text-white/70 hover:text-amber-400 underline transition-colors">privacy@kenesis.ai</a></p>
+            <p>For privacy-related inquiries, contact us at <a href="mailto:privacy@kenesis.ai" className="text-white/70 hover:text-amber-400 underline transition-colors">privacy@kenesis.ai</a></p>
           </ScrollReveal>
 
           <ScrollReveal variant="fade-up" delay={0.1}>
