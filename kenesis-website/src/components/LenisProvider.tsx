@@ -57,6 +57,10 @@ export default function LenisProvider({ children }: LenisProviderProps) {
     lenisRef.current = lenisInstance;
     setLenis(lenisInstance);
 
+    // Scroll to top on mount (page navigation)
+    window.scrollTo(0, 0);
+    lenisInstance.scrollTo(0, { immediate: true });
+
     // Link Lenis scroll events to ScrollTrigger.update()
     lenisInstance.on('scroll', ScrollTrigger.update);
 
