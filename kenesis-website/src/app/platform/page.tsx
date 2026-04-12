@@ -97,31 +97,68 @@ export default function PlatformPage() {
       <section className="relative z-[1] mx-auto max-w-[1152px] px-6 py-32 md:px-12">
         <AsciiDivider className="mb-12" accent="&#9656;" />
         <BlurFade delay={0} duration={0.5} blur="6px" offset={10} inView inViewMargin="-80px">
-          <h2 className="font-display text-[clamp(24px,4vw,36px)] font-semibold tracking-[-0.02em] text-white/90 mb-4">From camera feed to safety alert</h2>
-          <p className="text-[16px] text-white/30 mb-4 max-w-2xl">A streamlined pipeline with no cloud intermediaries. Camera feeds enter, contextual safety alerts emerge — all processed locally.</p>
+          <h2 className="font-display text-[clamp(24px,4vw,36px)] font-semibold tracking-[-0.035em] text-white/95 mb-3">From camera feed to safety alert</h2>
+          <p className="text-[15px] sm:text-[16px] text-white/40 mb-10 max-w-2xl">A streamlined pipeline with no cloud intermediaries. Camera feeds enter, contextual safety alerts emerge — all processed locally.</p>
         </BlurFade>
-        <div className="flex flex-col md:flex-row items-stretch gap-4 md:gap-0">
-          {[
-            { label: 'Camera Feeds', sub: 'Existing cameras', accent: false },
-            { label: 'Detection', sub: 'Object detection', accent: true },
-            { label: 'Reasoning', sub: 'Context analysis', accent: true },
-            { label: 'Alerts', sub: 'Dashboard + SMS', accent: false },
-          ].map((node, i, arr) => (
-            <div key={node.label} className="flex items-center flex-1">
-              <ScrollReveal variant="scale-up" delay={i * 0.12} duration={0.5}>
-                <div className={`relative flex-1 rounded-xl p-4 sm:p-6 text-center ${node.accent ? 'bg-amber-400/[0.06] border border-amber-400/15' : 'bg-white/[0.03] border border-white/[0.06]'}`}>
-                  {node.accent && <BorderBeam size={120} duration={8} colorFrom="#f59e0b" colorTo="#d97706" borderWidth={1} />}
-                  <p className={`font-display text-[16px] font-semibold mb-1 ${node.accent ? 'text-white/90' : 'text-white/60'}`}>{node.label}</p>
-                  <p className="font-mono-accent text-[13px] text-white/30">{node.sub}</p>
+
+        {/* Pipeline — premium stepped flow */}
+        <div className="relative">
+          {/* Desktop: horizontal flow */}
+          <div className="hidden md:grid md:grid-cols-4 gap-0 items-start">
+            {[
+              { num: '01', label: 'Ingest', sub: 'Camera Feeds', desc: 'Connect existing IP cameras. No new hardware.', accent: false },
+              { num: '02', label: 'Detect', sub: 'Object Detection', desc: 'PPE, zones, personnel — identified in every frame.', accent: true },
+              { num: '03', label: 'Reason', sub: 'Context Analysis', desc: 'AI understands what it sees and why it matters.', accent: true },
+              { num: '04', label: 'Alert', sub: 'Dashboard + SMS', desc: 'Actionable alerts reach your team in seconds.', accent: false },
+            ].map((node, i, arr) => (
+              <ScrollReveal key={node.label} variant="scale-up" delay={i * 0.12} duration={0.5}>
+                <div className="relative flex flex-col items-center text-center px-3">
+                  {/* Step number */}
+                  <div className={`w-12 h-12 rounded-full flex items-center justify-center mb-4 ${node.accent ? 'bg-amber-400/10 border border-amber-400/25' : 'bg-white/[0.04] border border-white/[0.08]'}`}>
+                    <span className={`font-mono-accent text-[11px] font-bold ${node.accent ? 'text-amber-400/80' : 'text-white/30'}`}>{node.num}</span>
+                  </div>
+                  {/* Connector line */}
+                  {i < arr.length - 1 && (
+                    <div className="absolute top-6 left-[calc(50%+24px)] w-[calc(100%-48px)] h-[1px]" style={{ background: node.accent ? 'linear-gradient(90deg, rgba(245,158,11,0.2), rgba(245,158,11,0.1))' : 'rgba(255,255,255,0.06)' }} />
+                  )}
+                  {/* Content */}
+                  <p className={`font-display text-[17px] font-semibold mb-1 tracking-[-0.02em] ${node.accent ? 'text-white/95' : 'text-white/60'}`}>{node.label}</p>
+                  <p className="font-mono-accent text-[10px] uppercase tracking-[0.14em] text-amber-400/40 mb-3">{node.sub}</p>
+                  <p className="text-[13px] leading-[1.5] text-white/30">{node.desc}</p>
                 </div>
               </ScrollReveal>
-              {i < arr.length - 1 && (
-                <ScrollReveal variant="clip-left" delay={0.15 + i * 0.12} duration={0.4}>
-                  <div className="hidden md:block w-8 h-[1px] bg-white/10 flex-shrink-0" />
-                </ScrollReveal>
-              )}
-            </div>
-          ))}
+            ))}
+          </div>
+
+          {/* Mobile: vertical flow */}
+          <div className="md:hidden flex flex-col gap-0">
+            {[
+              { num: '01', label: 'Ingest', sub: 'Camera Feeds', desc: 'Connect existing IP cameras. No new hardware.', accent: false },
+              { num: '02', label: 'Detect', sub: 'Object Detection', desc: 'PPE, zones, personnel — identified in every frame.', accent: true },
+              { num: '03', label: 'Reason', sub: 'Context Analysis', desc: 'AI understands what it sees and why it matters.', accent: true },
+              { num: '04', label: 'Alert', sub: 'Dashboard + SMS', desc: 'Actionable alerts reach your team in seconds.', accent: false },
+            ].map((node, i, arr) => (
+              <ScrollReveal key={node.label} variant="fade-up" delay={i * 0.1} duration={0.4}>
+                <div className="flex items-start gap-4 py-5">
+                  {/* Left: number + line */}
+                  <div className="flex flex-col items-center flex-shrink-0">
+                    <div className={`w-10 h-10 rounded-full flex items-center justify-center ${node.accent ? 'bg-amber-400/10 border border-amber-400/25' : 'bg-white/[0.04] border border-white/[0.08]'}`}>
+                      <span className={`font-mono-accent text-[10px] font-bold ${node.accent ? 'text-amber-400/80' : 'text-white/30'}`}>{node.num}</span>
+                    </div>
+                    {i < arr.length - 1 && (
+                      <div className="w-[1px] h-8 mt-2" style={{ background: node.accent ? 'rgba(245,158,11,0.15)' : 'rgba(255,255,255,0.06)' }} />
+                    )}
+                  </div>
+                  {/* Right: content */}
+                  <div className="pt-1">
+                    <p className={`font-display text-[16px] font-semibold tracking-[-0.02em] ${node.accent ? 'text-white/95' : 'text-white/60'}`}>{node.label}</p>
+                    <p className="font-mono-accent text-[10px] uppercase tracking-[0.14em] text-amber-400/40 mb-1">{node.sub}</p>
+                    <p className="text-[14px] leading-[1.55] text-white/35">{node.desc}</p>
+                  </div>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
         </div>
       </section>
 
