@@ -62,7 +62,7 @@ export default function AboutPage() {
 
       {/* LiquidMetal logo — standalone contained element between hero and manifesto */}
       <section className="relative z-[2] flex items-center justify-center py-8 overflow-hidden">
-        <div className="relative w-[90vw] h-[70vw] max-w-[900px] max-h-[720px] sm:w-[700px] sm:h-[560px] md:w-[900px] md:h-[720px]"
+        <div className="relative w-[85vw] h-[65vw] max-w-[900px] max-h-[720px] sm:w-[700px] sm:h-[560px] md:w-[900px] md:h-[720px]"
           style={{ maskImage: 'radial-gradient(ellipse 90% 90% at center, black 30%, transparent 80%)', WebkitMaskImage: 'radial-gradient(ellipse 90% 90% at center, black 30%, transparent 80%)' }}
         >
           <LiquidMetalLogo
@@ -79,7 +79,7 @@ export default function AboutPage() {
             softness={0.25}
             contour={0.2}
             angle={40}
-            scale={0.45}
+            scale={0.65}
           />
         </div>
       </section>
