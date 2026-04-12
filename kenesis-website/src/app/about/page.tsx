@@ -60,9 +60,20 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* LiquidMetal logo — standalone contained element between hero and manifesto */}
-      <section className="relative z-[2] flex items-center justify-center py-8 overflow-hidden">
-        <div className="relative w-[85vw] h-[65vw] max-w-[900px] max-h-[720px] sm:w-[700px] sm:h-[560px] md:w-[900px] md:h-[720px]"
+      {/* LiquidMetal logo — shader on desktop, static image on mobile */}
+      <section className="relative z-[2] flex items-center justify-center py-12 sm:py-8 overflow-hidden">
+        {/* Mobile: static logo with glow */}
+        <div className="block sm:hidden relative w-[200px] h-[200px]">
+          <div className="absolute inset-0 rounded-full bg-amber-500/10 blur-[60px]" />
+          <img
+            src="/kenesis-icon.png"
+            alt="Kenesis logo"
+            className="relative w-full h-full object-contain opacity-80"
+            style={{ filter: 'drop-shadow(0 0 40px rgba(245,158,11,0.3))' }}
+          />
+        </div>
+        {/* Desktop: liquid metal shader */}
+        <div className="hidden sm:block relative w-[700px] h-[560px] md:w-[900px] md:h-[720px]"
           style={{ maskImage: 'radial-gradient(ellipse 90% 90% at center, black 30%, transparent 80%)', WebkitMaskImage: 'radial-gradient(ellipse 90% 90% at center, black 30%, transparent 80%)' }}
         >
           <LiquidMetalLogo
