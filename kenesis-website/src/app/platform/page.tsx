@@ -17,14 +17,14 @@ const SPECS = [
   ['Response Time', '<100ms'],
   ['Camera Streams', 'Up to 64'],
   ['Processing', 'On-premise'],
-  ['Power', '35W'],
-  ['Storage', 'Local + encrypted'],
   ['Deployment', '48 hours'],
+  ['Storage', 'Local + encrypted'],
   ['Alert Latency', '<3 seconds'],
   ['Cameras', 'Any IP camera'],
-  ['Compliance', 'Indian sovereignty'],
-  ['Cost Savings', '97% fewer API calls'],
+  ['Compliance', 'DPDP Act ready'],
+  ['Cloud Dependency', 'Zero'],
   ['False Positives', 'Near-zero'],
+  ['Internet Required', 'No'],
   ['Uptime', 'Always-on'],
 ];
 
@@ -79,9 +79,9 @@ export default function PlatformPage() {
       <section className="relative z-[1] border-y border-white/[0.06] py-16">
         <div className="mx-auto max-w-[80rem] px-6 md:px-12 grid grid-cols-1 sm:grid-cols-3 gap-y-10 gap-x-6">
           {[
-            { val: 30, suffix: '', label: 'Camera feeds per device' },
-            { val: 35, suffix: 'W', label: 'Total power draw' },
-            { val: 0, suffix: 'ms', label: 'Cloud latency', sub: '<1s on-prem' },
+            { val: 64, suffix: '', label: 'Camera feeds analyzed' },
+            { val: 100, suffix: 'ms', label: 'Detection speed' },
+            { val: 0, suffix: '', label: 'Cloud dependency', sub: 'Fully on-premise' },
           ].map((s, i) => (
             <div key={s.label} className="text-center">
               <p className="font-display text-[clamp(2.5rem,5vw,4rem)] font-semibold text-white/90 leading-none mb-2">

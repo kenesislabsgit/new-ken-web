@@ -38,10 +38,10 @@ const HW_FRAMES = [
 ];
 
 const HW_PANELS = [
-  { step: 1, label: 'The Hardware', headline: 'Engineered to be invisible.', body: 'A compact, fanless device that sits quietly in your server room. No moving parts, no cloud connection, no maintenance overhead.' },
-  { step: 2, label: 'Thermal Design', headline: 'Runs cool. Runs forever.', body: 'Precision-engineered passive cooling handles continuous AI inference without fans. Built for years of uninterrupted operation.' },
-  { step: 3, label: 'Camera Integration', headline: 'Works with what you have.', body: 'Connects to your existing IP cameras — no hardware replacement needed. Supports up to 64 simultaneous feeds per device.' },
-  { step: 4, label: 'Data Sovereignty', headline: 'Your data stays yours.', body: 'Every frame is processed and stored on hardware you own. No external API calls, no cloud uploads, no third-party data access.' },
+  { step: 1, label: 'Visual Intelligence', headline: 'See what cameras miss.', body: 'Our AI watches every frame from every camera simultaneously. It doesn\'t just detect objects — it understands context, behavior, and safety violations in real time.' },
+  { step: 2, label: 'Always Learning', headline: 'Smarter every shift.', body: 'The system continuously adapts to your facility\'s patterns. Fewer false positives over time, more accurate alerts, zero manual tuning required.' },
+  { step: 3, label: 'Camera Integration', headline: 'Works with what you have.', body: 'Connects to your existing IP cameras — no new hardware needed. Supports up to 64 simultaneous feeds with sub-second analysis.' },
+  { step: 4, label: 'Data Sovereignty', headline: 'Your data stays yours.', body: 'Every frame is processed and stored on your premises. No cloud uploads, no third-party access, fully compliant with India\'s DPDP Act.' },
 ];
 
 const FUNNEL_FRAMES = [
@@ -78,7 +78,7 @@ export default function Home() {
           frameSets={[...HW_FRAMES, ...FUNNEL_FRAMES]}
           panels={[...HW_PANELS, ...FUNNEL_PANELS]}
           sectionLabel="Kenesis Vision"
-          sectionTitle="Hardware + Intelligence"
+          sectionTitle="Software + Intelligence"
         />
 
         <PinnedFeatureTabs />

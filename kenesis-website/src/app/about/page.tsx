@@ -112,7 +112,7 @@ export default function AboutPage() {
             end="bottom 60%"
             className="text-[clamp(1.5rem,3vw,2.2rem)] leading-[1.5] text-white/90 font-display tracking-[-0.01em]"
           >
-            Kenesis runs entirely on hardware you own. Your footage never leaves your premises. And when the internet goes down, your safety system keeps running.
+            Kenesis runs entirely on your premises. Your footage never leaves your network. And when the internet goes down, your safety system keeps running.
           </TextReveal>
         </div>
       </section>
@@ -125,8 +125,8 @@ export default function AboutPage() {
             radius={300}
             rotationSpeed={35}
             images={[
-              { src: '/images/gallery/1.webp', alt: 'AI hardware' },
-              { src: '/images/gallery/2.webp', alt: 'Computing hardware' },
+              { src: '/images/gallery/1.webp', alt: 'AI analytics dashboard' },
+              { src: '/images/gallery/2.webp', alt: 'CCTV monitoring system' },
               { src: '/images/gallery/3.webp', alt: 'Factory floor' },
               { src: '/images/gallery/4.webp', alt: 'Engineer at work' },
               { src: '/images/gallery/5.webp', alt: 'CCTV array' },
@@ -193,7 +193,7 @@ export default function AboutPage() {
           </div>
           <div className="space-y-8">
             {[
-              ['Complete data sovereignty.', 'Your camera footage is processed and stored exclusively on your hardware. No cloud provider, no third party, no external entity ever accesses your data.'],
+              ['Complete data sovereignty.', 'Your camera footage is processed and stored exclusively on your premises. No cloud provider, no third party, no external entity ever accesses your data.'],
               ['Contextual intelligence.', 'Our AI doesn\'t just detect objects — it understands context. "Worker in welding zone without face shield during active operation" is actionable. A generic bounding box is not.'],
               ['Zero internet dependency.', 'Many Indian industrial zones have unreliable connectivity. Kenesis is designed to operate completely offline — your safety system should never depend on your ISP.'],
               ['Compliance shouldn\'t be an afterthought.', 'DPDP Act, factory safety regulations, data sovereignty requirements — we\'re built for these from day one, not retrofitted.'],
