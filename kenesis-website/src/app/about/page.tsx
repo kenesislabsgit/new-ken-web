@@ -50,11 +50,11 @@ export default function AboutPage() {
             stagger={0.06}
             className="font-display text-[clamp(3rem,7.5vw,6.5rem)] font-semibold leading-[0.95] tracking-[-0.03em] text-white mb-8"
           >
-            On-premise AI for Indian manufacturing.
+            Visual intelligence for Indian factories.
           </UnblurTextReveal>
           <BlurFade delay={0.6} duration={0.5} blur="6px" offset={8}>
             <p className="max-w-lg text-[1.2rem] leading-[1.7] text-white/35">
-              Founded in Chennai. Built for Indian factories. Designed for complete data sovereignty.
+              Founded in Chennai. We build AI software that turns existing CCTV cameras into intelligent safety systems — no cloud, no new hardware.
             </p>
           </BlurFade>
         </div>
@@ -225,7 +225,7 @@ export default function AboutPage() {
         <div>
           {[
             ['2025 Q1', 'Incorporated in Chennai, India'],
-            ['2025 Q2', 'First prototype — 30 cameras, one server, 35 watts'],
+            ['2025 Q2', 'First prototype — AI analyzing 30 camera feeds in real time'],
             ['2025 Q3', 'AI pipeline validated on live factory floor'],
             ['2025 Q4', 'Platform launch: PPE, zone monitoring, shift analytics'],
             ['2026 Q1', 'First enterprise deployments across Tamil Nadu'],
