@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { prefersReducedMotion } from '@/lib/animations';
@@ -12,63 +12,52 @@ interface Props {
   paragraphs: string[];
 }
 
-const GLITCH_CHARS = '█▓▒░╔╗╚╝═║┌┐└┘─│▄▀■□●○◆◇';
-
 export default function SequentialHighlight({ heading, paragraphs }: Props) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const counterRef = useRef<HTMLSpanElement>(null);
   const paraRefs = useRef<(HTMLParagraphElement | null)[]>([]);
   const progressRefs = useRef<(HTMLDivElement | null)[]>([]);
-  // Track which word index the cursor should sit after
-  const cursorTracker = useRef({ paraIdx: 0, wordIdx: -1 });
 
   useEffect(() => {
     const section = sectionRef.current;
     if (!section || prefersReducedMotion()) return;
 
-    // Each paragraph has a cursor span as its last child
-    const cursors = paraRefs.current.map(el =>
-      el?.querySelector<HTMLSpanElement>('.sh-cursor')
-    );
-
     const ctx = gsap.context(() => {
       const n = paragraphs.length;
-      const segmentDur = 5;
-      const headingDur = 1.8;
+      const segmentDur = 4;
+      const headingDur = 1.5;
 
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: section,
           start: 'top top',
-          end: `+=${(n + 1) * 140}%`,
+          end: `+=${(n + 1) * 120}%`,
           pin: true,
           scrub: 0.5,
           anticipatePin: 1,
         },
       });
 
-      // ── Heading ──
+      // Heading deblur
       if (headingRef.current) {
         tl.fromTo(headingRef.current,
-          { opacity: 0, scale: 0.88, y: 30, filter: 'blur(20px)' },
-          { opacity: 1, scale: 1, y: 0, filter: 'blur(0px)', duration: headingDur, ease: 'power3.out' },
+          { opacity: 0, y: 20, filter: 'blur(12px)' },
+          { opacity: 1, y: 0, filter: 'blur(0px)', duration: headingDur, ease: 'power3.out' },
           0
         );
       }
 
-      // ── Each paragraph ──
-      paragraphs.forEach((text, i) => {
+      // Each paragraph
+      paragraphs.forEach((_, i) => {
         const el = paraRefs.current[i];
         if (!el) return;
         const words = el.querySelectorAll<HTMLSpanElement>('.sh-word');
-        const cursor = cursors[i];
         const wordCount = words.length;
         if (wordCount === 0) return;
 
         const segStart = headingDur + i * segmentDur;
-        const revealDur = 2.8;
-        const wordDelay = revealDur / wordCount;
+        const revealDur = 2.2;
 
         // Counter
         if (counterRef.current) {
@@ -77,68 +66,24 @@ export default function SequentialHighlight({ heading, paragraphs }: Props) {
           }, segStart);
         }
 
-        // Container fades in
+        // Container fade in
         tl.fromTo(el,
-          { y: 40, opacity: 0 },
+          { y: 30, opacity: 0 },
           { y: 0, opacity: 1, duration: 0.5, ease: 'power3.out' },
           segStart
         );
 
-        // Show cursor for this paragraph
-        if (cursor) {
-          tl.set(cursor, { display: 'inline-block', visibility: 'visible' }, segStart + 0.25);
-        }
-        // Hide cursors from other paragraphs
-        cursors.forEach((c, ci) => {
-          if (ci !== i && c) {
-            tl.set(c, { display: 'none' }, segStart);
-          }
-        });
-
-        // Each word reveals
-        words.forEach((word, j) => {
-          const originalText = word.getAttribute('data-text') || word.textContent || '';
-          const wordStart = segStart + 0.3 + j * wordDelay;
-
-          // Deblur
-          tl.fromTo(word,
-            { filter: 'blur(8px)', opacity: 0.05, color: 'rgba(255,255,255,0.05)' },
-            { filter: 'blur(0px)', opacity: 1, color: 'rgba(255,255,255,0.92)', duration: wordDelay * 1.5, ease: 'power2.out' },
-            wordStart
-          );
-
-          // Terminal scramble
-          const scrambleObj = { progress: 0 };
-          tl.to(scrambleObj, {
-            progress: 1,
-            duration: wordDelay * 1.2,
-            ease: 'power2.in',
-            onUpdate: () => {
-              const p = scrambleObj.progress;
-              if (p < 0.7) {
-                const chars = originalText.split('');
-                word.textContent = chars.map((ch, ci) => {
-                  const cp = (p / 0.7) - (ci / chars.length) * 0.5;
-                  return cp > 0.6 ? ch : GLITCH_CHARS[Math.floor(Math.random() * GLITCH_CHARS.length)];
-                }).join('');
-              } else {
-                word.textContent = originalText;
-              }
-            },
-            onComplete: () => { word.textContent = originalText; },
-          }, wordStart);
-
-          // Move cursor: insert it after the current word
-          if (cursor) {
-            tl.to({}, {
-              duration: 0.01,
-              onComplete: () => {
-                // Place cursor right after this word
-                word.after(cursor);
-              },
-            }, wordStart + wordDelay * 0.5);
-          }
-        });
+        // Words: blur deblur sweep left to right
+        tl.fromTo(words,
+          { opacity: 0.08, filter: 'blur(6px)', color: 'rgba(255,255,255,0.08)' },
+          {
+            opacity: 1, filter: 'blur(0px)', color: 'rgba(255,255,255,0.9)',
+            duration: revealDur / wordCount,
+            stagger: revealDur / wordCount,
+            ease: 'power2.out',
+          },
+          segStart + 0.3
+        );
 
         // Progress bar
         const progressBar = progressRefs.current[i];
@@ -150,20 +95,15 @@ export default function SequentialHighlight({ heading, paragraphs }: Props) {
           );
         }
 
-        // Hide cursor at end of paragraph reveal
-        if (cursor) {
-          tl.set(cursor, { display: 'none' }, segStart + revealDur + 0.8);
-        }
-
-        // Fade out (skip for last)
+        // Fade out (skip last)
         if (i < n - 1) {
           tl.to(words, {
-            filter: 'blur(6px)', opacity: 0.04, color: 'rgba(255,255,255,0.04)',
-            duration: 0.6, stagger: 0.01, ease: 'power2.in',
-          }, segStart + 4.0);
+            opacity: 0.05, filter: 'blur(4px)', color: 'rgba(255,255,255,0.05)',
+            duration: 0.5, stagger: 0.01, ease: 'power2.in',
+          }, segStart + 3.2);
           tl.to(el,
-            { y: -20, opacity: 0, duration: 0.5, ease: 'power2.in' },
-            segStart + 4.2
+            { y: -15, opacity: 0, duration: 0.4, ease: 'power2.in' },
+            segStart + 3.4
           );
         }
       });
@@ -189,55 +129,53 @@ export default function SequentialHighlight({ heading, paragraphs }: Props) {
 
   return (
     <div ref={sectionRef} className="relative z-[1] min-h-screen flex items-center border-t border-white/[0.06] overflow-hidden">
+      {/* Ambient glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] rounded-full pointer-events-none"
-        style={{ background: 'radial-gradient(circle, rgba(245,158,11,0.035) 0%, transparent 65%)' }} />
-      <div className="absolute inset-0 pointer-events-none opacity-[0.03]"
-        style={{ backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.03) 2px, rgba(255,255,255,0.03) 4px)', backgroundSize: '100% 4px' }} />
+        style={{ background: 'radial-gradient(circle, rgba(245,158,11,0.03) 0%, transparent 65%)' }} />
 
       <div className="relative z-[1] mx-auto max-w-[1024px] px-6 md:px-12 w-full">
-        <h2 ref={headingRef} className="font-display text-[clamp(22px,5vw,48px)] font-semibold tracking-[-0.03em] text-white/95 mb-10 md:mb-20 text-center" style={{ opacity: 0 }}>
+        {/* Heading */}
+        <h2 ref={headingRef} className="font-display text-[clamp(22px,5vw,48px)] font-semibold tracking-[-0.035em] text-white/95 mb-10 md:mb-16 text-center" style={{ opacity: 0 }}>
           {heading}
         </h2>
 
-        <div className="relative min-h-[280px] sm:min-h-[300px] md:min-h-[240px]">
+        {/* Paragraph stack */}
+        <div className="relative min-h-[300px] sm:min-h-[260px] md:min-h-[220px]">
           {paragraphs.map((text, i) => (
             <p
               key={i}
               ref={el => { paraRefs.current[i] = el; }}
-              className="absolute inset-0 text-[clamp(16px,2.2vw,22px)] leading-[1.75] text-center max-w-[832px] mx-auto font-light px-4 sm:px-2"
+              className="absolute inset-0 text-[clamp(16px,2.2vw,20px)] leading-[1.7] text-center max-w-[832px] mx-auto px-4 sm:px-2"
               style={{ opacity: 0 }}
             >
-              {text.split(' ').map((word, j) => (
-                <span
-                  key={j}
-                  className="sh-word inline-block mr-[0.3em]"
-                  data-text={word}
-                  style={{ opacity: 0.05, color: 'rgba(255,255,255,0.05)', filter: 'blur(8px)' }}
-                >
-                  {word}
-                </span>
+              {text.split(' ').map((word, j, arr) => (
+                <React.Fragment key={j}>
+                  <span
+                    className="sh-word inline-block"
+                    style={{ opacity: 0.08, filter: 'blur(6px)', color: 'rgba(255,255,255,0.08)' }}
+                  >
+                    {word}
+                  </span>
+                  {j < arr.length - 1 ? ' ' : null}
+                </React.Fragment>
               ))}
-              {/* Inline cursor — lives inside the paragraph, gets moved after each word */}
-              <span
-                className="sh-cursor inline-block align-middle font-mono-accent text-amber-400/80 text-[1.1em] ml-[2px]"
-                style={{ display: 'none', animation: 'cursor-blink 0.8s step-end infinite' }}
-                aria-hidden="true"
-              >▌</span>
             </p>
           ))}
         </div>
 
-        <div className="flex items-center justify-center gap-3 mt-16">
-          <span className="font-mono-accent text-[12px] tracking-[0.25em] text-amber-400/40">
-            [<span ref={counterRef} className="text-amber-400/70">1</span>
-            <span className="text-white/15">/{n}</span>]
+        {/* Step counter */}
+        <div className="flex items-center justify-center gap-3 mt-12">
+          <span className="font-mono-accent text-[12px] tracking-[0.25em] text-white/20">
+            <span ref={counterRef} className="text-amber-400/60">1</span>
+            <span className="text-white/10"> / {n}</span>
           </span>
         </div>
 
-        <div className="flex items-center justify-center gap-2 mt-4">
+        {/* Progress bars */}
+        <div className="flex items-center justify-center gap-2 mt-3">
           {paragraphs.map((_, i) => (
-            <div key={i} className="h-[2px] rounded-full bg-white/[0.06] overflow-hidden" style={{ width: '48px' }}>
-              <div ref={el => { progressRefs.current[i] = el; }} className="h-full rounded-full" style={{ width: '0%', background: 'linear-gradient(90deg, rgba(245,158,11,0.3), rgba(245,158,11,0.7))' }} />
+            <div key={i} className="h-[2px] rounded-full bg-white/[0.04] overflow-hidden" style={{ width: '48px' }}>
+              <div ref={el => { progressRefs.current[i] = el; }} className="h-full rounded-full" style={{ width: '0%', background: 'linear-gradient(90deg, rgba(245,158,11,0.3), rgba(245,158,11,0.6))' }} />
             </div>
           ))}
         </div>
@@ -245,4 +183,3 @@ export default function SequentialHighlight({ heading, paragraphs }: Props) {
     </div>
   );
 }
-
