@@ -45,10 +45,13 @@ export default function LenisProvider({ children }: LenisProviderProps) {
     // autoRaf: false because we drive Lenis manually via GSAP ticker
     const lenisInstance = new Lenis({
       smoothWheel: !prefersReduced,
+      syncTouch: true,        // Sync touch events with Lenis for consistent behavior
+      syncTouchLerp: 0.075,   // Lighter lerp for touch — closer to native feel
+      touchInertiaMultiplier: 25, // Natural touch momentum
       autoRaf: false,
-      lerp: 0.12,
-      duration: 0.8,
-      wheelMultiplier: 1.2,
+      lerp: 0.1,
+      duration: 1.0,
+      wheelMultiplier: 1.0,
     } as any);
 
     lenisRef.current = lenisInstance;
@@ -66,8 +69,15 @@ export default function LenisProvider({ children }: LenisProviderProps) {
     // Disable GSAP lag smoothing for consistent scroll-driven animation timing
     gsap.ticker.lagSmoothing(0);
 
+    // Refresh ScrollTrigger after dynamic content loads
+    // This recalculates all pin positions and scroll heights
+    const refresh1 = setTimeout(() => ScrollTrigger.refresh(), 1500);
+    const refresh2 = setTimeout(() => ScrollTrigger.refresh(), 5000);
+
     // Cleanup on unmount
     return () => {
+      clearTimeout(refresh1);
+      clearTimeout(refresh2);
       gsap.ticker.remove(tickerCallback);
       lenisInstance.destroy();
       ScrollTrigger.killAll();
