@@ -142,7 +142,7 @@ export default function AboutPage() {
         <div className="mx-auto max-w-[80rem] px-6 md:px-12 grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-4">
           <div className="text-center">
             <p className="font-display text-[clamp(2.5rem,5vw,3.5rem)] font-semibold text-white/90 leading-none mb-2">
-              <NumberTicker value={2025} delay={0.1} />
+              2025
             </p>
             <p className="font-mono-accent text-[0.85rem] uppercase tracking-[0.1em] text-white/25">Founded</p>
           </div>
@@ -158,7 +158,7 @@ export default function AboutPage() {
             <p className="font-display text-[clamp(2.5rem,5vw,3.5rem)] font-semibold text-white/90 leading-none mb-2">
               <NumberTicker value={30} delay={0.3} />+
             </p>
-            <p className="font-mono-accent text-[0.85rem] uppercase tracking-[0.1em] text-white/25">Cameras per node</p>
+            <p className="font-mono-accent text-[0.85rem] uppercase tracking-[0.1em] text-white/25">Camera feeds</p>
           </div>
         </div>
       </section>

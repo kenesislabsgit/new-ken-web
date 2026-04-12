@@ -61,7 +61,7 @@ export default function FooterCTASection() {
                 as="h2"
                 className="font-display text-[clamp(28px,5.5vw,56px)] font-semibold leading-[1.05] tracking-[-0.02em] text-white/90"
               >
-                Let\'s talk about your facility
+                Let&apos;s talk about your facility
               </TextReveal>
               <ScrollReveal variant="fade-up" delay={0.2}>
                 <p className="mt-5 font-mono-accent text-[14px] leading-relaxed text-white/35 tracking-[0.02em]">
