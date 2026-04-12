@@ -81,17 +81,12 @@ export default function PlatformPage() {
           {[
             { val: 64, suffix: '', label: 'Camera feeds analyzed' },
             { val: 100, suffix: 'ms', label: 'Detection speed' },
-            { val: 0, suffix: '', label: 'Cloud dependency', sub: 'Fully on-premise' },
+            { val: 48, suffix: 'hrs', label: 'Deployment time' },
           ].map((s, i) => (
             <div key={s.label} className="text-center">
               <p className="font-display text-[clamp(2.5rem,5vw,4rem)] font-semibold text-white/90 leading-none mb-2">
-                {s.val > 0 ? (
-                  <><NumberTicker value={s.val} delay={0.2 + i * 0.15} />{s.suffix}</>
-                ) : (
-                  <span className="text-white/25 line-through">&infin;{s.suffix}</span>
-                )}
+                <NumberTicker value={s.val} delay={0.2 + i * 0.15} />{s.suffix}
               </p>
-              {s.sub && <p className="font-mono-accent text-[0.85rem] text-amber-400/50 mb-1">{s.sub}</p>}
               <p className="font-mono-accent text-[0.85rem] uppercase tracking-[0.1em] text-white/25">{s.label}</p>
             </div>
           ))}
@@ -167,7 +162,7 @@ export default function PlatformPage() {
           </p>
           <a href="/contact">
             <Button variant="primary" size="lg" className="font-mono-accent uppercase tracking-[0.1em] text-[1.05rem] rounded-[1.2rem] cursor-pointer">
-              Request a demo
+              Book a walkthrough
             </Button>
           </a>
         </BlurFade>

@@ -126,6 +126,11 @@ export default function HeroSection() {
               AI-powered safety monitoring that runs entirely on your premises. No cloud dependency, no data leaving your facility, no compromises.
             </p>
           </BlurFade>
+          <BlurFade delay={1.8} duration={0.5} blur="6px" offset={10}>
+            <a href="/contact" className="btn-kenesis mt-6 sm:mt-8 inline-flex font-mono-accent text-[13px] sm:text-[14px] uppercase tracking-[0.1em]">
+              Book a walkthrough
+            </a>
+          </BlurFade>
         </div>
 
         {/* Scroll indicator */}

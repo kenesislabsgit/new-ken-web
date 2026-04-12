@@ -173,9 +173,9 @@ export default function AboutPage() {
           </div>
           <div className="text-center">
             <p className="font-display text-[clamp(2.5rem,5vw,3.5rem)] font-semibold text-white/90 leading-none mb-2">
-              <NumberTicker value={30} delay={0.3} />+
+              64
             </p>
-            <p className="font-mono-accent text-[0.85rem] uppercase tracking-[0.1em] text-white/25">Camera feeds</p>
+            <p className="font-mono-accent text-[0.85rem] uppercase tracking-[0.1em] text-white/25">Concurrent streams</p>
           </div>
         </div>
       </section>
@@ -245,7 +245,7 @@ export default function AboutPage() {
             ['2025 Q2', 'First prototype — AI analyzing 30 camera feeds in real time'],
             ['2025 Q3', 'AI pipeline validated on live factory floor'],
             ['2025 Q4', 'Platform launch: PPE, zone monitoring, shift analytics'],
-            ['2026 Q1', 'First enterprise deployments across Tamil Nadu'],
+            ['2026 Q2', 'Pilot deployments in progress'],
           ].map(([date, event], i) => (
             <ScrollReveal key={date} variant="fade-up" delay={i * 0.08} duration={0.5}>
               <div className="flex items-baseline gap-4 sm:gap-8 py-4 border-b border-white/[0.04]">

@@ -17,8 +17,8 @@ interface Testimonial {
 const testimonials: Record<string, Testimonial> = {
   Manufacturing: {
     quote: 'Kenesis transformed our safety monitoring within days of deployment. The on-premise approach eliminated our data privacy concerns entirely, and the alerts are precise enough to act on immediately.',
-    authorName: 'Rajesh Kumar',
-    authorTitle: 'Plant Head, Manufacturing Unit',
+    authorName: '',
+    authorTitle: 'Plant Head, EMS Manufacturer, Tamil Nadu',
     partnerLogo: 'M',
   },
   Pharma: {
@@ -111,8 +111,8 @@ export default function PartnerLogosSection() {
             </div>
 
             <ScrollReveal variant="scale-up" delay={0.5}>
-              <a href="#" className="btn-kenesis-outline mt-8 inline-flex">
-                See the details
+              <a href="/contact" className="btn-kenesis-outline mt-8 inline-flex">
+                Book a walkthrough
               </a>
             </ScrollReveal>
           </div>

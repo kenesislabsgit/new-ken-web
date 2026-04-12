@@ -99,7 +99,7 @@ export default function Navbar() {
                 size="md"
                 className="font-mono-accent text-[12px] font-bold uppercase tracking-[0.08em] rounded-xl cursor-pointer"
               >
-                Request Demo
+                Book a walkthrough
               </Button>
             </Link>
 
@@ -152,7 +152,7 @@ export default function Navbar() {
                 size="lg"
                 className="font-mono-accent text-[14px] font-bold uppercase tracking-[0.08em] rounded-xl cursor-pointer"
               >
-                Request Demo
+                Book a walkthrough
               </Button>
             </Link>
           </div>

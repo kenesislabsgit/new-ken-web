@@ -146,11 +146,8 @@ export function TextReveal({
       ));
     }
 
-    return words.map((word, i) => (
-      <span key={i} className="inline-block overflow-hidden mr-[0.25em]">
-        <span
-          className="tr-unit inline-block"
-          style={
+    return words.map((word, i, arr) => (
+      <span key={i} className="tr-unit inline" style={
             variant === "word-slide"
               ? { opacity: 0, transform: "translateY(100%)" }
               : variant === "word-fade" || variant === "highlight"
@@ -160,10 +157,8 @@ export function TextReveal({
               : variant === "line-mask"
               ? { clipPath: "inset(0 0 100% 0)" }
               : { opacity: 0 }
-          }
-        >
-          {word}
-        </span>
+          }>
+        {word}{i < arr.length - 1 ? ' ' : ''}
       </span>
     ));
   };

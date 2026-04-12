@@ -97,14 +97,9 @@ export function UnblurTextReveal({
             {c === " " ? "\u00A0" : c}
           </span>
         ))
-      : children.split(" ").map((word, i) => (
-          <span key={i} className="inline-block mr-[0.3em]">
-            <span
-              className="ubr-unit inline-block"
-              style={{ opacity: 0, filter: `blur(${blurAmount}px)`, transform: `scale(${scaleFrom})` }}
-            >
-              {word}
-            </span>
+      : children.split(" ").map((word, i, arr) => (
+          <span key={i} className="ubr-unit inline" style={{ opacity: 0, filter: `blur(${blurAmount}px)`, transform: `scale(${scaleFrom})` }}>
+            {word}{i < arr.length - 1 ? ' ' : ''}
           </span>
         ));
 
