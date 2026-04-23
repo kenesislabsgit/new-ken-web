@@ -4,7 +4,6 @@ import { Button } from '@heroui/react';
 import PageShell from '@/components/PageShell';
 import { BlurFade } from '@/components/magicui/blur-fade';
 import DashboardPreview from '@/components/DashboardPreview';
-import { BorderBeam } from '@/components/magicui/border-beam';
 import { NumberTicker } from '@/components/magicui/number-ticker';
 import { ScrollReveal } from '@/components/magicui/scroll-reveal';
 import { AsciiDivider } from '@/components/AsciiArt';
