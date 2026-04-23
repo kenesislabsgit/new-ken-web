@@ -5,11 +5,11 @@ import { TextReveal } from '@/components/magicui/text-reveal';
 import { BlurFade } from '@/components/magicui/blur-fade';
 import ColorfulWave from './ColorfulWave';
 
-const FUNNEL = [
-  { val: '10,000', unit: 'frames' },
-  { val: '100', unit: 'detections' },
-  { val: '5', unit: 'anomalies' },
-  { val: '1', unit: 'alert' },
+const HIGHLIGHTS = [
+  { val: '24/7', label: 'Monitoring' },
+  { val: '<3s', label: 'Alert speed' },
+  { val: '0%', label: 'Cloud dependency' },
+  { val: '99.9%', label: 'Uptime' },
 ];
 
 export default function WavePerformanceSection() {
@@ -39,30 +39,23 @@ export default function WavePerformanceSection() {
 
           {/* Heading */}
           <TextReveal variant="word-slide" as="h2" start="top 90%" duration={0.9} stagger={0.08} className="font-display text-[clamp(28px,5vw,48px)] font-semibold tracking-[-0.04em] text-white/95 leading-[1.02] mb-5">
-            The Intelligence Funnel
+            Always watching. Always learning.
           </TextReveal>
 
           {/* Description */}
           <BlurFade delay={0} duration={0.6} blur="8px" offset={14} inView inViewMargin="-60px">
             <p className="text-[15px] sm:text-[17px] leading-[1.65] text-white/40 mb-8 sm:mb-10 max-w-[420px]">
-              Every frame passes through three stages of refinement. Noise collapses into signal. When your phone rings, it means something.
+              Every camera feed is analyzed in real time. The system filters noise, understands context, and only alerts your team when it matters — so when your phone rings, it means something.
             </p>
           </BlurFade>
 
-          {/* Funnel — horizontal strip */}
+          {/* Stats — horizontal strip */}
           <BlurFade delay={0} duration={0.5} blur="4px" offset={8} inView inViewMargin="-60px">
-            <div className="flex flex-wrap items-center gap-2 sm:gap-4 md:gap-5 mb-8 sm:mb-10">
-              {FUNNEL.map((item, i, arr) => (
-                <div key={i} className="flex items-center gap-2 sm:gap-4 md:gap-5">
-                  <div className="flex flex-col items-center min-w-[40px]">
-                    <span className="font-display text-[clamp(16px,2.5vw,28px)] font-bold text-white/85 tabular-nums">{item.val}</span>
-                    <span className="font-mono-accent text-[10px] sm:text-[11px] uppercase tracking-[0.18em] text-white/30 mt-1">{item.unit}</span>
-                  </div>
-                  {i < arr.length - 1 && (
-                    <svg width="18" height="12" viewBox="0 0 20 12" fill="none" className="text-amber-400/30 shrink-0">
-                      <path d="M0 6h16m0 0l-4-4m4 4l-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  )}
+            <div className="grid grid-cols-4 gap-3 sm:gap-5 mb-8 sm:mb-10">
+              {HIGHLIGHTS.map((item, i) => (
+                <div key={i} className="flex flex-col">
+                  <span className="font-display text-[clamp(16px,2.5vw,28px)] font-bold text-white/85 tabular-nums">{item.val}</span>
+                  <span className="font-mono-accent text-[9px] sm:text-[11px] uppercase tracking-[0.14em] text-white/30 mt-1">{item.label}</span>
                 </div>
               ))}
             </div>
@@ -85,4 +78,3 @@ export default function WavePerformanceSection() {
     </section>
   );
 }
-
