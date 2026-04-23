@@ -7,32 +7,10 @@ import DashboardPreview from '@/components/DashboardPreview';
 import { BorderBeam } from '@/components/magicui/border-beam';
 import { NumberTicker } from '@/components/magicui/number-ticker';
 import { ScrollReveal } from '@/components/magicui/scroll-reveal';
-import { UnblurTextReveal } from '@/components/magicui/unblur-text-reveal';
 import { AsciiDivider } from '@/components/AsciiArt';
 import { TypewriterText } from '@/components/magicui/typewriter-text';
 import { DitheredWaves } from '@/components/magicui/dithered-waves';
 import SequentialHighlight from '@/components/SequentialHighlight';
-
-const SPECS: Record<string, { label: string; value: string; unit?: string; highlight: boolean }[]> = {
-  performance: [
-    { label: 'Response Time', value: '<100ms', highlight: true },
-    { label: 'Camera Streams', value: '64', unit: 'concurrent', highlight: false },
-    { label: 'Alert Latency', value: '<3s', highlight: false },
-    { label: 'Deployment', value: '48hrs', highlight: false },
-  ],
-  architecture: [
-    { label: 'Processing', value: 'On-premise', highlight: true },
-    { label: 'Cloud Dependency', value: 'None', highlight: true },
-    { label: 'Internet Required', value: 'No', highlight: false },
-    { label: 'Uptime', value: '99.9%', highlight: false },
-  ],
-  compatibility: [
-    { label: 'Cameras', value: 'Any IP camera', highlight: false },
-    { label: 'Storage', value: 'Local + AES-256', highlight: false },
-    { label: 'Compliance', value: 'DPDP Act', highlight: true },
-    { label: 'False Positive Rate', value: '<2%', highlight: false },
-  ],
-};
 
 export default function PlatformPage() {
   return (
@@ -191,55 +169,44 @@ export default function PlatformPage() {
         </div>
       </section>
 
-      {/* Specs */}
+      {/* Built for the factory floor */}
       <section className="relative z-[2] py-[80px] sm:py-[120px] md:py-[160px] px-[16px] sm:px-[24px] md:px-[48px] bg-[#0a0a0b]">
         <div className="mx-auto max-w-[1100px]">
-          <UnblurTextReveal as="h2" blurAmount={16} scaleFrom={0.93} scrub={1} start="top 85%" end="top 55%" splitBy="word" stagger={0.05} className="font-display text-[clamp(32px,5vw,56px)] font-semibold tracking-[-0.035em] text-white/95 mb-6">
-            Technical specifications
-          </UnblurTextReveal>
-          <BlurFade delay={0} duration={0.5} blur="6px" offset={8} inView inViewMargin="-60px">
-            <p className="text-[15px] sm:text-[16px] text-white/35 mb-12 sm:mb-16 max-w-xl">Numbers that matter to your engineering and procurement teams.</p>
+          <BlurFade delay={0} duration={0.6} blur="8px" offset={14} inView inViewMargin="-80px">
+            <h2 className="font-display text-[clamp(32px,5vw,56px)] font-semibold tracking-[-0.035em] text-white/95 mb-6">
+              Built for the factory floor
+            </h2>
+            <p className="text-[15px] sm:text-[16px] text-white/35 mb-12 sm:mb-16 max-w-xl">
+              Designed around the realities of Indian manufacturing — unreliable internet, strict data laws, and zero tolerance for downtime.
+            </p>
           </BlurFade>
 
-          <div className="space-y-10 sm:space-y-14">
-            {Object.entries(SPECS).map(([category, items], ci) => (
-              <div key={category}>
-                <ScrollReveal variant="fade-up" delay={ci * 0.1} duration={0.4}>
-                  <div className="flex items-center gap-3 mb-5">
-                    <span className="h-[1px] w-5 bg-amber-400/30" />
-                    <span className="font-mono-accent text-[11px] uppercase tracking-[0.2em] text-amber-400/50">{category}</span>
-                  </div>
-                </ScrollReveal>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
-                  {items.map((spec, i) => (
-                    <ScrollReveal key={spec.label} variant="scale-up" delay={ci * 0.08 + i * 0.04} duration={0.4}>
-                      <div
-                        className={`group relative rounded-[16px] p-5 sm:p-6 transition-all duration-400 cursor-default overflow-hidden ${spec.highlight ? 'hover:scale-[1.02]' : 'hover:scale-[1.01]'}`}
-                        style={{
-                          background: spec.highlight
-                            ? 'linear-gradient(135deg, rgba(245,158,11,0.08) 0%, rgba(245,158,11,0.02) 100%)'
-                            : 'linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%)',
-                          backdropFilter: 'blur(20px) saturate(1.4)',
-                          WebkitBackdropFilter: 'blur(20px) saturate(1.4)',
-                          border: spec.highlight ? '1px solid rgba(245,158,11,0.15)' : '1px solid rgba(255,255,255,0.08)',
-                          boxShadow: spec.highlight
-                            ? '0 4px 24px rgba(245,158,11,0.06), 0 1px 0 rgba(255,255,255,0.04) inset, 0 -1px 0 rgba(0,0,0,0.2) inset'
-                            : '0 4px 20px rgba(0,0,0,0.3), 0 1px 0 rgba(255,255,255,0.04) inset, 0 -1px 0 rgba(0,0,0,0.2) inset',
-                        }}
-                      >
-                        {/* Glass shine */}
-                        <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
-                        <p className="font-mono-accent text-[10px] uppercase tracking-[0.16em] text-white/25 mb-3">{spec.label}</p>
-                        <div className="flex items-baseline gap-1">
-                          <p className={`font-display text-[20px] sm:text-[22px] font-bold tracking-[-0.02em] ${spec.highlight ? 'text-amber-400/90' : 'text-white/80'}`}>{spec.value}</p>
-                          {spec.unit && <span className="font-mono-accent text-[10px] text-white/20">{spec.unit}</span>}
-                        </div>
-                        {spec.highlight && <div className="absolute -bottom-8 -right-8 w-24 h-24 rounded-full bg-amber-400/[0.04] blur-[20px]" />}
-                      </div>
-                    </ScrollReveal>
-                  ))}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+            {[
+              { icon: '🔒', title: 'Fully on-premise', desc: 'Every frame processed and stored locally. No cloud uploads, no third-party access.' },
+              { icon: '⚡', title: 'Real-time alerts', desc: 'Safety violations flagged in seconds, not minutes. Your team acts before incidents escalate.' },
+              { icon: '📷', title: 'Works with any camera', desc: 'Connects to your existing IP cameras. No proprietary hardware, no rip-and-replace.' },
+              { icon: '🌐', title: 'No internet required', desc: 'Runs completely offline. Network outages don\'t affect your safety monitoring.' },
+              { icon: '📋', title: 'DPDP Act compliant', desc: 'Data never leaves your premises. Built for India\'s data protection requirements from day one.' },
+              { icon: '🚀', title: 'Live in 48 hours', desc: 'From unboxing to monitoring. Minimal setup, no lengthy integration projects.' },
+            ].map((item, i) => (
+              <ScrollReveal key={item.title} variant="scale-up" delay={i * 0.06} duration={0.4}>
+                <div
+                  className="group relative rounded-[16px] p-6 sm:p-8 transition-all duration-400 cursor-default overflow-hidden h-full hover:scale-[1.01]"
+                  style={{
+                    background: 'linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%)',
+                    backdropFilter: 'blur(20px) saturate(1.4)',
+                    WebkitBackdropFilter: 'blur(20px) saturate(1.4)',
+                    border: '1px solid rgba(255,255,255,0.08)',
+                    boxShadow: '0 4px 20px rgba(0,0,0,0.3), 0 1px 0 rgba(255,255,255,0.04) inset, 0 -1px 0 rgba(0,0,0,0.2) inset',
+                  }}
+                >
+                  <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
+                  <p className="text-[24px] mb-4">{item.icon}</p>
+                  <p className="font-display text-[17px] font-semibold text-white/90 mb-2 tracking-[-0.02em]">{item.title}</p>
+                  <p className="text-[14px] leading-[1.6] text-white/35">{item.desc}</p>
                 </div>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
