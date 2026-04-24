@@ -65,29 +65,29 @@ export default function HeroSection() {
           <div className="relative w-full overflow-hidden" style={{ maxWidth: '100%', padding: '0 12px' }}>
             {/* Glow behind logo */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <div className="w-[80%] h-[200%] rounded-full" style={{ background: 'radial-gradient(ellipse at center, rgba(245,158,11,0.12) 0%, rgba(245,158,11,0.04) 40%, transparent 70%)' }} />
+              <div className="w-[80%] h-[200%] rounded-full" style={{ background: 'radial-gradient(ellipse at center, rgba(245,158,11,0.18) 0%, rgba(245,158,11,0.06) 40%, transparent 70%)' }} />
             </div>
             <div className="relative z-[1] pointer-events-auto">
               <TextVideoMask
                 text="KENESIS"
-                fontSize="clamp(36px, 12vw, 240px)"
+                fontSize="clamp(44px, 14vw, 240px)"
                 fontWeight={400}
                 fontFamily="'MBF Neo Wave', var(--font-neowave), sans-serif"
                 mode="clip"
                 className="w-full overflow-hidden"
-                style={{ height: 'clamp(55px, 18vw, 320px)' }}
+                style={{ height: 'clamp(65px, 22vw, 320px)' }}
               >
                 {mounted ? (
                   <DitheredWaves
                     color="#f59e0b"
-                    cellSize={isMobile ? 5 : 8}
+                    cellSize={isMobile ? 7 : 8}
                     speed={0.8}
                     layers={isMobile ? 2 : 3}
                     amplitude={50}
                     frequency={0.025}
                     enableMouse={true}
                     mouseRadius={isMobile ? 120 : 250}
-                    charset=" .:-=+*#%@█"
+                    charset=" .:=+*#%@█"
                     className="h-full w-full"
                   />
                 ) : (
