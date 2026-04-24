@@ -51,9 +51,9 @@ export default function HeroSection() {
           <source src="/videos/hero-bg.mp4" type="video/mp4" />
         </video>
         {/* Dark overlay for text readability */}
-        <div className="absolute inset-0 bg-black/50" />
+        <div className="absolute inset-0 bg-black/70" />
         {/* Bottom gradient fade to surface color */}
-        <div className="absolute inset-x-0 bottom-0 h-[40%] bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/80 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-[50%] bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/90 to-transparent" />
         {/* Subtle amber tint overlay */}
         <div className="absolute inset-0 bg-amber-900/10 mix-blend-overlay" />
       </div>
@@ -63,6 +63,10 @@ export default function HeroSection() {
         {/* KENESIS logo centered in viewport */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
           <div className="relative w-full overflow-hidden" style={{ maxWidth: '100%', padding: '0 12px' }}>
+            {/* Glow behind logo */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <div className="w-[80%] h-[200%] rounded-full" style={{ background: 'radial-gradient(ellipse at center, rgba(245,158,11,0.12) 0%, rgba(245,158,11,0.04) 40%, transparent 70%)' }} />
+            </div>
             <div className="relative z-[1] pointer-events-auto">
               <TextVideoMask
                 text="KENESIS"
