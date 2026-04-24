@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { prefersReducedMotion } from '@/lib/animations';
@@ -38,19 +37,21 @@ export default function HeroSection() {
 
   return (
     <section ref={sectionRef} className="relative w-full">
-      {/* Cinematic image background */}
+      {/* Cinematic video background — seamless loop */}
       <div className="fixed inset-0 z-0 pointer-events-none">
-        <Image
-          src="/hero/warehouse-wide.webp"
-          alt=""
-          fill
-          priority
-          quality={85}
-          className="object-cover"
-          sizes="100vw"
-        />
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src="/videos/hero-bg.webm" type="video/webm" />
+          <source src="/videos/hero-bg.mp4" type="video/mp4" />
+        </video>
         {/* Dark overlay for text readability */}
-        <div className="absolute inset-0 bg-black/60" />
+        <div className="absolute inset-0 bg-black/50" />
         {/* Bottom gradient fade to surface color */}
         <div className="absolute inset-x-0 bottom-0 h-[40%] bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/80 to-transparent" />
         {/* Subtle amber tint overlay */}
