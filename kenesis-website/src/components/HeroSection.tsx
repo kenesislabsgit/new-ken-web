@@ -114,7 +114,7 @@ export default function HeroSection() {
             </p>
           </BlurFade>
           <BlurFade delay={1.8} duration={0.5} blur="6px" offset={10}>
-            <a href="/contact" className="btn-kenesis mt-6 sm:mt-8 inline-flex font-mono-accent text-[13px] sm:text-[14px] uppercase tracking-[0.1em]">
+            <a href="/contact" className="btn-kenesis mt-5 sm:mt-8 inline-flex font-mono-accent text-[11px] sm:text-[13px] uppercase tracking-[0.1em] !py-[10px] !px-[20px] sm:!py-[14px] sm:!px-[32px]">
               Book a walkthrough
             </a>
           </BlurFade>
