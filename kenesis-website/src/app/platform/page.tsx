@@ -1,6 +1,7 @@
 'use client';
 
 import { Button } from '@heroui/react';
+import { Shield, Zap, Camera, WifiOff, FileCheck, Rocket } from 'lucide-react';
 import PageShell from '@/components/PageShell';
 import { BlurFade } from '@/components/magicui/blur-fade';
 import DashboardPreview from '@/components/DashboardPreview';
@@ -182,12 +183,12 @@ export default function PlatformPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
             {[
-              { icon: '🔒', title: 'Fully on-premise', desc: 'Every frame processed and stored locally. No cloud uploads, no third-party access.' },
-              { icon: '⚡', title: 'Real-time alerts', desc: 'Safety violations flagged in seconds, not minutes. Your team acts before incidents escalate.' },
-              { icon: '📷', title: 'Works with any camera', desc: 'Connects to your existing IP cameras. No proprietary hardware, no rip-and-replace.' },
-              { icon: '🌐', title: 'No internet required', desc: 'Runs completely offline. Network outages don\'t affect your safety monitoring.' },
-              { icon: '📋', title: 'DPDP Act compliant', desc: 'Data never leaves your premises. Built for India\'s data protection requirements from day one.' },
-              { icon: '🚀', title: 'Live in 48 hours', desc: 'From unboxing to monitoring. Minimal setup, no lengthy integration projects.' },
+              { Icon: Shield, title: 'Fully on-premise', desc: 'Every frame processed and stored locally. No cloud uploads, no third-party access.' },
+              { Icon: Zap, title: 'Real-time alerts', desc: 'Safety violations flagged in seconds, not minutes. Your team acts before incidents escalate.' },
+              { Icon: Camera, title: 'Works with any camera', desc: 'Connects to your existing IP cameras. No proprietary hardware, no rip-and-replace.' },
+              { Icon: WifiOff, title: 'No internet required', desc: 'Runs completely offline. Network outages don\'t affect your safety monitoring.' },
+              { Icon: FileCheck, title: 'DPDP Act compliant', desc: 'Data never leaves your premises. Built for India\'s data protection requirements from day one.' },
+              { Icon: Rocket, title: 'Live in 48 hours', desc: 'From setup to monitoring. Minimal configuration, no lengthy integration projects.' },
             ].map((item, i) => (
               <ScrollReveal key={item.title} variant="scale-up" delay={i * 0.06} duration={0.4}>
                 <div
@@ -201,7 +202,9 @@ export default function PlatformPage() {
                   }}
                 >
                   <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
-                  <p className="text-[24px] mb-4">{item.icon}</p>
+                  <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style={{ background: 'rgba(245,158,11,0.08)', border: '1px solid rgba(245,158,11,0.15)' }}>
+                    <item.Icon size={20} className="text-amber-400/80" strokeWidth={1.5} />
+                  </div>
                   <p className="font-display text-[17px] font-semibold text-white/90 mb-2 tracking-[-0.02em]">{item.title}</p>
                   <p className="text-[14px] leading-[1.6] text-white/35">{item.desc}</p>
                 </div>
