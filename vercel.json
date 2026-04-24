@@ -1,6 +1,0 @@
-{
-  "buildCommand": "cd kenesis-website && npm run build",
-  "outputDirectory": "kenesis-website/.next",
-  "installCommand": "cd kenesis-website && npm install",
-  "framework": "nextjs"
-}
