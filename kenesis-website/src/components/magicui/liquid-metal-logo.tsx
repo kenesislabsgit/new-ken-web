@@ -72,7 +72,7 @@ export function LiquidMetalLogo({
     <div
       ref={containerRef}
       className={cn("relative overflow-hidden transition-opacity duration-500", className)}
-      style={{ width, height, opacity: shaderRendered ? 1 : 0 }}
+      style={{ width, height, opacity: shaderRendered ? 1 : 0, borderRadius: '50%', clipPath: 'circle(50%)' }}
     >
       {/* Only render when shader is ready — static fallback if shader fails */}
       {!LiquidMetal && shaderRendered && (
