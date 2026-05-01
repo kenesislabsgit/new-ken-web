@@ -11,6 +11,8 @@ import { AsciiDivider } from '@/components/AsciiArt';
 import { TypewriterText } from '@/components/magicui/typewriter-text';
 import { DitheredWaves } from '@/components/magicui/dithered-waves';
 import SequentialHighlight from '@/components/SequentialHighlight';
+import BorderGlow from '@/components/BorderGlow';
+import AsciiCard from '@/components/AsciiCard';
 
 export default function PlatformPage() {
   return (
@@ -191,23 +193,27 @@ export default function PlatformPage() {
               { Icon: Rocket, title: 'Live in 48 hours', desc: 'From setup to monitoring. Minimal configuration, no lengthy integration projects.' },
             ].map((item, i) => (
               <ScrollReveal key={item.title} variant="scale-up" delay={i * 0.06} duration={0.4}>
-                <div
-                  className="group relative rounded-[16px] p-6 sm:p-8 transition-all duration-400 cursor-default overflow-hidden h-full hover:scale-[1.01]"
-                  style={{
-                    background: 'linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%)',
-                    backdropFilter: 'blur(20px) saturate(1.4)',
-                    WebkitBackdropFilter: 'blur(20px) saturate(1.4)',
-                    border: '1px solid rgba(255,255,255,0.08)',
-                    boxShadow: '0 4px 20px rgba(0,0,0,0.3), 0 1px 0 rgba(255,255,255,0.04) inset, 0 -1px 0 rgba(0,0,0,0.2) inset',
-                  }}
-                >
-                  <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
-                  <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style={{ background: 'rgba(245,158,11,0.08)', border: '1px solid rgba(245,158,11,0.15)' }}>
-                    <item.Icon size={20} className="text-amber-400/80" strokeWidth={1.5} />
-                  </div>
-                  <p className="font-display text-[17px] font-semibold text-white/90 mb-2 tracking-[-0.02em]">{item.title}</p>
-                  <p className="text-[14px] leading-[1.6] text-white/35">{item.desc}</p>
-                </div>
+                <BorderGlow glowColors={['#fbbf24', '#f59e0b', '#d97706']} borderRadius={16}>
+                  <AsciiCard color="#fbbf24" gap={14} speed={800}>
+                    <div
+                      className="group relative rounded-[16px] p-6 sm:p-8 transition-all duration-400 cursor-default overflow-hidden h-full hover:scale-[1.01]"
+                      style={{
+                        background: 'linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%)',
+                        backdropFilter: 'blur(20px) saturate(1.4)',
+                        WebkitBackdropFilter: 'blur(20px) saturate(1.4)',
+                        border: '1px solid rgba(255,255,255,0.08)',
+                        boxShadow: '0 4px 20px rgba(0,0,0,0.3), 0 1px 0 rgba(255,255,255,0.04) inset, 0 -1px 0 rgba(0,0,0,0.2) inset',
+                      }}
+                    >
+                      <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
+                      <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style={{ background: 'rgba(245,158,11,0.08)', border: '1px solid rgba(245,158,11,0.15)' }}>
+                        <item.Icon size={20} className="text-amber-400/80" strokeWidth={1.5} />
+                      </div>
+                      <p className="font-display text-[17px] font-semibold text-white/90 mb-2 tracking-[-0.02em]">{item.title}</p>
+                      <p className="text-[14px] leading-[1.6] text-white/35">{item.desc}</p>
+                    </div>
+                  </AsciiCard>
+                </BorderGlow>
               </ScrollReveal>
             ))}
           </div>

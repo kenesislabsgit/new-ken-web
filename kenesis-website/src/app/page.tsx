@@ -15,6 +15,8 @@ import { BlurFade } from "@/components/magicui/blur-fade";
 import { ScrollReveal } from "@/components/magicui/scroll-reveal";
 import { TextReveal } from "@/components/magicui/text-reveal";
 import { BorderBeam } from "@/components/magicui/border-beam";
+import BorderGlow from "@/components/BorderGlow";
+import AsciiCard from "@/components/AsciiCard";
 const ScrollFrameSection = dynamic(
   () => import(/* webpackPrefetch: true */ "@/components/ScrollFrameSection"),
   {
@@ -100,17 +102,21 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-[24px]">
               {FEATURES.map((f, i) => (
                 <ScrollReveal key={f.num} variant="scale-up" delay={i * 0.08} duration={0.5}>
-                  <div className="relative glass-card rounded-[16px] p-[24px] sm:p-[40px] md:p-[48px] h-full group cursor-pointer hover:border-amber-400/20 hover:bg-white/[0.06] transition-all duration-400">
-                    <BorderBeam size={180} duration={14} colorFrom="#f59e0b" colorTo="#d97706" borderWidth={1} />
-                    <div className="flex items-start justify-between mb-[20px] sm:mb-[32px]">
-                      <p className="font-mono-accent text-[36px] sm:text-[48px] font-bold text-amber-400/[0.06] group-hover:text-amber-400/15 transition-colors duration-400 leading-none">{f.num}</p>
-                      <div className="w-[40px] h-[40px] rounded-full border border-white/[0.06] flex items-center justify-center group-hover:border-amber-400/25 group-hover:bg-amber-400/[0.04] transition-all duration-400">
-                        <span className="text-white/15 group-hover:text-amber-400/50 transition-colors text-[16px]">&rarr;</span>
+                  <BorderGlow glowColors={['#fbbf24', '#f59e0b', '#d97706']} borderRadius={16}>
+                    <AsciiCard color="#fbbf24" gap={14} speed={800}>
+                      <div className="relative glass-card rounded-[16px] p-[24px] sm:p-[40px] md:p-[48px] h-full group cursor-pointer hover:border-amber-400/20 hover:bg-white/[0.06] transition-all duration-400">
+                        <BorderBeam size={180} duration={14} colorFrom="#f59e0b" colorTo="#d97706" borderWidth={1} />
+                        <div className="flex items-start justify-between mb-[20px] sm:mb-[32px]">
+                          <p className="font-mono-accent text-[36px] sm:text-[48px] font-bold text-amber-400/[0.06] group-hover:text-amber-400/15 transition-colors duration-400 leading-none">{f.num}</p>
+                          <div className="w-[40px] h-[40px] rounded-full border border-white/[0.06] flex items-center justify-center group-hover:border-amber-400/25 group-hover:bg-amber-400/[0.04] transition-all duration-400">
+                            <span className="text-white/15 group-hover:text-amber-400/50 transition-colors text-[16px]">&rarr;</span>
+                          </div>
+                        </div>
+                        <h3 className="font-display text-[18px] sm:text-[22px] font-semibold text-white/90 mb-[12px] sm:mb-[16px] group-hover:text-white transition-colors tracking-[-0.02em]">{f.title}</h3>
+                        <p className="text-[15px] sm:text-[16px] leading-[1.7] text-white/40 group-hover:text-white/55 transition-colors duration-400">{f.desc}</p>
                       </div>
-                    </div>
-                    <h3 className="font-display text-[18px] sm:text-[22px] font-semibold text-white/90 mb-[12px] sm:mb-[16px] group-hover:text-white transition-colors tracking-[-0.02em]">{f.title}</h3>
-                    <p className="text-[15px] sm:text-[16px] leading-[1.7] text-white/40 group-hover:text-white/55 transition-colors duration-400">{f.desc}</p>
-                  </div>
+                    </AsciiCard>
+                  </BorderGlow>
                 </ScrollReveal>
               ))}
             </div>
