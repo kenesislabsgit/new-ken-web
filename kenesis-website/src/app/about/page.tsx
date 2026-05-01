@@ -69,7 +69,7 @@ export default function AboutPage() {
           }}
         >
           {/* Mobile */}
-          <div className="sm:hidden">
+          <div className="sm:hidden rounded-full overflow-hidden">
             <LiquidMetalLogo
               src="/kenesis-union.png"
               width={300}
@@ -88,7 +88,7 @@ export default function AboutPage() {
             />
           </div>
           {/* Desktop */}
-          <div className="hidden sm:block">
+          <div className="hidden sm:block rounded-full overflow-hidden">
             <LiquidMetalLogo
               src="/kenesis-union.png"
               width={700}
