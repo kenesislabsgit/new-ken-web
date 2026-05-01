@@ -71,7 +71,7 @@ export default function AboutPage() {
           {/* Mobile */}
           <div className="sm:hidden">
             <LiquidMetalLogo
-              src="/kenesis-icon.png"
+              src="/kenesis-union.png"
               width={300}
               height={300}
               colorBack="#0a0a0b"
@@ -84,13 +84,13 @@ export default function AboutPage() {
               contour={0.35}
               repetition={2}
               angle={65}
-              scale={0.45}
+              scale={0.7}
             />
           </div>
           {/* Desktop */}
           <div className="hidden sm:block">
             <LiquidMetalLogo
-              src="/kenesis-icon.png"
+              src="/kenesis-union.png"
               width={700}
               height={700}
               colorBack="#0a0a0b"
@@ -103,7 +103,7 @@ export default function AboutPage() {
               contour={0.35}
               repetition={2}
               angle={65}
-              scale={0.45}
+              scale={0.7}
             />
           </div>
         </div>
