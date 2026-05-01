@@ -55,41 +55,36 @@ export default function Navbar() {
   return (
     <>
       <style>{`
-        /* ── Navbar glass shell ── */
+        /* ── Navbar skeuomorphic shell ── */
         .navbar-shell {
           position: relative;
-          /* same dark glass base as original */
           background:
-            /* top specular highlight — the key 3D trick */
             linear-gradient(
               180deg,
-              rgba(255,255,255,0.13) 0%,
-              rgba(255,255,255,0.04) 40%,
-              rgba(0,0,0,0.0) 100%
+              rgba(255,255,255,0.10) 0%,
+              rgba(255,255,255,0.03) 50%,
+              rgba(0,0,0,0.08) 100%
             ),
-            /* original dark base */
-            rgba(10, 10, 11, 0.65);
+            rgba(14, 13, 12, 0.82);
           backdrop-filter: blur(32px) saturate(1.6);
           -webkit-backdrop-filter: blur(32px) saturate(1.6);
-          /* outer border: bright top edge fading to dim bottom */
-          border: 1px solid transparent;
-          background-clip: padding-box;
+          border: none;
           box-shadow:
-            /* drop shadow for lift */
-            0 12px 40px rgba(0,0,0,0.45),
-            0 4px 12px rgba(0,0,0,0.3),
-            /* inner top bright edge — creates the 3D chrome lip */
-            inset 0 1px 0 rgba(255,255,255,0.22),
-            /* inner bottom dark edge — depth */
-            inset 0 -1px 0 rgba(0,0,0,0.35),
-            /* inner left/right subtle rim */
-            inset 1px 0 0 rgba(255,255,255,0.06),
-            inset -1px 0 0 rgba(255,255,255,0.06),
-            /* soft inner glow for glass depth */
-            inset 0 2px 20px rgba(255,255,255,0.05);
+            /* outer drop shadow — lifts it off the page */
+            0 8px 32px rgba(0,0,0,0.55),
+            0 2px 8px rgba(0,0,0,0.4),
+            /* top bright rim — catches the light */
+            inset 0 1px 0 rgba(255,255,255,0.18),
+            /* bottom dark rim — ground shadow */
+            inset 0 -1px 0 rgba(0,0,0,0.5),
+            /* left/right subtle rims */
+            inset 1px 0 0 rgba(255,255,255,0.05),
+            inset -1px 0 0 rgba(255,255,255,0.05),
+            /* inner depth glow */
+            inset 0 2px 16px rgba(0,0,0,0.3);
         }
 
-        /* gradient border via pseudo-element */
+        /* gradient border — bright top, dark bottom */
         .navbar-shell::before {
           content: "";
           position: absolute;
@@ -97,10 +92,10 @@ export default function Navbar() {
           border-radius: inherit;
           padding: 1px;
           background: linear-gradient(
-            180deg,
-            rgba(255,255,255,0.25) 0%,
-            rgba(255,255,255,0.06) 50%,
-            rgba(255,255,255,0.02) 100%
+            175deg,
+            rgba(255,255,255,0.22) 0%,
+            rgba(255,255,255,0.06) 40%,
+            rgba(0,0,0,0.15) 100%
           );
           -webkit-mask:
             linear-gradient(#fff 0 0) content-box,
@@ -113,21 +108,21 @@ export default function Navbar() {
           pointer-events: none;
         }
 
-        /* top gloss reflection strip */
+        /* top gloss reflection */
         .navbar-shell::after {
           content: "";
           position: absolute;
-          top: 2px;
-          left: 12%;
-          right: 12%;
-          height: 35%;
+          top: 1px;
+          left: 8%;
+          right: 8%;
+          height: 40%;
           border-radius: 999px;
           background: linear-gradient(
             180deg,
-            rgba(255,255,255,0.18) 0%,
+            rgba(255,255,255,0.12) 0%,
             rgba(255,255,255,0.0) 100%
           );
-          filter: blur(6px);
+          filter: blur(4px);
           pointer-events: none;
         }
 
@@ -140,15 +135,77 @@ export default function Navbar() {
           content: "";
           position: absolute;
           inset: 0;
-          border-radius: 8px;
+          border-radius: 6px;
           background: rgba(255,255,255,0.0);
           transition: background 0.2s ease, box-shadow 0.2s ease;
         }
         .nav-link-glass:hover::before {
-          background: rgba(255,255,255,0.07);
+          background: rgba(255,255,255,0.05);
           box-shadow:
-            inset 0 1px 0 rgba(255,255,255,0.15),
-            inset 0 -1px 0 rgba(0,0,0,0.2);
+            inset 0 1px 0 rgba(255,255,255,0.12),
+            inset 0 -1px 0 rgba(0,0,0,0.25),
+            0 1px 3px rgba(0,0,0,0.2);
+        }
+
+        /* ── Skeuomorphic CTA button ── */
+        .btn-skeu {
+          position: relative;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          padding: 8px 18px;
+          border-radius: 8px;
+          font-family: var(--font-mono-accent);
+          font-size: 11px;
+          font-weight: 700;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          cursor: pointer;
+          color: #1a1200;
+          background: linear-gradient(
+            180deg,
+            #fcd34d 0%,
+            #f59e0b 45%,
+            #d97706 100%
+          );
+          border: none;
+          box-shadow:
+            /* outer lift */
+            0 4px 12px rgba(217,119,6,0.45),
+            0 1px 3px rgba(0,0,0,0.25),
+            /* top bright specular */
+            inset 0 1px 0 rgba(255,255,255,0.45),
+            /* bottom dark edge */
+            inset 0 -2px 0 rgba(0,0,0,0.18),
+            /* inner side rims */
+            inset 1px 0 0 rgba(255,255,255,0.15),
+            inset -1px 0 0 rgba(255,255,255,0.15);
+          text-shadow: 0 1px 0 rgba(255,255,255,0.25);
+          transition: all 0.15s ease;
+          white-space: nowrap;
+        }
+        .btn-skeu:hover {
+          background: linear-gradient(
+            180deg,
+            #fde68a 0%,
+            #fbbf24 45%,
+            #f59e0b 100%
+          );
+          box-shadow:
+            0 6px 18px rgba(217,119,6,0.55),
+            0 2px 6px rgba(0,0,0,0.2),
+            inset 0 1px 0 rgba(255,255,255,0.5),
+            inset 0 -2px 0 rgba(0,0,0,0.15),
+            inset 1px 0 0 rgba(255,255,255,0.2),
+            inset -1px 0 0 rgba(255,255,255,0.2);
+          transform: translateY(-1px);
+        }
+        .btn-skeu:active {
+          transform: translateY(1px);
+          box-shadow:
+            0 2px 6px rgba(217,119,6,0.3),
+            inset 0 1px 3px rgba(0,0,0,0.2),
+            inset 0 1px 0 rgba(0,0,0,0.1);
         }
 
         /* ── Mobile menu glass panel ── */
@@ -156,39 +213,17 @@ export default function Navbar() {
           background:
             linear-gradient(
               180deg,
-              rgba(255,255,255,0.10) 0%,
-              rgba(255,255,255,0.03) 40%,
+              rgba(255,255,255,0.08) 0%,
+              rgba(255,255,255,0.02) 40%,
               rgba(0,0,0,0.0) 100%
             ),
-            rgba(10, 10, 11, 0.75);
+            rgba(14, 13, 12, 0.88);
           backdrop-filter: blur(40px) saturate(1.6);
           -webkit-backdrop-filter: blur(40px) saturate(1.6);
-          border: 1px solid transparent;
           box-shadow:
-            inset 0 1px 0 rgba(255,255,255,0.18),
-            inset 0 -1px 0 rgba(0,0,0,0.3),
-            0 8px 32px rgba(0,0,0,0.4);
-        }
-        .mobile-glass-panel::before {
-          content: "";
-          position: absolute;
-          inset: 0;
-          border-radius: inherit;
-          padding: 1px;
-          background: linear-gradient(
-            180deg,
-            rgba(255,255,255,0.2) 0%,
-            rgba(255,255,255,0.04) 100%
-          );
-          -webkit-mask:
-            linear-gradient(#fff 0 0) content-box,
-            linear-gradient(#fff 0 0);
-          mask:
-            linear-gradient(#fff 0 0) content-box,
-            linear-gradient(#fff 0 0);
-          -webkit-mask-composite: xor;
-          mask-composite: exclude;
-          pointer-events: none;
+            inset 0 1px 0 rgba(255,255,255,0.15),
+            inset 0 -1px 0 rgba(0,0,0,0.4),
+            0 8px 32px rgba(0,0,0,0.5);
         }
       `}</style>
 
@@ -230,13 +265,9 @@ export default function Navbar() {
           {/* Right side */}
           <div className="relative z-10 flex items-center gap-3">
             <Link href="/contact" className="hidden md:block">
-              <Button
-                variant="primary"
-                size="md"
-                className="font-mono-accent text-[12px] font-bold uppercase tracking-[0.08em] rounded-[8px] cursor-pointer"
-              >
+              <button className="btn-skeu">
                 Book a walkthrough
-              </Button>
+              </button>
             </Link>
 
             <button
@@ -284,14 +315,9 @@ export default function Navbar() {
           </nav>
           <div className="mt-auto">
             <Link href="/contact" onClick={() => setOpen(false)} className="block w-full">
-              <Button
-                variant="primary"
-                fullWidth
-                size="lg"
-                className="font-mono-accent text-[14px] font-bold uppercase tracking-[0.08em] rounded-xl cursor-pointer"
-              >
+              <button className="btn-skeu w-full py-4 text-[14px]">
                 Book a walkthrough
-              </Button>
+              </button>
             </Link>
           </div>
         </div>
