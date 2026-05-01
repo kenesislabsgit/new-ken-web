@@ -7,6 +7,8 @@ import { FlickeringGrid } from '@/components/magicui/flickering-grid';
 import { ScrollReveal } from '@/components/magicui/scroll-reveal';
 import { AsciiDivider, AsciiCorners, AsciiBlock, ASCII_ARTS } from '@/components/AsciiArt';
 import { AsciiRenderer } from '@/components/magicui/ascii-renderer';
+import BorderGlow from '@/components/BorderGlow';
+import AsciiCard from '@/components/AsciiCard';
 
 const techCards = [
   { title: 'PPE Compliance', subtitle: 'Automated monitoring of helmets, vests, gloves, and safety gear across every camera feed in real time.', ascii: ASCII_ARTS.shield, image: '/images/tech/3.webp' },
@@ -70,21 +72,31 @@ export default function TechCardsSection() {
           {techCards.map((card, i) => (
             <ScrollReveal key={card.title} variant="rotate-in" delay={0.1 + i * 0.15}>
               <AsciiCorners>
-                <Card
-                  className="group relative overflow-hidden rounded-2xl aspect-[608/841] cursor-pointer glass-card border-0"
+                <BorderGlow
+                  glowColors={['#fbbf24', '#f59e0b', '#d97706']}
+                  borderRadius={16}
+                  edgeSensitivity={45}
+                  glowIntensity={1.4}
+                  animated
                 >
-                  {/* Full image background */}
-                  <div className="absolute inset-0 z-0">
-                    <img src={card.image} alt={card.title} className="w-full h-full object-cover opacity-40 group-hover:opacity-60 group-hover:scale-105 transition-all duration-700" loading="lazy" />
-                  </div>
-                  {/* Dark overlay */}
-                  <div className="absolute inset-0 bg-black/20 transition-opacity duration-300 group-hover:bg-black/40" />
-                  {/* Content at bottom */}
-                  <Card.Content className="absolute bottom-0 left-0 right-0 p-6 z-10">
-                    <Card.Title className="mb-2 text-2xl font-display font-semibold text-white">{card.title}</Card.Title>
-                    <Card.Description className="font-mono-accent text-[12px] leading-relaxed text-white/50 uppercase tracking-[0.06em]">{card.subtitle}</Card.Description>
-                  </Card.Content>
-                </Card>
+                  <AsciiCard color="rgba(245,158,11,0.45)" gap={13} speed={1000}>
+                    <Card
+                      className="group relative overflow-hidden rounded-2xl aspect-[608/841] cursor-pointer glass-card border-0"
+                    >
+                      {/* Full image background */}
+                      <div className="absolute inset-0 z-0">
+                        <img src={card.image} alt={card.title} className="w-full h-full object-cover opacity-40 group-hover:opacity-60 group-hover:scale-105 transition-all duration-700" loading="lazy" />
+                      </div>
+                      {/* Dark overlay */}
+                      <div className="absolute inset-0 bg-black/20 transition-opacity duration-300 group-hover:bg-black/40" />
+                      {/* Content at bottom */}
+                      <Card.Content className="absolute bottom-0 left-0 right-0 p-6 z-10">
+                        <Card.Title className="mb-2 text-2xl font-display font-semibold text-white">{card.title}</Card.Title>
+                        <Card.Description className="font-mono-accent text-[12px] leading-relaxed text-white/50 uppercase tracking-[0.06em]">{card.subtitle}</Card.Description>
+                      </Card.Content>
+                    </Card>
+                  </AsciiCard>
+                </BorderGlow>
               </AsciiCorners>
             </ScrollReveal>
           ))}
