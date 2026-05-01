@@ -1,122 +1,261 @@
-'use client';
+import { useEffect, useRef } from 'react';
+import './AsciiCard.css';
 
-import { useRef, useEffect, useState, ReactNode } from 'react';
+// ASCII chars from dense → sparse (replaces pixel squares)
+const ASCII_CHARS = ['@', '#', 'S', '%', '?', '*', '+', ';', ':', ',', '.'];
 
-const ASCII_CHARS = ['@', '#', '▓', '▒', '░', 'S', '%', '?', '*', '+', ';', ':', ',', '.'];
+class AsciiPixel {
+  width: number;
+  height: number;
+  ctx: CanvasRenderingContext2D;
+  x: number;
+  y: number;
+  color: string;
+  speed: number;
+  size: number;
+  sizeStep: number;
+  minSize: number;
+  maxSizeInteger: number;
+  maxSize: number;
+  delay: number;
+  counter: number;
+  counterStep: number;
+  isIdle: boolean;
+  isReverse: boolean;
+  isShimmer: boolean;
+  char: string;
+  fontSize: number;
 
-interface AsciiCardProps {
-  children: ReactNode;
-  className?: string;
-  color?: string;
-  gap?: number;
-  speed?: number;
+  constructor(
+    canvas: HTMLCanvasElement,
+    context: CanvasRenderingContext2D,
+    x: number,
+    y: number,
+    color: string,
+    speed: number,
+    delay: number,
+    gap: number
+  ) {
+    this.width = canvas.width;
+    this.height = canvas.height;
+    this.ctx = context;
+    this.x = x;
+    this.y = y;
+    this.color = color;
+    this.speed = this.getRandomValue(0.1, 0.9) * speed;
+    this.size = 0;
+    this.sizeStep = Math.random() * 0.4;
+    this.minSize = 0.5;
+    this.maxSizeInteger = 2;
+    this.maxSize = this.getRandomValue(this.minSize, this.maxSizeInteger);
+    this.delay = delay;
+    this.counter = 0;
+    this.counterStep = Math.random() * 4 + (this.width + this.height) * 0.01;
+    this.isIdle = false;
+    this.isReverse = false;
+    this.isShimmer = false;
+    // Pick a deterministic ASCII char per cell
+    const seed = Math.abs(Math.sin(x * 127.1 + y * 311.7) * 43758.5453) % 1;
+    this.char = ASCII_CHARS[Math.floor(seed * ASCII_CHARS.length)];
+    this.fontSize = gap - 2;
+  }
+
+  getRandomValue(min: number, max: number) {
+    return Math.random() * (max - min) + min;
+  }
+
+  draw() {
+    this.ctx.globalAlpha = Math.min(this.size / this.maxSizeInteger, 1);
+    this.ctx.fillStyle = this.color;
+    this.ctx.font = `bold ${this.fontSize}px "Geist Mono", monospace`;
+    this.ctx.textBaseline = 'top';
+    this.ctx.fillText(this.char, this.x, this.y);
+    this.ctx.globalAlpha = 1;
+  }
+
+  appear() {
+    this.isIdle = false;
+    if (this.counter <= this.delay) {
+      this.counter += this.counterStep;
+      return;
+    }
+    if (this.size >= this.maxSize) {
+      this.isShimmer = true;
+    }
+    if (this.isShimmer) {
+      this.shimmer();
+    } else {
+      this.size += this.sizeStep;
+    }
+    this.draw();
+  }
+
+  disappear() {
+    this.isShimmer = false;
+    this.counter = 0;
+    if (this.size <= 0) {
+      this.isIdle = true;
+      return;
+    } else {
+      this.size -= 0.1;
+    }
+    this.draw();
+  }
+
+  shimmer() {
+    if (this.size >= this.maxSize) {
+      this.isReverse = true;
+    } else if (this.size <= this.minSize) {
+      this.isReverse = false;
+    }
+    if (this.isReverse) {
+      this.size -= this.speed;
+    } else {
+      this.size += this.speed;
+    }
+  }
 }
 
+function getEffectiveSpeed(value: number, reducedMotion: boolean) {
+  const min = 0;
+  const max = 100;
+  const throttle = 0.001;
+  if (value <= min || reducedMotion) return min;
+  if (value >= max) return max * throttle;
+  return value * throttle;
+}
+
+interface AsciiCardProps {
+  variant?: 'default' | 'amber' | 'blue' | 'pink';
+  gap?: number;
+  speed?: number;
+  colors?: string;
+  noFocus?: boolean;
+  className?: string;
+  children: React.ReactNode;
+}
+
+const VARIANTS = {
+  default: { gap: 14, speed: 35, colors: '#f8fafc,#f1f5f9,#cbd5e1', noFocus: false },
+  amber: { gap: 14, speed: 25, colors: '#fef08a,#fbbf24,#f59e0b', noFocus: false },
+  blue: { gap: 14, speed: 25, colors: '#e0f2fe,#7dd3fc,#0ea5e9', noFocus: false },
+  pink: { gap: 14, speed: 80, colors: '#fecdd3,#fda4af,#e11d48', noFocus: true },
+};
+
 export default function AsciiCard({
-  children,
+  variant = 'amber',
+  gap,
+  speed,
+  colors,
+  noFocus,
   className = '',
-  color = '#f59e0b',
-  gap = 16,
-  speed = 800,
+  children,
 }: AsciiCardProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const rafRef = useRef<number | null>(null);
-  const startRef = useRef<number | null>(null);
-  const [hovered, setHovered] = useState(false);
-  const [size, setSize] = useState({ w: 0, h: 0 });
+  const pixelsRef = useRef<AsciiPixel[]>([]);
+  const animationRef = useRef<ReturnType<typeof requestAnimationFrame> | null>(null);
+  const timePreviousRef = useRef(performance.now());
+  const reducedMotion = useRef(
+    typeof window !== 'undefined'
+      ? window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      : false
+  ).current;
 
-  // Track container size
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-    const ro = new ResizeObserver(() => {
-      setSize({ w: el.offsetWidth, h: el.offsetHeight });
-    });
-    ro.observe(el);
-    return () => ro.disconnect();
-  }, []);
+  const variantCfg = VARIANTS[variant] || VARIANTS.amber;
+  const finalGap = gap ?? variantCfg.gap;
+  const finalSpeed = speed ?? variantCfg.speed;
+  const finalColors = colors ?? variantCfg.colors;
+  const finalNoFocus = noFocus ?? variantCfg.noFocus;
 
-  // Run animation when hovered
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas || size.w === 0) return;
-    const ctx = canvas.getContext('2d');
+  const initPixels = () => {
+    if (!containerRef.current || !canvasRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const width = Math.floor(rect.width);
+    const height = Math.floor(rect.height);
+    const ctx = canvasRef.current.getContext('2d');
     if (!ctx) return;
 
-    canvas.width = size.w;
-    canvas.height = size.h;
+    canvasRef.current.width = width;
+    canvasRef.current.height = height;
+    canvasRef.current.style.width = `${width}px`;
+    canvasRef.current.style.height = `${height}px`;
 
-    if (rafRef.current) cancelAnimationFrame(rafRef.current);
-
-    if (!hovered) {
-      ctx.clearRect(0, 0, size.w, size.h);
-      return;
+    const colorsArray = finalColors.split(',');
+    const pxs: AsciiPixel[] = [];
+    for (let x = 0; x < width; x += finalGap) {
+      for (let y = 0; y < height; y += finalGap) {
+        const color = colorsArray[Math.floor(Math.random() * colorsArray.length)];
+        const dx = x - width / 2;
+        const dy = y - height / 2;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        const delay = reducedMotion ? 0 : distance;
+        pxs.push(new AsciiPixel(canvasRef.current, ctx, x, y, color, getEffectiveSpeed(finalSpeed, reducedMotion), delay, finalGap));
+      }
     }
+    pixelsRef.current = pxs;
+  };
 
-    const cols = Math.floor(size.w / gap);
-    const rows = Math.floor(size.h / gap);
-    const total = cols * rows;
+  const doAnimate = (fnName: 'appear' | 'disappear') => {
+    animationRef.current = requestAnimationFrame(() => doAnimate(fnName));
+    const timeNow = performance.now();
+    const timePassed = timeNow - timePreviousRef.current;
+    const timeInterval = 1000 / 60;
+    if (timePassed < timeInterval) return;
+    timePreviousRef.current = timeNow - (timePassed % timeInterval);
 
-    // Shuffle cell order for random reveal
-    const order = Array.from({ length: total }, (_, i) => i).sort(() => Math.random() - 0.5);
+    const ctx = canvasRef.current?.getContext('2d');
+    if (!ctx || !canvasRef.current) return;
+    ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
 
-    startRef.current = null;
-    ctx.font = `bold ${gap - 2}px "Geist Mono", "Courier New", monospace`;
-    ctx.textBaseline = 'top';
+    let allIdle = true;
+    for (const pixel of pixelsRef.current) {
+      pixel[fnName]();
+      if (!pixel.isIdle) allIdle = false;
+    }
+    if (allIdle && animationRef.current !== null) {
+      cancelAnimationFrame(animationRef.current);
+    }
+  };
 
-    const animate = (ts: number) => {
-      if (!startRef.current) startRef.current = ts;
-      const progress = Math.min((ts - startRef.current) / speed, 1);
+  const handleAnimation = (name: 'appear' | 'disappear') => {
+    if (animationRef.current !== null) cancelAnimationFrame(animationRef.current);
+    animationRef.current = requestAnimationFrame(() => doAnimate(name));
+  };
 
-      ctx.clearRect(0, 0, size.w, size.h);
+  const onMouseEnter = () => handleAnimation('appear');
+  const onMouseLeave = () => handleAnimation('disappear');
+  const onFocus: React.FocusEventHandler<HTMLDivElement> = e => {
+    if (e.currentTarget.contains(e.relatedTarget)) return;
+    handleAnimation('appear');
+  };
+  const onBlur: React.FocusEventHandler<HTMLDivElement> = e => {
+    if (e.currentTarget.contains(e.relatedTarget)) return;
+    handleAnimation('disappear');
+  };
 
-      const visible = Math.floor(progress * total);
-
-      for (let k = 0; k < visible; k++) {
-        const idx = order[k];
-        const col = idx % cols;
-        const row = Math.floor(idx / cols);
-
-        // Deterministic char per cell
-        const seed = Math.abs(Math.sin(col * 127.1 + row * 311.7) * 43758.5453) % 1;
-        const char = ASCII_CHARS[Math.floor(seed * ASCII_CHARS.length)];
-
-        // Per-cell fade-in
-        const cellAge = progress * total - k;
-        const alpha = Math.min(cellAge / 6, 1);
-
-        ctx.globalAlpha = alpha * 0.7;
-        ctx.fillStyle = color;
-        ctx.fillText(char, col * gap + 1, row * gap + 1);
-      }
-
-      if (progress < 1) {
-        rafRef.current = requestAnimationFrame(animate);
-      }
+  useEffect(() => {
+    initPixels();
+    const observer = new ResizeObserver(() => initPixels());
+    if (containerRef.current) observer.observe(containerRef.current);
+    return () => {
+      observer.disconnect();
+      if (animationRef.current !== null) cancelAnimationFrame(animationRef.current);
     };
-
-    rafRef.current = requestAnimationFrame(animate);
-    return () => { if (rafRef.current) cancelAnimationFrame(rafRef.current); };
-  }, [hovered, size, color, gap, speed]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [finalGap, finalSpeed, finalColors, finalNoFocus]);
 
   return (
     <div
       ref={containerRef}
-      className={`relative ${className}`}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+      className={`ascii-card ${className}`}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+      onFocus={finalNoFocus ? undefined : onFocus}
+      onBlur={finalNoFocus ? undefined : onBlur}
+      tabIndex={finalNoFocus ? -1 : 0}
     >
-      {/* ASCII canvas — sits on top, pointer-events none */}
-      <canvas
-        ref={canvasRef}
-        className="absolute inset-0 pointer-events-none z-[10] transition-opacity duration-500"
-        style={{
-          opacity: hovered ? 1 : 0,
-          borderRadius: 'inherit',
-          mixBlendMode: 'overlay',
-        }}
-      />
+      <canvas className="ascii-canvas" ref={canvasRef} />
       {children}
     </div>
   );

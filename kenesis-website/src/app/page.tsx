@@ -102,9 +102,17 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-[24px]">
               {FEATURES.map((f, i) => (
                 <ScrollReveal key={f.num} variant="scale-up" delay={i * 0.08} duration={0.5}>
-                  <BorderGlow glowColors={['#fbbf24', '#f59e0b', '#d97706']} borderRadius={16}>
-                    <AsciiCard color="#fbbf24" gap={14} speed={800}>
-                      <div className="relative glass-card rounded-[16px] p-[24px] sm:p-[40px] md:p-[48px] h-full group cursor-pointer hover:border-amber-400/20 hover:bg-white/[0.06] transition-all duration-400">
+                  <BorderGlow
+                    glowColor="38 80 70"
+                    backgroundColor="rgba(10,10,11,0)"
+                    borderRadius={16}
+                    colors={['#fbbf24', '#f59e0b', '#d97706']}
+                    glowIntensity={1.2}
+                    animated
+                    className="h-full"
+                  >
+                    <AsciiCard variant="amber" gap={14} speed={25} className="h-full">
+                      <div className="relative glass-card rounded-[16px] p-[24px] sm:p-[40px] md:p-[48px] h-full group cursor-pointer transition-all duration-400 w-full">
                         <BorderBeam size={180} duration={14} colorFrom="#f59e0b" colorTo="#d97706" borderWidth={1} />
                         <div className="flex items-start justify-between mb-[20px] sm:mb-[32px]">
                           <p className="font-mono-accent text-[36px] sm:text-[48px] font-bold text-amber-400/[0.06] group-hover:text-amber-400/15 transition-colors duration-400 leading-none">{f.num}</p>

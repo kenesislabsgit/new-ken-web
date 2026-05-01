@@ -193,16 +193,22 @@ export default function PlatformPage() {
               { Icon: Rocket, title: 'Live in 48 hours', desc: 'From setup to monitoring. Minimal configuration, no lengthy integration projects.' },
             ].map((item, i) => (
               <ScrollReveal key={item.title} variant="scale-up" delay={i * 0.06} duration={0.4}>
-                <BorderGlow glowColors={['#fbbf24', '#f59e0b', '#d97706']} borderRadius={16}>
-                  <AsciiCard color="#fbbf24" gap={14} speed={800}>
+                <BorderGlow
+                  glowColor="38 80 70"
+                  backgroundColor="rgba(10,10,11,0)"
+                  borderRadius={16}
+                  colors={['#fbbf24', '#f59e0b', '#d97706']}
+                  glowIntensity={1.2}
+                  animated
+                  className="h-full"
+                >
+                  <AsciiCard variant="amber" gap={14} speed={25} className="h-full">
                     <div
-                      className="group relative rounded-[16px] p-6 sm:p-8 transition-all duration-400 cursor-default overflow-hidden h-full hover:scale-[1.01]"
+                      className="group relative rounded-[16px] p-6 sm:p-8 transition-all duration-400 cursor-default overflow-hidden h-full w-full"
                       style={{
                         background: 'linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%)',
                         backdropFilter: 'blur(20px) saturate(1.4)',
                         WebkitBackdropFilter: 'blur(20px) saturate(1.4)',
-                        border: '1px solid rgba(255,255,255,0.08)',
-                        boxShadow: '0 4px 20px rgba(0,0,0,0.3), 0 1px 0 rgba(255,255,255,0.04) inset, 0 -1px 0 rgba(0,0,0,0.2) inset',
                       }}
                     >
                       <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />

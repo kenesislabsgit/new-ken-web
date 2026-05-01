@@ -131,11 +131,14 @@ export default function InsightsGrid() {
         {articles.map((article, i) => (
           <ScrollReveal key={i} variant="fade-up" delay={i * 0.08}>
             <BorderGlow
-              glowColors={['#fbbf24', '#f59e0b', '#d97706']}
+              glowColor="38 80 70"
+              backgroundColor="rgba(10,10,11,0)"
               borderRadius={12}
+              colors={['#fbbf24', '#f59e0b', '#d97706']}
+              glowIntensity={1.2}
               className="w-[280px] sm:w-[350px] md:w-[450px] flex-shrink-0"
             >
-              <AsciiCard color="#fbbf24" gap={12} speed={800}>
+              <AsciiCard variant="amber" gap={14} speed={25}>
                 <article className="group cursor-pointer">
                   {/* Thumbnail placeholder */}
                   <div className="mb-4 h-[180px] sm:h-[220px] md:h-[280px] w-full overflow-hidden rounded-xl bg-white/5">
