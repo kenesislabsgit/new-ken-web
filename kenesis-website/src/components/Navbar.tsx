@@ -197,7 +197,7 @@ export default function Navbar() {
         className="fixed top-[12px] left-0 right-0 z-[500] mx-auto w-[calc(100vw-24px)] max-w-[1152px] sm:top-[20px] sm:w-[calc(100vw-48px)]"
         style={{ opacity: 0, transform: "translateY(-80px)" }}
       >
-        <div className="navbar-shell relative flex items-center justify-between rounded-[12px] sm:rounded-[16px] px-[14px] py-[10px] sm:px-[20px] sm:py-[12px]">
+        <div className="navbar-shell relative flex items-center justify-between rounded-[10px] sm:rounded-[12px] px-[14px] py-[10px] sm:px-[20px] sm:py-[12px]">
 
           {/* Logo */}
           <Link href="/" className="relative z-10 flex items-center gap-2 cursor-pointer" aria-label="Kenesis Labs home">
@@ -229,11 +229,11 @@ export default function Navbar() {
 
           {/* Right side */}
           <div className="relative z-10 flex items-center gap-3">
-            <Link href="/contact" className="hidden rounded-xl md:block">
+            <Link href="/contact" className="hidden md:block">
               <Button
                 variant="primary"
                 size="md"
-                className="font-mono-accent text-[12px] font-bold uppercase tracking-[0.08em] rounded-xl cursor-pointer"
+                className="font-mono-accent text-[12px] font-bold uppercase tracking-[0.08em] rounded-[8px] cursor-pointer"
               >
                 Book a walkthrough
               </Button>
