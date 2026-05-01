@@ -130,11 +130,12 @@ export default function InsightsGrid() {
         {articles.map((article, i) => (
           <ScrollReveal key={i} variant="fade-up" delay={i * 0.08}>
             <BorderGlow
-              glowColor="38 80 70"
-              backgroundColor="rgba(10,10,11,0)"
+              glowColor="45 70 60"
+              backgroundColor="#0a0a0b"
               borderRadius={12}
               colors={['#fbbf24', '#f59e0b', '#d97706']}
-              glowIntensity={1.2}
+              fillOpacity={0}
+              glowIntensity={1.0}
               className="w-[280px] sm:w-[350px] md:w-[450px] flex-shrink-0"
             >
               <article className="group cursor-pointer">

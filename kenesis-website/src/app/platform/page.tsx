@@ -193,11 +193,12 @@ export default function PlatformPage() {
             ].map((item, i) => (
               <ScrollReveal key={item.title} variant="scale-up" delay={i * 0.06} duration={0.4}>
                   <BorderGlow
-                  glowColor="38 80 70"
-                  backgroundColor="rgba(10,10,11,0)"
+                  glowColor="45 70 60"
+                  backgroundColor="#0a0a0b"
                   borderRadius={16}
                   colors={['#fbbf24', '#f59e0b', '#d97706']}
-                  glowIntensity={1.2}
+                  fillOpacity={0}
+                  glowIntensity={1.0}
                   animated
                   className="h-full"
                 >

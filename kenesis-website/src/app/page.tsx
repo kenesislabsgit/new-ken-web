@@ -102,11 +102,12 @@ export default function Home() {
               {FEATURES.map((f, i) => (
                 <ScrollReveal key={f.num} variant="scale-up" delay={i * 0.08} duration={0.5}>
                   <BorderGlow
-                    glowColor="38 80 70"
-                    backgroundColor="rgba(10,10,11,0)"
+                    glowColor="45 70 60"
+                    backgroundColor="#0a0a0b"
                     borderRadius={16}
                     colors={['#fbbf24', '#f59e0b', '#d97706']}
-                    glowIntensity={1.2}
+                    fillOpacity={0}
+                    glowIntensity={1.0}
                     animated
                     className="h-full"
                   >

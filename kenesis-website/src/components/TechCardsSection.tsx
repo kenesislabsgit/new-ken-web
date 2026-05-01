@@ -72,11 +72,12 @@ export default function TechCardsSection() {
             <ScrollReveal key={card.title} variant="rotate-in" delay={0.1 + i * 0.15}>
               <AsciiCorners>
                 <BorderGlow
-                  glowColor="38 80 70"
-                  backgroundColor="rgba(10,10,11,0)"
+                  glowColor="45 70 60"
+                  backgroundColor="#0a0a0b"
                   borderRadius={16}
                   colors={['#fbbf24', '#f59e0b', '#d97706']}
-                  glowIntensity={1.2}
+                  fillOpacity={0}
+                  glowIntensity={1.0}
                   animated
                 >
                     <Card className="group relative overflow-hidden rounded-2xl aspect-[608/841] cursor-pointer glass-card border-0">
