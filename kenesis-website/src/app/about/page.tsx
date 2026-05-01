@@ -69,7 +69,7 @@ export default function AboutPage() {
               src="/kenesis-circle.png"
               width={300}
               height={300}
-              colorBack="#0a0a0b"
+              colorBack="rgba(0,0,0,0)"
               colorTint="#d4a843"
               speed={0.4}
               distortion={0.05}
@@ -90,7 +90,7 @@ export default function AboutPage() {
               src="/kenesis-circle.png"
               width={700}
               height={700}
-              colorBack="#0a0a0b"
+              colorBack="rgba(0,0,0,0)"
               colorTint="#d4a843"
               speed={0.4}
               distortion={0.05}
