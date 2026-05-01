@@ -133,11 +133,9 @@ export default function InsightsGrid() {
             <BorderGlow
               glowColors={['#fbbf24', '#f59e0b', '#d97706']}
               borderRadius={12}
-              edgeSensitivity={40}
-              glowIntensity={1.3}
               className="w-[280px] sm:w-[350px] md:w-[450px] flex-shrink-0"
             >
-              <AsciiCard color="rgba(245,158,11,0.4)" gap={12} speed={900}>
+              <AsciiCard color="#fbbf24" gap={12} speed={800}>
                 <article className="group cursor-pointer">
                   {/* Thumbnail placeholder */}
                   <div className="mb-4 h-[180px] sm:h-[220px] md:h-[280px] w-full overflow-hidden rounded-xl bg-white/5">

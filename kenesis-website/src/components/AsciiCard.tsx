@@ -2,128 +2,103 @@
 
 import { useRef, useEffect, useState, ReactNode } from 'react';
 
-// ASCII character ramp from dense to sparse
-const ASCII_RAMP = ['@', '#', 'S', '%', '?', '*', '+', ';', ':', ',', '.', ' '];
-const ASCII_RAMP_LIGHT = ['█', '▓', '▒', '░', '·', ' '];
+const ASCII_CHARS = ['@', '#', '▓', '▒', '░', 'S', '%', '?', '*', '+', ';', ':', ',', '.'];
 
 interface AsciiCardProps {
   children: ReactNode;
   className?: string;
-  /** Color of ASCII characters */
   color?: string;
-  /** Speed of the dissolve animation (ms) */
-  speed?: number;
-  /** Gap between ASCII cells in px */
   gap?: number;
+  speed?: number;
 }
 
 export default function AsciiCard({
   children,
   className = '',
-  color = 'rgba(245,158,11,0.55)',
-  speed = 1200,
-  gap = 14,
+  color = '#f59e0b',
+  gap = 16,
+  speed = 800,
 }: AsciiCardProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const animRef = useRef<number | null>(null);
+  const rafRef = useRef<number | null>(null);
   const startRef = useRef<number | null>(null);
   const [hovered, setHovered] = useState(false);
-  const [dims, setDims] = useState({ cols: 0, rows: 0, w: 0, h: 0 });
+  const [size, setSize] = useState({ w: 0, h: 0 });
 
-  // Measure container
+  // Track container size
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
     const ro = new ResizeObserver(() => {
-      const { offsetWidth: w, offsetHeight: h } = el;
-      setDims({
-        cols: Math.floor(w / gap),
-        rows: Math.floor(h / gap),
-        w,
-        h,
-      });
+      setSize({ w: el.offsetWidth, h: el.offsetHeight });
     });
     ro.observe(el);
     return () => ro.disconnect();
-  }, [gap]);
+  }, []);
 
-  // Draw ASCII overlay on canvas
+  // Run animation when hovered
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas || dims.cols === 0) return;
+    if (!canvas || size.w === 0) return;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    canvas.width = dims.w;
-    canvas.height = dims.h;
+    canvas.width = size.w;
+    canvas.height = size.h;
+
+    if (rafRef.current) cancelAnimationFrame(rafRef.current);
 
     if (!hovered) {
-      // Animate out: fade canvas opacity via CSS, clear after
+      ctx.clearRect(0, 0, size.w, size.h);
       return;
     }
 
-    // Randomise which cells appear and in what order
-    const totalCells = dims.cols * dims.rows;
-    const order = Array.from({ length: totalCells }, (_, i) => i)
-      .sort(() => Math.random() - 0.5);
+    const cols = Math.floor(size.w / gap);
+    const rows = Math.floor(size.h / gap);
+    const total = cols * rows;
 
-    const fontSize = gap - 2;
-    ctx.font = `${fontSize}px "Geist Mono", monospace`;
-    ctx.fillStyle = color;
-    ctx.textBaseline = 'top';
+    // Shuffle cell order for random reveal
+    const order = Array.from({ length: total }, (_, i) => i).sort(() => Math.random() - 0.5);
 
     startRef.current = null;
+    ctx.font = `bold ${gap - 2}px "Geist Mono", "Courier New", monospace`;
+    ctx.textBaseline = 'top';
 
-    const draw = (ts: number) => {
+    const animate = (ts: number) => {
       if (!startRef.current) startRef.current = ts;
-      const elapsed = ts - startRef.current;
-      const progress = Math.min(elapsed / speed, 1);
+      const progress = Math.min((ts - startRef.current) / speed, 1);
 
-      ctx.clearRect(0, 0, dims.w, dims.h);
+      ctx.clearRect(0, 0, size.w, size.h);
 
-      // How many cells to show
-      const visible = Math.floor(progress * totalCells);
+      const visible = Math.floor(progress * total);
 
       for (let k = 0; k < visible; k++) {
         const idx = order[k];
-        const col = idx % dims.cols;
-        const row = Math.floor(idx / dims.cols);
-        const x = col * gap;
-        const y = row * gap;
+        const col = idx % cols;
+        const row = Math.floor(idx / cols);
 
-        // Pick char based on position noise
-        const noise = (Math.sin(col * 12.9898 + row * 78.233) * 43758.5453) % 1;
-        const charIdx = Math.floor(Math.abs(noise) * ASCII_RAMP.length);
-        const char = ASCII_RAMP[charIdx];
+        // Deterministic char per cell
+        const seed = Math.abs(Math.sin(col * 127.1 + row * 311.7) * 43758.5453) % 1;
+        const char = ASCII_CHARS[Math.floor(seed * ASCII_CHARS.length)];
 
-        // Fade in each cell
-        const cellProgress = Math.min((progress * totalCells - k) / 8, 1);
-        ctx.globalAlpha = cellProgress * 0.85;
-        ctx.fillText(char, x, y);
+        // Per-cell fade-in
+        const cellAge = progress * total - k;
+        const alpha = Math.min(cellAge / 6, 1);
+
+        ctx.globalAlpha = alpha * 0.7;
+        ctx.fillStyle = color;
+        ctx.fillText(char, col * gap + 1, row * gap + 1);
       }
 
       if (progress < 1) {
-        animRef.current = requestAnimationFrame(draw);
+        rafRef.current = requestAnimationFrame(animate);
       }
     };
 
-    animRef.current = requestAnimationFrame(draw);
-    return () => {
-      if (animRef.current) cancelAnimationFrame(animRef.current);
-    };
-  }, [hovered, dims, color, speed, gap]);
-
-  // Fade out canvas when not hovered
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    if (!hovered) {
-      if (animRef.current) cancelAnimationFrame(animRef.current);
-      const ctx = canvas.getContext('2d');
-      if (ctx) ctx.clearRect(0, 0, canvas.width, canvas.height);
-    }
-  }, [hovered]);
+    rafRef.current = requestAnimationFrame(animate);
+    return () => { if (rafRef.current) cancelAnimationFrame(rafRef.current); };
+  }, [hovered, size, color, gap, speed]);
 
   return (
     <div
@@ -132,14 +107,14 @@ export default function AsciiCard({
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      {/* ASCII canvas overlay */}
+      {/* ASCII canvas — sits on top, pointer-events none */}
       <canvas
         ref={canvasRef}
-        className="absolute inset-0 z-[5] pointer-events-none transition-opacity duration-500"
+        className="absolute inset-0 pointer-events-none z-[10] transition-opacity duration-500"
         style={{
           opacity: hovered ? 1 : 0,
-          mixBlendMode: 'screen',
           borderRadius: 'inherit',
+          mixBlendMode: 'overlay',
         }}
       />
       {children}

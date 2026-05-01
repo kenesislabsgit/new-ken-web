@@ -75,11 +75,8 @@ export default function TechCardsSection() {
                 <BorderGlow
                   glowColors={['#fbbf24', '#f59e0b', '#d97706']}
                   borderRadius={16}
-                  edgeSensitivity={45}
-                  glowIntensity={1.4}
-                  animated
                 >
-                  <AsciiCard color="rgba(245,158,11,0.45)" gap={13} speed={1000}>
+                  <AsciiCard color="#fbbf24" gap={14} speed={900}>
                     <Card
                       className="group relative overflow-hidden rounded-2xl aspect-[608/841] cursor-pointer glass-card border-0"
                     >
