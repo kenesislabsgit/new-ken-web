@@ -72,13 +72,13 @@ export default function AboutPage() {
             height={280}
             className="!w-full !h-full"
             colorBack="#0a0a0b"
-            colorTint="#f59e0b"
+            colorTint="#c8a96e"
             speed={0.3}
-            distortion={0.02}
-            shiftRed={0.1}
-            shiftBlue={0.05}
-            softness={0.25}
-            contour={0.2}
+            distortion={0.008}
+            shiftRed={0.06}
+            shiftBlue={0.03}
+            softness={0.4}
+            contour={0.08}
             angle={40}
             scale={0.85}
           />
@@ -93,13 +93,13 @@ export default function AboutPage() {
             height={720}
             className="!w-full !h-full"
             colorBack="#0a0a0b"
-            colorTint="#f59e0b"
+            colorTint="#c8a96e"
             speed={0.3}
-            distortion={0.02}
-            shiftRed={0.1}
-            shiftBlue={0.05}
-            softness={0.25}
-            contour={0.2}
+            distortion={0.008}
+            shiftRed={0.06}
+            shiftBlue={0.03}
+            softness={0.4}
+            contour={0.08}
             angle={40}
             scale={0.8}
           />
