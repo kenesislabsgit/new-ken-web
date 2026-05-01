@@ -30,6 +30,11 @@ export const metadata: Metadata = {
   title: "Kenesis Labs – On-Premise AI Video Analytics for Industrial Safety",
   description:
     "Kenesis Labs deploys on-premise AI video analytics for Indian factories. PPE compliance, zone detection, real-time safety alerts — no cloud, no data leaving your network.",
+  icons: {
+    icon: "/kenesis-icon.png",
+    shortcut: "/kenesis-icon.png",
+    apple: "/kenesis-icon.png",
+  },
 };
 
 export default function RootLayout({
