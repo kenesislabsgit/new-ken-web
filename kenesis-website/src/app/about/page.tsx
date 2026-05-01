@@ -11,6 +11,7 @@ import TeamSection from '@/components/TeamSection';
 import { ImageMaskedText } from '@/components/magicui/image-masked-text';
 import { AsciiTextDisplay } from '@/components/magicui/ascii-text-display';
 import { DitheredWaves } from '@/components/magicui/dithered-waves';
+import { LiquidMetalLogo } from '@/components/magicui/liquid-metal-logo';
 
 export default function AboutPage() {
   return (
@@ -58,39 +59,51 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Logo accent */}
+      {/* LiquidMetal logo */}
       <section className="relative z-[2] flex items-center justify-center py-8 overflow-hidden">
         <div
-          className="relative flex items-center justify-center"
+          className="relative"
           style={{
-            maskImage: 'radial-gradient(ellipse 80% 80% at center, black 40%, transparent 85%)',
-            WebkitMaskImage: 'radial-gradient(ellipse 80% 80% at center, black 40%, transparent 85%)',
+            maskImage: 'radial-gradient(ellipse 85% 85% at center, black 45%, transparent 85%)',
+            WebkitMaskImage: 'radial-gradient(ellipse 85% 85% at center, black 45%, transparent 85%)',
           }}
         >
-          {/* Outer ambient glow */}
-          <div className="absolute w-[320px] h-[320px] sm:w-[500px] sm:h-[500px] rounded-full pointer-events-none"
-            style={{
-              background: 'radial-gradient(ellipse at center, rgba(245,158,11,0.12) 0%, rgba(245,158,11,0.04) 50%, transparent 75%)',
-              filter: 'blur(40px)',
-              animation: 'pulse-glow 4s ease-in-out infinite',
-            }}
-          />
-          {/* Icon */}
-          <img
-            src="/kenesis-icon.png"
-            alt="Kenesis"
-            className="relative z-10 w-[180px] h-[180px] sm:w-[280px] sm:h-[280px] md:w-[360px] md:h-[360px] object-contain"
-            style={{
-              filter: 'drop-shadow(0 0 40px rgba(245,158,11,0.3)) drop-shadow(0 0 80px rgba(245,158,11,0.15))',
-              animation: 'float-logo 6s ease-in-out infinite',
-            }}
-          />
-          <style>{`
-            @keyframes float-logo {
-              0%, 100% { transform: translateY(0px); filter: drop-shadow(0 0 40px rgba(245,158,11,0.3)) drop-shadow(0 0 80px rgba(245,158,11,0.15)); }
-              50% { transform: translateY(-12px); filter: drop-shadow(0 0 60px rgba(245,158,11,0.45)) drop-shadow(0 0 100px rgba(245,158,11,0.2)); }
-            }
-          `}</style>
+          {/* Mobile */}
+          <div className="sm:hidden">
+            <LiquidMetalLogo
+              src="/kenesis-icon.png"
+              width={300}
+              height={300}
+              colorBack="#0a0a0b"
+              colorTint="#d4a843"
+              speed={0.4}
+              distortion={0.06}
+              shiftRed={0.25}
+              shiftBlue={0.2}
+              softness={0.12}
+              contour={0.35}
+              angle={65}
+              scale={0.8}
+            />
+          </div>
+          {/* Desktop */}
+          <div className="hidden sm:block">
+            <LiquidMetalLogo
+              src="/kenesis-icon.png"
+              width={700}
+              height={700}
+              colorBack="#0a0a0b"
+              colorTint="#d4a843"
+              speed={0.4}
+              distortion={0.06}
+              shiftRed={0.25}
+              shiftBlue={0.2}
+              softness={0.12}
+              contour={0.35}
+              angle={65}
+              scale={0.8}
+            />
+          </div>
         </div>
       </section>
 

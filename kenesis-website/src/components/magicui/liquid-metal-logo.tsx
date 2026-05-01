@@ -19,6 +19,7 @@ interface LiquidMetalLogoProps {
   contour?: number;
   angle?: number;
   scale?: number;
+  repetition?: number;
 }
 
 export function LiquidMetalLogo({
@@ -36,6 +37,7 @@ export function LiquidMetalLogo({
   contour = 0.35,
   angle = 60,
   scale = 0.7,
+  repetition = 2.0,
 }: LiquidMetalLogoProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [LiquidMetal, setLiquidMetal] = useState<React.ComponentType<Record<string, unknown>> | null>(null);
@@ -92,6 +94,7 @@ export function LiquidMetalLogo({
             angle={angle}
             speed={speed}
             scale={scale}
+            repetition={repetition}
             fit="contain"
           />
         </div>
