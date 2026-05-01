@@ -63,6 +63,18 @@ export default function HeroSection() {
         {/* KENESIS logo centered in viewport */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
           <div className="relative w-full overflow-hidden" style={{ maxWidth: '100%', padding: '0 12px' }}>
+            {/* Soft circular glow — follows logo shape, no hard rectangle */}
+            <div
+              className="absolute inset-0 flex items-center justify-center pointer-events-none"
+              style={{ zIndex: 0 }}
+            >
+              <div style={{
+                width: '60%',
+                height: '300%',
+                background: 'radial-gradient(ellipse 60% 35% at 50% 50%, rgba(245,158,11,0.22) 0%, rgba(245,158,11,0.08) 45%, transparent 75%)',
+                filter: 'blur(24px)',
+              }} />
+            </div>
             <div className="relative z-[1] pointer-events-auto">
               <TextVideoMask
                 text="KENESIS"
