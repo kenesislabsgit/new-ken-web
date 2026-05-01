@@ -77,13 +77,14 @@ export default function AboutPage() {
               colorBack="#0a0a0b"
               colorTint="#d4a843"
               speed={0.4}
-              distortion={0.06}
-              shiftRed={0.25}
-              shiftBlue={0.2}
-              softness={0.12}
+              distortion={0.05}
+              shiftRed={0.15}
+              shiftBlue={0.15}
+              softness={0.1}
               contour={0.35}
+              repetition={2}
               angle={65}
-              scale={0.8}
+              scale={0.45}
             />
           </div>
           {/* Desktop */}
@@ -95,13 +96,14 @@ export default function AboutPage() {
               colorBack="#0a0a0b"
               colorTint="#d4a843"
               speed={0.4}
-              distortion={0.06}
-              shiftRed={0.25}
-              shiftBlue={0.2}
-              softness={0.12}
+              distortion={0.05}
+              shiftRed={0.15}
+              shiftBlue={0.15}
+              softness={0.1}
               contour={0.35}
+              repetition={2}
               angle={65}
-              scale={0.8}
+              scale={0.45}
             />
           </div>
         </div>
