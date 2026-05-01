@@ -66,7 +66,7 @@ export default function AboutPage() {
             style={{ clipPath: 'circle(50% at 50% 50%)' }}
           >
             <LiquidMetalLogo
-              src="/kenesis-union.png"
+              src="/kenesis-circle.png"
               width={300}
               height={300}
               colorBack="#0a0a0b"
@@ -87,7 +87,7 @@ export default function AboutPage() {
             style={{ clipPath: 'circle(50% at 50% 50%)' }}
           >
             <LiquidMetalLogo
-              src="/kenesis-union.png"
+              src="/kenesis-circle.png"
               width={700}
               height={700}
               colorBack="#0a0a0b"
