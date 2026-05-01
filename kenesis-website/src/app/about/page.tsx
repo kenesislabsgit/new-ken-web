@@ -61,15 +61,10 @@ export default function AboutPage() {
 
       {/* LiquidMetal logo */}
       <section className="relative z-[2] flex items-center justify-center py-8 overflow-hidden">
-        <div
-          className="relative"
-          style={{
-            maskImage: 'radial-gradient(ellipse 85% 85% at center, black 45%, transparent 85%)',
-            WebkitMaskImage: 'radial-gradient(ellipse 85% 85% at center, black 45%, transparent 85%)',
-          }}
-        >
           {/* Mobile */}
-          <div className="sm:hidden rounded-full overflow-hidden">
+          <div className="sm:hidden w-[300px] h-[300px]"
+            style={{ clipPath: 'circle(50% at 50% 50%)' }}
+          >
             <LiquidMetalLogo
               src="/kenesis-union.png"
               width={300}
@@ -88,7 +83,9 @@ export default function AboutPage() {
             />
           </div>
           {/* Desktop */}
-          <div className="hidden sm:block rounded-full overflow-hidden">
+          <div className="hidden sm:block w-[700px] h-[700px]"
+            style={{ clipPath: 'circle(50% at 50% 50%)' }}
+          >
             <LiquidMetalLogo
               src="/kenesis-union.png"
               width={700}
@@ -106,7 +103,6 @@ export default function AboutPage() {
               scale={0.7}
             />
           </div>
-        </div>
       </section>
 
       {/* â”€â”€ Manifesto: large editorial text, not cards â”€â”€ */}
