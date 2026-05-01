@@ -79,7 +79,7 @@ export function LiquidMetalLogo({
         <img src={src} alt="" className="w-full h-full object-contain opacity-30" />
       )}
       {LiquidMetal && !reduced && (
-        <div>
+        <div style={{ width, height, borderRadius: '50%', overflow: 'hidden', clipPath: 'circle(50%)' }}>
           <LiquidMetal
             width={width}
             height={height}
