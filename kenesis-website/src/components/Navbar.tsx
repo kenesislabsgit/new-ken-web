@@ -2,44 +2,26 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import dynamic from "next/dynamic";
+import { Button, Tooltip } from "@heroui/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-// Dynamically import LiquidGlass to avoid SSR issues
-const LiquidGlass = dynamic(() => import("liquid-glass-react"), { 
-  ssr: false,
-  loading: () => (
-    <div className="rounded-full px-[18px] py-[12px] sm:px-[28px] sm:py-[14px]" style={{
-      background: "rgba(255,255,255,0.1)",
-      backdropFilter: "blur(20px)",
-    }} />
-  )
-});
 
 gsap.registerPlugin(ScrollTrigger);
 
 const navLinks = [
-  { label: "Home", href: "/" },
   { label: "Platform", href: "/platform" },
   { label: "About", href: "/about" },
 ];
 
 const mobileLinks = [
-  { label: "Home", href: "/" },
   { label: "Platform", href: "/platform" },
   { label: "About", href: "/about" },
 ];
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
   const headerRef = useRef<HTMLDivElement>(null);
   const progressRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   useEffect(() => {
     const el = headerRef.current;
@@ -68,16 +50,6 @@ export default function Navbar() {
     return () => { trigger.kill(); clearTimeout(refreshTimer); clearTimeout(refreshTimer2); };
   }, []);
 
-  // Lock body scroll when menu is open
-  useEffect(() => {
-    if (open) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => { document.body.style.overflow = ""; };
-  }, [open]);
-
   return (
     <>
       <div
@@ -85,165 +57,103 @@ export default function Navbar() {
         className="fixed top-[12px] left-0 right-0 z-[500] mx-auto w-[calc(100vw-24px)] max-w-[1152px] sm:top-[20px] sm:w-[calc(100vw-48px)]"
         style={{ opacity: 0, transform: "translateY(-80px)" }}
       >
-        {mounted ? (
-          <LiquidGlass
-            displacementScale={50}
-            blurAmount={0.08}
-            saturation={120}
-            aberrationIntensity={1.5}
-            elasticity={0.2}
-            cornerRadius={999}
-            padding="12px 20px"
-            className="w-full"
-            style={{ 
-              minHeight: "56px",
-            }}
-          >
-            <div className="relative flex items-center justify-between w-full">
-              {/* Logo */}
-              <Link href="/" className="flex items-center gap-2 cursor-pointer z-10" aria-label="Kenesis Labs home">
-                <span className="font-logo text-[18px] tracking-[0.12em] uppercase text-white/90 leading-none sm:text-[22px]">
-                  Kenesis
-                </span>
-              </Link>
-
-              {/* Desktop Navigation */}
-              <nav className="hidden items-center gap-2 md:flex z-10" aria-label="Main navigation">
-                {navLinks.map((link) => (
-                  <Link
-                    key={link.label}
-                    href={link.href}
-                    className="rounded-full px-4 py-2 font-mono-accent text-[12px] font-medium uppercase tracking-[0.1em] text-white/70 transition-all duration-300 hover:text-white hover:bg-white/10 cursor-pointer"
-                  >
-                    {link.label}
-                  </Link>
-                ))}
-              </nav>
-
-              {/* Right side */}
-              <div className="flex items-center gap-3 z-10">
-                {/* Desktop CTA */}
-                <Link href="/contact" className="hidden md:block">
-                  <LiquidGlass
-                    displacementScale={40}
-                    blurAmount={0.05}
-                    saturation={150}
-                    aberrationIntensity={2}
-                    elasticity={0.3}
-                    cornerRadius={999}
-                    padding="10px 20px"
-                    onClick={() => {}}
-                    style={{
-                      background: "linear-gradient(180deg, #fcd34d 0%, #f59e0b 50%, #d97706 100%)",
-                    }}
-                  >
-                    <span className="font-mono-accent text-[11px] font-bold uppercase tracking-[0.08em] text-[#1a1a0e] whitespace-nowrap">
-                      Book a walkthrough
-                    </span>
-                  </LiquidGlass>
-                </Link>
-
-                {/* Mobile Hamburger */}
-                <button
-                  onClick={() => setOpen(!open)}
-                  className="flex h-10 w-10 flex-col items-center justify-center gap-[5px] rounded-full transition-all duration-300 md:hidden cursor-pointer bg-white/10 hover:bg-white/20"
-                  aria-label={open ? "Close menu" : "Open menu"}
-                  aria-expanded={open}
-                >
-                  <span className={`block h-[2px] w-[16px] rounded-full bg-white/80 transition-all duration-300 ${open ? "translate-y-[3.5px] rotate-45" : ""}`} />
-                  <span className={`block h-[2px] w-[16px] rounded-full bg-white/80 transition-all duration-300 ${open ? "-translate-y-[3.5px] -rotate-45" : ""}`} />
-                </button>
-              </div>
-
-              {/* Progress bar */}
-              <div className="absolute bottom-[-8px] left-0 right-0 h-[2px] overflow-hidden rounded-full bg-white/[0.08]">
-                <div
-                  ref={progressRef}
-                  className="h-full rounded-full"
-                  style={{ 
-                    width: "0%", 
-                    background: "linear-gradient(90deg, #fbbf24, #f59e0b, #d97706)",
-                    boxShadow: "0 0 8px rgba(245,158,11,0.5)"
-                  }}
-                />
-              </div>
-            </div>
-          </LiquidGlass>
-        ) : (
-          /* Fallback while loading */
-          <div 
-            className="relative flex items-center justify-between rounded-full px-[20px] py-[12px]"
-            style={{
-              background: "rgba(255,255,255,0.1)",
-              backdropFilter: "blur(20px)",
-              border: "1px solid rgba(255,255,255,0.15)",
-            }}
-          >
+        <div
+          className="relative flex items-center justify-between rounded-[12px] sm:rounded-[16px] px-[14px] py-[10px] sm:px-[20px] sm:py-[12px]"
+          style={{
+            background: "rgba(10, 10, 11, 0.65)",
+            backdropFilter: "blur(32px) saturate(1.4)",
+            WebkitBackdropFilter: "blur(32px) saturate(1.4)",
+            border: "1px solid rgba(255,255,255,0.08)",
+            boxShadow: "0 8px 32px rgba(0,0,0,0.4), 0 1px 0 0 rgba(255,255,255,0.03) inset",
+          }}
+        >
+          <Link href="/" className="flex items-center gap-2 cursor-pointer" aria-label="Kenesis Labs home">
             <span className="font-logo text-[18px] tracking-[0.12em] uppercase text-white/90 leading-none sm:text-[22px]">
               Kenesis
             </span>
+          </Link>
+
+          <nav className="hidden items-center gap-6 md:flex" aria-label="Main navigation">
+            {navLinks.map((link) => (
+              <Tooltip key={link.label}>
+                <Tooltip.Trigger>
+                  <Link
+                    href={link.href}
+                    className="rounded-lg px-3 py-2 font-mono-accent text-[13px] font-medium uppercase tracking-[0.1em] text-white/50 transition-colors duration-200 hover:text-white/90 cursor-pointer"
+                  >
+                    {link.label}
+                  </Link>
+                </Tooltip.Trigger>
+                <Tooltip.Content placement="bottom" offset={8}>
+                  <Tooltip.Arrow />
+                  Explore {link.label}
+                </Tooltip.Content>
+              </Tooltip>
+            ))}
+          </nav>
+
+          <div className="flex items-center gap-3">
+            <Link href="/contact" className="hidden rounded-xl md:block">
+              <Button
+                variant="primary"
+                size="md"
+                className="font-mono-accent text-[12px] font-bold uppercase tracking-[0.08em] rounded-xl cursor-pointer"
+              >
+                Book a walkthrough
+              </Button>
+            </Link>
+
+            <button
+              onClick={() => setOpen(!open)}
+              className="flex h-9 w-9 flex-col items-center justify-center gap-[5px] rounded-lg transition-colors hover:bg-white/[0.06] md:hidden cursor-pointer"
+              aria-label={open ? "Close menu" : "Open menu"}
+              aria-expanded={open}
+            >
+              <span className={`block h-[1.5px] w-[18px] bg-white/70 transition-all duration-300 ${open ? "translate-y-[3.5px] rotate-45" : ""}`} />
+              <span className={`block h-[1.5px] w-[18px] bg-white/70 transition-all duration-300 ${open ? "-translate-y-[3.5px] -rotate-45" : ""}`} />
+            </button>
           </div>
-        )}
+
+          <div className="absolute bottom-0 left-3 right-3 h-[2px] overflow-hidden rounded-full bg-white/[0.04]">
+            <div
+              ref={progressRef}
+              className="h-full rounded-full"
+              style={{ width: "0%", background: "linear-gradient(90deg, #fbbf24, #f59e0b, #d97706)" }}
+            />
+          </div>
+        </div>
       </div>
 
-      {/* Mobile Menu */}
       {open && (
-        <div 
-          className="fixed inset-0 z-[499] flex flex-col pt-[90px] px-5 pb-6 md:hidden"
+        <div className="fixed inset-0 z-[499] flex flex-col pt-[80px] px-6 pb-6 md:hidden"
           style={{
-            background: "rgba(10,10,11,0.85)",
+            background: "rgba(10,10,11,0.6)",
             backdropFilter: "blur(40px) saturate(1.6)",
             WebkitBackdropFilter: "blur(40px) saturate(1.6)",
           }}
         >
-          {mounted && (
-            <LiquidGlass
-              displacementScale={40}
-              blurAmount={0.06}
-              saturation={120}
-              aberrationIntensity={1}
-              elasticity={0.15}
-              cornerRadius={24}
-              padding="16px"
-              className="mb-4"
-            >
-              <nav className="flex flex-col gap-1" aria-label="Mobile navigation">
-                {mobileLinks.map((link) => (
-                  <Link
-                    key={link.label}
-                    href={link.href}
-                    onClick={() => setOpen(false)}
-                    className="rounded-full px-5 py-4 font-mono-accent text-[15px] font-medium uppercase tracking-[0.1em] text-white/70 transition-all duration-300 hover:bg-white/10 hover:text-white cursor-pointer"
-                  >
-                    {link.label}
-                  </Link>
-                ))}
-              </nav>
-            </LiquidGlass>
-          )}
-
+          <nav className="flex flex-col gap-1" aria-label="Mobile navigation">
+            {mobileLinks.map((link) => (
+              <Link
+                key={link.label}
+                href={link.href}
+                onClick={() => setOpen(false)}
+                className="rounded-xl px-5 py-4 font-mono-accent text-[16px] font-medium uppercase tracking-[0.1em] text-white/60 transition-colors hover:bg-white/[0.06] hover:text-white/90 cursor-pointer"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
           <div className="mt-auto">
             <Link href="/contact" onClick={() => setOpen(false)} className="block w-full">
-              {mounted && (
-                <LiquidGlass
-                  displacementScale={50}
-                  blurAmount={0.05}
-                  saturation={150}
-                  aberrationIntensity={2}
-                  elasticity={0.25}
-                  cornerRadius={999}
-                  padding="16px 24px"
-                  onClick={() => {}}
-                  className="w-full flex justify-center"
-                  style={{
-                    background: "linear-gradient(180deg, #fcd34d 0%, #f59e0b 50%, #d97706 100%)",
-                  }}
-                >
-                  <span className="font-mono-accent text-[14px] font-bold uppercase tracking-[0.08em] text-[#1a1a0e]">
-                    Book a walkthrough
-                  </span>
-                </LiquidGlass>
-              )}
+              <Button
+                variant="primary"
+                fullWidth
+                size="lg"
+                className="font-mono-accent text-[14px] font-bold uppercase tracking-[0.08em] rounded-xl cursor-pointer"
+              >
+                Book a walkthrough
+              </Button>
             </Link>
           </div>
         </div>
