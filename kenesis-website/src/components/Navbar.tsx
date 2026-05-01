@@ -9,11 +9,13 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const navLinks = [
+  { label: "Home", href: "/" },
   { label: "Platform", href: "/platform" },
   { label: "About", href: "/about" },
 ];
 
 const mobileLinks = [
+  { label: "Home", href: "/" },
   { label: "Platform", href: "/platform" },
   { label: "About", href: "/about" },
 ];
