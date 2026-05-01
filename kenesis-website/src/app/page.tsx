@@ -16,7 +16,6 @@ import { ScrollReveal } from "@/components/magicui/scroll-reveal";
 import { TextReveal } from "@/components/magicui/text-reveal";
 import { BorderBeam } from "@/components/magicui/border-beam";
 import BorderGlow from "@/components/BorderGlow";
-import AsciiCard from "@/components/AsciiCard";
 const ScrollFrameSection = dynamic(
   () => import(/* webpackPrefetch: true */ "@/components/ScrollFrameSection"),
   {
@@ -111,7 +110,6 @@ export default function Home() {
                     animated
                     className="h-full"
                   >
-                    <AsciiCard variant="amber" gap={14} speed={25} className="h-full">
                       <div className="relative glass-card rounded-[16px] p-[24px] sm:p-[40px] md:p-[48px] h-full group cursor-pointer transition-all duration-400 w-full">
                         <BorderBeam size={180} duration={14} colorFrom="#f59e0b" colorTo="#d97706" borderWidth={1} />
                         <div className="flex items-start justify-between mb-[20px] sm:mb-[32px]">
@@ -123,7 +121,6 @@ export default function Home() {
                         <h3 className="font-display text-[18px] sm:text-[22px] font-semibold text-white/90 mb-[12px] sm:mb-[16px] group-hover:text-white transition-colors tracking-[-0.02em]">{f.title}</h3>
                         <p className="text-[15px] sm:text-[16px] leading-[1.7] text-white/40 group-hover:text-white/55 transition-colors duration-400">{f.desc}</p>
                       </div>
-                    </AsciiCard>
                   </BorderGlow>
                 </ScrollReveal>
               ))}

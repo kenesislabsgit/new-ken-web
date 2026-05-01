@@ -12,7 +12,6 @@ import { TypewriterText } from '@/components/magicui/typewriter-text';
 import { DitheredWaves } from '@/components/magicui/dithered-waves';
 import SequentialHighlight from '@/components/SequentialHighlight';
 import BorderGlow from '@/components/BorderGlow';
-import AsciiCard from '@/components/AsciiCard';
 
 export default function PlatformPage() {
   return (
@@ -193,7 +192,7 @@ export default function PlatformPage() {
               { Icon: Rocket, title: 'Live in 48 hours', desc: 'From setup to monitoring. Minimal configuration, no lengthy integration projects.' },
             ].map((item, i) => (
               <ScrollReveal key={item.title} variant="scale-up" delay={i * 0.06} duration={0.4}>
-                <BorderGlow
+                  <BorderGlow
                   glowColor="38 80 70"
                   backgroundColor="rgba(10,10,11,0)"
                   borderRadius={16}
@@ -202,7 +201,6 @@ export default function PlatformPage() {
                   animated
                   className="h-full"
                 >
-                  <AsciiCard variant="amber" gap={14} speed={25} className="h-full">
                     <div
                       className="group relative rounded-[16px] p-6 sm:p-8 transition-all duration-400 cursor-default overflow-hidden h-full w-full"
                       style={{
@@ -218,8 +216,7 @@ export default function PlatformPage() {
                       <p className="font-display text-[17px] font-semibold text-white/90 mb-2 tracking-[-0.02em]">{item.title}</p>
                       <p className="text-[14px] leading-[1.6] text-white/35">{item.desc}</p>
                     </div>
-                  </AsciiCard>
-                </BorderGlow>
+                  </BorderGlow>
               </ScrollReveal>
             ))}
           </div>

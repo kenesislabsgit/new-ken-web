@@ -8,7 +8,6 @@ import { ScrollReveal } from '@/components/magicui/scroll-reveal';
 import { AsciiDivider, AsciiCorners, AsciiBlock, ASCII_ARTS } from '@/components/AsciiArt';
 import { AsciiRenderer } from '@/components/magicui/ascii-renderer';
 import BorderGlow from '@/components/BorderGlow';
-import AsciiCard from '@/components/AsciiCard';
 
 const techCards = [
   { title: 'PPE Compliance', subtitle: 'Automated monitoring of helmets, vests, gloves, and safety gear across every camera feed in real time.', ascii: ASCII_ARTS.shield, image: '/images/tech/3.webp' },
@@ -80,10 +79,7 @@ export default function TechCardsSection() {
                   glowIntensity={1.2}
                   animated
                 >
-                  <AsciiCard variant="amber" gap={14} speed={25}>
-                    <Card
-                      className="group relative overflow-hidden rounded-2xl aspect-[608/841] cursor-pointer glass-card border-0"
-                    >
+                    <Card className="group relative overflow-hidden rounded-2xl aspect-[608/841] cursor-pointer glass-card border-0">
                       {/* Full image background */}
                       <div className="absolute inset-0 z-0">
                         <img src={card.image} alt={card.title} className="w-full h-full object-cover opacity-40 group-hover:opacity-60 group-hover:scale-105 transition-all duration-700" loading="lazy" />
@@ -96,7 +92,6 @@ export default function TechCardsSection() {
                         <Card.Description className="font-mono-accent text-[12px] leading-relaxed text-white/50 uppercase tracking-[0.06em]">{card.subtitle}</Card.Description>
                       </Card.Content>
                     </Card>
-                  </AsciiCard>
                 </BorderGlow>
               </AsciiCorners>
             </ScrollReveal>

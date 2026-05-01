@@ -8,7 +8,6 @@ import { TextReveal } from '@/components/magicui/text-reveal';
 import { AsciiDivider } from '@/components/AsciiArt';
 import { DitheredWaves } from '@/components/magicui/dithered-waves';
 import BorderGlow from '@/components/BorderGlow';
-import AsciiCard from '@/components/AsciiCard';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { prefersReducedMotion } from '@/lib/animations';
@@ -138,31 +137,22 @@ export default function InsightsGrid() {
               glowIntensity={1.2}
               className="w-[280px] sm:w-[350px] md:w-[450px] flex-shrink-0"
             >
-              <AsciiCard variant="amber" gap={14} speed={25}>
-                <article className="group cursor-pointer">
-                  {/* Thumbnail placeholder */}
-                  <div className="mb-4 h-[180px] sm:h-[220px] md:h-[280px] w-full overflow-hidden rounded-xl bg-white/5">
-                    <div className="h-full w-full bg-gradient-to-br from-white/[0.03] to-white/[0.08] transition-transform duration-300 group-hover:scale-105" />
-                  </div>
-
-                  {/* Tags */}
-                  <div className="mb-3 flex flex-wrap gap-2">
-                    {article.tags.map(tag => (
-                      <Chip key={tag} variant="secondary" size="sm">
-                        {tag}
-                      </Chip>
-                    ))}
-                  </div>
-
-                  {/* Title */}
-                  <h3 className="mb-2 font-display text-[14px] sm:text-[15px] md:text-[17px] font-semibold leading-snug text-white/90 group-hover:text-amber-400 transition-colors line-clamp-3">
-                    {article.title}
-                  </h3>
-
-                  {/* Date */}
-                  <p className="font-mono-accent text-[11px] text-white/25 uppercase tracking-[0.06em]">{article.date}</p>
-                </article>
-              </AsciiCard>
+              <article className="group cursor-pointer">
+                <div className="mb-4 h-[180px] sm:h-[220px] md:h-[280px] w-full overflow-hidden rounded-xl bg-white/5">
+                  <div className="h-full w-full bg-gradient-to-br from-white/[0.03] to-white/[0.08] transition-transform duration-300 group-hover:scale-105" />
+                </div>
+                <div className="mb-3 flex flex-wrap gap-2">
+                  {article.tags.map(tag => (
+                    <Chip key={tag} variant="secondary" size="sm">
+                      {tag}
+                    </Chip>
+                  ))}
+                </div>
+                <h3 className="mb-2 font-display text-[14px] sm:text-[15px] md:text-[17px] font-semibold leading-snug text-white/90 group-hover:text-amber-400 transition-colors line-clamp-3">
+                  {article.title}
+                </h3>
+                <p className="font-mono-accent text-[11px] text-white/25 uppercase tracking-[0.06em]">{article.date}</p>
+              </article>
             </BorderGlow>
           </ScrollReveal>
         ))}
