@@ -192,32 +192,58 @@ export default function PlatformPage() {
               { Icon: Rocket, title: 'Live in 48 hours', desc: 'From setup to monitoring. Minimal configuration, no lengthy integration projects.' },
             ].map((item, i) => (
               <ScrollReveal key={item.title} variant="scale-up" delay={i * 0.06} duration={0.4}>
-                  <BorderGlow
+                <BorderGlow
                   glowColor="45 70 60"
-                  backgroundColor="#0a0a0b"
-                  borderRadius={16}
+                  backgroundColor="#0f0e0d"
+                  borderRadius={20}
                   colors={['#fbbf24', '#f59e0b', '#d97706']}
                   fillOpacity={0}
-                  glowIntensity={1.0}
+                  glowIntensity={1.2}
                   animated
                   className="h-full"
                 >
+                  <div
+                    className="group relative rounded-[20px] p-6 sm:p-8 h-full w-full cursor-default overflow-hidden transition-all duration-300"
+                    style={{
+                      background: 'linear-gradient(160deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.01) 50%, rgba(0,0,0,0.1) 100%)',
+                      backdropFilter: 'blur(20px) saturate(1.4)',
+                      WebkitBackdropFilter: 'blur(20px) saturate(1.4)',
+                      boxShadow: `
+                        /* outer lift */
+                        0 8px 24px rgba(0,0,0,0.5),
+                        0 2px 6px rgba(0,0,0,0.35),
+                        /* top bright rim */
+                        inset 0 1px 0 rgba(255,255,255,0.12),
+                        /* bottom dark rim */
+                        inset 0 -1px 0 rgba(0,0,0,0.4),
+                        /* inner depth */
+                        inset 0 2px 12px rgba(0,0,0,0.25)
+                      `,
+                    }}
+                  >
+                    {/* Top gloss strip */}
+                    <div className="absolute top-0 left-[10%] right-[10%] h-[1px] bg-gradient-to-r from-transparent via-white/[0.15] to-transparent pointer-events-none" />
+
+                    {/* Icon — skeuomorphic raised square */}
                     <div
-                      className="group relative rounded-[16px] p-6 sm:p-8 transition-all duration-400 cursor-default overflow-hidden h-full w-full"
+                      className="w-11 h-11 rounded-[12px] flex items-center justify-center mb-5"
                       style={{
-                        background: 'linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%)',
-                        backdropFilter: 'blur(20px) saturate(1.4)',
-                        WebkitBackdropFilter: 'blur(20px) saturate(1.4)',
+                        background: 'linear-gradient(160deg, rgba(245,158,11,0.18) 0%, rgba(245,158,11,0.06) 100%)',
+                        boxShadow: `
+                          0 4px 10px rgba(0,0,0,0.35),
+                          inset 0 1px 0 rgba(255,255,255,0.12),
+                          inset 0 -1px 0 rgba(0,0,0,0.3),
+                          0 0 0 1px rgba(245,158,11,0.2)
+                        `,
                       }}
                     >
-                      <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
-                      <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style={{ background: 'rgba(245,158,11,0.08)', border: '1px solid rgba(245,158,11,0.15)' }}>
-                        <item.Icon size={20} className="text-amber-400/80" strokeWidth={1.5} />
-                      </div>
-                      <p className="font-display text-[17px] font-semibold text-white/90 mb-2 tracking-[-0.02em]">{item.title}</p>
-                      <p className="text-[14px] leading-[1.6] text-white/35">{item.desc}</p>
+                      <item.Icon size={20} className="text-amber-400/90" strokeWidth={1.5} />
                     </div>
-                  </BorderGlow>
+
+                    <p className="font-display text-[17px] font-semibold text-white/90 mb-2 tracking-[-0.02em] group-hover:text-white transition-colors">{item.title}</p>
+                    <p className="text-[14px] leading-[1.6] text-white/35 group-hover:text-white/50 transition-colors">{item.desc}</p>
+                  </div>
+                </BorderGlow>
               </ScrollReveal>
             ))}
           </div>
