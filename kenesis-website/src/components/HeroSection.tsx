@@ -13,12 +13,13 @@ export default function HeroSection() {
   const introRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  // Force inline autoplay on iOS Safari — prevents the native play button overlay.
-  // iOS blocks autoplay until `.play()` is called programmatically, even when
-  // `autoPlay`, `muted`, and `playsInline` are all set as attributes.
+  // On mobile, skip eager video loading — defer until first user interaction.
+  // On desktop, `preload="metadata"` is sufficient since bandwidth is less constrained.
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
+
+    const isMobile = window.innerWidth < 768;
 
     // setAttribute ensures `playsinline` and `webkit-playsinline` are both
     // present in the DOM for older iOS WebKit versions.
@@ -26,10 +27,33 @@ export default function HeroSection() {
     video.setAttribute('webkit-playsinline', '');
     video.muted = true;
 
+    if (isMobile) {
+      // On mobile: start with preload=none, then load on first touch/scroll
+      video.preload = 'none';
+
+      const loadAndPlay = () => {
+        video.preload = 'auto';
+        video.load();
+        video.play().catch(() => {
+          // Autoplay blocked (e.g. Low Power Mode) — silently ignore.
+        });
+        window.removeEventListener('touchstart', loadAndPlay);
+        window.removeEventListener('scroll', loadAndPlay);
+      };
+
+      window.addEventListener('touchstart', loadAndPlay, { once: true, passive: true });
+      window.addEventListener('scroll', loadAndPlay, { once: true, passive: true });
+
+      return () => {
+        window.removeEventListener('touchstart', loadAndPlay);
+        window.removeEventListener('scroll', loadAndPlay);
+      };
+    }
+
+    // Desktop: play as soon as metadata / data is ready
     const attempt = () => {
       video.play().catch(() => {
-        // Autoplay blocked (e.g. Low Power Mode) — silently ignore.
-        // Video stays hidden behind the overlay divs so no broken UI.
+        // Autoplay blocked — silently ignore.
       });
     };
 

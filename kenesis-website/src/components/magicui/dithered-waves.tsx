@@ -86,29 +86,36 @@ export function DitheredWaves({
   const mouseRef = useRef({ x: -9999, y: -9999 });
   const smoothMouseRef = useRef({ x: -9999, y: -9999 });
   const rafRef = useRef(0);
-  const frameStartRef = useRef(0);
   const lastDrawRef = useRef(0);
   const timeRef = useRef(0);
   const noiseRef = useRef<{ perm: Uint8Array; permMod8: Uint8Array } | null>(null);
+  // visibleRef must be declared before draw so the callback closes over the same ref
+  const visibleRef = useRef(false);
 
   // Initialize noise with random seed on mount
   if (!noiseRef.current) {
     noiseRef.current = buildPerm(Math.floor(Math.random() * 2147483647));
   }
 
+  // Adapt resolution and framerate to device capability
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  const effectiveCellSize = isMobile ? Math.max(cellSize, 20) : cellSize;
+  // 20fps on mobile, 30fps on desktop — imperceptible difference for a background
+  const frameInterval = isMobile ? 50 : 33;
+
   const draw = useCallback(() => {
     const now = performance.now();
-    // Throttle to ~30fps for consistent performance
-    if (now - lastDrawRef.current < 30) {
+    // Skip draw and keep loop alive when off-screen
+    if (!visibleRef.current) {
+      rafRef.current = requestAnimationFrame(draw);
+      return;
+    }
+    // Throttle fps
+    if (now - lastDrawRef.current < frameInterval) {
       rafRef.current = requestAnimationFrame(draw);
       return;
     }
     lastDrawRef.current = now;
-    // Skip drawing if not visible
-    if (!visibleRef.current) {
-      rafRef.current = 0;
-      return;
-    }
     const canvas = canvasRef.current;
     const noise = noiseRef.current;
     if (!canvas || !noise) return;
@@ -138,22 +145,22 @@ export function DitheredWaves({
     sm.x += (rm.x - sm.x) * 0.15;
     sm.y += (rm.y - sm.y) * 0.15;
 
-    const cols = Math.ceil(w / cellSize);
-    const rows = Math.ceil(h / cellSize);
+    const cols = Math.ceil(w / effectiveCellSize);
+    const rows = Math.ceil(h / effectiveCellSize);
     const t = timeRef.current;
     const mx = sm.x;
     const my = sm.y;
     const { perm, permMod8 } = noise;
 
-    ctx.font = `${cellSize}px monospace`;
+    ctx.font = `${effectiveCellSize}px monospace`;
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
     ctx.fillStyle = color;
 
     for (let row = 0; row < rows; row++) {
       for (let col = 0; col < cols; col++) {
-        const x = col * cellSize + cellSize / 2;
-        const y = row * cellSize + cellSize / 2;
+        const x = col * effectiveCellSize + effectiveCellSize / 2;
+        const y = row * effectiveCellSize + effectiveCellSize / 2;
 
         const nx = x * frequency * 0.8;
         const ny = y * frequency * 0.8;
@@ -219,10 +226,7 @@ export function DitheredWaves({
     ctx.globalAlpha = 1;
     timeRef.current += 0.033;
     rafRef.current = requestAnimationFrame(draw);
-  }, [charset, color, bgColor, cellSize, speed, effectiveLayers, amplitude, frequency, enableMouse, mouseRadius]);
-
-  // Visibility-based animation - pause when off-screen
-  const visibleRef = useRef(true);
+  }, [charset, color, bgColor, effectiveCellSize, speed, effectiveLayers, amplitude, frequency, enableMouse, mouseRadius, frameInterval]);
 
   useEffect(() => {
     if (prefersReducedMotion()) return;
@@ -230,12 +234,8 @@ export function DitheredWaves({
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    // Only animate when visible
     const io = new IntersectionObserver(([entry]) => {
       visibleRef.current = entry.isIntersecting;
-      if (entry.isIntersecting && !rafRef.current) {
-        rafRef.current = requestAnimationFrame(draw);
-      }
     }, { rootMargin: '200px' });
     io.observe(canvas);
 

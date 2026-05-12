@@ -247,6 +247,11 @@ export function SpectraNoise({
     const useCustom = !!(primaryColor && secondaryColor && accentColor);
 
     const render = () => {
+      // Skip rendering entirely when off-screen — visibleRef is set by IntersectionObserver
+      if (!visibleRef.current) {
+        raf = requestAnimationFrame(render);
+        return;
+      }
       const now = performance.now();
       const elapsed = now - lastRenderTime;
       if (elapsed < FRAME_INTERVAL) {

@@ -1,6 +1,6 @@
 ﻿'use client';
 
-import { useRef, useMemo } from 'react';
+import { useRef, useMemo, useEffect, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
@@ -145,7 +145,7 @@ void main(void) {
 
 /* ── Hills Mesh ── */
 
-function HillsMesh({ color }: { color: string }) {
+function HillsMesh({ color, paused }: { color: string; paused: boolean }) {
   const meshRef = useRef<THREE.Mesh>(null);
 
   const uniforms = useMemo(() => ({
@@ -154,6 +154,7 @@ function HillsMesh({ color }: { color: string }) {
   }), [color]);
 
   useFrame((_, delta) => {
+    if (paused) return;
     uniforms.time.value += delta;
   });
 
@@ -184,8 +185,21 @@ export default function GLSLHills({
   color = '#f59e0b',
   bgColor = '#fdf8f0',
 }: GLSLHillsProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [paused, setPaused] = useState(true);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([entry]) => {
+      setPaused(!entry.isIntersecting);
+    }, { rootMargin: '100px' });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   return (
-    <div className={`absolute inset-0 ${className}`} aria-hidden="true">
+    <div ref={containerRef} className={`absolute inset-0 ${className}`} aria-hidden="true">
       <Canvas
         gl={{ antialias: false, alpha: false }}
         camera={{ position: [0, 16, 128], fov: 45, near: 1, far: 10000 }}
@@ -195,7 +209,7 @@ export default function GLSLHills({
         }}
         style={{ width: '100%', height: '100%' }}
       >
-        <HillsMesh color={color} />
+        <HillsMesh color={color} paused={paused} />
       </Canvas>
     </div>
   );

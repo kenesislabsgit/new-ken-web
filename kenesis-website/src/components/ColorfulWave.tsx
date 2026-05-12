@@ -215,6 +215,7 @@ export default function ColorfulWave({
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const mouseRef = useRef({ x: 0.5, y: 0.5 });
   const smoothMouse = useRef({ x: 0.5, y: 0.5 });
+  const visibleRef = useRef(true);
   const [failed, setFailed] = useState(false);
 
   useEffect(() => {
@@ -228,8 +229,14 @@ export default function ColorfulWave({
     let posBuffer: WebGLBuffer | null = null;
     let rafId = 0;
 
+    // Pause when scrolled off-screen
+    const io = new IntersectionObserver(([entry]) => {
+      visibleRef.current = entry.isIntersecting;
+    }, { rootMargin: '100px' });
+    io.observe(canvas);
+
     try {
-      gl = canvas.getContext('webgl', { antialias: true, alpha: false });
+      gl = canvas.getContext('webgl', { antialias: false, alpha: false });
       if (!gl) { setFailed(true); return; }
 
       vs = createShader(gl, gl.VERTEX_SHADER, VERT);
@@ -267,7 +274,8 @@ export default function ColorfulWave({
         if (!container || !gl) return;
         const w = container.clientWidth;
         const h = container.clientHeight;
-        const dpr = Math.min(window.devicePixelRatio, 2);
+        // Cap DPR at 1.5 — imperceptible quality difference for a background effect
+        const dpr = Math.min(window.devicePixelRatio, 1.5);
         canvas.width = w * dpr;
         canvas.height = h * dpr;
         canvas.style.width = w + 'px';
@@ -287,10 +295,19 @@ export default function ColorfulWave({
 
       const startTime = performance.now();
       const glRef = gl;
+      let lastRenderTime = 0;
+      // 30fps is indistinguishable from 60fps for a slow-moving background shader
+      const FRAME_INTERVAL = 1000 / 30;
 
       const render = () => {
+        rafId = requestAnimationFrame(render);
+        // Skip draw entirely when off-screen
+        if (!visibleRef.current) return;
+        const now = performance.now();
+        if (now - lastRenderTime < FRAME_INTERVAL) return;
+        lastRenderTime = now;
         try {
-          const t = (performance.now() - startTime) / 1000;
+          const t = (now - startTime) / 1000;
           // Smooth mouse interpolation
           smoothMouse.current.x += (mouseRef.current.x - smoothMouse.current.x) * 0.03;
           smoothMouse.current.y += (mouseRef.current.y - smoothMouse.current.y) * 0.03;
@@ -301,7 +318,6 @@ export default function ColorfulWave({
         } catch {
           // Silently fail on render errors
         }
-        rafId = requestAnimationFrame(render);
       };
 
       rafId = requestAnimationFrame(render);
@@ -310,6 +326,7 @@ export default function ColorfulWave({
         cancelAnimationFrame(rafId);
         window.removeEventListener('resize', resize);
         canvas.removeEventListener('mousemove', onMouseMove);
+        io.disconnect();
         if (gl) {
           if (program) gl.deleteProgram(program);
           if (vs) gl.deleteShader(vs);
@@ -320,6 +337,7 @@ export default function ColorfulWave({
     } catch (err) {
       console.warn('[ColorfulWave] WebGL init failed:', err);
       setFailed(true);
+      io.disconnect();
       return () => { cancelAnimationFrame(rafId); };
     }
   }, []);

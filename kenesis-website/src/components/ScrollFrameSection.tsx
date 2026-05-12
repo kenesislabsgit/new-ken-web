@@ -18,7 +18,9 @@ export default function ScrollFrameSection({ frameSets, panels, sectionLabel, se
   const imagesRef = useRef<HTMLImageElement[]>([]);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const dotRefs = useRef<(HTMLDivElement | null)[]>([]);
+  // Cached canvas bounds — only invalidated on resize, not per draw tick
   const canvasSizeRef = useRef({ w: 0, h: 0 });
+  const canvasRectRef = useRef<DOMRect | null>(null);
   const [loaded, setLoaded] = useState(false);
 
   // Total expected frames from props - don't rely on loaded count
@@ -29,43 +31,82 @@ export default function ScrollFrameSection({ frameSets, panels, sectionLabel, se
 
   const frameKey = useMemo(() => JSON.stringify(frameSets), [frameSets]);
 
-  // Preload frames - ordered array, show content as soon as first batch loads
+  // Two-phase image loading:
+  //   Phase 1 — first frame set (~52 images) loaded eagerly; marks component ready
+  //   Phase 2 — remaining sets loaded in idle time after Phase 1 finishes
   useEffect(() => {
     let cancelled = false;
     const sets: FrameSet[] = JSON.parse(frameKey);
     const total = sets.reduce((s, set) => s + set.count, 0);
-    // Pre-allocate ordered slots
     const orderedImgs: (HTMLImageElement | null)[] = new Array(total).fill(null);
     let loadedCount = 0;
-    let firstBatchReady = false;
+    let idleHandle: number | ReturnType<typeof setTimeout> = 0;
 
-    let idx = 0;
-    sets.forEach(set => {
+    const loadSet = (set: FrameSet, baseIdx: number, onDone: () => void) => {
+      let done = 0;
       for (let i = 1; i <= set.count; i++) {
-        const slotIdx = idx++;
+        const slotIdx = baseIdx + i - 1;
         const img = new Image();
         img.src = `${set.path}/f_${String(i).padStart(3, '0')}.webp`;
-        img.onload = () => {
+        const finish = () => {
           if (cancelled) return;
-          orderedImgs[slotIdx] = img;
+          orderedImgs[slotIdx] = img.complete && img.naturalWidth > 0 ? img : null;
           loadedCount++;
-          // Update ref with all successfully loaded images in order
-          imagesRef.current = orderedImgs.filter((im): im is HTMLImageElement => im !== null && im.complete && im.naturalWidth > 0);
-          if (!firstBatchReady && loadedCount >= Math.min(10, total)) {
-            firstBatchReady = true;
-            setLoaded(true);
-          }
+          imagesRef.current = orderedImgs.filter((im): im is HTMLImageElement => im !== null);
+          done++;
+          if (done === set.count) onDone();
         };
-        img.onerror = () => {
-          loadedCount++;
-          if (!cancelled && !firstBatchReady && loadedCount >= Math.min(10, total)) {
-            firstBatchReady = true;
-            setLoaded(true);
-          }
-        };
+        img.onload = finish;
+        img.onerror = finish;
       }
+    };
+
+    // Phase 1: first set only
+    const firstSet = sets[0];
+    if (!firstSet) return;
+
+    loadSet(firstSet, 0, () => {
+      if (cancelled) return;
+      setLoaded(true);
+
+      if (sets.length <= 1) return;
+
+      // Phase 2: remaining sets during browser idle time
+      const scheduleIdle = (fn: () => void) => {
+        if (typeof requestIdleCallback !== 'undefined') {
+          idleHandle = requestIdleCallback(fn, { timeout: 3000 });
+        } else {
+          idleHandle = setTimeout(fn, 500);
+        }
+      };
+
+      let currentSet = 1;
+      let currentBaseIdx = firstSet.count;
+
+      const loadNext = () => {
+        if (cancelled || currentSet >= sets.length) return;
+        const set = sets[currentSet];
+        const baseIdx = currentBaseIdx;
+        currentSet++;
+        currentBaseIdx += set.count;
+        loadSet(set, baseIdx, () => {
+          if (!cancelled && currentSet < sets.length) {
+            scheduleIdle(loadNext);
+          }
+        });
+      };
+
+      scheduleIdle(loadNext);
     });
-    return () => { cancelled = true; };
+
+    return () => {
+      cancelled = true;
+      if (typeof requestIdleCallback !== 'undefined' && typeof idleHandle === 'number') {
+        cancelIdleCallback(idleHandle as number);
+      } else {
+        clearTimeout(idleHandle as ReturnType<typeof setTimeout>);
+      }
+    };
   }, [frameKey]);
 
   const drawFrame = useCallback((idx: number) => {
@@ -76,7 +117,11 @@ export default function ScrollFrameSection({ frameSets, panels, sectionLabel, se
     if (!img) return;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
-    const rect = canvas.getBoundingClientRect();
+    // Use cached rect — getBoundingClientRect forces layout; only invalidate on resize
+    if (!canvasRectRef.current) {
+      canvasRectRef.current = canvas.getBoundingClientRect();
+    }
+    const rect = canvasRectRef.current;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     const cw = Math.round(rect.width * dpr);
     const ch = Math.round(rect.height * dpr);
@@ -147,6 +192,7 @@ export default function ScrollFrameSection({ frameSets, panels, sectionLabel, se
 
     const onResize = () => {
       canvasSizeRef.current = { w: 0, h: 0 };
+      canvasRectRef.current = null;
       drawFrame(Math.round(frameObj.current.frame));
     };
     window.addEventListener('resize', onResize);
