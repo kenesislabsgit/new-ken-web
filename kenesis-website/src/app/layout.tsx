@@ -30,9 +30,29 @@ const neoWave = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Kenesis",
+  title: {
+    default: "Kenesis — On-Premise AI Video Analytics",
+    template: "%s | Kenesis",
+  },
   description:
-    "Kenesis Labs deploys on-premise AI video analytics for industrial facilities. PPE compliance, zone detection, real-time safety alerts: no cloud, no data leaving your network.",
+    "Kenesis deploys on-premise AI video analytics for industrial facilities. Real-time PPE compliance, zone detection, and safety alerts. No cloud. No data leaving your network.",
+  metadataBase: new URL("https://kenesis.ai"),
+  openGraph: {
+    type: "website",
+    url: "https://kenesis.ai",
+    siteName: "Kenesis",
+    title: "Kenesis — On-Premise AI Video Analytics",
+    description:
+      "Real-time AI safety monitoring for industrial facilities. PPE compliance, zone detection, hazard alerts. Fully on-premise, no cloud dependency.",
+    images: [{ url: "/kenesis-og.png", width: 1200, height: 630, alt: "Kenesis AI Video Analytics" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Kenesis — On-Premise AI Video Analytics",
+    description:
+      "Real-time AI safety monitoring for industrial facilities. PPE compliance, zone detection, hazard alerts. Fully on-premise, no cloud dependency.",
+    images: ["/kenesis-og.png"],
+  },
   icons: {
     icon: "/kenesis-icon.png",
     shortcut: "/kenesis-icon.png",
