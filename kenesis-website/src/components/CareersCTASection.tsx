@@ -73,7 +73,7 @@ export default function CareersCTASection() {
   return (
     <section ref={sectionRef} className="relative bg-[#0a0a0b] overflow-hidden" data-testid="careers-cta">
       {/* DitheredWaves background */}
-      <div className="absolute inset-0 z-0 opacity-[0.06] pointer-events-none">
+      <div className="absolute inset-0 z-0 opacity-[0.10] pointer-events-none">
         <DitheredWaves color="#f59e0b" cellSize={14} speed={0.6} layers={2} amplitude={25} frequency={0.01} charset=" .:-=+*#" enableMouse mouseRadius={250} className="h-full w-full" />
       </div>
 
@@ -82,7 +82,7 @@ export default function CareersCTASection() {
         <div ref={headingRef} className="mb-[32px] text-center max-w-full">
           <h2 className="font-display text-[clamp(28px,7vw,80px)] font-semibold leading-[1.05] tracking-[-0.03em]">
             {'Help us make factories safer.'.split(' ').map((word, i) => (
-              <span key={i} className="cta-word inline-block mr-[0.3em] text-white/90" style={{ opacity: 0 }}>
+              <span key={i} className="cta-word inline-block mr-[0.3em] text-white" style={{ opacity: 0 }}>
                 {word}
               </span>
             ))}

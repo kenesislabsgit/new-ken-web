@@ -26,7 +26,7 @@ export default function AboutPage() {
   return (
     <PageShell>
       {/* DitheredWaves - full page background */}
-      <div className="pointer-events-none fixed inset-0 z-0 opacity-[0.12]">
+      <div className="pointer-events-none fixed inset-0 z-0 opacity-[0.18]">
         <DitheredWaves
           color="#f59e0b"
           cellSize={16}
@@ -45,7 +45,7 @@ export default function AboutPage() {
       <section className="relative z-[2] mx-auto max-w-[1152px] px-4 sm:px-6 pb-4 md:px-12">
         <div>
           <BlurFade delay={0.1} duration={0.5} blur="6px" offset={12}>
-            <p className="font-mono-accent text-[14px] uppercase tracking-[0.14em] text-amber-400/50 mb-10">About</p>
+            <p className="font-mono-accent text-[14px] uppercase tracking-[0.14em] text-amber-400/60 mb-10">About</p>
           </BlurFade>
           <UnblurTextReveal
             as="h1"
@@ -115,7 +115,7 @@ export default function AboutPage() {
       </section>
 
       {/* Manifesto */}
-      <section className="relative z-[2] mx-auto max-w-[1152px] px-6 py-32 md:px-12 border-t border-white/[0.06]">
+      <section className="relative z-[2] mx-auto max-w-[1152px] px-6 py-32 md:px-12 border-t border-amber-400/[0.08]">
         <div className="max-w-3xl space-y-10">
           <BlurFade delay={0.1} duration={0.7} blur="8px" offset={12} inView inViewMargin="-60px">
             <p className="text-[clamp(18px,3vw,26px)] leading-[1.5] text-white font-display tracking-[-0.01em]">
@@ -156,21 +156,21 @@ export default function AboutPage() {
       </section>
 
       {/* â”€â”€ Numbers: full-bleed strip â”€â”€ */}
-      <section className="relative z-[2] border-y border-white/[0.06] py-16">
+      <section className="relative z-[2] border-y border-amber-400/[0.08] py-16">
         <div className="mx-auto max-w-[1280px] px-6 md:px-12 grid grid-cols-1 sm:grid-cols-3 gap-y-8 gap-x-4">
           <div className="text-center">
-            <p className="font-display text-[clamp(28px,5vw,40px)] font-semibold text-white/90 leading-none mb-2">
+            <p className="font-display text-[clamp(28px,5vw,40px)] font-semibold text-white leading-none mb-2">
               2025
             </p>
-            <p className="font-mono-accent text-[13px] uppercase tracking-[0.1em] text-white/25">Founded</p>
+            <p className="font-mono-accent text-[13px] uppercase tracking-[0.1em] text-white/40">Founded</p>
           </div>
           <div className="text-center">
-            <p className="font-display text-[clamp(28px,5vw,40px)] font-semibold text-white/90 leading-none mb-2">Chennai</p>
-            <p className="font-mono-accent text-[13px] uppercase tracking-[0.1em] text-white/25">Headquarters</p>
+            <p className="font-display text-[clamp(28px,5vw,40px)] font-semibold text-white leading-none mb-2">Chennai</p>
+            <p className="font-mono-accent text-[13px] uppercase tracking-[0.1em] text-white/40">Headquarters</p>
           </div>
           <div className="text-center">
-            <p className="font-display text-[clamp(28px,5vw,40px)] font-semibold text-white/90 leading-none mb-2">AI-First</p>
-            <p className="font-mono-accent text-[13px] uppercase tracking-[0.1em] text-white/25">Built from the ground up</p>
+            <p className="font-display text-[clamp(28px,5vw,40px)] font-semibold text-white leading-none mb-2">AI-First</p>
+            <p className="font-mono-accent text-[13px] uppercase tracking-[0.1em] text-white/40">Built from the ground up</p>
           </div>
         </div>
       </section>
@@ -184,7 +184,7 @@ export default function AboutPage() {
               as="h2"
               start="top 85%"
               duration={0.7}
-              className="font-display text-[clamp(24px,4vw,36px)] font-semibold tracking-[-0.02em] text-white/90 sticky top-32"
+              className="font-display text-[clamp(24px,4vw,36px)] font-semibold tracking-[-0.02em] text-white sticky top-32"
             >
               What we believe
             </TextReveal>
@@ -197,9 +197,9 @@ export default function AboutPage() {
               ['Compliance shouldn\'t be an afterthought.', 'DPDP Act, factory safety regulations, data sovereignty requirements: we\'re built for these from day one, not retrofitted.'],
             ].map(([title, desc], i) => (
               <ScrollReveal key={title} variant="fade-up" delay={i * 0.1} duration={0.6}>
-                <div className="border-l-2 border-white/[0.06] pl-6 hover:border-amber-400/30 transition-colors duration-300">
-                  <p className="text-[16px] text-white/80 mb-1 font-medium">{title}</p>
-                  <p className="text-[15px] text-white/35 leading-[1.6]">{desc}</p>
+                <div className="border-l-2 border-white/[0.08] pl-6 hover:border-amber-400/40 transition-colors duration-300">
+                  <p className="text-[16px] text-white/90 mb-1 font-medium">{title}</p>
+                  <p className="text-[15px] text-white/50 leading-[1.6]">{desc}</p>
                 </div>
               </ScrollReveal>
             ))}
@@ -208,14 +208,14 @@ export default function AboutPage() {
       </section>
 
       {/* â”€â”€ Timeline: minimal, dense â”€â”€ */}
-      <section className="relative z-[2] mx-auto max-w-[1152px] px-6 py-32 md:px-12 border-t border-white/[0.06]">
+      <section className="relative z-[2] mx-auto max-w-[1152px] px-6 py-32 md:px-12 border-t border-amber-400/[0.08]">
         <div className="flex items-start justify-between gap-8 mb-12">
           <TextReveal
             variant="word-slide"
             as="h2"
             start="top 85%"
             duration={0.7}
-            className="font-display text-[clamp(24px,4vw,36px)] font-semibold tracking-[-0.02em] text-white/90"
+            className="font-display text-[clamp(24px,4vw,36px)] font-semibold tracking-[-0.02em] text-white"
           >
             So far
           </TextReveal>
@@ -229,9 +229,9 @@ export default function AboutPage() {
             ['2026 Q2', 'Pilot deployments in progress'],
           ].map(([date, event], i) => (
             <ScrollReveal key={date} variant="fade-up" delay={i * 0.08} duration={0.5}>
-              <div className="flex items-baseline gap-4 sm:gap-8 py-4 border-b border-white/[0.04]">
-                <span className="font-mono-accent text-[13px] text-amber-400/40 w-[70px] sm:w-[80px] flex-shrink-0">{date}</span>
-                <span className="text-[16px] text-white/50">{event}</span>
+              <div className="flex items-baseline gap-4 sm:gap-8 py-4 border-b border-white/[0.06]">
+                <span className="font-mono-accent text-[13px] text-amber-400/60 w-[70px] sm:w-[80px] flex-shrink-0">{date}</span>
+                <span className="text-[16px] text-white/65">{event}</span>
               </div>
             </ScrollReveal>
           ))}
@@ -242,7 +242,7 @@ export default function AboutPage() {
       <TeamSection />
 
       {/* â”€â”€ Closing: image-masked statement â”€â”€ */}
-      <section className="relative z-[2] mx-auto max-w-[1152px] px-4 sm:px-6 py-16 md:py-32 md:px-12 border-t border-white/[0.06]">
+      <section className="relative z-[2] mx-auto max-w-[1152px] px-4 sm:px-6 py-16 md:py-32 md:px-12 border-t border-amber-400/[0.08]">
         <BlurFade delay={0} duration={0.7} blur="10px" offset={16} inView inViewMargin="-80px">
           <div className="space-y-4">
             <ImageMaskedText

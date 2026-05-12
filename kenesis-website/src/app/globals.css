@@ -1,4 +1,4 @@
-﻿@import "tailwindcss";
+@import "tailwindcss";
 @import "@heroui/styles";
 
 @font-face {
@@ -23,6 +23,8 @@
   --color-orange-600: #ea580c;
 
   --color-dark: #0a0a0b;
+  --color-dark-warm: #0d0c0a;
+  --color-dark-deep: #070708;
   --color-dark-light: #18181b;
   --color-cod-gray: #171717;
   --color-surface: #0a0a0b;
@@ -228,7 +230,7 @@ h1, h2, h3, h4, h5, h6 {
   animation-delay: var(--delay, 0s);
 }
 
-/* ── HeroUI theme overrides - amber/dark glassmorphism ── */
+/* -- HeroUI theme overrides - amber/dark glassmorphism -- */
 @layer components {
   /* Button: skeuomorphic amber primary */
   .button--primary {
@@ -405,7 +407,7 @@ h1, h2, h3, h4, h5, h6 {
 .scrollbar-hide::-webkit-scrollbar { display: none; }
 .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
 
-/* Feature card number hover — CSS-only, no JS event handlers needed */
+/* Feature card number hover � CSS-only, no JS event handlers needed */
 .feature-num {
   -webkit-text-stroke: 1px rgba(245,158,11,0.15);
   transition: -webkit-text-stroke 0.4s ease;
@@ -417,5 +419,41 @@ h1, h2, h3, h4, h5, h6 {
 @keyframes cursor-blink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
+}
+
+/* -- Noise grain overlay -----------------------------------------------------
+   Adds tactility to the flat-dark background without any image assets.
+   Uses a fixed SVG turbulence filter rendered at 200�200 and tiled.
+   z-index 9999 floats it above all content; pointer-events:none is critical. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 180px 180px;
+  opacity: 0.028;
+  mix-blend-mode: overlay;
+}
+
+/* -- Section amber glow backdrop ---------------------------------------------
+   Drop this class on a section wrapper to add a centered amber radial glow
+   at the top, creating a focal point without changing layout. */
+.section-amber-glow {
+  position: relative;
+}
+.section-amber-glow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse 80% 40% at 50% 0%, rgba(245,158,11,0.07) 0%, transparent 65%);
+  z-index: 0;
+}
+.section-amber-glow > * {
+  position: relative;
+  z-index: 1;
 }
 

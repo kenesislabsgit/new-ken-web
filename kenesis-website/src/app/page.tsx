@@ -81,12 +81,12 @@ export default function Home() {
         </ErrorBoundary>
 
         {/* -- Features / Capabilities -- */}
-        <section className="relative z-[2] py-[80px] sm:py-[120px] md:py-[160px] px-[16px] sm:px-[24px] md:px-[48px] border-t border-white/[0.04] bg-[#0a0a0b]">
+        <section className="section-amber-glow relative z-[2] py-[80px] sm:py-[120px] md:py-[160px] px-[16px] sm:px-[24px] md:px-[48px] border-t border-amber-400/[0.08]" style={{ background: '#0d0c0a' }}>
           <div className="mx-auto max-w-[1100px]">
             <BlurFade delay={0} duration={0.5} blur="6px" offset={10} inView inViewMargin="-80px">
-              <p className="font-mono-accent text-[11px] uppercase tracking-[0.2em] text-amber-400/40 mb-[12px]">Capabilities</p>
+              <p className="font-mono-accent text-[11px] uppercase tracking-[0.2em] text-amber-400/60 mb-[12px]">Capabilities</p>
             </BlurFade>
-            <TextReveal variant="word-slide" as="h2" start="top 85%" duration={0.8} stagger={0.06} className="font-display text-[clamp(24px,5vw,56px)] font-semibold tracking-[-0.035em] text-white/95 mb-[32px] sm:mb-[48px] md:mb-[64px]">
+            <TextReveal variant="word-slide" as="h2" start="top 85%" duration={0.8} stagger={0.06} className="font-display text-[clamp(24px,5vw,56px)] font-semibold tracking-[-0.035em] text-white mb-[32px] sm:mb-[48px] md:mb-[64px]">
               Core capabilities
             </TextReveal>
 
@@ -148,7 +148,7 @@ export default function Home() {
                       </div>
 
                       <h3 className="font-display text-[18px] sm:text-[22px] font-semibold text-white/90 mb-[12px] sm:mb-[16px] group-hover:text-white transition-colors tracking-[-0.02em]">{f.title}</h3>
-                      <p className="text-[15px] sm:text-[16px] leading-[1.7] text-white/40 group-hover:text-white/55 transition-colors duration-400">{f.desc}</p>
+                      <p className="text-[15px] sm:text-[16px] leading-[1.7] text-white/55 group-hover:text-white/70 transition-colors duration-400">{f.desc}</p>
                     </div>
                   </BorderGlow>
                 </ScrollReveal>

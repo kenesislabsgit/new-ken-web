@@ -20,14 +20,14 @@ export default function PlatformPage() {
   return (
     <PageShell>
       {/* DitheredWaves background */}
-      <div className="pointer-events-none fixed inset-0 z-0 opacity-[0.12]">
+      <div className="pointer-events-none fixed inset-0 z-0 opacity-[0.18]">
         <DitheredWaves color="#f59e0b" cellSize={16} speed={1.2} layers={2} amplitude={35} frequency={0.012} charset=" .:=+#" enableMouse={true} mouseRadius={250} className="h-full w-full" />
       </div>
 
       {/* Hero */}
       <section className="relative z-[1] mx-auto max-w-[1152px] px-4 sm:px-6 pb-8 sm:pb-12 md:px-12">
         <BlurFade delay={0.1} duration={0.5} blur="6px" offset={12}>
-          <p className="font-mono-accent text-[14px] uppercase tracking-[0.14em] text-amber-400/50 mb-6 md:mb-10">Platform</p>
+          <p className="font-mono-accent text-[14px] uppercase tracking-[0.14em] text-amber-400/60 mb-6 md:mb-10">Platform</p>
         </BlurFade>
         <BlurFade delay={0.25} duration={0.8} blur="10px" offset={20}>
           <h1 className="font-display text-[clamp(32px,7.5vw,64px)] font-semibold leading-[0.95] tracking-[-0.03em] text-white mb-6">
@@ -35,7 +35,7 @@ export default function PlatformPage() {
           </h1>
         </BlurFade>
         <BlurFade delay={0.55} duration={0.6} blur="6px" offset={10}>
-          <p className="max-w-xl text-[16px] leading-[1.7] text-white/40 mb-10">
+          <p className="max-w-xl text-[16px] leading-[1.7] text-white/60 mb-10">
             On-premise AI that{' '}
             <TypewriterText
               texts={['detects PPE violations', 'monitors restricted zones', 'verifies SOPs in real-time', 'reasons about what it sees']}
@@ -63,8 +63,8 @@ export default function PlatformPage() {
       <section className="relative z-[1] mx-auto max-w-[1152px] px-4 sm:px-6 py-16 md:py-32 md:px-12">
         <AsciiDivider className="mb-12" accent="&#9656;" />
         <BlurFade delay={0} duration={0.5} blur="6px" offset={10} inView inViewMargin="-80px">
-          <h2 className="font-display text-[clamp(24px,4vw,36px)] font-semibold tracking-[-0.035em] text-white/95 mb-3">From camera feed to safety alert</h2>
-          <p className="text-[15px] sm:text-[16px] text-white/40 mb-10 max-w-2xl">A streamlined pipeline with no cloud intermediaries. Camera feeds enter, contextual safety alerts emerge, all processed locally.</p>
+          <h2 className="font-display text-[clamp(24px,4vw,36px)] font-semibold tracking-[-0.035em] text-white mb-3">From camera feed to safety alert</h2>
+          <p className="text-[15px] sm:text-[16px] text-white/55 mb-10 max-w-2xl">A streamlined pipeline with no cloud intermediaries. Camera feeds enter, contextual safety alerts emerge, all processed locally.</p>
         </BlurFade>
 
         {/* Pipeline - premium stepped flow */}
@@ -100,9 +100,9 @@ export default function PlatformPage() {
                     <div className="absolute top-6 left-[calc(50%+24px)] w-[calc(100%-48px)] h-[1px]" style={{ background: node.accent ? 'linear-gradient(90deg, rgba(245,158,11,0.2), rgba(245,158,11,0.1))' : 'rgba(255,255,255,0.06)' }} />
                   )}
                   {/* Content */}
-                  <p className={`font-display text-[17px] font-semibold mb-1 tracking-[-0.02em] ${node.accent ? 'text-white/95' : 'text-white/60'}`}>{node.label}</p>
-                  <p className="font-mono-accent text-[10px] uppercase tracking-[0.14em] text-amber-400/40 mb-3">{node.sub}</p>
-                  <p className="text-[13px] leading-[1.5] text-white/30">{node.desc}</p>
+                  <p className={`font-display text-[17px] font-semibold mb-1 tracking-[-0.02em] ${node.accent ? 'text-white' : 'text-white/70'}`}>{node.label}</p>
+                  <p className="font-mono-accent text-[10px] uppercase tracking-[0.14em] text-amber-400/50 mb-3">{node.sub}</p>
+                  <p className="text-[13px] leading-[1.5] text-white/45">{node.desc}</p>
                 </div>
               </ScrollReveal>
             ))}
@@ -140,9 +140,9 @@ export default function PlatformPage() {
                   </div>
                   {/* Right: content */}
                   <div className="pt-1">
-                    <p className={`font-display text-[16px] font-semibold tracking-[-0.02em] ${node.accent ? 'text-white/95' : 'text-white/60'}`}>{node.label}</p>
-                    <p className="font-mono-accent text-[10px] uppercase tracking-[0.14em] text-amber-400/40 mb-1">{node.sub}</p>
-                    <p className="text-[14px] leading-[1.55] text-white/35">{node.desc}</p>
+                    <p className={`font-display text-[16px] font-semibold tracking-[-0.02em] ${node.accent ? 'text-white' : 'text-white/70'}`}>{node.label}</p>
+                    <p className="font-mono-accent text-[10px] uppercase tracking-[0.14em] text-amber-400/50 mb-1">{node.sub}</p>
+                    <p className="text-[14px] leading-[1.55] text-white/50">{node.desc}</p>
                   </div>
                 </div>
               </ScrollReveal>
@@ -152,13 +152,13 @@ export default function PlatformPage() {
       </section>
 
       {/* Built for the factory floor */}
-      <section className="relative z-[2] py-[80px] sm:py-[120px] md:py-[160px] px-[16px] sm:px-[24px] md:px-[48px] bg-[#0a0a0b]">
+      <section className="section-amber-glow relative z-[2] py-[80px] sm:py-[120px] md:py-[160px] px-[16px] sm:px-[24px] md:px-[48px] border-t border-amber-400/[0.08]" style={{ background: '#0d0c0a' }}>
         <div className="mx-auto max-w-[1100px]">
           <BlurFade delay={0} duration={0.6} blur="8px" offset={14} inView inViewMargin="-80px">
-            <h2 className="font-display text-[clamp(32px,5vw,56px)] font-semibold tracking-[-0.035em] text-white/95 mb-6">
+            <h2 className="font-display text-[clamp(32px,5vw,56px)] font-semibold tracking-[-0.035em] text-white mb-6">
               Built for the factory floor
             </h2>
-            <p className="text-[15px] sm:text-[16px] text-white/35 mb-12 sm:mb-16 max-w-xl">
+            <p className="text-[15px] sm:text-[16px] text-white/55 mb-12 sm:mb-16 max-w-xl">
               Designed around the realities of modern manufacturing: unreliable internet, strict data laws, and zero tolerance for downtime.
             </p>
           </BlurFade>
@@ -222,7 +222,7 @@ export default function PlatformPage() {
                     </div>
 
                     <p className="font-display text-[17px] font-semibold text-white/90 mb-2 tracking-[-0.02em] group-hover:text-white transition-colors">{item.title}</p>
-                    <p className="text-[14px] leading-[1.6] text-white/35 group-hover:text-white/50 transition-colors">{item.desc}</p>
+                    <p className="text-[14px] leading-[1.6] text-white/55 group-hover:text-white/70 transition-colors">{item.desc}</p>
                   </div>
                 </BorderGlow>
               </ScrollReveal>
@@ -242,9 +242,9 @@ export default function PlatformPage() {
       />
 
       {/* CTA */}
-      <section className="relative z-[1] mx-auto max-w-[1152px] px-4 sm:px-6 py-16 md:py-24 md:px-12 border-t border-white/[0.06]">
+      <section className="relative z-[1] mx-auto max-w-[1152px] px-4 sm:px-6 py-16 md:py-24 md:px-12 border-t border-amber-400/[0.08]">
         <BlurFade delay={0} duration={0.6} blur="8px" offset={14} inView inViewMargin="-80px">
-          <p className="font-display text-[clamp(24px,4vw,36px)] font-semibold tracking-[-0.02em] text-white/90 mb-6">
+          <p className="font-display text-[clamp(24px,4vw,36px)] font-semibold tracking-[-0.02em] text-white mb-6">
             See it in action on your factory floor.
           </p>
           <WalkthroughCTABottom />

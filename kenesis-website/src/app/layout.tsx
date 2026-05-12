@@ -30,7 +30,7 @@ const neoWave = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Kenesis Labs – On-Premise AI Video Analytics for Industrial Safety",
+  title: "Kenesis",
   description:
     "Kenesis Labs deploys on-premise AI video analytics for industrial facilities. PPE compliance, zone detection, real-time safety alerts: no cloud, no data leaving your network.",
   icons: {

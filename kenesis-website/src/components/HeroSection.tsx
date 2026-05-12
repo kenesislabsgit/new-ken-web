@@ -81,9 +81,10 @@ export default function HeroSection() {
         >
           <source src="/videos/hero-bg.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-black/55 md:bg-black/50" />
-        <div className="absolute inset-x-0 bottom-0 h-[40%] bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/70 to-transparent" />
-        <div className="absolute inset-0 bg-amber-900/10 mix-blend-overlay" />
+        {/* Overlay stack: darkening → bottom fade → warm amber tint */}
+        <div className="absolute inset-0 bg-black/45 md:bg-black/38" />
+        <div className="absolute inset-x-0 bottom-0 h-[50%] bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/60 to-transparent" />
+        <div className="absolute inset-0 bg-amber-900/[0.18] mix-blend-overlay" />
       </div>
 
       {/* Intro screen */}
@@ -107,13 +108,13 @@ export default function HeroSection() {
             <span className="block" style={{ animation: 'hero-fade-up 0.7s cubic-bezier(0.22,1,0.36,1) 0s both' }}>
               Your cameras see everything.
             </span>
-            <span className="block text-white/60" style={{ animation: 'hero-fade-up 0.7s cubic-bezier(0.22,1,0.36,1) 0.12s both' }}>
+            <span className="block text-white/70" style={{ animation: 'hero-fade-up 0.7s cubic-bezier(0.22,1,0.36,1) 0.12s both' }}>
               Now they <em>understand</em> it.
             </span>
           </h1>
 
           <p
-            className="text-[14px] leading-[1.7] text-white/55 font-normal max-w-[340px] mb-7"
+            className="text-[14px] leading-[1.7] text-white/65 font-normal max-w-[340px] mb-7"
             style={{ animation: 'hero-fade-up 0.7s cubic-bezier(0.22,1,0.36,1) 0.25s both' }}
           >
             Kenesis turns your CCTV into a real-time safety system - PPE violations,
@@ -150,7 +151,7 @@ export default function HeroSection() {
             <span className="block" style={{ animation: 'hero-fade-up 0.7s cubic-bezier(0.22,1,0.36,1) 0s both' }}>
               Your cameras see everything.
             </span>
-            <span className="block text-white/60" style={{ animation: 'hero-fade-up 0.7s cubic-bezier(0.22,1,0.36,1) 0.12s both' }}>
+            <span className="block text-white/70" style={{ animation: 'hero-fade-up 0.7s cubic-bezier(0.22,1,0.36,1) 0.12s both' }}>
               Now they <em>understand</em> it.
             </span>
           </h1>
@@ -159,7 +160,7 @@ export default function HeroSection() {
         {/* Subtext + CTA — bottom center (desktop) */}
         <div className="hidden md:flex absolute bottom-14 left-0 right-0 flex-col items-center text-center px-8">
           <p
-            className="max-w-[min(520px,80vw)] text-[15px] md:text-[17px] leading-[1.7] text-white/45 font-normal"
+            className="max-w-[min(520px,80vw)] text-[15px] md:text-[17px] leading-[1.7] text-white/60 font-normal"
             style={{ animation: 'hero-fade-up 0.7s cubic-bezier(0.22,1,0.36,1) 0.3s both' }}
           >
             Kenesis turns your CCTV into a real-time safety system - PPE violations,
