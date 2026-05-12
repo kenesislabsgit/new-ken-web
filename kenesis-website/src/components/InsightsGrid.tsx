@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useEffect, useRef } from 'react';
 import { Chip } from '@heroui/react';
@@ -22,7 +22,7 @@ interface ArticleCard {
 
 const articles: ArticleCard[] = [
   {
-    title: 'Kenesis Labs launches on-premise AI platform for Indian manufacturing safety',
+    title: 'Kenesis Labs launches on-premise AI platform for industrial safety',
     date: 'January 15, 2026',
     tags: ['Company news'],
   },
@@ -32,7 +32,7 @@ const articles: ArticleCard[] = [
     tags: ['Technology'],
   },
   {
-    title: 'Why cloud-based CCTV analytics fail Indian factories — and what works instead',
+    title: 'Why cloud-based CCTV analytics fail industrial facilities, and what works instead',
     date: 'November 20, 2025',
     tags: ['Industry', 'Technology'],
   },
@@ -47,7 +47,7 @@ const articles: ArticleCard[] = [
     tags: ['Technology', 'Benchmark'],
   },
   {
-    title: 'Data sovereignty in Indian manufacturing: Why on-premise AI matters',
+    title: 'Data sovereignty in manufacturing: Why on-premise AI matters',
     date: 'August 18, 2025',
     tags: ['Industry'],
   },
@@ -87,7 +87,7 @@ export default function InsightsGrid() {
   }, []);
 
   return (
-    <section className="relative bg-[#0a0a0b] py-32 overflow-hidden">
+    <section className="relative bg-[#0a0a0b] py-16 md:py-32 overflow-hidden">
       <div className="absolute inset-0 z-0 opacity-25">
         <SpectraNoise
           hueShift={-30}
@@ -105,8 +105,8 @@ export default function InsightsGrid() {
         />
       </div>
 
-      <div className="relative z-[1] mx-auto max-w-[1920px] px-6 md:px-12 lg:px-[343px]">
-        <AsciiDivider className="mb-8" accent="◆" />
+      <div className="relative z-[1] mx-auto max-w-[1920px] px-4 sm:px-6 md:px-12 lg:px-24">
+        <AsciiDivider className="mb-8" accent="�-�" />
         {/* Header */}
         <div className="mb-12 flex items-baseline justify-between gap-4">
           <TextReveal

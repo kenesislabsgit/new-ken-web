@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
@@ -6,9 +6,9 @@ import { prefersReducedMotion } from "@/lib/animations";
 
 interface ShaderLinesProps {
   className?: string;
-  /** Line color — hex */
+  /** Line color - hex */
   color?: string;
-  /** Background color — hex */
+  /** Background color - hex */
   bgColor?: string;
   /** Animation speed multiplier */
   speed?: number;

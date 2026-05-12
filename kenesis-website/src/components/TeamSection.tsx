@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
@@ -19,7 +19,7 @@ const TEAM: TeamMember[] = [
   { name: 'Amrish Poornachandran', role: 'CEO', bio: 'The pitch, the vision, the deal. Drives business strategy and investor relations.', image: '/team/amr.webp' },
   { name: 'Daniel Das', role: 'CTO', bio: 'AI and backend architecture. Builds the inference pipelines that run on-premise.', image: '/team/dan.webp' },
   { name: 'Dheekshith', role: 'COO', bio: 'Operations, AI, and backend. Keeps the machine running and the models shipping.', image: '/team/dheek.webp' },
-  { name: 'Aswin JD', role: 'CAIO', bio: 'Chief AI Officer. The core AI brain — model training, optimization, and research.', image: '/team/aswin.webp' },
+  { name: 'Aswin JD', role: 'CAIO', bio: 'Chief AI Officer. The core AI brain: model training, optimization, and research.', image: '/team/aswin.webp' },
   { name: 'Dinesh Kumar', role: 'CPO', bio: 'Visual creativity and marketing. Shapes how Kenesis looks, feels, and speaks.', image: '/team/dk.webp' },
   { name: 'Rakesh', role: 'Operations', bio: 'Factory deployments across Tamil Nadu. Every server ships and runs.', image: '/team/rakesh.webp' },
 ];
@@ -97,13 +97,13 @@ export default function TeamSection() {
   }, []);
 
   return (
-    <section className="relative z-[2] py-[120px] px-[24px] md:px-[48px]">
+    <section className="relative z-[2] py-[64px] md:py-[120px] px-4 sm:px-6 md:px-[48px]">
       <div className="mx-auto max-w-[1100px]">
         <BlurFade delay={0} duration={0.5} blur="6px" offset={10} inView inViewMargin="-80px">
           <p className="font-mono-accent text-[11px] uppercase tracking-[0.2em] text-amber-400/40 mb-[12px]">The team</p>
         </BlurFade>
         <BlurFade delay={0.1} duration={0.6} blur="8px" offset={14} inView inViewMargin="-80px">
-          <h2 className="font-display text-[clamp(28px,4vw,48px)] font-semibold tracking-[-0.025em] text-white/90 mb-[64px]">
+          <h2 className="font-display text-[clamp(28px,4vw,48px)] font-semibold tracking-[-0.025em] text-white/90 mb-[32px] md:mb-[64px]">
             Six people. One obsession.
           </h2>
         </BlurFade>

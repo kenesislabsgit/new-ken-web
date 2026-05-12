@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+﻿import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import * as fc from 'fast-check';
 import gsap from 'gsap';
 import { fadeUp, clipReveal, bindParallax, staggerChildren, cleanupTween, cleanupScrollTrigger, _resetReducedMotionCache } from '../animations';
@@ -143,9 +143,9 @@ describe('Property 3: bindParallax scroll-driven translateY', () => {
    *
    * For any DOM element and parallax factor f, calling bindParallax(el, { factor: f })
    * SHALL create a ScrollTrigger where at any scroll progress p in [0, 1],
-   * the element's translateY equals p × parentHeight × f.
+   * the element's translateY equals p �- parentHeight �- f.
    */
-  it('should set translateY to progress × parentHeight × factor on scroll update', () => {
+  it('should set translateY to progress �- parentHeight �- factor on scroll update', () => {
     const PARENT_HEIGHT = 800;
 
     fc.assert(
@@ -205,10 +205,10 @@ describe('Property 4: staggerChildren delay sequence', () => {
    * **Validates: Requirements 3.4**
    *
    * For any container element with N children, calling staggerChildren(container, { staggerMs })
-   * SHALL apply fadeUp to each child i with delay i × staggerMs milliseconds
-   * (converted to seconds as i × staggerMs / 1000 for GSAP).
+   * SHALL apply fadeUp to each child i with delay i �- staggerMs milliseconds
+   * (converted to seconds as i �- staggerMs / 1000 for GSAP).
    */
-  it('should apply fadeUp to each child with delay i × staggerMs / 1000', () => {
+  it('should apply fadeUp to each child with delay i �- staggerMs / 1000', () => {
     fc.assert(
       fc.property(
         fc.record({
@@ -244,7 +244,7 @@ describe('Property 4: staggerChildren delay sequence', () => {
             // From values match fadeUp defaults
             expect(fromVars).toEqual({ opacity: 0, y: 30 });
 
-            // Delay should be i × staggerMs / 1000 (ms converted to seconds)
+            // Delay should be i �- staggerMs / 1000 (ms converted to seconds)
             const expectedDelay = (i * staggerMs) / 1000;
             expect(toVars.delay).toBeCloseTo(expectedDelay, 10);
 

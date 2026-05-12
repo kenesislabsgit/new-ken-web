@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useEffect, useRef, useState, useCallback } from 'react';
 import gsap from 'gsap';
@@ -21,21 +21,21 @@ const TABS: FeatureTab[] = [
     label: 'Detect',
     title: 'Real-time safety detection',
     description:
-      'Identify PPE violations, unauthorized zone entries, and safety hazards across all camera feeds simultaneously — with sub-second response times.',
+      'Identify PPE violations, unauthorized zone entries, and safety hazards across all camera feeds simultaneously, with sub-second response times.',
   },
   {
     id: 'reason',
     label: 'Reason',
     title: 'Contextual AI reasoning',
     description:
-      'Go beyond simple object detection. Our AI understands context — who is where, what they\'re doing, and whether it violates your safety protocols.',
+      'Go beyond simple object detection. Our AI understands context: who is where, what they\'re doing, and whether it violates your safety protocols.',
   },
   {
     id: 'control',
     label: 'Control',
     title: 'Your data, your premises',
     description:
-      'Your footage stays on your hardware. No cloud uploads, no third-party access, no internet required. Fully compliant with DPDP Act and Indian data sovereignty requirements.',
+      'Your footage stays on your hardware. No cloud uploads, no third-party access, no internet required. Fully compliant with local data sovereignty requirements.',
   },
 ];
 
@@ -216,11 +216,11 @@ export default function PinnedFeatureTabs() {
       />
 
       <div className="relative z-[1] h-full grid grid-rows-[auto_1fr] md:grid-rows-none md:grid-cols-2 gap-0 md:gap-8 px-5 sm:px-6 md:px-12 lg:px-16 xl:px-24">
-          {/* Left column — heading + description */}
+          {/* Left column - heading + description */}
           <div ref={leftColRef} className="flex flex-col justify-end md:justify-center pt-20 md:pt-0 pb-4 md:pb-0">
             <h2
               ref={headingRef}
-              className="mb-3 sm:mb-6 font-display text-[clamp(18px,4vw,40px)] font-semibold leading-[1.05] tracking-[-0.035em] text-white/95"
+              className="mb-3 sm:mb-6 font-display text-[clamp(22px,4vw,40px)] font-semibold leading-[1.05] tracking-[-0.035em] text-white/95"
             >
             {headingLine1.split(' ').map((word, i) => (
               <span key={i} className="word-reveal inline-block mr-[0.3em]">
@@ -242,8 +242,8 @@ export default function PinnedFeatureTabs() {
           </p>
         </div>
 
-        {/* Right column — tabs + video card */}
-        <div className="flex flex-col justify-start md:justify-center overflow-hidden pb-6 md:pb-0">
+        {/* Right column - tabs + video card */}
+          <div className="flex flex-col justify-start md:justify-center overflow-hidden pb-4 md:pb-0">
           {/* Tab bar with progress indicator */}
           <div ref={tabBarRef} className="relative mb-4 sm:mb-6 md:mb-8">
             <div className="flex gap-4 sm:gap-8 border-b border-white/10 overflow-x-auto scrollbar-hide">
@@ -280,8 +280,8 @@ export default function PinnedFeatureTabs() {
             </div>
           </div>
 
-          {/* Tab content — fixed height so image + text always visible */}
-          <div className="relative" style={{ height: 'clamp(280px, 55vh, 520px)' }}>
+          {/* Tab content - fixed height so image + text always visible */}
+            <div className="relative" style={{ height: 'clamp(240px, 50vh, 520px)' }}>
             {TABS.map((tab, i) => (
               <div
                 key={tab.id}
@@ -295,8 +295,8 @@ export default function PinnedFeatureTabs() {
               >
                 <div
                   ref={el => { videoCardRefs.current[i] = el; }}
-                  className="mb-3 sm:mb-4 w-full overflow-hidden rounded-xl sm:rounded-2xl bg-white/5 border border-white/[0.06] flex-shrink-0"
-                  style={{ clipPath: i === 0 ? 'inset(0 0% 0 0)' : 'inset(0 100% 0 0)', height: 'clamp(150px, 32vh, 360px)' }}
+                    className="mb-3 sm:mb-4 w-full overflow-hidden rounded-xl sm:rounded-2xl bg-white/5 border border-white/[0.06] flex-shrink-0"
+                    style={{ clipPath: i === 0 ? 'inset(0 0% 0 0)' : 'inset(0 100% 0 0)', height: 'clamp(120px, 28vh, 360px)' }}
                 >
                   <img
                     src={`/images/features/${i + 1}.webp`}

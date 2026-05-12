@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useEffect, useRef } from 'react';
 import { ScrollReveal } from '@/components/magicui/scroll-reveal';
@@ -51,10 +51,10 @@ export default function FooterCTASection() {
 
       {/* Content */}
       <div className="relative z-10">
-        {/* Top section — heading + nav + socials */}
+        {/* Top section - heading + nav + socials */}
         <div className="mx-auto max-w-[1152px] px-4 sm:px-6 pt-[60px] sm:pt-[80px] pb-[60px] sm:pb-[100px] md:px-12">
           <div className="grid grid-cols-1 gap-8 sm:gap-10 md:grid-cols-[1fr_auto_auto]">
-            {/* Left — heading + contact */}
+            {/* Left - heading + contact */}
             <div>
               <TextReveal
                 variant="word-slide"
@@ -73,7 +73,7 @@ export default function FooterCTASection() {
               </ScrollReveal>
             </div>
 
-            {/* Center — nav links */}
+            {/* Center - nav links */}
             <div>
               <p className="mb-4 font-mono-accent text-[12px] font-bold uppercase tracking-[0.14em] text-white/25">
                 About us
@@ -92,7 +92,7 @@ export default function FooterCTASection() {
               </nav>
             </div>
 
-            {/* Right — social icons */}
+            {/* Right - social icons */}
             <ScrollReveal variant="scale-up" delay={0.4}>
               <div className="flex gap-[1.2rem] md:self-start">
                 {socialLinks.map(link => (
@@ -144,7 +144,7 @@ export default function FooterCTASection() {
         {/* Bottom bar */}
         <div className="border-t border-white/10 px-6 py-5 md:px-12">
           <div className="mx-auto max-w-[1152px] mb-2">
-            <AsciiDivider accent="◈" className="text-white/[0.04]" />
+            <AsciiDivider accent="�-�" className="text-white/[0.04]" />
           </div>
           <div className="mx-auto flex max-w-[1152px] flex-col items-center justify-between gap-3 md:flex-row">
             <p className="font-mono-accent text-[12px] text-white/25 tracking-[0.04em]">

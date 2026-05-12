@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
@@ -20,7 +20,7 @@ interface AsciiRendererProps {
   fontSize?: number;
   /** Line height multiplier */
   lineHeight?: number;
-  /** Animate — slowly reveal the ASCII art */
+  /** Animate - slowly reveal the ASCII art */
   animate?: boolean;
   /** Background color */
   bgColor?: string;
@@ -28,7 +28,7 @@ interface AsciiRendererProps {
 
 /**
  * Renders an image as ASCII art using canvas pixel sampling.
- * Inspired by video2ascii — maps pixel brightness to characters.
+ * Inspired by video2ascii - maps pixel brightness to characters.
  */
 export function AsciiRenderer({
   src,

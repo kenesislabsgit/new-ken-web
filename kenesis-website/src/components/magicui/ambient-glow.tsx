@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
@@ -38,7 +38,7 @@ export function AmbientGlow({
     const ctx = canvas.getContext("2d", { willReadFrequently: false });
     if (!ctx) return;
 
-    // Use a very small canvas — we're blurring it anyway
+    // Use a very small canvas - we're blurring it anyway
     canvas.width = 32;
     canvas.height = 18;
 

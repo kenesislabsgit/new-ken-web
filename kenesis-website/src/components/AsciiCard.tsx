@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+﻿import { useEffect, useRef } from 'react';
 import './AsciiCard.css';
 
 // ASCII chars from dense → sparse (replaces pixel squares)

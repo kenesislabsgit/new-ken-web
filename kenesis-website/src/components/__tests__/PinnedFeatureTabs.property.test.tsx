@@ -1,4 +1,4 @@
-// Feature: scroll-animation-system, Property 8: PinnedFeatureTabs scroll-to-tab mapping
+﻿// Feature: scroll-animation-system, Property 8: PinnedFeatureTabs scroll-to-tab mapping
 
 import { describe, it, expect } from 'vitest';
 import * as fc from 'fast-check';
@@ -24,7 +24,7 @@ describe('Property 8: PinnedFeatureTabs scroll-to-tab mapping', () => {
    * **Validates: Requirements 9.2, 9.3, 9.6**
    *
    * For any scroll progress value p in [0, 1] within the PinnedFeatureTabs pinned region,
-   * the active tab index SHALL be min(floor(p × 3), 2), and only that tab's underline
+   * the active tab index SHALL be min(floor(p �- 3), 2), and only that tab's underline
    * SHALL have scaleX(1) (all others scaleX(0)), and only that tab's background video
    * SHALL have opacity: 1 (all others opacity: 0).
    */

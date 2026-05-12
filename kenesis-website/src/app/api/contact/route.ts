@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server';
+﻿import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 
 function escHtml(s: string): string {
@@ -28,7 +28,7 @@ export async function POST(req: NextRequest) {
       from: `"Kenesis Website" <${process.env.ZOHO_EMAIL}>`,
       to: process.env.ZOHO_EMAIL,
       replyTo: email,
-      subject: `New inquiry from ${escHtml(name)}${company ? ` — ${escHtml(company)}` : ''}`,
+      subject: `New inquiry from ${escHtml(name)}${company ? `: ${escHtml(company)}` : ''}`,
       html: `
         <div style="font-family: sans-serif; max-width: 600px;">
           <h2 style="color: #f59e0b;">New Contact Form Submission</h2>
@@ -50,14 +50,14 @@ export async function POST(req: NextRequest) {
     await transporter.sendMail({
       from: `"Kenesis Labs" <${process.env.ZOHO_EMAIL}>`,
       to: email,
-      subject: 'We received your inquiry — Kenesis Labs',
+      subject: 'We received your inquiry, Kenesis Labs',
       html: `
         <div style="font-family: sans-serif; max-width: 600px;">
           <h2>Thank you, ${escHtml(name)}.</h2>
           <p>We've received your inquiry and will get back to you within 24 hours.</p>
           <p style="color: #666;">If you need immediate assistance, reply to this email or call us at +91 93422 81662.</p>
           <br/>
-          <p>— The Kenesis Labs Team</p>
+          <p>The Kenesis Labs Team</p>
           <p style="color: #999; font-size: 12px;">Kenesis Labs Pvt. Ltd. · Chennai, India</p>
         </div>
       `,

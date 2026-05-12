@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useRef, useEffect, useState } from 'react';
 
@@ -73,7 +73,7 @@ export function GlitchBackground({
       if (!parent) return;
       const w = parent.offsetWidth;
       const h = parent.offsetHeight;
-      // Use DPR of 1 for performance — this is a subtle background effect at low opacity
+      // Use DPR of 1 for performance - this is a subtle background effect at low opacity
       canvas.width = w;
       canvas.height = h;
       canvas.style.width = `${w}px`;
@@ -148,7 +148,7 @@ export function GlitchBackground({
     };
 
     let lastAnimTime = 0;
-    const ANIM_INTERVAL = 1000 / 24; // Cap at 24fps — subtle background effect
+    const ANIM_INTERVAL = 1000 / 24; // Cap at 24fps - subtle background effect
 
     const animate = (now: number) => {
       if (!visibleRef.current) {

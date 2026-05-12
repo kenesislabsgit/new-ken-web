@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
@@ -46,7 +46,7 @@ export function LiquidMetalLogo({
 
   useEffect(() => {
     if (reduced) return;
-    // Timeout fallback — show container even if shader fails
+    // Timeout fallback - show container even if shader fails
     const timeout = setTimeout(() => setShaderRendered(true), 3000);
     import("@paper-design/shaders-react").then((mod) => {
       if (mod.LiquidMetal) {
@@ -74,7 +74,7 @@ export function LiquidMetalLogo({
       className={cn("relative overflow-hidden transition-opacity duration-500", className)}
       style={{ width, height, opacity: shaderRendered ? 1 : 0 }}
     >
-      {/* Only render when shader is ready — static fallback if shader fails */}
+      {/* Only render when shader is ready - static fallback if shader fails */}
       {!LiquidMetal && shaderRendered && (
         <img src={src} alt="" className="w-full h-full object-contain opacity-30" />
       )}

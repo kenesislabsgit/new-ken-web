@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { ScrollReveal } from '@/components/magicui/scroll-reveal';
 import { TextReveal } from '@/components/magicui/text-reveal';

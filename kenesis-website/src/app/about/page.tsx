@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import PageShell from '@/components/PageShell';
 import { BlurFade } from '@/components/magicui/blur-fade';
@@ -9,14 +9,13 @@ import { TextReveal } from '@/components/magicui/text-reveal';
 import { UnblurTextReveal } from '@/components/magicui/unblur-text-reveal';
 import TeamSection from '@/components/TeamSection';
 import { ImageMaskedText } from '@/components/magicui/image-masked-text';
-import { AsciiTextDisplay } from '@/components/magicui/ascii-text-display';
 import { DitheredWaves } from '@/components/magicui/dithered-waves';
 import { LiquidMetalLogo } from '@/components/magicui/liquid-metal-logo';
 
 export default function AboutPage() {
   return (
     <PageShell>
-      {/* DitheredWaves — full page background */}
+      {/* DitheredWaves - full page background */}
       <div className="pointer-events-none fixed inset-0 z-0 opacity-[0.12]">
         <DitheredWaves
           color="#f59e0b"
@@ -33,7 +32,7 @@ export default function AboutPage() {
       </div>
 
       {/* â”€â”€ Hero: heading â”€â”€ */}
-      <section className="relative z-[2] mx-auto max-w-[1152px] px-6 pb-16 md:px-12">
+      <section className="relative z-[2] mx-auto max-w-[1152px] px-4 sm:px-6 pb-4 md:px-12">
         <div>
           <BlurFade delay={0.1} duration={0.5} blur="6px" offset={12}>
             <p className="font-mono-accent text-[14px] uppercase tracking-[0.14em] text-amber-400/50 mb-10">About</p>
@@ -49,18 +48,18 @@ export default function AboutPage() {
             stagger={0.06}
             className="font-display text-[clamp(32px,7.5vw,64px)] font-semibold leading-[0.95] tracking-[-0.03em] text-white mb-8"
           >
-            Visual intelligence for Indian factories.
+            Visual intelligence for every factory.
           </UnblurTextReveal>
           <BlurFade delay={0.6} duration={0.5} blur="6px" offset={8}>
-            <p className="max-w-lg text-[16px] leading-[1.7] text-white/35">
-              Founded in Chennai. We build AI software that turns existing CCTV cameras into intelligent safety systems — no cloud, no new hardware.
+            <p className="text-[18px] sm:text-[20px] leading-[1.6] text-white/70 font-normal tracking-[-0.01em]">
+              Founded in Chennai. We build AI software that turns existing CCTV cameras into intelligent safety systems, no cloud, no new hardware.
             </p>
           </BlurFade>
         </div>
       </section>
 
       {/* LiquidMetal logo */}
-      <section className="relative z-[2] flex items-center justify-center py-8 overflow-hidden">
+      <section className="relative z-[2] flex items-center justify-center overflow-hidden">
           {/* Mobile */}
           <div className="sm:hidden w-[300px] h-[300px]"
             style={{ clipPath: 'circle(50% at 50% 50%)' }}
@@ -105,36 +104,24 @@ export default function AboutPage() {
           </div>
       </section>
 
-      {/* â”€â”€ Manifesto: large editorial text, not cards â”€â”€ */}
+      {/* Manifesto */}
       <section className="relative z-[2] mx-auto max-w-[1152px] px-6 py-32 md:px-12 border-t border-white/[0.06]">
         <div className="max-w-3xl space-y-10">
-          <TextReveal
-            variant="highlight"
-            scrub={1}
-            start="top 85%"
-            end="top 40%"
-            className="text-[clamp(18px,3vw,26px)] leading-[1.5] text-white/70 font-display tracking-[-0.01em]"
-          >
-            Indian factories have cameras everywhere. What they lack is intelligence — the ability to understand what those cameras see and act on it in real time.
-          </TextReveal>
-          <TextReveal
-            variant="highlight"
-            scrub={1}
-            start="top 55%"
-            end="top 10%"
-            className="text-[clamp(18px,3vw,26px)] leading-[1.5] text-white/50 font-display tracking-[-0.01em]"
-          >
-            Cloud-based analytics require your footage to leave your facility, get processed on shared infrastructure, and return generic results. For Indian manufacturers, that means privacy risk, latency, and compliance challenges.
-          </TextReveal>
-          <TextReveal
-            variant="highlight"
-            scrub={1}
-            start="top 35%"
-            end="bottom 60%"
-            className="text-[clamp(18px,3vw,26px)] leading-[1.5] text-white/90 font-display tracking-[-0.01em]"
-          >
-            Kenesis runs entirely on your premises. Your footage never leaves your network. And when the internet goes down, your safety system keeps running.
-          </TextReveal>
+          <BlurFade delay={0.1} duration={0.7} blur="8px" offset={12} inView inViewMargin="-60px">
+            <p className="text-[clamp(18px,3vw,26px)] leading-[1.5] text-white font-display tracking-[-0.01em]">
+              Factories have cameras everywhere. What they lack is intelligence: the ability to understand what those cameras see and act on it in real time.
+            </p>
+          </BlurFade>
+          <BlurFade delay={0.2} duration={0.7} blur="8px" offset={12} inView inViewMargin="-60px">
+            <p className="text-[clamp(18px,3vw,26px)] leading-[1.5] text-white font-display tracking-[-0.01em]">
+              Cloud-based analytics require your footage to leave your facility, get processed on shared infrastructure, and return generic results. That means privacy risk, latency, and compliance challenges.
+            </p>
+          </BlurFade>
+          <BlurFade delay={0.3} duration={0.7} blur="8px" offset={12} inView inViewMargin="-60px">
+            <p className="text-[clamp(18px,3vw,26px)] leading-[1.5] text-white font-display tracking-[-0.01em]">
+              Kenesis runs entirely on your premises. Your footage never leaves your network. And when the internet goes down, your safety system keeps running.
+            </p>
+          </BlurFade>
         </div>
       </section>
 
@@ -160,7 +147,7 @@ export default function AboutPage() {
 
       {/* â”€â”€ Numbers: full-bleed strip â”€â”€ */}
       <section className="relative z-[2] border-y border-white/[0.06] py-16">
-        <div className="mx-auto max-w-[1280px] px-6 md:px-12 grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-4">
+        <div className="mx-auto max-w-[1280px] px-6 md:px-12 grid grid-cols-1 sm:grid-cols-3 gap-y-8 gap-x-4">
           <div className="text-center">
             <p className="font-display text-[clamp(28px,5vw,40px)] font-semibold text-white/90 leading-none mb-2">
               2025
@@ -172,30 +159,10 @@ export default function AboutPage() {
             <p className="font-mono-accent text-[13px] uppercase tracking-[0.1em] text-white/25">Headquarters</p>
           </div>
           <div className="text-center">
-            <p className="font-display text-[clamp(28px,5vw,40px)] font-semibold text-white/90 leading-none mb-2">On-Premise AI</p>
-            <p className="font-mono-accent text-[13px] uppercase tracking-[0.1em] text-white/25">Focus</p>
-          </div>
-          <div className="text-center">
-            <p className="font-display text-[clamp(28px,5vw,40px)] font-semibold text-white/90 leading-none mb-2">
-              64
-            </p>
-            <p className="font-mono-accent text-[13px] uppercase tracking-[0.1em] text-white/25">Concurrent streams</p>
+            <p className="font-display text-[clamp(28px,5vw,40px)] font-semibold text-white/90 leading-none mb-2">AI-First</p>
+            <p className="font-mono-accent text-[13px] uppercase tracking-[0.1em] text-white/25">Built from the ground up</p>
           </div>
         </div>
-      </section>
-
-      {/* â”€â”€ ASCII text display â”€â”€ */}
-      <section className="relative z-[2] py-16 flex items-center justify-center overflow-hidden">
-        <AsciiTextDisplay
-          text="KENESIS"
-          fontSize={140}
-          cellW={7}
-          cellH={13}
-          charset=" .,:;i1tfLCG08@#"
-          color="#f59e0b"
-          glitchRate={0.006}
-          className="w-full max-w-[1152px] mx-auto px-6 opacity-70 overflow-hidden"
-        />
       </section>
 
       {/* â”€â”€ What we believe: left-aligned list, not grid cards â”€â”€ */}
@@ -215,9 +182,9 @@ export default function AboutPage() {
           <div className="space-y-8">
             {[
               ['Complete data sovereignty.', 'Your camera footage is processed and stored exclusively on your premises. No cloud provider, no third party, no external entity ever accesses your data.'],
-              ['Contextual intelligence.', 'Our AI doesn\'t just detect objects — it understands context. "Worker in welding zone without face shield during active operation" is actionable. A generic bounding box is not.'],
-              ['Zero internet dependency.', 'Many Indian industrial zones have unreliable connectivity. Kenesis is designed to operate completely offline — your safety system should never depend on your ISP.'],
-              ['Compliance shouldn\'t be an afterthought.', 'DPDP Act, factory safety regulations, data sovereignty requirements — we\'re built for these from day one, not retrofitted.'],
+              ['Contextual intelligence.', 'Our AI doesn\'t just detect objects. It understands context. "Worker in welding zone without face shield during active operation" is actionable. A generic bounding box is not.'],
+              ['Zero internet dependency.', 'Many industrial facilities have unreliable connectivity. Kenesis is designed to operate completely offline. Your safety system should never depend on your ISP.'],
+              ['Compliance shouldn\'t be an afterthought.', 'DPDP Act, factory safety regulations, data sovereignty requirements: we\'re built for these from day one, not retrofitted.'],
             ].map(([title, desc], i) => (
               <ScrollReveal key={title} variant="fade-up" delay={i * 0.1} duration={0.6}>
                 <div className="border-l-2 border-white/[0.06] pl-6 hover:border-amber-400/30 transition-colors duration-300">
@@ -246,7 +213,7 @@ export default function AboutPage() {
         <div>
           {[
             ['2025 Q1', 'Incorporated in Chennai, India'],
-            ['2025 Q2', 'First prototype — AI analyzing 30 camera feeds in real time'],
+            ['2025 Q2', 'First prototype: AI analyzing 30 camera feeds in real time'],
             ['2025 Q3', 'AI pipeline validated on live factory floor'],
             ['2025 Q4', 'Platform launch: PPE, zone monitoring, shift analytics'],
             ['2026 Q2', 'Pilot deployments in progress'],
@@ -265,7 +232,7 @@ export default function AboutPage() {
       <TeamSection />
 
       {/* â”€â”€ Closing: image-masked statement â”€â”€ */}
-      <section className="relative z-[2] mx-auto max-w-[1152px] px-6 py-32 md:px-12 border-t border-white/[0.06]">
+      <section className="relative z-[2] mx-auto max-w-[1152px] px-4 sm:px-6 py-16 md:py-32 md:px-12 border-t border-white/[0.06]">
         <BlurFade delay={0} duration={0.7} blur="10px" offset={16} inView inViewMargin="-80px">
           <div className="space-y-4">
             <ImageMaskedText
@@ -276,8 +243,8 @@ export default function AboutPage() {
               bgPosition="center 40%"
               className="block"
             />
-            <p className="font-display text-[clamp(18px,3vw,28px)] font-semibold leading-[1.3] tracking-[-0.02em] text-white/35 max-w-3xl">
-              India&apos;s manufacturing sector is growing rapidly. Safety infrastructure needs to keep pace.
+            <p className="font-display text-[clamp(18px,4.5vw,28px)] sm:text-[clamp(20px,3vw,28px)] font-semibold leading-[1.5] tracking-[-0.02em] text-white max-w-[55ch]">
+              The manufacturing sector is growing rapidly. Safety infrastructure needs to keep pace.
             </p>
           </div>
         </BlurFade>

@@ -1,13 +1,13 @@
-'use client';
+﻿'use client';
 
 import { useEffect, useRef, useState } from 'react';
 
 /**
- * Premium curved light stream — like a long-exposure photograph of light
+ * Premium curved light stream - like a long-exposure photograph of light
  * sweeping in a wide arc from bottom-left to upper-right.
  * Multiple parallel light trails within a thick band, warm amber/gold tones.
  * Subtle cursor interaction bends the flow gently.
- * Raw WebGL — no Three.js dependency.
+ * Raw WebGL - no Three.js dependency.
  */
 
 interface ColorfulWaveProps {
@@ -30,7 +30,7 @@ uniform vec2 u_resolution;
 uniform vec2 u_mouse;
 
 /*
- * Volumetric light ribbon — the dominant visual is a MASSIVE soft glow
+ * Volumetric light ribbon - the dominant visual is a MASSIVE soft glow
  * like light through fog/mist. Only a few bright accent streaks inside.
  * The glow IS the main element, not the lines.
  */
@@ -65,19 +65,19 @@ void main() {
   float aspect = u_resolution.x / u_resolution.y;
   vec2 p = (uv - 0.5) * vec2(aspect, 1.0);
 
-  // Magnetic cursor — pulls light toward mouse position
+  // Magnetic cursor - pulls light toward mouse position
   vec2 m = (u_mouse - 0.5) * vec2(aspect, 1.0);
   float mDist = length(p - m);
   vec2 mPull = (m - p) * smoothstep(0.55, 0.0, mDist) * 0.08;
   vec2 dp = p + mPull;
 
-  // Main bezier spine — wide arc from bottom-left to upper-right
+  // Main bezier spine - wide arc from bottom-left to upper-right
   float drift = sin(u_time * 0.12) * 0.025;
   vec2 A = vec2(-0.95 * aspect, -0.52 + drift);
   vec2 B = vec2(-0.1, 0.0 + drift * 1.5);
   vec2 C = vec2(0.3, 0.7 + drift * 0.8);
 
-  // Secondary spine — lower, dimmer
+  // Secondary spine - lower, dimmer
   vec2 A2 = vec2(-0.7 * aspect, -0.62 + drift * 0.5);
   vec2 B2 = vec2(0.05, -0.32 + drift);
   vec2 C2 = vec2(0.85 * aspect, -0.1 + drift * 0.6);
@@ -115,25 +115,25 @@ void main() {
   // Gaussian-like falloff using multiple smoothstep layers
   // Each layer is wider and dimmer, creating a smooth gradient
 
-  // Inner glow — bright, warm white-gold
+  // Inner glow - bright, warm white-gold
   float g1 = smoothstep(0.15, 0.0, dist1) * 0.55;
   col += vec3(1.0, 0.88, 0.45) * g1 * endFade1;
 
-  // Mid glow — amber
+  // Mid glow - amber
   float g2 = smoothstep(0.3, 0.0, dist1) * 0.3;
   col += vec3(0.85, 0.6, 0.1) * g2 * endFade1;
 
-  // Wide glow — deep amber, fills large area
+  // Wide glow - deep amber, fills large area
   float g3 = smoothstep(0.55, 0.0, dist1) * 0.15;
   col += vec3(0.6, 0.38, 0.04) * g3 * endFade1;
 
-  // Ultra-wide atmospheric wash — tints the whole region
+  // Ultra-wide atmospheric wash - tints the whole region
   float g4 = smoothstep(0.9, 0.0, dist1) * 0.06;
   col += vec3(0.35, 0.22, 0.02) * g4 * endFade1;
 
   // ============================================================
   // LAYER 2: A few bright accent streaks inside the glow
-  // Only 4 lines — they sit inside the volumetric glow
+  // Only 4 lines - they sit inside the volumetric glow
   // ============================================================
 
   for (float i = 0.0; i < 4.0; i += 1.0) {
@@ -162,7 +162,7 @@ void main() {
   }
 
   // ============================================================
-  // LAYER 3: Secondary band — softer, dimmer volumetric glow
+  // LAYER 3: Secondary band - softer, dimmer volumetric glow
   // ============================================================
 
   // Volumetric glow for secondary band

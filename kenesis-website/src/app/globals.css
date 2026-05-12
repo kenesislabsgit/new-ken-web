@@ -1,4 +1,4 @@
-@import "tailwindcss";
+﻿@import "tailwindcss";
 @import "@heroui/styles";
 
 @font-face {
@@ -10,7 +10,7 @@
 }
 
 @theme {
-  /* Kenesis color palette — warm yellow/orange/amber */
+  /* Kenesis color palette - warm yellow/orange/amber */
   --color-amber-50: #fffbeb;
   --color-amber-100: #fef3c7;
   --color-amber-200: #fde68a;
@@ -41,10 +41,9 @@
   --color-glass-border: rgba(255, 255, 255, 0.3);
   --color-glass-shadow: rgba(0, 0, 0, 0.08);
 
-  /* Typography — SF Pro system stack with Inter fallback */
-  --font-sans: -apple-system, BlinkMacSystemFont, 'SF Pro Text', var(--font-inter), 'Inter', 'Helvetica Neue', system-ui, sans-serif;
-  --font-display: -apple-system, BlinkMacSystemFont, 'SF Pro Display', var(--font-inter), 'Inter', 'Helvetica Neue', system-ui, sans-serif;
-  --font-mono-accent: var(--font-geist-mono), 'Geist Mono', 'SF Mono', 'Courier New', monospace;
+  /* Typography */
+  --font-sans: var(--font-geist), 'Geist', 'Helvetica Neue', system-ui, sans-serif;
+  --font-display: var(--font-instrument-serif), 'Instrument Serif', Georgia, 'Times New Roman', serif;
 
   /* Easing */
   --ease-smooth: cubic-bezier(0.25, 0.1, 0.25, 1);
@@ -65,6 +64,12 @@ body {
   font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1;
   text-rendering: optimizeLegibility;
   letter-spacing: -0.01em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.02em;
 }
 
 *:focus-visible {
@@ -88,7 +93,6 @@ body {
 /* Utility classes */
 .font-display { font-family: var(--font-display); }
 .font-body { font-family: var(--font-sans); }
-.font-mono-accent { font-family: var(--font-mono-accent); }
 .font-logo { font-family: var(--font-neowave), sans-serif; }
 
 /* Skeuomorphic premium buttons */
@@ -224,7 +228,7 @@ body {
   animation-delay: var(--delay, 0s);
 }
 
-/* ── HeroUI theme overrides — amber/dark glassmorphism ── */
+/* ── HeroUI theme overrides - amber/dark glassmorphism ── */
 @layer components {
   /* Button: skeuomorphic amber primary */
   .button--primary {
@@ -316,7 +320,7 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 12px;
     color: rgba(255, 255, 255, 0.8);
-    font-family: var(--font-geist-mono), 'Geist Mono', monospace;
+    font-family: var(--font-sans);
     font-size: 14px;
     padding: 14px 20px;
     backdrop-filter: blur(12px);
@@ -346,7 +350,7 @@ body {
   }
   .chip__label {
     color: rgba(255, 255, 255, 0.5);
-    font-family: var(--font-geist-mono), 'Geist Mono', monospace;
+    font-family: var(--font-sans);
     font-size: 11px;
     font-weight: 500;
     text-transform: uppercase;

@@ -28,7 +28,7 @@ const ScrollFrameSection = dynamic(
   }
 );
 
-/* ── Solutions data (scroll frame sections) ── */
+/* -- Solutions data (scroll frame sections) -- */
 
 const HW_FRAMES = [
   { path: '/videos/section-0', count: 52 },
@@ -38,9 +38,9 @@ const HW_FRAMES = [
 ];
 
 const HW_PANELS = [
-  { step: 1, label: 'Visual Intelligence', headline: 'See what cameras miss.', body: 'Our AI watches every frame from every camera simultaneously. It doesn\'t just detect objects — it understands context, behavior, and safety violations in real time.' },
+  { step: 1, label: 'Visual Intelligence', headline: 'See what cameras miss.', body: 'Our AI watches every frame from every camera simultaneously. It doesn\'t just detect objects. It understands context, behavior, and safety violations in real time.' },
   { step: 2, label: 'Always Learning', headline: 'Smarter every shift.', body: 'The system continuously adapts to your facility\'s patterns. Fewer false positives over time, more accurate alerts, zero manual tuning required.' },
-  { step: 3, label: 'Camera Integration', headline: 'Works with what you have.', body: 'Connects to your existing IP cameras — no new hardware needed. Supports up to 64 simultaneous feeds with sub-second analysis.' },
+  { step: 3, label: 'Camera Integration', headline: 'Works with what you have.', body: 'Connects to your existing IP cameras, no new hardware needed. Supports up to 64 simultaneous feeds with sub-second analysis.' },
   { step: 4, label: 'Data Sovereignty', headline: 'Your data stays yours.', body: 'Every frame is processed and stored on your premises. No cloud uploads, no third-party access, fully compliant with India\'s DPDP Act.' },
 ];
 
@@ -54,12 +54,12 @@ const FUNNEL_FRAMES = [
 const FUNNEL_PANELS = [
   { step: 5, label: 'Detection Layer', headline: 'Continuous monitoring at scale.', body: 'Our detection engine processes every frame from every camera in real time. Millions of frames analyzed, only genuine anomalies flagged.' },
   { step: 6, label: 'Risk Scoring', headline: 'Signal over noise.', body: 'Each detection receives a contextual risk score. Low-confidence alerts are suppressed automatically. High-priority events escalate instantly.' },
-  { step: 7, label: 'The Brain', headline: 'Context-aware reasoning.', body: "The system reasons about what it sees \u2014 what they're doing, where, and whether it violates protocol." },
+  { step: 7, label: 'The Brain', headline: 'Context-aware reasoning.', body: "The system reasons about what it sees: what they're doing, where, and whether it violates protocol." },
   { step: 8, label: 'The Result', headline: 'From noise to signal.', body: "The funnel collapses noise into signal. When your shift manager's phone rings, it means something." },
 ];
 
 const FEATURES = [
-  { num: '01', title: 'Safety Compliance', desc: 'Automated PPE monitoring across all zones — helmets, vests, gloves, and safety gear verified continuously.' },
+  { num: '01', title: 'Safety Compliance', desc: 'Automated PPE monitoring across all zones: helmets, vests, gloves, and safety gear verified continuously.' },
   { num: '02', title: 'Zone Intelligence', desc: 'Define restricted areas visually. Track access patterns, detect unauthorized entries, and enforce zone-specific safety rules.' },
   { num: '03', title: 'Process Verification', desc: 'Verify that standard operating procedures are followed correctly during critical operations, step by step.' },
   { num: '04', title: 'Natural Language Query', desc: '\u201CShow me every incident in Bay 3 this week.\u201D Answered in seconds from your local archive.' },
@@ -73,7 +73,7 @@ export default function Home() {
         <ProgressiveBlur position="top" height="150px" className="fixed top-0 left-0 right-0 z-[100]" />
         <HeroSection />
 
-        {/* ── Scroll frame section — continuous ── */}
+        {/* -- Scroll frame section - continuous -- */}
         <ScrollFrameSection
           frameSets={[...HW_FRAMES, ...FUNNEL_FRAMES]}
           panels={[...HW_PANELS, ...FUNNEL_PANELS]}
@@ -83,12 +83,12 @@ export default function Home() {
 
         <PinnedFeatureTabs />
 
-        {/* ── Flowing light performance section ── */}
+        {/* -- Flowing light performance section -- */}
         <ErrorBoundary>
           <WavePerformanceSection />
         </ErrorBoundary>
 
-        {/* ── Features / Capabilities ── */}
+        {/* -- Features / Capabilities -- */}
         <section className="relative z-[2] py-[80px] sm:py-[120px] md:py-[160px] px-[16px] sm:px-[24px] md:px-[48px] border-t border-white/[0.04] bg-[#0a0a0b]">
           <div className="mx-auto max-w-[1100px]">
             <BlurFade delay={0} duration={0.5} blur="6px" offset={10} inView inViewMargin="-80px">
@@ -130,7 +130,7 @@ export default function Home() {
                       <div className="absolute top-0 left-[10%] right-[10%] h-[1px] bg-gradient-to-r from-transparent via-white/[0.15] to-transparent pointer-events-none" />
 
                       <div className="flex items-start justify-between mb-[20px] sm:mb-[32px]">
-                        {/* Number — skeuomorphic embossed */}
+                        {/* Number - skeuomorphic embossed */}
                         <p className="font-mono-accent text-[36px] sm:text-[48px] font-bold leading-none"
                           style={{
                             color: 'transparent',
@@ -142,7 +142,7 @@ export default function Home() {
                           onMouseLeave={e => { (e.target as HTMLElement).style.webkitTextStroke = '1px rgba(245,158,11,0.15)'; }}
                         >{f.num}</p>
 
-                        {/* Arrow — skeuomorphic raised circle */}
+                        {/* Arrow - skeuomorphic raised circle */}
                         <div
                           className="w-[40px] h-[40px] rounded-full flex items-center justify-center transition-all duration-300 group-hover:scale-105"
                           style={{

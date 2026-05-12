@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
@@ -14,7 +14,7 @@ interface TypewriterTextProps {
 }
 
 /**
- * Premium typewriter effect — types out text, pauses, deletes, cycles.
+ * Premium typewriter effect - types out text, pauses, deletes, cycles.
  * Inspired by Framer "Pro Text Type Effect".
  */
 export function TypewriterText({

@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useEffect, useRef } from 'react';
 import PageShell from '@/components/PageShell';
@@ -92,7 +92,7 @@ export default function ContactPage() {
 
   return (
     <PageShell>
-      {/* Glitch background — deferred load */}
+      {/* Glitch background - deferred load */}
       {bgReady && (
         <div
           className="pointer-events-none fixed inset-0 z-0 opacity-[0.07]"
@@ -117,9 +117,9 @@ export default function ContactPage() {
 
       <div className="relative z-[1] min-h-screen">
         {/* ── Top bar ── */}
-        <div className="mx-auto max-w-[1280px] px-4 sm:px-8 md:px-16 pt-[10rem] sm:pt-[14rem] pb-[4rem] sm:pb-[6rem]">
+        <div className="mx-auto max-w-[1280px] px-4 sm:px-8 md:px-16 pt-[2rem] sm:pt-[4rem] md:pt-[8rem] pb-[2rem] sm:pb-[4rem] md:pb-[6rem]">
           <BlurFade delay={0.05} duration={0.5} blur="6px" offset={10}>
-            <div className="flex items-center gap-3 mb-[4rem]">
+            <div className="flex items-center gap-3 mb-[2rem] sm:mb-[4rem]">
               <span className="h-[1px] w-[3rem] bg-amber-400/40" />
               <span className="font-mono-accent text-[1rem] uppercase tracking-[0.18em] text-amber-400/50">
                 Contact
@@ -138,18 +138,18 @@ export default function ContactPage() {
 
           <BlurFade delay={0.3} duration={0.6} blur="8px" offset={16}>
             <p className="mt-[2rem] sm:mt-[3rem] max-w-[640px] font-display text-[14px] sm:text-[18px] leading-[1.65] text-white/35 font-light">
-              Schedule a walkthrough of our platform. We\'ll connect to your cameras and show you what Kenesis sees — no commitment required.
+              Schedule a walkthrough of our platform. We\'ll connect to your cameras and show you what Kenesis sees, no commitment required.
             </p>
           </BlurFade>
         </div>
 
         {/* ── Main grid ── */}
-        <div className="mx-auto max-w-[1280px] px-4 md:px-8 lg:px-16 pb-[12rem]">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-[4rem] lg:gap-[10rem]">
+        <div className="mx-auto max-w-[1280px] px-4 md:px-8 lg:px-16 pb-[6rem] md:pb-[12rem]">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-[3rem] md:gap-[4rem] lg:gap-[10rem]">
 
-            {/* Left — info */}
+            {/* Left - info */}
             <BlurFade delay={0.2} duration={0.8} blur="10px" offset={20}>
-              <div className="space-y-[5rem]">
+              <div className="space-y-[3rem] sm:space-y-[5rem]">
                 {/* Divider */}
                 <div className="h-[1px] w-full bg-white/8" />
 
@@ -200,7 +200,7 @@ export default function ContactPage() {
               </div>
             </BlurFade>
 
-            {/* Right — form */}
+            {/* Right - form */}
             <BlurFade delay={0.35} duration={0.8} blur="10px" offset={20}>
               {submitted ? (
                 <div className="flex flex-col items-start justify-center h-full min-h-[40rem] gap-6">
@@ -235,7 +235,7 @@ export default function ContactPage() {
                   }}
                 >
                   {/* Name + Email side by side on large screens */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-[3rem]">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-[1.5rem] sm:gap-[3rem]">
                     <FloatingField label="Name">
                       <input
                         type="text"
@@ -258,7 +258,7 @@ export default function ContactPage() {
                     </FloatingField>
                   </div>
 
-                  <FloatingField label="Company" hint="e.g. Tata Steel — Blast furnace plant">
+                  <FloatingField label="Company" hint="e.g. Tata Steel, Blast furnace plant">
                     <input
                       type="text"
                       name="company"
@@ -278,7 +278,7 @@ export default function ContactPage() {
                   <FloatingField label="Message">
                     <textarea
                       name="message"
-                      placeholder="Tell us about your requirements — camera count, use cases, timeline..."
+                      placeholder="Tell us about your requirements: camera count, use cases, timeline..."
                       rows={5}
                       className={inputCls + ' resize-none'}
                     />

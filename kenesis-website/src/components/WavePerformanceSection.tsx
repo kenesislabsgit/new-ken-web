@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { ScrollReveal } from '@/components/magicui/scroll-reveal';
 import { TextReveal } from '@/components/magicui/text-reveal';
@@ -18,17 +18,17 @@ export default function WavePerformanceSection() {
       className="relative w-full overflow-hidden bg-[#0a0a0b]"
       style={{ height: '100vh', minHeight: '40rem' }}
     >
-      {/* Wave — boosted, receives all mouse events */}
+      {/* Wave - boosted, receives all mouse events */}
       <div className="absolute inset-0" style={{ filter: 'brightness(1.5) saturate(1.3)' }}>
         <ColorfulWave className="absolute inset-0 h-full w-full" bgColor="#000000" />
       </div>
 
-      {/* Mobile gradient — strong enough to read text over the bright wave */}
+      {/* Mobile gradient - strong enough to read text over the bright wave */}
       <div className="absolute inset-0 z-[1] pointer-events-none sm:hidden" style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.7) 40%, rgba(0,0,0,0.3) 70%, transparent 100%)' }} />
 
-      {/* Content — right side, vertically centered, pointer-events-none so wave gets cursor */}
+      {/* Content - right side, vertically centered, pointer-events-none so wave gets cursor */}
       <div className="relative z-10 flex h-full items-end sm:items-center pointer-events-none">
-        <div className="w-full sm:ml-auto sm:w-[55%] md:w-[50%] max-w-[580px] px-5 sm:pr-10 sm:pl-0 md:pr-16 lg:pr-20 pb-10 sm:pb-0 pointer-events-auto">
+        <div className="w-full sm:ml-auto sm:w-[55%] md:w-[50%] max-w-[580px] px-5 sm:px-6 sm:pr-10 md:pr-16 lg:pr-20 pb-12 sm:pb-0 pointer-events-auto">
           {/* Label */}
           <BlurFade delay={0} duration={0.5} blur="6px" offset={10} inView inViewMargin="-60px">
             <div className="flex items-center gap-3 mb-6 sm:mb-8">
@@ -45,13 +45,13 @@ export default function WavePerformanceSection() {
           {/* Description */}
           <BlurFade delay={0} duration={0.6} blur="8px" offset={14} inView inViewMargin="-60px">
             <p className="text-[15px] sm:text-[17px] leading-[1.65] text-white/40 mb-8 sm:mb-10 max-w-[420px]">
-              Every camera feed is analyzed in real time. The system filters noise, understands context, and only alerts your team when it matters — so when your phone rings, it means something.
+              Every camera feed is analyzed in real time. The system filters noise, understands context, and only alerts your team when it matters. When your phone rings, it means something.
             </p>
           </BlurFade>
 
-          {/* Stats — horizontal strip */}
+          {/* Stats - horizontal strip */}
           <BlurFade delay={0} duration={0.5} blur="4px" offset={8} inView inViewMargin="-60px">
-            <div className="grid grid-cols-4 gap-3 sm:gap-5 mb-8 sm:mb-10">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-5 mb-8 sm:mb-10">
               {HIGHLIGHTS.map((item, i) => (
                 <div key={i} className="flex flex-col">
                   <span className="font-display text-[clamp(16px,2.5vw,28px)] font-bold text-white/85 tabular-nums">{item.val}</span>

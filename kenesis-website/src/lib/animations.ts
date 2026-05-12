@@ -1,4 +1,4 @@
-import gsap from 'gsap';
+﻿import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 // Register ScrollTrigger plugin
@@ -76,7 +76,7 @@ export function fadeUp(
   const htmlEl = el as HTMLElement;
 
   if (prefersReducedMotion()) {
-    // Set final state immediately — no animation
+    // Set final state immediately - no animation
     gsap.set(el, { opacity: 1, y: 0, clearProps: 'willChange' });
     return null;
   }
@@ -124,7 +124,7 @@ export function clipReveal(
   const htmlEl = el as HTMLElement;
 
   if (prefersReducedMotion()) {
-    // Set final state immediately — no animation
+    // Set final state immediately - no animation
     gsap.set(el, { yPercent: 0, clearProps: 'willChange' });
     return null;
   }
@@ -151,7 +151,7 @@ export function clipReveal(
 
 /**
  * Scroll-driven parallax.
- * Creates a ScrollTrigger where translateY = progress × parentHeight × factor.
+ * Creates a ScrollTrigger where translateY = progress �- parentHeight �- factor.
  * Applies `will-change: transform` before animation.
  * Returns the ScrollTrigger instance (or null if reduced motion / no element).
  */

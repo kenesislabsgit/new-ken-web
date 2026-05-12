@@ -1,4 +1,4 @@
-// Feature: scroll-animation-system, Property 10: InsightsGrid row-stagger delay
+﻿// Feature: scroll-animation-system, Property 10: InsightsGrid row-stagger delay
 
 import { describe, it, expect } from 'vitest';
 import * as fc from 'fast-check';
@@ -21,7 +21,7 @@ describe('Property 10: InsightsGrid row-stagger delay', () => {
    * **Validates: Requirements 13.2**
    *
    * For any article card at index i in the InsightsGrid, the entrance delay
-   * SHALL be (i % 3) × 150 ms with a fadeUp duration of 0.75s.
+   * SHALL be (i % 3) �- 150 ms with a fadeUp duration of 0.75s.
    */
   it('should assign correct row-stagger delays to cards', () => {
     fc.assert(

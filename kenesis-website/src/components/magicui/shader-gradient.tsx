@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
@@ -6,11 +6,11 @@ import { prefersReducedMotion } from "@/lib/animations";
 
 interface ShaderGradientProps {
   className?: string;
-  /** First accent color — hex */
+  /** First accent color - hex */
   colorA?: string;
-  /** Second accent color — hex */
+  /** Second accent color - hex */
   colorB?: string;
-  /** Background color — hex */
+  /** Background color - hex */
   bgColor?: string;
   /** Animation speed (0.01–0.2) */
   speed?: number;
@@ -66,10 +66,10 @@ void main() {
   float barPhase = hash(barId * 1.731);
   float barSpeed = 0.3 + barPhase * 0.7;
 
-  // Bar edge sharpness — thin bright lines between bars
+  // Bar edge sharpness - thin bright lines between bars
   float barEdge = smoothstep(0.0, 0.08, barFrac) * smoothstep(1.0, 0.92, barFrac);
 
-  // Animated brightness per bar — pulsing at different rates
+  // Animated brightness per bar - pulsing at different rates
   float pulse1 = sin(u_time * barSpeed * 0.8 + barPhase * PI * 2.0) * 0.5 + 0.5;
   float pulse2 = sin(u_time * barSpeed * 1.3 + barPhase * 12.0) * 0.5 + 0.5;
   float barBrightness = mix(0.15, 1.0, pulse1 * pulse2);

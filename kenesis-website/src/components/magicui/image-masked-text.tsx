@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { cn } from "@/lib/utils";
 
@@ -16,7 +16,7 @@ interface ImageMaskedTextProps {
 }
 
 /**
- * Text filled with an image texture — the image shows through the text shape.
+ * Text filled with an image texture - the image shows through the text shape.
  * Uses CSS background-clip: text for a lightweight, performant effect.
  */
 export function ImageMaskedText({

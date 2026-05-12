@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import {
   createContext,
@@ -46,7 +46,7 @@ export default function LenisProvider({ children }: LenisProviderProps) {
     const lenisInstance = new Lenis({
       smoothWheel: !prefersReduced,
       syncTouch: true,        // Sync touch events with Lenis for consistent behavior
-      syncTouchLerp: 0.075,   // Lighter lerp for touch — closer to native feel
+      syncTouchLerp: 0.075,   // Lighter lerp for touch - closer to native feel
       touchInertiaMultiplier: 25, // Natural touch momentum
       autoRaf: false,
       lerp: 0.1,

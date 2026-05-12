@@ -1,4 +1,4 @@
-// Feature: scroll-animation-system, Property 12: FooterCTA links stagger timing
+﻿// Feature: scroll-animation-system, Property 12: FooterCTA links stagger timing
 
 import { describe, it, expect } from 'vitest';
 import * as fc from 'fast-check';
@@ -20,7 +20,7 @@ describe('Property 12: FooterCTA links stagger timing', () => {
    * **Validates: Requirements 15.3**
    *
    * For any set of N footer links in the FooterCTASection, link at index i
-   * SHALL have entrance delay 600 + i × 80 ms using the fadeUp animation.
+   * SHALL have entrance delay 600 + i �- 80 ms using the fadeUp animation.
    */
   it('should compute correct stagger delay for any link index', () => {
     fc.assert(

@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useEffect, useRef } from 'react';
 import { FlickeringGrid } from '@/components/magicui/flickering-grid';
@@ -60,7 +60,7 @@ export default function TextInterludeSection() {
         flickerChance={0.1}
       />
 
-      {/* Liquid metal logo — centered background accent */}
+      {/* Liquid metal logo - centered background accent */}
       <div className="absolute inset-0 z-[0] flex items-center justify-center pointer-events-none opacity-[0.07]">
         <LiquidMetalLogo
           src="/kenesis-icon.png"
@@ -87,7 +87,7 @@ export default function TextInterludeSection() {
         style={{ width: '0%' }}
       />
 
-      {/* Heading — words sharpen as user scrolls */}
+      {/* Heading - words sharpen as user scrolls */}
       <TextReveal
         variant="word-blur"
         as="h2"
@@ -97,7 +97,7 @@ export default function TextInterludeSection() {
         Redefining factory safety with on-premise AI.
       </TextReveal>
 
-      {/* Paragraph — words fade in on scroll */}
+      {/* Paragraph - words fade in on scroll */}
       <TextReveal
         variant="word-fade"
         as="p"

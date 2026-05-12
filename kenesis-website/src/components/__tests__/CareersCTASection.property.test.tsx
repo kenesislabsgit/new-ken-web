@@ -1,4 +1,4 @@
-// Feature: scroll-animation-system, Property 11: CareersCTA mosaic directional mapping
+﻿// Feature: scroll-animation-system, Property 11: CareersCTA mosaic directional mapping
 
 import { describe, it, expect } from 'vitest';
 import * as fc from 'fast-check';

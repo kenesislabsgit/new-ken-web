@@ -1,0 +1,48 @@
+{
+  "name": "kenesis-website",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "test": "vitest --run"
+  },
+  "dependencies": {
+    "@heroui/react": "^3.0.1",
+    "@heroui/styles": "^3.0.1",
+    "@paper-design/shaders-react": "^0.0.72",
+    "@react-three/fiber": "^9.5.0",
+    "@remotion/player": "^4.0.459",
+    "@studio-freight/lenis": "^1.0.0",
+    "@types/three": "^0.183.1",
+    "clsx": "^2.1.1",
+    "gsap": "^3.12.0",
+    "liquid-glass-react": "^1.1.1",
+    "lucide-react": "^1.7.0",
+    "next": "^15.3.0",
+    "nodemailer": "^8.0.4",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "remotion": "^4.0.459",
+    "tailwind-merge": "^3.5.0",
+    "three": "^0.183.2"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.2.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@types/node": "^22.0.0",
+    "@types/nodemailer": "^8.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "chrome-launcher": "^1.2.1",
+    "fast-check": "^4.6.0",
+    "jsdom": "^28.1.0",
+    "lighthouse": "^13.0.3",
+    "playwright": "^1.58.2",
+    "tailwindcss": "^4.2.1",
+    "typescript": "^5.7.0",
+    "vitest": "^4.1.0"
+  }
+}

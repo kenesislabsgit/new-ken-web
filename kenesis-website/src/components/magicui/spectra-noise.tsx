@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useRef, useEffect } from 'react';
 
@@ -241,7 +241,7 @@ export function SpectraNoise({
     const startTime = performance.now();
     let raf: number;
     let lastRenderTime = 0;
-    // Throttle to ~30fps — this is a subtle background effect
+    // Throttle to ~30fps - this is a subtle background effect
     const FRAME_INTERVAL = 1000 / 30;
 
     const useCustom = !!(primaryColor && secondaryColor && accentColor);

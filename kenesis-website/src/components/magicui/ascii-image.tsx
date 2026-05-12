@@ -1,10 +1,10 @@
-'use client';
+﻿'use client';
 
 import { useEffect, useRef, useCallback } from 'react';
 
 /**
  * ASCII Image renderer inspired by ascii-magic.com and alexharri.com/blog/ascii-rendering
- * Uses 6D shape vectors for character matching — samples 6 regions per cell
+ * Uses 6D shape vectors for character matching - samples 6 regions per cell
  * (top-left, top-right, mid-left, mid-right, bot-left, bot-right)
  * and picks the character whose shape best matches the sampled brightness pattern.
  * Also applies contrast enhancement for sharper edges.
@@ -33,7 +33,7 @@ interface AsciiImageProps {
 }
 
 // Precompute character shape vectors by rendering each char to an offscreen canvas
-// and sampling 6 regions (2 cols × 3 rows, staggered)
+// and sampling 6 regions (2 cols �- 3 rows, staggered)
 function buildCharShapeTable(
   font: string,
   cellW: number,
@@ -45,7 +45,7 @@ function buildCharShapeTable(
   canvas.height = cellH;
   const ctx = canvas.getContext('2d', { willReadFrequently: true })!;
 
-  // Define 6 sampling circles (staggered 2×3 grid)
+  // Define 6 sampling circles (staggered 2�-3 grid)
   // Each circle: [cx, cy, radius]
   const rX = cellW * 0.28;
   const rY = cellH * 0.18;

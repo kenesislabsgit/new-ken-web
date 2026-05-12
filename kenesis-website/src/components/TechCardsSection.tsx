@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useEffect, useRef } from 'react';
 import { bindParallax, cleanupScrollTrigger } from '@/lib/animations';
@@ -26,7 +26,7 @@ export default function TechCardsSection() {
 
   return (
     <section ref={sectionRef} id="technology" className="w-full bg-[#0a0a0b]">
-      {/* Hero banner — "Built to think. Born to haul." */}
+      {/* Hero banner - "Built to think. Born to haul." */}
       <div className="relative overflow-hidden bg-cod-gray py-20 sm:py-32 md:py-48">
         <div ref={bgRef} className="absolute inset-0 -top-[15%] h-[130%] w-full opacity-30">
           <div className="h-full w-full bg-gradient-to-br from-cod-gray via-cod-gray/80 to-cod-gray/60" />
@@ -62,7 +62,7 @@ export default function TechCardsSection() {
 
       {/* ASCII divider */}
       <div className="mx-auto max-w-[1234px] px-6 md:px-12 py-2">
-        <AsciiDivider accent="◈" />
+        <AsciiDivider accent="�-�" />
       </div>
 
       {/* 3 tech insight cards */}

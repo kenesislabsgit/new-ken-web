@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
@@ -20,7 +20,7 @@ interface TextRevealProps {
   children: string;
   className?: string;
   variant?: TextRevealVariant;
-  /** Tag to render — defaults to "p" */
+  /** Tag to render - defaults to "p" */
   as?: "p" | "h1" | "h2" | "h3" | "h4" | "span";
   /** If true, animation is scrubbed to scroll position */
   scrub?: boolean | number;

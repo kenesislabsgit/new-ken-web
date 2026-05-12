@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useEffect, useRef, useState, useCallback, useMemo } from 'react';
 import gsap from 'gsap';
@@ -21,7 +21,7 @@ export default function ScrollFrameSection({ frameSets, panels, sectionLabel, se
   const canvasSizeRef = useRef({ w: 0, h: 0 });
   const [loaded, setLoaded] = useState(false);
 
-  // Total expected frames from props — don't rely on loaded count
+  // Total expected frames from props - don't rely on loaded count
   const totalExpectedFrames = useMemo(() => 
     frameSets.reduce((sum, set) => sum + set.count, 0),
     [frameSets]
@@ -29,7 +29,7 @@ export default function ScrollFrameSection({ frameSets, panels, sectionLabel, se
 
   const frameKey = useMemo(() => JSON.stringify(frameSets), [frameSets]);
 
-  // Preload frames — ordered array, show content as soon as first batch loads
+  // Preload frames - ordered array, show content as soon as first batch loads
   useEffect(() => {
     let cancelled = false;
     const sets: FrameSet[] = JSON.parse(frameKey);
@@ -92,7 +92,7 @@ export default function ScrollFrameSection({ frameSets, panels, sectionLabel, se
     ctx.drawImage(img, (rect.width - w) / 2, (rect.height - h) / 2, w, h);
   }, []);
 
-  // GSAP scroll animation — NO pin, using CSS sticky instead
+  // GSAP scroll animation - NO pin, using CSS sticky instead
   useEffect(() => {
     if (!loaded || imagesRef.current.length === 0) return;
     const outer = outerRef.current;
@@ -153,11 +153,11 @@ export default function ScrollFrameSection({ frameSets, panels, sectionLabel, se
     return () => { ctx.revert(); window.removeEventListener('resize', onResize); };
   }, [loaded, panels, drawFrame, totalExpectedFrames]);
 
-  const scrollHeight = panels.length * 120; // vh — tighter for smoother frame transitions
+  const scrollHeight = panels.length * 120; // vh - tighter for smoother frame transitions
 
   return (
     <div ref={outerRef} className="relative bg-[#0a0a0b]" style={{ height: `${scrollHeight}vh` }}>
-      {/* Sticky viewport — stays fixed while outer scrolls */}
+      {/* Sticky viewport - stays fixed while outer scrolls */}
       <div ref={stickyRef} className="sticky top-0 h-screen w-full overflow-hidden">
         <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
 

@@ -1,22 +1,23 @@
-import type { Metadata } from "next";
-import { Inter, Geist_Mono } from "next/font/google";
+﻿import type { Metadata } from "next";
+import { Geist, Instrument_Serif } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 
-// SF Pro substitute: Inter — closest match on Google Fonts
-const inter = Inter({
+// Body: Geist - clean, modern sans-serif
+const geist = Geist({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-geist",
   display: "swap",
   weight: ["300", "400", "500", "600", "700", "800", "900"],
 });
 
-// Mono: Geist Mono — only for code, labels, technical data
-const geistMono = Geist_Mono({
+// Headers: Instrument Serif - editorial serif for display use
+const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
-  variable: "--font-geist-mono",
+  variable: "--font-instrument-serif",
   display: "swap",
-  weight: ["300", "400", "500", "700"],
+  weight: "400",
+  style: ["normal", "italic"],
 });
 
 const neoWave = localFont({
@@ -29,7 +30,7 @@ const neoWave = localFont({
 export const metadata: Metadata = {
   title: "Kenesis Labs – On-Premise AI Video Analytics for Industrial Safety",
   description:
-    "Kenesis Labs deploys on-premise AI video analytics for Indian factories. PPE compliance, zone detection, real-time safety alerts — no cloud, no data leaving your network.",
+    "Kenesis Labs deploys on-premise AI video analytics for industrial facilities. PPE compliance, zone detection, real-time safety alerts: no cloud, no data leaving your network.",
   icons: {
     icon: "/kenesis-icon.png",
     shortcut: "/kenesis-icon.png",
@@ -43,7 +44,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${geistMono.variable} ${neoWave.variable}`} suppressHydrationWarning>
+      <html lang="en" className={`${geist.variable} ${instrumentSerif.variable} ${neoWave.variable}`} suppressHydrationWarning>
       <head>
         <link rel="preload" href="/fonts/MBFNeoWave-Regular.otf" as="font" type="font/otf" crossOrigin="anonymous" />
       </head>

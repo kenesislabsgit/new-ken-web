@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
@@ -70,12 +70,12 @@ export default function Navbar() {
           -webkit-backdrop-filter: blur(32px) saturate(1.6);
           border: none;
           box-shadow:
-            /* outer drop shadow — lifts it off the page */
+            /* outer drop shadow - lifts it off the page */
             0 8px 32px rgba(0,0,0,0.55),
             0 2px 8px rgba(0,0,0,0.4),
-            /* top bright rim — catches the light */
+            /* top bright rim - catches the light */
             inset 0 1px 0 rgba(255,255,255,0.18),
-            /* bottom dark rim — ground shadow */
+            /* bottom dark rim - ground shadow */
             inset 0 -1px 0 rgba(0,0,0,0.5),
             /* left/right subtle rims */
             inset 1px 0 0 rgba(255,255,255,0.05),
@@ -84,7 +84,7 @@ export default function Navbar() {
             inset 0 2px 16px rgba(0,0,0,0.3);
         }
 
-        /* gradient border — bright top, dark bottom */
+        /* gradient border - bright top, dark bottom */
         .navbar-shell::before {
           content: "";
           position: absolute;

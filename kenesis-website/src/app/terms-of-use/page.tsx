@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import PageShell from '@/components/PageShell';
 import { BlurFade } from '@/components/magicui/blur-fade';

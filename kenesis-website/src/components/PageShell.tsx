@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import LenisProvider from '@/components/LenisProvider';
 import ErrorBoundary from '@/components/ErrorBoundary';
@@ -12,7 +12,7 @@ export default function PageShell({ children }: { children: React.ReactNode }) {
       <main className="relative min-h-screen w-full overflow-x-hidden">
         <Navbar />
         <ProgressiveBlur position="top" height="150px" className="fixed top-0 left-0 right-0 z-[100]" />
-        <div className="pt-[12rem]">{children}</div>
+        <div className="pt-[6rem] sm:pt-[8rem] md:pt-[12rem]">{children}</div>
         <ErrorBoundary>
           <FooterCTASection />
         </ErrorBoundary>

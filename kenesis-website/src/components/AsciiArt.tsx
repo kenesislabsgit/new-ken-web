@@ -1,11 +1,11 @@
-'use client';
+﻿'use client';
 
 import { cn } from '@/lib/utils';
 
 /* ── Reusable ASCII decorative elements ── */
 
 /** Horizontal divider using box-drawing characters */
-export function AsciiDivider({ className, char = '─', accent = '◆' }: {
+export function AsciiDivider({ className, char = '─', accent = '�-�' }: {
   className?: string; char?: string; accent?: string;
 }) {
   return (
@@ -15,7 +15,7 @@ export function AsciiDivider({ className, char = '─', accent = '◆' }: {
   );
 }
 
-/** ASCII art block — renders pre-formatted monospace art */
+/** ASCII art block - renders pre-formatted monospace art */
 export function AsciiBlock({ art, className, color = 'text-amber-400/15' }: {
   art: string; className?: string; color?: string;
 }) {
@@ -57,18 +57,18 @@ export function AsciiPrompt({ text, className }: {
 export const ASCII_ARTS = {
   camera: `
     ┌──────────┐
-    │ ◉  CAM   │
+    │ �-�  CAM   │
     │  ╱────╲  │
-    │ │ ◯◯◯ │  │
+    │ │ �-��-��-� │  │
     │  ╲────╱  │
     │   ▔▔▔▔   │
     └──────────┘`,
 
   eye: `
       ╭───────╮
-     ╱ ◉     ◉ ╲
+     ╱ �-�     �-� ╲
     │  ╭─────╮  │
-    │  │ ◉◉◉ │  │
+    │  │ �-��-��-� │  │
     │  ╰─────╯  │
      ╲         ╱
       ╰───────╯`,
@@ -76,8 +76,8 @@ export const ASCII_ARTS = {
   shield: `
       ╱╲
      ╱  ╲
-    ╱ ◆◆ ╲
-    │ ◆◆ │
+    ╱ �-��-� ╲
+    │ �-��-� │
     │    │
      ╲  ╱
       ╲╱`,
@@ -106,17 +106,17 @@ export const ASCII_ARTS = {
    └────┘└────┘`,
 
   network: `
-    ◉───────◉
+    �-�───────�-�
     │╲     ╱│
-    │ ◉───◉ │
+    │ �-�───�-� │
     │╱     ╲│
-    ◉───────◉`,
+    �-�───────�-�`,
 
   lock: `
       ┌──┐
       │  │
     ┌─┴──┴─┐
-    │ ◉◉◉  │
+    │ �-��-��-�  │
     │  ▼   │
     └──────┘`,
 } as const;

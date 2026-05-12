@@ -1,4 +1,4 @@
-// Feature: scroll-animation-system, Property 9: PartnerLogos stagger timing
+﻿// Feature: scroll-animation-system, Property 9: PartnerLogos stagger timing
 
 import { describe, it, expect } from 'vitest';
 import * as fc from 'fast-check';
@@ -30,8 +30,8 @@ describe('Property 9: PartnerLogos stagger timing', () => {
    * **Validates: Requirements 12.3, 12.4**
    *
    * For any set of N partner logos, logo at index i SHALL have entrance delay
-   * i × 100 ms with duration 0.6s, and the testimonial block SHALL have entrance
-   * delay (N - 1) × 100 + 200 ms.
+   * i �- 100 ms with duration 0.6s, and the testimonial block SHALL have entrance
+   * delay (N - 1) �- 100 + 200 ms.
    */
   it('should assign correct stagger delays to logos and testimonial', () => {
     fc.assert(

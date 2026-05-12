@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef, useCallback } from "react";
 import { cn } from "@/lib/utils";
@@ -80,7 +80,7 @@ export function DitheredWaves({
   enableMouse = true,
   mouseRadius = 200,
 }: DitheredWavesProps) {
-  // Clamp layers to max 3 for performance — 4+ octaves of simplex is very expensive
+  // Clamp layers to max 3 for performance - 4+ octaves of simplex is very expensive
   const effectiveLayers = Math.min(layers, 3);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const mouseRef = useRef({ x: -9999, y: -9999 });
@@ -115,7 +115,7 @@ export function DitheredWaves({
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    // Use DPR of 1 for performance — this is a background effect
+    // Use DPR of 1 for performance - this is a background effect
     const w = canvas.clientWidth;
     const h = canvas.clientHeight;
 
@@ -187,7 +187,7 @@ export function DitheredWaves({
         ) * 0.35;
         val = Math.min(1, Math.max(0, val + swirl));
 
-        // Mouse interaction — create a liquid ripple/distortion
+        // Mouse interaction - create a liquid ripple/distortion
         if (enableMouse && mx > -999) {
           const dx = x - mx;
           const dy = y - my;
@@ -221,7 +221,7 @@ export function DitheredWaves({
     rafRef.current = requestAnimationFrame(draw);
   }, [charset, color, bgColor, cellSize, speed, effectiveLayers, amplitude, frequency, enableMouse, mouseRadius]);
 
-  // Visibility-based animation — pause when off-screen
+  // Visibility-based animation - pause when off-screen
   const visibleRef = useRef(true);
 
   useEffect(() => {
