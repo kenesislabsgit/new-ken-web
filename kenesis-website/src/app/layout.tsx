@@ -31,7 +31,7 @@ const neoWave = localFont({
 
 export const metadata: Metadata = {
   title: {
-    default: "Kenesis — On-Premise AI Video Analytics",
+    default: "Kenesis | On-Premise AI Video Analytics",
     template: "%s | Kenesis",
   },
   description:
@@ -41,14 +41,14 @@ export const metadata: Metadata = {
     type: "website",
     url: "https://kenesis.ai",
     siteName: "Kenesis",
-    title: "Kenesis — On-Premise AI Video Analytics",
+    title: "Kenesis | On-Premise AI Video Analytics",
     description:
       "Real-time AI safety monitoring for industrial facilities. PPE compliance, zone detection, hazard alerts. Fully on-premise, no cloud dependency.",
     images: [{ url: "/kenesis-og.png", width: 1200, height: 630, alt: "Kenesis AI Video Analytics" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Kenesis — On-Premise AI Video Analytics",
+    title: "Kenesis | On-Premise AI Video Analytics",
     description:
       "Real-time AI safety monitoring for industrial facilities. PPE compliance, zone detection, hazard alerts. Fully on-premise, no cloud dependency.",
     images: ["/kenesis-og.png"],
