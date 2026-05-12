@@ -1,6 +1,6 @@
 'use client';
 
-import { ShieldCheck, Brain, LockKey, Activity, ChartLineUp } from '@phosphor-icons/react';
+import { ShieldCheck, Brain, LockKey, Pulse, ChartLine } from '@phosphor-icons/react';
 import DottedMap from 'dotted-map';
 import { Area, AreaChart, CartesianGrid } from 'recharts';
 import {
@@ -213,7 +213,7 @@ export function CapabilitiesGrid() {
           <div className="col-span-full border-b border-white/[0.07]">
             <div className="p-6 sm:p-10 pb-4">
               <span className="flex items-center gap-2 text-white/40 text-[14px] mb-5">
-              <ChartLineUp className="size-4 text-amber-400" weight="duotone" />
+              <Pulse className="size-4 text-amber-400" weight="duotone" />
                 Alert activity — today's shift
               </span>
               <p className="font-display text-[20px] sm:text-[22px] font-semibold text-white leading-snug">
