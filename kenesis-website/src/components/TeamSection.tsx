@@ -21,7 +21,7 @@ const TEAM: TeamMember[] = [
   { name: 'Dheekshith', role: 'COO', bio: 'Operations, AI, and backend. Keeps the machine running and the models shipping.', image: '/team/dheek.webp' },
   { name: 'Aswin JD', role: 'CAIO', bio: 'Chief AI Officer. The core AI brain: model training, optimization, and research.', image: '/team/aswin.webp' },
   { name: 'Dinesh Kumar', role: 'CPO', bio: 'Visual creativity and marketing. Shapes how Kenesis looks, feels, and speaks.', image: '/team/dk.webp' },
-  { name: 'Rakesh', role: 'Operations', bio: 'Factory deployments across Tamil Nadu. Every server ships and runs.', image: '/team/rakesh.webp' },
+  { name: 'Dr. Rakesh Kumar Mahendran', role: 'Mentor', bio: 'Industry advisor and academic guide. Brings deep domain expertise in industrial systems and helps shape the technical direction of the company.', image: '/team/rakesh.webp' },
 ];
 
 function TeamCard({ member }: { member: TeamMember }) {
