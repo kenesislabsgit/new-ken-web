@@ -11,6 +11,38 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function HeroSection() {
   const introRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Force inline autoplay on iOS Safari — prevents the native play button overlay.
+  // iOS blocks autoplay until `.play()` is called programmatically, even when
+  // `autoPlay`, `muted`, and `playsInline` are all set as attributes.
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    // setAttribute ensures `playsinline` and `webkit-playsinline` are both
+    // present in the DOM for older iOS WebKit versions.
+    video.setAttribute('playsinline', '');
+    video.setAttribute('webkit-playsinline', '');
+    video.muted = true;
+
+    const attempt = () => {
+      video.play().catch(() => {
+        // Autoplay blocked (e.g. Low Power Mode) — silently ignore.
+        // Video stays hidden behind the overlay divs so no broken UI.
+      });
+    };
+
+    if (video.readyState >= 2) {
+      attempt();
+    } else {
+      video.addEventListener('loadeddata', attempt, { once: true });
+    }
+
+    return () => {
+      video.removeEventListener('loadeddata', attempt);
+    };
+  }, []);
 
   useEffect(() => {
     const intro = introRef.current;
@@ -30,12 +62,15 @@ export default function HeroSection() {
       {/* Video background */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         <video
+          ref={videoRef}
           autoPlay
           loop
           muted
           playsInline
-          preload="auto"
+          preload="metadata"
+          disableRemotePlayback
           className="absolute inset-0 w-full h-full object-cover"
+          style={{ WebkitTransform: 'translateZ(0)' }}
         >
           <source src="/videos/hero-bg.mp4" type="video/mp4" />
         </video>
