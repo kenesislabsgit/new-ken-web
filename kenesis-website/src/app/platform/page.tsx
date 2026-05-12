@@ -1,7 +1,5 @@
-﻿'use client';
-
+﻿// Server Component — pre-rendered HTML shipped from server
 import dynamic from 'next/dynamic';
-import { Button } from '@heroui/react';
 import { Shield, Zap, Camera, WifiOff, FileCheck, Rocket } from 'lucide-react';
 import PageShell from '@/components/PageShell';
 import { BlurFade } from '@/components/magicui/blur-fade';
@@ -9,14 +7,14 @@ import { ScrollReveal } from '@/components/magicui/scroll-reveal';
 import { AsciiDivider } from '@/components/AsciiArt';
 import { TypewriterText } from '@/components/magicui/typewriter-text';
 import BorderGlow from '@/components/BorderGlow';
+import { WalkthroughCTA, WalkthroughCTABottom } from '@/components/WalkthroughCTA';
 
 // Heavy below-fold components — dynamically imported to keep initial bundle small
 const DitheredWaves = dynamic(
-  () => import('@/components/magicui/dithered-waves').then(m => ({ default: m.DitheredWaves })),
-  { ssr: false }
+  () => import('@/components/magicui/dithered-waves').then(m => ({ default: m.DitheredWaves }))
 );
-const DashboardPreview = dynamic(() => import('@/components/DashboardPreview'), { ssr: false });
-const SequentialHighlight = dynamic(() => import('@/components/SequentialHighlight'), { ssr: false });
+const DashboardPreview = dynamic(() => import('@/components/DashboardPreview'));
+const SequentialHighlight = dynamic(() => import('@/components/SequentialHighlight'));
 
 export default function PlatformPage() {
   return (
@@ -50,11 +48,7 @@ export default function PlatformPage() {
           </p>
         </BlurFade>
         <BlurFade delay={0.75} duration={0.4} blur="4px" offset={6}>
-          <a href="/contact">
-            <Button variant="primary" size="lg" className="font-mono-accent uppercase tracking-[0.1em] text-[15px] rounded-[1.2rem] cursor-pointer">
-              Book a walkthrough
-            </Button>
-          </a>
+          <WalkthroughCTA />
         </BlurFade>
       </section>
 
@@ -253,11 +247,7 @@ export default function PlatformPage() {
           <p className="font-display text-[clamp(24px,4vw,36px)] font-semibold tracking-[-0.02em] text-white/90 mb-6">
             See it in action on your factory floor.
           </p>
-          <a href="/contact">
-            <Button variant="primary" size="lg" className="font-mono-accent uppercase tracking-[0.1em] text-[15px] rounded-[1.2rem] cursor-pointer">
-              Book a walkthrough
-            </Button>
-          </a>
+          <WalkthroughCTABottom />
         </BlurFade>
       </section>
     </PageShell>

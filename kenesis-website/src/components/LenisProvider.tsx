@@ -5,92 +5,84 @@ import {
   useContext,
   useEffect,
   useRef,
-  useState,
   type ReactNode,
 } from 'react';
-import Lenis from '@studio-freight/lenis';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-// --- Context ---
+// Lenis and GSAP are loaded dynamically after hydration so they are excluded
+// from the critical JS bundle. This keeps First Load JS small on all pages.
 
 interface LenisContextValue {
-  lenis: Lenis | null;
+  lenis: unknown | null;
 }
 
 const LenisContext = createContext<LenisContextValue>({ lenis: null });
 
 export const useLenis = () => useContext(LenisContext);
 
-// --- Provider ---
-
 interface LenisProviderProps {
   children: ReactNode;
 }
 
 export default function LenisProvider({ children }: LenisProviderProps) {
-  const [lenis, setLenis] = useState<Lenis | null>(null);
-  const lenisRef = useRef<Lenis | null>(null);
+  const lenisRef = useRef<unknown | null>(null);
+  const cleanupRef = useRef<(() => void) | null>(null);
 
   useEffect(() => {
-    // Register GSAP ScrollTrigger plugin before any scroll-driven animations
-    gsap.registerPlugin(ScrollTrigger);
+    let cancelled = false;
 
-    // Check prefers-reduced-motion
-    const prefersReduced =
-      typeof window !== 'undefined' &&
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    Promise.all([
+      import('@studio-freight/lenis'),
+      import('gsap'),
+      import('gsap/ScrollTrigger'),
+    ]).then(([{ default: Lenis }, { default: gsap }, { ScrollTrigger }]) => {
+      if (cancelled) return;
 
-    // Initialize Lenis with smooth scrolling (disabled if reduced motion)
-    // autoRaf: false because we drive Lenis manually via GSAP ticker
-    const lenisInstance = new Lenis({
-      smoothWheel: !prefersReduced,
-      syncTouch: true,        // Sync touch events with Lenis for consistent behavior
-      syncTouchLerp: 0.075,   // Lighter lerp for touch - closer to native feel
-      touchInertiaMultiplier: 25, // Natural touch momentum
-      autoRaf: false,
-      lerp: 0.1,
-      duration: 1.0,
-      wheelMultiplier: 1.0,
-    } as any);
+      gsap.registerPlugin(ScrollTrigger);
 
-    lenisRef.current = lenisInstance;
-    setLenis(lenisInstance);
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // Scroll to top on mount (page navigation)
-    window.scrollTo(0, 0);
-    lenisInstance.scrollTo(0, { immediate: true });
+      const lenis = new Lenis({
+        smoothWheel: !prefersReduced,
+        syncTouch: true,
+        syncTouchLerp: 0.075,
+        touchInertiaMultiplier: 25,
+        autoRaf: false,
+        lerp: 0.1,
+        duration: 1.0,
+        wheelMultiplier: 1.0,
+      } as never);
 
-    // Link Lenis scroll events to ScrollTrigger.update()
-    lenisInstance.on('scroll', ScrollTrigger.update);
+      lenisRef.current = lenis;
 
-    // Link gsap.ticker to lenis.raf so Lenis uses GSAP's frame loop
-    const tickerCallback = (time: number) => {
-      lenisInstance.raf(time * 1000);
-    };
-    gsap.ticker.add(tickerCallback);
+      window.scrollTo(0, 0);
+      lenis.scrollTo(0, { immediate: true });
+      lenis.on('scroll', ScrollTrigger.update);
 
-    // Disable GSAP lag smoothing for consistent scroll-driven animation timing
-    gsap.ticker.lagSmoothing(0);
+      const tick = (time: number) => lenis.raf(time * 1000);
+      gsap.ticker.add(tick);
+      gsap.ticker.lagSmoothing(0);
 
-    // Refresh ScrollTrigger after dynamic content loads
-    // This recalculates all pin positions and scroll heights
-    const refresh1 = setTimeout(() => ScrollTrigger.refresh(), 1500);
-    const refresh2 = setTimeout(() => ScrollTrigger.refresh(), 5000);
+      const t1 = setTimeout(() => ScrollTrigger.refresh(), 1500);
+      const t2 = setTimeout(() => ScrollTrigger.refresh(), 5000);
 
-    // Cleanup on unmount
+      cleanupRef.current = () => {
+        clearTimeout(t1);
+        clearTimeout(t2);
+        gsap.ticker.remove(tick);
+        lenis.destroy();
+        ScrollTrigger.killAll();
+      };
+    });
+
     return () => {
-      clearTimeout(refresh1);
-      clearTimeout(refresh2);
-      gsap.ticker.remove(tickerCallback);
-      lenisInstance.destroy();
-      ScrollTrigger.killAll();
+      cancelled = true;
+      cleanupRef.current?.();
       lenisRef.current = null;
     };
   }, []);
 
   return (
-    <LenisContext.Provider value={{ lenis }}>
+    <LenisContext.Provider value={{ lenis: lenisRef.current }}>
       {children}
     </LenisContext.Provider>
   );

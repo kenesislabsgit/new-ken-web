@@ -405,6 +405,15 @@ h1, h2, h3, h4, h5, h6 {
 .scrollbar-hide::-webkit-scrollbar { display: none; }
 .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
 
+/* Feature card number hover — CSS-only, no JS event handlers needed */
+.feature-num {
+  -webkit-text-stroke: 1px rgba(245,158,11,0.15);
+  transition: -webkit-text-stroke 0.4s ease;
+}
+.group:hover .feature-num {
+  -webkit-text-stroke: 1px rgba(245,158,11,0.4);
+}
+
 @keyframes cursor-blink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }

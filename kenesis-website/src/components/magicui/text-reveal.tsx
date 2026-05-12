@@ -1,34 +1,27 @@
 ﻿"use client";
 
 import React, { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { cn } from "@/lib/utils";
 import { prefersReducedMotion } from "@/lib/animations";
 
-gsap.registerPlugin(ScrollTrigger);
+// GSAP is lazy-loaded inside useEffect — keeps it out of the critical JS bundle
 
 type TextRevealVariant =
-  | "word-fade"      // Words fade in one by one on scroll
-  | "word-slide"     // Words slide up from below
-  | "word-blur"      // Words go from blurred to sharp
-  | "char-cascade"   // Characters cascade in with stagger
-  | "line-mask"      // Lines reveal with clip-path mask
-  | "highlight";     // Words appear then get highlighted
+  | "word-fade"
+  | "word-slide"
+  | "word-blur"
+  | "char-cascade"
+  | "line-mask"
+  | "highlight";
 
 interface TextRevealProps {
   children: string;
   className?: string;
   variant?: TextRevealVariant;
-  /** Tag to render - defaults to "p" */
   as?: "p" | "h1" | "h2" | "h3" | "h4" | "span";
-  /** If true, animation is scrubbed to scroll position */
   scrub?: boolean | number;
-  /** ScrollTrigger start */
   start?: string;
-  /** ScrollTrigger end (for scrub mode) */
   end?: string;
-  /** Stagger between words/chars in seconds */
   stagger?: number;
   duration?: number;
   delay?: number;
@@ -55,78 +48,60 @@ export function TextReveal({
     if (!container) return;
 
     if (prefersReducedMotion()) {
-      const spans = container.querySelectorAll(".tr-unit");
-      gsap.set(spans, { opacity: 1, y: 0, filter: "blur(0px)", clipPath: "none" });
+      container.querySelectorAll<HTMLElement>(".tr-unit").forEach(el => {
+        el.style.opacity = '1';
+        el.style.filter = 'blur(0px)';
+        el.style.transform = '';
+        el.style.clipPath = '';
+      });
       return;
     }
 
-    const units = container.querySelectorAll(".tr-unit");
-    if (!units.length) return;
+    // Lazy-load GSAP — excluded from initial bundle
+    Promise.all([import('gsap'), import('gsap/ScrollTrigger')]).then(
+      ([{ default: gsap }, { ScrollTrigger }]) => {
+        if (!containerRef.current) return;
+        gsap.registerPlugin(ScrollTrigger);
 
-    const defaultStagger = variant.startsWith("char") ? 0.02 : 0.05;
-    const s = stagger ?? defaultStagger;
-    const toggleActions = once ? "play none none none" : "play reverse play reverse";
+        const units = container.querySelectorAll(".tr-unit");
+        if (!units.length) return;
 
-    let from: gsap.TweenVars = {};
-    let to: gsap.TweenVars = {};
+        const defaultStagger = variant.startsWith("char") ? 0.02 : 0.05;
+        const s = stagger ?? defaultStagger;
+        const toggleActions = once ? "play none none none" : "play reverse play reverse";
 
-    switch (variant) {
-      case "word-fade":
-        from = { opacity: 0.15 };
-        to = { opacity: 1 };
-        break;
-      case "word-slide":
-        from = { opacity: 0, y: "100%", rotateX: 45 };
-        to = { opacity: 1, y: "0%", rotateX: 0 };
-        break;
-      case "word-blur":
-        from = { opacity: 0, filter: "blur(10px)" };
-        to = { opacity: 1, filter: "blur(0px)" };
-        break;
-      case "char-cascade":
-        from = { opacity: 0, y: 20, scale: 0.8 };
-        to = { opacity: 1, y: 0, scale: 1 };
-        break;
-      case "line-mask":
-        from = { clipPath: "inset(0 0 100% 0)" };
-        to = { clipPath: "inset(0 0 0% 0)" };
-        break;
-      case "highlight":
-        from = { opacity: 0.2, color: "rgba(255,255,255,0.2)" };
-        to = { opacity: 1, color: "rgba(255,255,255,0.9)" };
-        break;
-    }
+        let from: gsap.TweenVars = {};
+        let to: gsap.TweenVars = {};
 
-    const ctx = gsap.context(() => {
-      if (scrub) {
-        gsap.fromTo(units, from, {
-          ...to,
-          stagger: s,
-          ease: "none",
-          scrollTrigger: {
-            trigger: container,
-            start,
-            end,
-            scrub: typeof scrub === "number" ? scrub : 0.5,
-          },
+        switch (variant) {
+          case "word-fade":    from = { opacity: 0.15 };                        to = { opacity: 1 }; break;
+          case "word-slide":   from = { opacity: 0, y: "100%", rotateX: 45 };  to = { opacity: 1, y: "0%", rotateX: 0 }; break;
+          case "word-blur":    from = { opacity: 0, filter: "blur(10px)" };     to = { opacity: 1, filter: "blur(0px)" }; break;
+          case "char-cascade": from = { opacity: 0, y: 20, scale: 0.8 };       to = { opacity: 1, y: 0, scale: 1 }; break;
+          case "line-mask":    from = { clipPath: "inset(0 0 100% 0)" };        to = { clipPath: "inset(0 0 0% 0)" }; break;
+          case "highlight":    from = { opacity: 0.2, color: "rgba(255,255,255,0.2)" }; to = { opacity: 1, color: "rgba(255,255,255,0.9)" }; break;
+        }
+
+        const ctx = gsap.context(() => {
+          if (scrub) {
+            gsap.fromTo(units, from, {
+              ...to, stagger: s, ease: "none",
+              scrollTrigger: {
+                trigger: container, start, end,
+                scrub: typeof scrub === "number" ? scrub : 0.5,
+              },
+            });
+          } else {
+            gsap.fromTo(units, from, {
+              ...to, duration, delay, stagger: s, ease: "power3.out",
+              scrollTrigger: { trigger: container, start, toggleActions },
+            });
+          }
         });
-      } else {
-        gsap.fromTo(units, from, {
-          ...to,
-          duration,
-          delay,
-          stagger: s,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: container,
-            start,
-            toggleActions,
-          },
-        });
+
+        return () => ctx.revert();
       }
-    });
-
-    return () => ctx.revert();
+    );
   }, [variant, scrub, start, end, stagger, duration, delay, once]);
 
   // Split text into units

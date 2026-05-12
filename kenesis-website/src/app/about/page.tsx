@@ -1,5 +1,4 @@
-﻿'use client';
-
+﻿// Server Component — pre-rendered HTML shipped from server, no blocking JS on initial load
 import dynamic from 'next/dynamic';
 import PageShell from '@/components/PageShell';
 import { BlurFade } from '@/components/magicui/blur-fade';
@@ -10,22 +9,18 @@ import { ImageMaskedText } from '@/components/magicui/image-masked-text';
 
 // Heavy canvas/shader components deferred — excluded from initial parse/execution
 const DitheredWaves = dynamic(
-  () => import('@/components/magicui/dithered-waves').then(m => ({ default: m.DitheredWaves })),
-  { ssr: false }
+  () => import('@/components/magicui/dithered-waves').then(m => ({ default: m.DitheredWaves }))
 );
 const LiquidMetalLogo = dynamic(
-  () => import('@/components/magicui/liquid-metal-logo').then(m => ({ default: m.LiquidMetalLogo })),
-  { ssr: false }
+  () => import('@/components/magicui/liquid-metal-logo').then(m => ({ default: m.LiquidMetalLogo }))
 );
 const CircularGallery = dynamic(
-  () => import('@/components/magicui/circular-gallery').then(m => ({ default: m.CircularGallery })),
-  { ssr: false }
+  () => import('@/components/magicui/circular-gallery').then(m => ({ default: m.CircularGallery }))
 );
 const NumberTicker = dynamic(
-  () => import('@/components/magicui/number-ticker').then(m => ({ default: m.NumberTicker })),
-  { ssr: false }
+  () => import('@/components/magicui/number-ticker').then(m => ({ default: m.NumberTicker }))
 );
-const TeamSection = dynamic(() => import('@/components/TeamSection'), { ssr: false });
+const TeamSection = dynamic(() => import('@/components/TeamSection'));
 
 export default function AboutPage() {
   return (

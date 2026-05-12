@@ -1,6 +1,6 @@
-﻿"use client";
-
-import dynamic from "next/dynamic";
+﻿// Server Component — no "use client" needed.
+// All child components that need client APIs have their own "use client" boundaries.
+// This means Next.js will pre-render this page's HTML on the server and send it immediately.
 import LenisProvider from "@/components/LenisProvider";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import Navbar from "@/components/Navbar";
@@ -11,42 +11,14 @@ import { ScrollReveal } from "@/components/magicui/scroll-reveal";
 import { TextReveal } from "@/components/magicui/text-reveal";
 import { BorderBeam } from "@/components/magicui/border-beam";
 import BorderGlow from "@/components/BorderGlow";
-
-// Everything below the fold is dynamically imported — excluded from the initial JS bundle.
-// This alone cuts ~200kB from First Load JS (Three.js, GSAP pins, WebGL canvases).
-const ScrollFrameSection = dynamic(
-  () => import("@/components/ScrollFrameSection"),
-  {
-    ssr: false,
-    loading: () => (
-      <div className="relative bg-[#0a0a0b] flex items-center justify-center" style={{ height: '100vh' }}>
-        <div className="w-[32px] h-[32px] border-2 border-amber-400/20 border-t-amber-400 rounded-full animate-spin" />
-      </div>
-    ),
-  }
-);
-
-const PinnedFeatureTabs = dynamic(() => import("@/components/PinnedFeatureTabs"), { ssr: false });
-
-const WavePerformanceSection = dynamic(
-  () => import("@/components/WavePerformanceSection"),
-  { ssr: false }
-);
-
-const PartnerLogosSection = dynamic(
-  () => import("@/components/PartnerLogosSection"),
-  { ssr: false }
-);
-
-const CareersCTASection = dynamic(
-  () => import("@/components/CareersCTASection"),
-  { ssr: false }
-);
-
-const FooterCTASection = dynamic(
-  () => import("@/components/FooterCTASection"),
-  { ssr: false }
-);
+import {
+  LazyScrollFrameSection as ScrollFrameSection,
+  LazyPinnedFeatureTabs as PinnedFeatureTabs,
+  LazyWavePerformanceSection as WavePerformanceSection,
+  LazyPartnerLogosSection as PartnerLogosSection,
+  LazyCareersCTASection as CareersCTASection,
+  LazyFooterCTASection as FooterCTASection,
+} from "@/components/LazyPageSections";
 
 /* -- Solutions data (scroll frame sections) -- */
 
@@ -151,15 +123,11 @@ export default function Home() {
 
                       <div className="flex items-start justify-between mb-[20px] sm:mb-[32px]">
                         {/* Number - skeuomorphic embossed */}
-                        <p className="font-mono-accent text-[36px] sm:text-[48px] font-bold leading-none"
+                        <p className="feature-num font-mono-accent text-[36px] sm:text-[48px] font-bold leading-none"
                           style={{
                             color: 'transparent',
-                            WebkitTextStroke: '1px rgba(245,158,11,0.15)',
                             textShadow: '0 1px 0 rgba(255,255,255,0.04), 0 -1px 0 rgba(0,0,0,0.3)',
-                            transition: 'all 0.4s ease',
                           }}
-                          onMouseEnter={e => { (e.target as HTMLElement).style.webkitTextStroke = '1px rgba(245,158,11,0.4)'; }}
-                          onMouseLeave={e => { (e.target as HTMLElement).style.webkitTextStroke = '1px rgba(245,158,11,0.15)'; }}
                         >{f.num}</p>
 
                         {/* Arrow - skeuomorphic raised circle */}

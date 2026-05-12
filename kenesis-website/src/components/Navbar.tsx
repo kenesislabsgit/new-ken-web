@@ -3,10 +3,8 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { Button, Tooltip } from "@heroui/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger);
+// No GSAP in the critical path — nav slide-in is pure CSS, scroll bar uses native scroll event
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -18,43 +16,33 @@ const mobileLinks = [
   { label: "Home", href: "/" },
   { label: "Platform", href: "/platform" },
   { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-  const headerRef = useRef<HTMLDivElement>(null);
+  const [progress, setProgress] = useState(0);
   const progressRef = useRef<HTMLDivElement>(null);
 
+  // Native scroll progress — no GSAP dependency
   useEffect(() => {
-    const el = headerRef.current;
-    if (!el) return;
-    const tween = gsap.fromTo(
-      el,
-      { y: -80, opacity: 0 },
-      { y: 0, opacity: 1, duration: 1, ease: "power2.out", delay: 0.3 }
-    );
-    return () => { tween.kill(); };
-  }, []);
-
-  useEffect(() => {
-    const bar = progressRef.current;
-    if (!bar) return;
-    const trigger = ScrollTrigger.create({
-      start: "top top",
-      end: "max",
-      invalidateOnRefresh: true,
-      onUpdate(self) {
-        gsap.set(bar, { width: `${self.progress * 100}%` });
-      },
-    });
-    const refreshTimer = setTimeout(() => ScrollTrigger.refresh(), 3000);
-    const refreshTimer2 = setTimeout(() => ScrollTrigger.refresh(), 8000);
-    return () => { trigger.kill(); clearTimeout(refreshTimer); clearTimeout(refreshTimer2); };
+    const onScroll = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (docHeight <= 0) return;
+      setProgress((scrollTop / docHeight) * 100);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
     <>
       <style>{`
+        @keyframes navbar-slide-in {
+          from { transform: translateY(-80px); opacity: 0; }
+          to   { transform: translateY(0);    opacity: 1; }
+        }
         /* ── Navbar skeuomorphic shell ── */
         .navbar-shell {
           position: relative;
@@ -228,9 +216,8 @@ export default function Navbar() {
       `}</style>
 
       <div
-        ref={headerRef}
         className="fixed top-[12px] left-0 right-0 z-[500] mx-auto w-[calc(100vw-24px)] max-w-[1152px] sm:top-[20px] sm:w-[calc(100vw-48px)]"
-        style={{ opacity: 0, transform: "translateY(-80px)" }}
+        style={{ animation: "navbar-slide-in 0.9s cubic-bezier(0.22,1,0.36,1) 0.2s both" }}
       >
         <div className="navbar-shell relative flex items-center justify-between rounded-[10px] sm:rounded-[12px] px-[14px] py-[10px] sm:px-[20px] sm:py-[12px]">
 
@@ -287,9 +274,10 @@ export default function Navbar() {
               ref={progressRef}
               className="h-full rounded-full"
               style={{
-                width: "0%",
+                width: `${progress}%`,
                 background: "linear-gradient(90deg, #fbbf24, #f59e0b, #d97706)",
                 boxShadow: "0 0 6px rgba(245,158,11,0.5)",
+                transition: "width 0.1s linear",
               }}
             />
           </div>

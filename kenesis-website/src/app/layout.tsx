@@ -9,6 +9,7 @@ const geist = Geist({
   variable: "--font-geist",
   display: "swap",
   weight: ["300", "400", "500", "600", "700", "800", "900"],
+  preload: true,
 });
 
 // Headers: Instrument Serif - editorial serif for display use
@@ -18,6 +19,7 @@ const instrumentSerif = Instrument_Serif({
   display: "swap",
   weight: "400",
   style: ["normal", "italic"],
+  preload: true,
 });
 
 const neoWave = localFont({
@@ -44,9 +46,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-      <html lang="en" className={`${geist.variable} ${instrumentSerif.variable} ${neoWave.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${geist.variable} ${instrumentSerif.variable} ${neoWave.variable}`} suppressHydrationWarning>
       <head>
+        {/* DNS prefetch and preconnect for Google Fonts CDN */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* Preload the local display font used in the footer */}
         <link rel="preload" href="/fonts/MBFNeoWave-Regular.otf" as="font" type="font/otf" crossOrigin="anonymous" />
+        {/* Tell the browser not to render-block on this CSS */}
+        <meta name="color-scheme" content="dark" />
       </head>
       <body className="antialiased">{children}</body>
     </html>
