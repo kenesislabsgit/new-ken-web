@@ -1,10 +1,14 @@
 ﻿'use client';
 
+import dynamic from 'next/dynamic';
 import LenisProvider from '@/components/LenisProvider';
 import ErrorBoundary from '@/components/ErrorBoundary';
 import Navbar from '@/components/Navbar';
-import FooterCTASection from '@/components/FooterCTASection';
 import { ProgressiveBlur } from '@/components/magicui/progressive-blur';
+
+// FooterCTASection pulls in Three.js, two DitheredWaves instances and TextVideoMask.
+// Deferring it keeps every inner page's initial bundle clean.
+const FooterCTASection = dynamic(() => import('@/components/FooterCTASection'), { ssr: false });
 
 export default function PageShell({ children }: { children: React.ReactNode }) {
   return (

@@ -6,18 +6,16 @@ import ErrorBoundary from "@/components/ErrorBoundary";
 import Navbar from "@/components/Navbar";
 import { ProgressiveBlur } from "@/components/magicui/progressive-blur";
 import HeroSection from "@/components/HeroSection";
-import PinnedFeatureTabs from "@/components/PinnedFeatureTabs";
-import WavePerformanceSection from "@/components/WavePerformanceSection";
-import PartnerLogosSection from "@/components/PartnerLogosSection";
-import CareersCTASection from "@/components/CareersCTASection";
-import FooterCTASection from "@/components/FooterCTASection";
 import { BlurFade } from "@/components/magicui/blur-fade";
 import { ScrollReveal } from "@/components/magicui/scroll-reveal";
 import { TextReveal } from "@/components/magicui/text-reveal";
 import { BorderBeam } from "@/components/magicui/border-beam";
 import BorderGlow from "@/components/BorderGlow";
+
+// Everything below the fold is dynamically imported — excluded from the initial JS bundle.
+// This alone cuts ~200kB from First Load JS (Three.js, GSAP pins, WebGL canvases).
 const ScrollFrameSection = dynamic(
-  () => import(/* webpackPrefetch: true */ "@/components/ScrollFrameSection"),
+  () => import("@/components/ScrollFrameSection"),
   {
     ssr: false,
     loading: () => (
@@ -26,6 +24,28 @@ const ScrollFrameSection = dynamic(
       </div>
     ),
   }
+);
+
+const PinnedFeatureTabs = dynamic(() => import("@/components/PinnedFeatureTabs"), { ssr: false });
+
+const WavePerformanceSection = dynamic(
+  () => import("@/components/WavePerformanceSection"),
+  { ssr: false }
+);
+
+const PartnerLogosSection = dynamic(
+  () => import("@/components/PartnerLogosSection"),
+  { ssr: false }
+);
+
+const CareersCTASection = dynamic(
+  () => import("@/components/CareersCTASection"),
+  { ssr: false }
+);
+
+const FooterCTASection = dynamic(
+  () => import("@/components/FooterCTASection"),
+  { ssr: false }
 );
 
 /* -- Solutions data (scroll frame sections) -- */

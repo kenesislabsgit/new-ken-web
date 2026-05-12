@@ -1,10 +1,16 @@
 ﻿'use client';
 
 import { useEffect, useRef, useState, useCallback } from 'react';
+import dynamic from 'next/dynamic';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { prefersReducedMotion } from '@/lib/animations';
-import { FlickeringGrid } from '@/components/magicui/flickering-grid';
+
+// Canvas-heavy background — loaded lazily so it doesn't block PinnedFeatureTabs' initial render
+const FlickeringGrid = dynamic(
+  () => import('@/components/magicui/flickering-grid').then(m => ({ default: m.FlickeringGrid })),
+  { ssr: false }
+);
 
 gsap.registerPlugin(ScrollTrigger);
 

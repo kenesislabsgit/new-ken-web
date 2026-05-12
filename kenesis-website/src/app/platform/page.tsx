@@ -1,16 +1,22 @@
 ﻿'use client';
 
+import dynamic from 'next/dynamic';
 import { Button } from '@heroui/react';
 import { Shield, Zap, Camera, WifiOff, FileCheck, Rocket } from 'lucide-react';
 import PageShell from '@/components/PageShell';
 import { BlurFade } from '@/components/magicui/blur-fade';
-import DashboardPreview from '@/components/DashboardPreview';
 import { ScrollReveal } from '@/components/magicui/scroll-reveal';
 import { AsciiDivider } from '@/components/AsciiArt';
 import { TypewriterText } from '@/components/magicui/typewriter-text';
-import { DitheredWaves } from '@/components/magicui/dithered-waves';
-import SequentialHighlight from '@/components/SequentialHighlight';
 import BorderGlow from '@/components/BorderGlow';
+
+// Heavy below-fold components — dynamically imported to keep initial bundle small
+const DitheredWaves = dynamic(
+  () => import('@/components/magicui/dithered-waves').then(m => ({ default: m.DitheredWaves })),
+  { ssr: false }
+);
+const DashboardPreview = dynamic(() => import('@/components/DashboardPreview'), { ssr: false });
+const SequentialHighlight = dynamic(() => import('@/components/SequentialHighlight'), { ssr: false });
 
 export default function PlatformPage() {
   return (
