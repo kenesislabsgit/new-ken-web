@@ -13,7 +13,7 @@ export default function SplitContentSection() {
             <TextReveal
               variant="word-blur"
               as="h2"
-              className="mb-6 font-display text-4xl font-semibold leading-tight tracking-tight text-neutral-900 md:text-5xl"
+              className="mb-6 font-display text-4xl font-semibold leading-tight text-neutral-900 md:text-5xl"
             >
               Driving the future of autonomous mobility
             </TextReveal>

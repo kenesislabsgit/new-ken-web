@@ -97,14 +97,14 @@ export default function HeroSection() {
         <div className="md:hidden absolute inset-0 flex flex-col justify-center px-6 pt-[80px]">
           {/* Eyebrow — small, low-priority, can animate in */}
           <p
-            className="text-[10px] uppercase tracking-[0.18em] text-amber-400/60 mb-4"
+            className="text-[10px] uppercase text-amber-400/60 mb-4"
             style={{ animation: 'hero-fade-up 0.6s cubic-bezier(0.22,1,0.36,1) 0.1s both' }}
           >
             On-Premise AI · Industrial Safety
           </p>
 
           {/* h1 — LCP element: NO delay, visible immediately in first paint */}
-          <h1 className="font-display text-[28px] font-bold leading-[1.08] tracking-[-0.03em] text-white mb-5">
+          <h1 className="font-display text-[28px] font-bold leading-[1.08] text-white mb-5">
             <span className="block" style={{ animation: 'hero-fade-up 0.7s cubic-bezier(0.22,1,0.36,1) 0s both' }}>
               Your cameras see everything.
             </span>
@@ -126,7 +126,7 @@ export default function HeroSection() {
             className="inline-flex items-center gap-2 self-start
                        min-h-[44px] px-5
                        border border-white/15 rounded-full
-                       text-[11px] uppercase tracking-[0.14em] font-medium
+                       text-[11px] uppercase font-medium
                        text-white/60 hover:text-white hover:border-amber-400/40
                        transition-all duration-300 group"
             style={{ animation: 'hero-fade-up 0.5s cubic-bezier(0.22,1,0.36,1) 0.4s both' }}
@@ -139,14 +139,14 @@ export default function HeroSection() {
         {/* ── DESKTOP layout ── */}
         <div className="hidden md:flex absolute top-0 left-0 right-0 flex-col items-center text-center px-8 pt-[180px]">
           <p
-            className="text-[11px] uppercase tracking-[0.18em] text-amber-400/60 mb-5"
+            className="text-[11px] uppercase text-amber-400/60 mb-5"
             style={{ animation: 'hero-fade-up 0.6s cubic-bezier(0.22,1,0.36,1) 0.1s both' }}
           >
             On-Premise AI · Industrial Safety
           </p>
 
           {/* h1 — LCP element: minimal delay so it renders in first frame */}
-          <h1 className="font-display font-bold leading-[1.05] tracking-[-0.04em] text-white
+          <h1 className="font-display font-bold leading-[1.05] text-white
                          text-[clamp(32px,5.5vw,80px)] max-w-[80vw] lg:max-w-[70vw]">
             <span className="block" style={{ animation: 'hero-fade-up 0.7s cubic-bezier(0.22,1,0.36,1) 0s both' }}>
               Your cameras see everything.
@@ -172,7 +172,7 @@ export default function HeroSection() {
             className="mt-6 inline-flex items-center gap-2
                        min-h-[44px] px-6
                        border border-white/15 rounded-full
-                       text-[12px] uppercase tracking-[0.14em] font-medium
+                       text-[12px] uppercase font-medium
                        text-white/60 hover:text-white hover:border-amber-400/40
                        transition-all duration-300 group"
             style={{ animation: 'hero-fade-up 0.5s cubic-bezier(0.22,1,0.36,1) 0.45s both' }}

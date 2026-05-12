@@ -115,7 +115,7 @@ export default function SequentialHighlight({ heading, paragraphs }: Props) {
   if (prefersReducedMotion()) {
     return (
       <section className="relative z-[1] mx-auto max-w-[1152px] px-4 sm:px-6 py-16 md:py-32 md:px-12 border-t border-white/[0.06]">
-        <h2 className="font-display text-[clamp(24px,4vw,36px)] font-semibold tracking-[-0.02em] text-white/90 mb-16">{heading}</h2>
+        <h2 className="font-display text-[clamp(24px,4vw,36px)] font-semibold text-white/90 mb-16">{heading}</h2>
         <div className="max-w-3xl space-y-8">
           {paragraphs.map((p, i) => (
             <p key={i} className="text-[clamp(16px,2.5vw,22px)] leading-[1.6] text-white/60">{p}</p>
@@ -135,7 +135,7 @@ export default function SequentialHighlight({ heading, paragraphs }: Props) {
 
       <div className="relative z-[1] mx-auto max-w-[1024px] px-4 sm:px-6 md:px-12 w-full">
         {/* Heading */}
-        <h2 ref={headingRef} className="font-display text-[clamp(22px,5vw,48px)] font-semibold tracking-[-0.035em] text-white/95 mb-10 md:mb-16 text-center" style={{ opacity: 0 }}>
+        <h2 ref={headingRef} className="font-display text-[clamp(22px,5vw,48px)] font-semibold text-white/95 mb-10 md:mb-16 text-center" style={{ opacity: 0 }}>
           {heading}
         </h2>
 
@@ -165,7 +165,7 @@ export default function SequentialHighlight({ heading, paragraphs }: Props) {
 
         {/* Step counter */}
         <div className="flex items-center justify-center gap-3 mt-12">
-          <span className="font-mono-accent text-[12px] tracking-[0.25em] text-white/20">
+          <span className="font-mono-accent text-[12px] text-white/20">
             <span ref={counterRef} className="text-amber-400/60">1</span>
             <span className="text-white/10"> / {n}</span>
           </span>

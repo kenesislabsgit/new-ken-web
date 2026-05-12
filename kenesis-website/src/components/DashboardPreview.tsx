@@ -62,7 +62,7 @@ function OverviewTab() {
           <div key={s.label} className="group rounded-[16px] p-[16px] cursor-default hover:scale-[1.03] transition-all duration-300 relative overflow-hidden" style={{ ...glass(), boxShadow: `0 4px 16px rgba(0,0,0,0.25), 0 0 30px ${s.col}08, 0 2px 0 rgba(255,255,255,0.04) inset` }}>
             {/* Glass reflection streak */}
             <div className="absolute -top-[50%] -left-[50%] w-[200%] h-[200%] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" style={{ background: 'linear-gradient(115deg, transparent 40%, rgba(255,255,255,0.03) 45%, rgba(255,255,255,0.06) 50%, rgba(255,255,255,0.03) 55%, transparent 60%)', transform: 'rotate(-30deg)' }} />
-            <p className="font-mono-accent text-[9px] uppercase tracking-[0.12em] text-white/20 mb-[8px]">{s.label}</p>
+            <p className="font-mono-accent text-[9px] uppercase text-white/20 mb-[8px]">{s.label}</p>
             <p className="font-display text-[26px] font-bold leading-none mb-[10px]" style={{ color: s.col, textShadow: `0 0 20px ${s.col}30` }}><NumberTicker value={s.val} delay={0.3} />{s.suf}</p>
             <div className="h-[3px] rounded-full" style={{ background: 'rgba(255,255,255,0.03)', boxShadow: '0 1px 2px rgba(0,0,0,0.3) inset' }}>
               <div className="h-full rounded-full" style={{ width: `${s.pct}%`, background: `linear-gradient(90deg, ${s.col}, ${s.col}80)`, boxShadow: `0 0 8px ${s.col}40, 0 0 2px ${s.col}` }} />
@@ -72,11 +72,11 @@ function OverviewTab() {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-[1fr_260px] gap-[16px]">
         <div>
-          <p className="font-mono-accent text-[9px] uppercase tracking-[0.14em] text-white/15 mb-[12px]">Live Feeds</p>
+          <p className="font-mono-accent text-[9px] uppercase text-white/15 mb-[12px]">Live Feeds</p>
           <div className="grid grid-cols-3 gap-[8px]">{cameras.slice(0, 6).map(c => <CamCard key={c.id} cam={c} />)}</div>
         </div>
         <div className="rounded-[14px] p-[16px]" style={glass(true)}>
-          <p className="font-mono-accent text-[9px] uppercase tracking-[0.14em] text-white/15 mb-[14px]">Recent Alerts</p>
+          <p className="font-mono-accent text-[9px] uppercase text-white/15 mb-[14px]">Recent Alerts</p>
           <div className="space-y-[10px]">{alerts.slice(0, 4).map((a, i) => <AlertRow key={i} a={a} />)}</div>
         </div>
       </div>
@@ -89,7 +89,7 @@ function CamerasTab() {
   return (
     <div>
       <div className="flex items-center justify-between mb-[16px]">
-        <p className="font-mono-accent text-[10px] uppercase tracking-[0.14em] text-white/20">{cameras.filter(c => c.status === 'ok').length} Online · {cameras.filter(c => c.status === 'alert').length} Alert</p>
+        <p className="font-mono-accent text-[10px] uppercase text-white/20">{cameras.filter(c => c.status === 'ok').length} Online · {cameras.filter(c => c.status === 'alert').length} Alert</p>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-3 gap-[12px]">
         {cameras.map(c => (
@@ -120,7 +120,7 @@ function AlertsTab() {
     <div>
       <div className="flex items-center gap-[6px] mb-[20px]">
         {['all', 'high', 'medium', 'low'].map(f => (
-          <button key={f} onClick={() => setFilter(f)} className="font-mono-accent text-[10px] uppercase tracking-[0.1em] px-[12px] py-[6px] rounded-[10px] transition-all duration-300 cursor-pointer"
+          <button key={f} onClick={() => setFilter(f)} className="font-mono-accent text-[10px] uppercase px-[12px] py-[6px] rounded-[10px] transition-all duration-300 cursor-pointer"
             style={filter === f ? { ...glass(), background: 'rgba(245,158,11,0.08)', borderColor: 'rgba(245,158,11,0.15)', color: 'rgba(245,158,11,0.8)' } : { color: 'rgba(255,255,255,0.2)', border: '1px solid rgba(255,255,255,0.04)' }}
           >{f}</button>
         ))}
@@ -141,7 +141,7 @@ function AlertsTab() {
 function ZonesTab() {
   return (
     <div>
-      <p className="font-mono-accent text-[10px] uppercase tracking-[0.14em] text-white/15 mb-[16px]">{zones.length} Factory Zones</p>
+      <p className="font-mono-accent text-[10px] uppercase text-white/15 mb-[16px]">{zones.length} Factory Zones</p>
       <div className="grid grid-cols-2 md:grid-cols-3 gap-[12px]">
         {zones.map(z => (
           <div key={z.name} className="rounded-[14px] p-[16px] hover:scale-[1.02] transition-all duration-300 cursor-pointer group relative overflow-hidden" style={{ ...glass(), borderColor: z.status === 'alert' ? 'rgba(248,113,113,0.15)' : z.status === 'warning' ? 'rgba(251,191,36,0.12)' : 'rgba(255,255,255,0.06)' }}>
@@ -164,7 +164,7 @@ function AnalyticsTab() {
   const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
   return (
     <div>
-      <p className="font-mono-accent text-[10px] uppercase tracking-[0.14em] text-white/15 mb-[20px]">Weekly Alert Trend</p>
+      <p className="font-mono-accent text-[10px] uppercase text-white/15 mb-[20px]">Weekly Alert Trend</p>
       <div className="rounded-[16px] p-[20px]" style={glass()}>
         <div className="flex items-end gap-[8px] h-[160px]">
           {weeklyData.map((v, i) => (
@@ -182,7 +182,7 @@ function AnalyticsTab() {
       <div className="grid grid-cols-3 gap-[12px] mt-[16px]">
         {[{ l: 'Total', v: '195', c: '#fbbf24' }, { l: 'Resolved', v: '183', c: '#4ade80' }, { l: 'Pending', v: '12', c: '#f87171' }].map(s => (
           <div key={s.l} className="rounded-[12px] p-[14px]" style={{ ...glass(true) }}>
-            <p className="font-mono-accent text-[9px] uppercase tracking-[0.1em] text-white/15 mb-[6px]">{s.l}</p>
+            <p className="font-mono-accent text-[9px] uppercase text-white/15 mb-[6px]">{s.l}</p>
             <p className="font-display text-[22px] font-bold" style={{ color: s.c, textShadow: `0 0 16px ${s.c}25` }}>{s.v}</p>
           </div>
         ))}
@@ -194,7 +194,7 @@ function AnalyticsTab() {
 function SystemTab() {
   return (
     <div className="space-y-[8px]">
-      <p className="font-mono-accent text-[10px] uppercase tracking-[0.14em] text-white/15 mb-[12px]">System Configuration</p>
+      <p className="font-mono-accent text-[10px] uppercase text-white/15 mb-[12px]">System Configuration</p>
       {[
         { l: 'Detection Model', v: 'Proprietary', d: 'Real-time multi-class' },
         { l: 'Reasoning Model', v: 'Proprietary', d: 'Contextual understanding' },
@@ -283,7 +283,7 @@ export default function DashboardPreview() {
           <span className="w-[12px] h-[12px] rounded-full cursor-pointer hover:brightness-130 transition-all" style={{ background: 'radial-gradient(circle at 30% 30%, #ff6b6b, #c0392b)', boxShadow: '0 1px 3px rgba(0,0,0,0.5), 0 0 4px rgba(255,95,87,0.2)' }} />
           <span className="w-[12px] h-[12px] rounded-full cursor-pointer hover:brightness-130 transition-all" style={{ background: 'radial-gradient(circle at 30% 30%, #ffd93d, #c0920b)', boxShadow: '0 1px 3px rgba(0,0,0,0.5), 0 0 4px rgba(254,188,46,0.2)' }} />
           <span className="w-[12px] h-[12px] rounded-full cursor-pointer hover:brightness-130 transition-all" style={{ background: 'radial-gradient(circle at 30% 30%, #6bcb77, #0e8a1e)', boxShadow: '0 1px 3px rgba(0,0,0,0.5), 0 0 4px rgba(40,200,64,0.2)' }} />
-          <span className="ml-[20px] font-mono-accent text-[10px] text-white/12 tracking-[0.14em] uppercase">Kenesis Dashboard</span>
+          <span className="ml-[20px] font-mono-accent text-[10px] text-white/12 uppercase">Kenesis Dashboard</span>
           <span className="ml-auto flex items-center gap-[6px]">
             <span className="w-[7px] h-[7px] rounded-full bg-green-400 animate-pulse" style={{ boxShadow: '0 0 10px rgba(74,222,128,0.5)' }} />
             <span className="text-[10px] text-green-400/35">Live</span>

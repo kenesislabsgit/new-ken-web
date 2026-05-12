@@ -23,7 +23,7 @@ function FloatingField({
 }) {
   return (
     <div className="group relative">
-      <span className="block font-mono-accent text-[11px] uppercase tracking-[0.14em] text-white/25 mb-[8px] transition-colors group-focus-within:text-amber-400/60">
+      <span className="block font-mono-accent text-[11px] uppercase text-white/25 mb-[8px] transition-colors group-focus-within:text-amber-400/60">
         {label}
       </span>
       {children}
@@ -121,7 +121,7 @@ export default function ContactPage() {
           <BlurFade delay={0.05} duration={0.5} blur="6px" offset={10}>
             <div className="flex items-center gap-3 mb-[2rem] sm:mb-[4rem]">
               <span className="h-[1px] w-[3rem] bg-amber-400/40" />
-              <span className="font-mono-accent text-[1rem] uppercase tracking-[0.18em] text-amber-400/50">
+              <span className="font-mono-accent text-[1rem] uppercase text-amber-400/50">
                 Contact
               </span>
             </div>
@@ -129,7 +129,7 @@ export default function ContactPage() {
 
           {/* ── Hero headline ── */}
           <BlurFade delay={0.1} duration={0.7} blur="12px" offset={24}>
-            <h1 className="font-display text-[clamp(28px,9vw,72px)] font-semibold leading-[0.95] tracking-[-0.04em] text-white/90 max-w-[16ch]">
+            <h1 className="font-display text-[clamp(28px,9vw,72px)] font-semibold leading-[0.95] text-white/90 max-w-[16ch]">
               Let&apos;s discuss<br />
               <span className="text-amber-400/80">your safety</span><br />
               infrastructure.
@@ -154,7 +154,7 @@ export default function ContactPage() {
                 <div className="h-[1px] w-full bg-white/8" />
 
                 <div>
-                  <p className="font-mono-accent text-[1rem] uppercase tracking-[0.14em] text-amber-400/40 mb-[2rem]">
+                  <p className="font-mono-accent text-[1rem] uppercase text-amber-400/40 mb-[2rem]">
                     Office
                   </p>
                   <p className="font-display text-[16px] sm:text-[20px] font-medium text-white/80 leading-[1.5]">
@@ -164,7 +164,7 @@ export default function ContactPage() {
                 </div>
 
                 <div>
-                  <p className="font-mono-accent text-[1rem] uppercase tracking-[0.14em] text-amber-400/40 mb-[2rem]">
+                  <p className="font-mono-accent text-[1rem] uppercase text-amber-400/40 mb-[2rem]">
                     Email
                   </p>
                   <a
@@ -176,7 +176,7 @@ export default function ContactPage() {
                 </div>
 
                 <div>
-                  <p className="font-mono-accent text-[1rem] uppercase tracking-[0.14em] text-amber-400/40 mb-[2rem]">
+                  <p className="font-mono-accent text-[1rem] uppercase text-amber-400/40 mb-[2rem]">
                     Phone
                   </p>
                   <a
@@ -185,15 +185,15 @@ export default function ContactPage() {
                   >
                     +91 93422 81662
                   </a>
-                  <p className="font-display text-[14px] text-white/25 mt-[0.4rem]">Available during business hours (IST)</p>
+                  <p className="font-display text-[14px] text-white/25 mt-[0.4rem]">Available during business hours (India Standard Time)</p>
                 </div>
 
                 <div>
-                  <p className="font-mono-accent text-[1rem] uppercase tracking-[0.14em] text-amber-400/40 mb-[2rem]">
+                  <p className="font-mono-accent text-[1rem] uppercase text-amber-400/40 mb-[2rem]">
                     Hours
                   </p>
                   <p className="font-display text-[18px] font-medium text-white/50 font-light">
-                    Mon – Fri, 9:00 AM – 6:00 PM IST<br />
+                    Mon – Fri, 9:00 AM – 6:00 PM India Standard Time<br />
                     <span className="text-white/25 text-[14px]">We respond within 24–48 hours</span>
                   </p>
                 </div>
@@ -289,7 +289,7 @@ export default function ContactPage() {
                     <button
                       type="submit"
                       disabled={sending}
-                      className="group relative overflow-hidden rounded-full px-[2.4rem] sm:px-[3.2rem] py-[1.2rem] sm:py-[1.4rem] font-mono-accent text-[1rem] sm:text-[14px] uppercase tracking-[0.12em] font-semibold text-[#0a0a0b] cursor-pointer transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto"
+                      className="group relative overflow-hidden rounded-full px-[2.4rem] sm:px-[3.2rem] py-[1.2rem] sm:py-[1.4rem] font-mono-accent text-[1rem] sm:text-[14px] uppercase font-semibold text-[#0a0a0b] cursor-pointer transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto"
                       style={{
                         background: 'linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%)',
                         boxShadow: '0 0 40px rgba(245,158,11,0.25), 0 4px 16px rgba(245,158,11,0.2)',

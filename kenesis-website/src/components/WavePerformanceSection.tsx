@@ -8,7 +8,7 @@ import ColorfulWave from './ColorfulWave';
 const HIGHLIGHTS = [
   { val: '24/7', label: 'Monitoring' },
   { val: '<3s', label: 'Alert speed' },
-  { val: '0%', label: 'Cloud dependency' },
+  { val: '0%', label: 'No cloud needed' },
   { val: '99.9%', label: 'Uptime' },
 ];
 
@@ -33,12 +33,12 @@ export default function WavePerformanceSection() {
           <BlurFade delay={0} duration={0.5} blur="6px" offset={10} inView inViewMargin="-60px">
             <div className="flex items-center gap-3 mb-6 sm:mb-8">
               <span className="h-[1px] w-8 bg-amber-400/40" />
-              <span className="font-mono-accent text-[12px] uppercase tracking-[0.22em] text-amber-400/60">How it works</span>
+              <span className="font-mono-accent text-[12px] uppercase text-amber-400/60">How it works</span>
             </div>
           </BlurFade>
 
           {/* Heading */}
-          <TextReveal variant="word-slide" as="h2" start="top 90%" duration={0.9} stagger={0.08} className="font-display text-[clamp(28px,5vw,48px)] font-semibold tracking-[-0.04em] text-white leading-[1.02] mb-5">
+          <TextReveal variant="word-slide" as="h2" start="top 90%" duration={0.9} stagger={0.08} className="font-display text-[clamp(28px,5vw,48px)] font-semibold text-white leading-[1.02] mb-5">
             Always watching. Always learning.
           </TextReveal>
 
@@ -55,7 +55,7 @@ export default function WavePerformanceSection() {
               {HIGHLIGHTS.map((item, i) => (
                 <div key={i} className="flex flex-col">
                   <span className="font-display text-[clamp(16px,2.5vw,28px)] font-bold text-white tabular-nums">{item.val}</span>
-                  <span className="font-mono-accent text-[9px] sm:text-[11px] uppercase tracking-[0.14em] text-white/45 mt-1">{item.label}</span>
+                  <span className="font-mono-accent text-[9px] sm:text-[11px] uppercase text-white/45 mt-1">{item.label}</span>
                 </div>
               ))}
             </div>
@@ -65,7 +65,7 @@ export default function WavePerformanceSection() {
           <ScrollReveal variant="scale-up" delay={0.3}>
             <a
               href="/platform"
-              className="group inline-flex items-center gap-3 font-mono-accent text-[13px] sm:text-[15px] font-medium tracking-[0.06em] uppercase text-white/50 transition-all duration-300 hover:text-white cursor-pointer"
+              className="group inline-flex items-center gap-3 font-mono-accent text-[13px] sm:text-[15px] font-medium uppercase text-white/50 transition-all duration-300 hover:text-white cursor-pointer"
             >
               <span>Explore the platform</span>
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="transition-transform duration-300 group-hover:translate-x-1">

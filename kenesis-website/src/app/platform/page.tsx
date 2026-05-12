@@ -27,10 +27,10 @@ export default function PlatformPage() {
       {/* Hero */}
       <section className="relative z-[1] mx-auto max-w-[1152px] px-4 sm:px-6 pb-8 sm:pb-12 md:px-12">
         <BlurFade delay={0.1} duration={0.5} blur="6px" offset={12}>
-          <p className="font-mono-accent text-[14px] uppercase tracking-[0.14em] text-amber-400/60 mb-6 md:mb-10">Platform</p>
+          <p className="font-mono-accent text-[14px] uppercase text-amber-400/60 mb-6 md:mb-10">Platform</p>
         </BlurFade>
         <BlurFade delay={0.25} duration={0.8} blur="10px" offset={20}>
-          <h1 className="font-display text-[clamp(32px,7.5vw,64px)] font-semibold leading-[0.95] tracking-[-0.03em] text-white mb-6">
+          <h1 className="font-display text-[clamp(32px,7.5vw,64px)] font-semibold leading-[0.95] text-white mb-6">
             The platform behind intelligent safety.
           </h1>
         </BlurFade>
@@ -38,7 +38,7 @@ export default function PlatformPage() {
           <p className="max-w-xl text-[16px] leading-[1.7] text-white/60 mb-10">
             On-premise AI that{' '}
             <TypewriterText
-              texts={['detects PPE violations', 'monitors restricted zones', 'verifies SOPs in real-time', 'reasons about what it sees']}
+              texts={['detects missing safety gear', 'monitors restricted areas', 'verifies safety procedures in real time', 'reasons about what it sees']}
               className="text-amber-400/60"
               cursorChar="|"
               cursorClassName="text-amber-400/30"
@@ -63,8 +63,8 @@ export default function PlatformPage() {
       <section className="relative z-[1] mx-auto max-w-[1152px] px-4 sm:px-6 py-16 md:py-32 md:px-12">
         <AsciiDivider className="mb-12" accent="&#9656;" />
         <BlurFade delay={0} duration={0.5} blur="6px" offset={10} inView inViewMargin="-80px">
-          <h2 className="font-display text-[clamp(24px,4vw,36px)] font-semibold tracking-[-0.035em] text-white mb-3">From camera feed to safety alert</h2>
-          <p className="text-[15px] sm:text-[16px] text-white/55 mb-10 max-w-2xl">A streamlined pipeline with no cloud intermediaries. Camera feeds enter, contextual safety alerts emerge, all processed locally.</p>
+          <h2 className="font-display text-[clamp(24px,4vw,36px)] font-semibold text-white mb-3">From camera feed to safety alert</h2>
+          <p className="text-[15px] sm:text-[16px] text-white/55 mb-10 max-w-2xl">From camera to alert, everything runs on your hardware. No internet required. No data leaves your site.</p>
         </BlurFade>
 
         {/* Pipeline - premium stepped flow */}
@@ -73,8 +73,8 @@ export default function PlatformPage() {
           <div className="hidden md:grid md:grid-cols-4 gap-0 items-start">
             {[
               { num: '01', label: 'Ingest', sub: 'Camera Feeds', desc: 'Connect existing IP cameras. No new hardware.', accent: false },
-              { num: '02', label: 'Detect', sub: 'Object Detection', desc: 'PPE, zones, personnel: identified in every frame.', accent: true },
-              { num: '03', label: 'Reason', sub: 'Context Analysis', desc: 'AI understands what it sees and why it matters.', accent: true },
+              { num: '02', label: 'Detect', sub: 'Hazard Detection', desc: 'PPE, zones, personnel: identified in every frame.', accent: true },
+              { num: '03', label: 'Reason', sub: 'Understanding the Scene', desc: 'AI understands what it sees and why it matters.', accent: true },
               { num: '04', label: 'Alert', sub: 'Dashboard + SMS', desc: 'Actionable alerts reach your team in seconds.', accent: false },
             ].map((node, i, arr) => (
               <ScrollReveal key={node.label} variant="scale-up" delay={i * 0.12} duration={0.5}>
@@ -100,8 +100,8 @@ export default function PlatformPage() {
                     <div className="absolute top-6 left-[calc(50%+24px)] w-[calc(100%-48px)] h-[1px]" style={{ background: node.accent ? 'linear-gradient(90deg, rgba(245,158,11,0.2), rgba(245,158,11,0.1))' : 'rgba(255,255,255,0.06)' }} />
                   )}
                   {/* Content */}
-                  <p className={`font-display text-[17px] font-semibold mb-1 tracking-[-0.02em] ${node.accent ? 'text-white' : 'text-white/70'}`}>{node.label}</p>
-                  <p className="font-mono-accent text-[10px] uppercase tracking-[0.14em] text-amber-400/50 mb-3">{node.sub}</p>
+                  <p className={`font-display text-[17px] font-semibold mb-1 ${node.accent ? 'text-white' : 'text-white/70'}`}>{node.label}</p>
+                  <p className="font-mono-accent text-[10px] uppercase text-amber-400/50 mb-3">{node.sub}</p>
                   <p className="text-[13px] leading-[1.5] text-white/45">{node.desc}</p>
                 </div>
               </ScrollReveal>
@@ -112,8 +112,8 @@ export default function PlatformPage() {
           <div className="md:hidden flex flex-col gap-0">
             {[
               { num: '01', label: 'Ingest', sub: 'Camera Feeds', desc: 'Connect existing IP cameras. No new hardware.', accent: false },
-              { num: '02', label: 'Detect', sub: 'Object Detection', desc: 'PPE, zones, personnel: identified in every frame.', accent: true },
-              { num: '03', label: 'Reason', sub: 'Context Analysis', desc: 'AI understands what it sees and why it matters.', accent: true },
+              { num: '02', label: 'Detect', sub: 'Hazard Detection', desc: 'PPE, zones, personnel: identified in every frame.', accent: true },
+              { num: '03', label: 'Reason', sub: 'Understanding the Scene', desc: 'AI understands what it sees and why it matters.', accent: true },
               { num: '04', label: 'Alert', sub: 'Dashboard + SMS', desc: 'Actionable alerts reach your team in seconds.', accent: false },
             ].map((node, i, arr) => (
               <ScrollReveal key={node.label} variant="fade-up" delay={i * 0.1} duration={0.4}>
@@ -140,8 +140,8 @@ export default function PlatformPage() {
                   </div>
                   {/* Right: content */}
                   <div className="pt-1">
-                    <p className={`font-display text-[16px] font-semibold tracking-[-0.02em] ${node.accent ? 'text-white' : 'text-white/70'}`}>{node.label}</p>
-                    <p className="font-mono-accent text-[10px] uppercase tracking-[0.14em] text-amber-400/50 mb-1">{node.sub}</p>
+                    <p className={`font-display text-[16px] font-semibold ${node.accent ? 'text-white' : 'text-white/70'}`}>{node.label}</p>
+                    <p className="font-mono-accent text-[10px] uppercase text-amber-400/50 mb-1">{node.sub}</p>
                     <p className="text-[14px] leading-[1.55] text-white/50">{node.desc}</p>
                   </div>
                 </div>
@@ -155,7 +155,7 @@ export default function PlatformPage() {
       <section className="section-amber-glow relative z-[2] py-[80px] sm:py-[120px] md:py-[160px] px-[16px] sm:px-[24px] md:px-[48px] border-t border-amber-400/[0.08]" style={{ background: '#0d0c0a' }}>
         <div className="mx-auto max-w-[1100px]">
           <BlurFade delay={0} duration={0.6} blur="8px" offset={14} inView inViewMargin="-80px">
-            <h2 className="font-display text-[clamp(32px,5vw,56px)] font-semibold tracking-[-0.035em] text-white mb-6">
+            <h2 className="font-display text-[clamp(32px,5vw,56px)] font-semibold text-white mb-6">
               Built for the factory floor
             </h2>
             <p className="text-[15px] sm:text-[16px] text-white/55 mb-12 sm:mb-16 max-w-xl">
@@ -167,10 +167,10 @@ export default function PlatformPage() {
             {[
               { Icon: Shield, title: 'Fully on-premise', desc: 'Every frame processed and stored locally. No cloud uploads, no third-party access.' },
               { Icon: Zap, title: 'Real-time alerts', desc: 'Safety violations flagged in seconds, not minutes. Your team acts before incidents escalate.' },
-              { Icon: Camera, title: 'Works with any camera', desc: 'Connects to your existing IP cameras. No proprietary hardware, no rip-and-replace.' },
+              { Icon: Camera, title: 'Works with any camera', desc: 'Connects to your existing CCTV cameras. No proprietary hardware, no swapping out your existing setup.' },
               { Icon: WifiOff, title: 'No internet required', desc: 'Runs completely offline. Network outages don\'t affect your safety monitoring.' },
-              { Icon: FileCheck, title: 'DPDP Act compliant', desc: 'Data never leaves your premises. Built for India\'s data protection requirements from day one.' },
-              { Icon: Rocket, title: 'Live in 48 hours', desc: 'From setup to monitoring. Minimal configuration, no lengthy integration projects.' },
+              { Icon: FileCheck, title: 'Meets data protection laws', desc: "Data never leaves your premises. Built for data protection requirements from day one." },
+              { Icon: Rocket, title: 'Live in 30 minutes', desc: 'From setup to monitoring. Minimal configuration, no lengthy integration projects.' },
             ].map((item, i) => (
               <ScrollReveal key={item.title} variant="scale-up" delay={i * 0.06} duration={0.4}>
                 <BorderGlow
@@ -221,7 +221,7 @@ export default function PlatformPage() {
                       <item.Icon size={20} className="text-amber-400/90" strokeWidth={1.5} />
                     </div>
 
-                    <p className="font-display text-[17px] font-semibold text-white/90 mb-2 tracking-[-0.02em] group-hover:text-white transition-colors">{item.title}</p>
+                    <p className="font-display text-[17px] font-semibold text-white/90 mb-2 group-hover:text-white transition-colors">{item.title}</p>
                     <p className="text-[14px] leading-[1.6] text-white/55 group-hover:text-white/70 transition-colors">{item.desc}</p>
                   </div>
                 </BorderGlow>
@@ -235,7 +235,7 @@ export default function PlatformPage() {
       <SequentialHighlight
         heading="Why on-premise matters"
         paragraphs={[
-          "Cloud processing means your factory footage travels to data centers you don't control, processed by models you can't audit. Under India's DPDP Act, that creates significant compliance liability.",
+          "Cloud processing means your factory footage travels to data centers you don't control, processed by AI systems you don't control. That creates significant compliance risk.",
           "Cloud means latency. A safety violation detected three seconds late is a safety violation missed. Our on-premise processing delivers alerts to your safety team before a cloud solution would finish uploading the frame.",
           "Cloud means dependency. When your internet connection drops, a common reality in industrial facilities, your entire safety system goes offline. Kenesis continues operating because it was never dependent on connectivity.",
         ]}
@@ -244,7 +244,7 @@ export default function PlatformPage() {
       {/* CTA */}
       <section className="relative z-[1] mx-auto max-w-[1152px] px-4 sm:px-6 py-16 md:py-24 md:px-12 border-t border-amber-400/[0.08]">
         <BlurFade delay={0} duration={0.6} blur="8px" offset={14} inView inViewMargin="-80px">
-          <p className="font-display text-[clamp(24px,4vw,36px)] font-semibold tracking-[-0.02em] text-white mb-6">
+          <p className="font-display text-[clamp(24px,4vw,36px)] font-semibold text-white mb-6">
             See it in action on your factory floor.
           </p>
           <WalkthroughCTABottom />

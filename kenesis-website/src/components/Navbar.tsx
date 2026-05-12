@@ -223,7 +223,7 @@ export default function Navbar() {
 
           {/* Logo */}
           <Link href="/" className="relative z-10 flex items-center gap-2 cursor-pointer" aria-label="Kenesis Labs home">
-            <span className="font-logo text-[18px] tracking-[0.12em] uppercase text-white/90 leading-none sm:text-[22px]"
+            <span className="font-logo text-[18px] uppercase text-white/90 leading-none sm:text-[22px]"
               style={{ textShadow: "0 1px 3px rgba(0,0,0,0.4)" }}>
               Kenesis
             </span>
@@ -236,7 +236,7 @@ export default function Navbar() {
                 <Tooltip.Trigger>
                   <Link
                     href={link.href}
-                    className="nav-link-glass relative z-10 rounded-lg px-3 py-2 font-mono-accent text-[13px] font-medium uppercase tracking-[0.1em] text-white/55 transition-colors duration-200 hover:text-white/90 cursor-pointer"
+                    className="nav-link-glass relative z-10 rounded-lg px-3 py-2 font-mono-accent text-[13px] font-medium uppercase text-white/55 transition-colors duration-200 hover:text-white/90 cursor-pointer"
                   >
                     {link.label}
                   </Link>
@@ -295,7 +295,7 @@ export default function Navbar() {
                 key={link.label}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="rounded-xl px-5 py-4 font-mono-accent text-[16px] font-medium uppercase tracking-[0.1em] text-white/60 transition-colors hover:bg-white/[0.06] hover:text-white/90 cursor-pointer"
+                className="rounded-xl px-5 py-4 font-mono-accent text-[16px] font-medium uppercase text-white/60 transition-colors hover:bg-white/[0.06] hover:text-white/90 cursor-pointer"
               >
                 {link.label}
               </Link>

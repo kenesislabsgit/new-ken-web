@@ -44,7 +44,7 @@ export default function TechCardsSection() {
         <div className="relative z-10 mx-auto max-w-[1234px] px-6 md:px-12">
           <ScrollReveal variant="clip-up" duration={1}>
             <h2
-              className="font-display text-[clamp(28px,8vw,80px)] font-semibold leading-[0.92] tracking-[-0.04em] text-white"
+              className="font-display text-[clamp(28px,8vw,80px)] font-semibold leading-[0.92] text-white"
             >
               Real-time safety intelligence.
             </h2>
@@ -52,7 +52,7 @@ export default function TechCardsSection() {
           <ScrollReveal variant="fade-up" delay={0.2}>
             <a
               href="/platform"
-              className="btn-kenesis mt-10 inline-flex font-mono-accent text-[1.3rem] uppercase tracking-[0.1em]"
+              className="btn-kenesis mt-10 inline-flex font-mono-accent text-[1.3rem] uppercase"
             >
               Explore platform
             </a>
@@ -90,7 +90,7 @@ export default function TechCardsSection() {
                       {/* Content at bottom */}
                       <Card.Content className="absolute bottom-0 left-0 right-0 p-6 z-10">
                         <Card.Title className="mb-2 text-2xl font-display font-semibold text-white">{card.title}</Card.Title>
-                        <Card.Description className="font-mono-accent text-[12px] leading-relaxed text-white/50 uppercase tracking-[0.06em]">{card.subtitle}</Card.Description>
+                        <Card.Description className="font-mono-accent text-[12px] leading-relaxed text-white/50 uppercase">{card.subtitle}</Card.Description>
                       </Card.Content>
                     </Card>
                 </BorderGlow>

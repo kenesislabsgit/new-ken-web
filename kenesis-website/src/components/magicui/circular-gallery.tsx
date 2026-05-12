@@ -149,7 +149,7 @@ export function CircularGallery({
       </div>
       {/* Caption for active image */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 text-center">
-        <p className="font-mono-accent text-[0.85rem] text-white/30 tracking-[0.06em] transition-opacity duration-300">
+        <p className="font-mono-accent text-[0.85rem] text-white/30 transition-opacity duration-300">
           {images[activeIndex]?.alt}
         </p>
       </div>

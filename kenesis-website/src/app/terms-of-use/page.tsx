@@ -16,10 +16,10 @@ export default function TermsPage() {
 
       <section className="relative z-[1] mx-auto max-w-[56rem] px-6 pb-24 md:px-12">
         <BlurFade delay={0.05} duration={0.4} blur="4px" offset={8}>
-          <p className="font-mono-accent text-[1.1rem] uppercase tracking-[0.14em] text-white/30 mb-8">Legal</p>
+          <p className="font-mono-accent text-[1.1rem] uppercase text-white/30 mb-8">Legal</p>
         </BlurFade>
         <BlurFade delay={0.15} duration={0.7} blur="10px" offset={20}>
-          <h1 className="font-display font-semibold text-[clamp(32px,7vw,56px)] leading-[1.05] tracking-[-0.02em] text-white/90 mb-12">
+          <h1 className="font-display font-semibold text-[clamp(32px,7vw,56px)] leading-[1.05] text-white/90 mb-12">
             Terms of Use
           </h1>
         </BlurFade>

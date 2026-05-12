@@ -59,12 +59,12 @@ export default function FooterCTASection() {
               <TextReveal
                 variant="word-slide"
                 as="h2"
-                className="font-display text-[clamp(28px,5.5vw,56px)] font-semibold leading-[1.02] tracking-[-0.035em] text-white/95"
+                className="font-display text-[clamp(28px,5.5vw,56px)] font-semibold leading-[1.02] text-white/95"
               >
                 Let&apos;s talk about your facility
               </TextReveal>
               <ScrollReveal variant="fade-up" delay={0.2}>
-                <p className="mt-5 font-mono-accent text-[14px] leading-relaxed text-white/35 tracking-[0.02em]">
+                <p className="mt-5 font-mono-accent text-[14px] leading-relaxed text-white/35">
                   Ready to see Kenesis in action? Reach out at<br />
                   <a href="mailto:admin@kenesis.ai" className="text-white/60 hover:text-amber-400 transition-colors underline">
                     admin@kenesis.ai
@@ -75,7 +75,7 @@ export default function FooterCTASection() {
 
             {/* Center - nav links */}
             <div>
-              <p className="mb-4 font-mono-accent text-[12px] font-bold uppercase tracking-[0.14em] text-white/25">
+              <p className="mb-4 font-mono-accent text-[12px] font-bold uppercase text-white/25">
                 About us
               </p>
               <nav className="flex flex-col gap-3" aria-label="Footer navigation">
@@ -147,10 +147,10 @@ export default function FooterCTASection() {
             <AsciiDivider accent="�-�" className="text-white/[0.04]" />
           </div>
           <div className="mx-auto flex max-w-[1152px] flex-col items-center justify-between gap-3 md:flex-row">
-            <p className="font-mono-accent text-[12px] text-white/25 tracking-[0.04em]">
+            <p className="font-mono-accent text-[12px] text-white/25">
               &copy; 2026 Kenesis Labs Pvt. Ltd. All Rights Reserved. Chennai, India.
             </p>
-            <a href="/privacy-policy" className="font-mono-accent text-[12px] font-medium text-white/35 underline hover:text-white transition-colors tracking-[0.04em]">
+            <a href="/privacy-policy" className="font-mono-accent text-[12px] font-medium text-white/35 underline hover:text-white transition-colors">
               Privacy Policy
             </a>
           </div>

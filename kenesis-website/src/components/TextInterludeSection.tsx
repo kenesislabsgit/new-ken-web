@@ -92,7 +92,7 @@ export default function TextInterludeSection() {
         variant="word-blur"
         as="h2"
         scrub={1}
-        className="font-display text-4xl font-semibold leading-[1.05] tracking-[-0.02em] text-white/90 md:text-5xl"
+        className="font-display text-4xl font-semibold leading-[1.05] text-white/90 md:text-5xl"
       >
         Redefining factory safety with on-premise AI.
       </TextReveal>
@@ -102,7 +102,7 @@ export default function TextInterludeSection() {
         variant="word-fade"
         as="p"
         scrub={1}
-        className="mt-6 max-w-2xl font-mono-accent text-[14px] leading-relaxed text-white/35 tracking-[0.02em]"
+        className="mt-6 max-w-2xl font-mono-accent text-[14px] leading-relaxed text-white/35"
       >
         India&apos;s manufacturing sector is scaling fast under PLI schemes and China+1 tailwinds. Safety compliance requirements are tightening. Cloud-based solutions hit a wall when factories have poor internet, strict data policies, or sensitive footage. Kenesis is built for exactly this gap.
       </TextReveal>

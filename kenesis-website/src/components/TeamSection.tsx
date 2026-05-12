@@ -62,7 +62,7 @@ function TeamCard({ member }: { member: TeamMember }) {
         </div>
       </div>
       <h3 className={`font-display text-[18px] font-semibold mb-[4px] transition-colors ${tapped ? 'text-white' : 'text-white/85 group-hover:text-white'}`}>{member.name}</h3>
-      <p className={`font-mono-accent text-[12px] uppercase tracking-[0.14em] transition-colors duration-500 ${tapped ? 'text-amber-400/50' : 'text-white/25 group-hover:text-amber-400/50'}`}>{member.role}</p>
+      <p className={`font-mono-accent text-[12px] uppercase transition-colors duration-500 ${tapped ? 'text-amber-400/50' : 'text-white/25 group-hover:text-amber-400/50'}`}>{member.role}</p>
     </div>
   );
 }
@@ -100,10 +100,10 @@ export default function TeamSection() {
     <section className="relative z-[2] py-[64px] md:py-[120px] px-4 sm:px-6 md:px-[48px]">
       <div className="mx-auto max-w-[1100px]">
         <BlurFade delay={0} duration={0.5} blur="6px" offset={10} inView inViewMargin="-80px">
-          <p className="font-mono-accent text-[11px] uppercase tracking-[0.2em] text-amber-400/40 mb-[12px]">The team</p>
+          <p className="font-mono-accent text-[11px] uppercase text-amber-400/40 mb-[12px]">The team</p>
         </BlurFade>
         <BlurFade delay={0.1} duration={0.6} blur="8px" offset={14} inView inViewMargin="-80px">
-          <h2 className="font-display text-[clamp(28px,4vw,48px)] font-semibold tracking-[-0.025em] text-white/90 mb-[32px] md:mb-[64px]">
+          <h2 className="font-display text-[clamp(28px,4vw,48px)] font-semibold text-white/90 mb-[32px] md:mb-[64px]">
             Six people. One obsession.
           </h2>
         </BlurFade>

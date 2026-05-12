@@ -45,7 +45,7 @@ export default function AboutPage() {
       <section className="relative z-[2] mx-auto max-w-[1152px] px-4 sm:px-6 pb-4 md:px-12">
         <div>
           <BlurFade delay={0.1} duration={0.5} blur="6px" offset={12}>
-            <p className="font-mono-accent text-[14px] uppercase tracking-[0.14em] text-amber-400/60 mb-10">About</p>
+            <p className="font-mono-accent text-[14px] uppercase text-amber-400/60 mb-10">About</p>
           </BlurFade>
           <UnblurTextReveal
             as="h1"
@@ -56,12 +56,12 @@ export default function AboutPage() {
             end="top 40%"
             splitBy="word"
             stagger={0.06}
-            className="font-display text-[clamp(32px,7.5vw,64px)] font-semibold leading-[0.95] tracking-[-0.03em] text-white mb-8"
+            className="font-display text-[clamp(32px,7.5vw,64px)] font-semibold leading-[0.95] text-white mb-8"
           >
             Visual intelligence for every factory.
           </UnblurTextReveal>
           <BlurFade delay={0.6} duration={0.5} blur="6px" offset={8}>
-            <p className="text-[18px] sm:text-[20px] leading-[1.6] text-white/70 font-normal tracking-[-0.01em]">
+            <p className="text-[18px] sm:text-[20px] leading-[1.6] text-white/70 font-normal">
               Founded in Chennai. We build AI software that turns existing CCTV cameras into intelligent safety systems, no cloud, no new hardware.
             </p>
           </BlurFade>
@@ -118,17 +118,17 @@ export default function AboutPage() {
       <section className="relative z-[2] mx-auto max-w-[1152px] px-6 py-32 md:px-12 border-t border-amber-400/[0.08]">
         <div className="max-w-3xl space-y-10">
           <BlurFade delay={0.1} duration={0.7} blur="8px" offset={12} inView inViewMargin="-60px">
-            <p className="text-[clamp(18px,3vw,26px)] leading-[1.5] text-white font-display tracking-[-0.01em]">
+            <p className="text-[clamp(18px,3vw,26px)] leading-[1.5] text-white font-display">
               Factories have cameras everywhere. What they lack is intelligence: the ability to understand what those cameras see and act on it in real time.
             </p>
           </BlurFade>
           <BlurFade delay={0.2} duration={0.7} blur="8px" offset={12} inView inViewMargin="-60px">
-            <p className="text-[clamp(18px,3vw,26px)] leading-[1.5] text-white font-display tracking-[-0.01em]">
+            <p className="text-[clamp(18px,3vw,26px)] leading-[1.5] text-white font-display">
               Cloud-based analytics require your footage to leave your facility, get processed on shared infrastructure, and return generic results. That means privacy risk, latency, and compliance challenges.
             </p>
           </BlurFade>
           <BlurFade delay={0.3} duration={0.7} blur="8px" offset={12} inView inViewMargin="-60px">
-            <p className="text-[clamp(18px,3vw,26px)] leading-[1.5] text-white font-display tracking-[-0.01em]">
+            <p className="text-[clamp(18px,3vw,26px)] leading-[1.5] text-white font-display">
               Kenesis runs entirely on your premises. Your footage never leaves your network. And when the internet goes down, your safety system keeps running.
             </p>
           </BlurFade>
@@ -162,15 +162,15 @@ export default function AboutPage() {
             <p className="font-display text-[clamp(28px,5vw,40px)] font-semibold text-white leading-none mb-2">
               2025
             </p>
-            <p className="font-mono-accent text-[13px] uppercase tracking-[0.1em] text-white/40">Founded</p>
+            <p className="font-mono-accent text-[13px] uppercase text-white/40">Founded</p>
           </div>
           <div className="text-center">
             <p className="font-display text-[clamp(28px,5vw,40px)] font-semibold text-white leading-none mb-2">Chennai</p>
-            <p className="font-mono-accent text-[13px] uppercase tracking-[0.1em] text-white/40">Headquarters</p>
+            <p className="font-mono-accent text-[13px] uppercase text-white/40">Headquarters</p>
           </div>
           <div className="text-center">
             <p className="font-display text-[clamp(28px,5vw,40px)] font-semibold text-white leading-none mb-2">AI-First</p>
-            <p className="font-mono-accent text-[13px] uppercase tracking-[0.1em] text-white/40">Built from the ground up</p>
+            <p className="font-mono-accent text-[13px] uppercase text-white/40">Built from the ground up</p>
           </div>
         </div>
       </section>
@@ -184,7 +184,7 @@ export default function AboutPage() {
               as="h2"
               start="top 85%"
               duration={0.7}
-              className="font-display text-[clamp(24px,4vw,36px)] font-semibold tracking-[-0.02em] text-white sticky top-32"
+              className="font-display text-[clamp(24px,4vw,36px)] font-semibold text-white sticky top-32"
             >
               What we believe
             </TextReveal>
@@ -192,9 +192,9 @@ export default function AboutPage() {
           <div className="space-y-8">
             {[
               ['Complete data sovereignty.', 'Your camera footage is processed and stored exclusively on your premises. No cloud provider, no third party, no external entity ever accesses your data.'],
-              ['Contextual intelligence.', 'Our AI doesn\'t just detect objects. It understands context. "Worker in welding zone without face shield during active operation" is actionable. A generic bounding box is not.'],
-              ['Zero internet dependency.', 'Many industrial facilities have unreliable connectivity. Kenesis is designed to operate completely offline. Your safety system should never depend on your ISP.'],
-              ['Compliance shouldn\'t be an afterthought.', 'DPDP Act, factory safety regulations, data sovereignty requirements: we\'re built for these from day one, not retrofitted.'],
+              ['Contextual intelligence.', 'Our AI doesn\'t just detect objects. It understands context. "Worker in welding zone without face shield during active operation" is actionable. A simple "something detected" with no context is not.'],
+              ['Zero internet dependency.', 'Many industrial facilities have unreliable connectivity. Kenesis is designed to operate completely offline. Your safety system should never go down just because your internet does.'],
+              ['Compliance shouldn\'t be an afterthought.', 'Data protection laws, factory safety regulations, compliance requirements: we\'re built for these from day one, not retrofitted.'],
             ].map(([title, desc], i) => (
               <ScrollReveal key={title} variant="fade-up" delay={i * 0.1} duration={0.6}>
                 <div className="border-l-2 border-white/[0.08] pl-6 hover:border-amber-400/40 transition-colors duration-300">
@@ -215,7 +215,7 @@ export default function AboutPage() {
             as="h2"
             start="top 85%"
             duration={0.7}
-            className="font-display text-[clamp(24px,4vw,36px)] font-semibold tracking-[-0.02em] text-white"
+            className="font-display text-[clamp(24px,4vw,36px)] font-semibold text-white"
           >
             So far
           </TextReveal>
@@ -224,8 +224,8 @@ export default function AboutPage() {
           {[
             ['2025 Q1', 'Incorporated in Chennai, India'],
             ['2025 Q2', 'First prototype: AI analyzing 30 camera feeds in real time'],
-            ['2025 Q3', 'AI pipeline validated on live factory floor'],
-            ['2025 Q4', 'Platform launch: PPE, zone monitoring, shift analytics'],
+            ['2025 Q3', 'System tested on a live factory floor'],
+            ['2025 Q4', 'Platform launch: safety gear monitoring, zone alerts, daily safety reports'],
             ['2026 Q2', 'Pilot deployments in progress'],
           ].map(([date, event], i) => (
             <ScrollReveal key={date} variant="fade-up" delay={i * 0.08} duration={0.5}>
@@ -253,7 +253,7 @@ export default function AboutPage() {
               bgPosition="center 40%"
               className="block"
             />
-            <p className="font-display text-[clamp(18px,4.5vw,28px)] sm:text-[clamp(20px,3vw,28px)] font-semibold leading-[1.5] tracking-[-0.02em] text-white max-w-[55ch]">
+            <p className="font-display text-[clamp(18px,4.5vw,28px)] sm:text-[clamp(20px,3vw,28px)] font-semibold leading-[1.5] text-white max-w-[55ch]">
               The manufacturing sector is growing rapidly. Safety infrastructure needs to keep pace.
             </p>
           </div>

@@ -17,9 +17,11 @@ const PARTNER_LOGOS: LogoItem[] = [
 export default function PartnerLogosSection() {
   return (
     <section className="relative bg-[#0a0a0b] border-y border-white/[0.05] overflow-hidden">
-      <p className="text-center text-[10px] uppercase tracking-[0.2em] text-white/20 pt-14 pb-10">
-        Trusted in the ecosystem
-      </p>
+      <div className="text-center pt-14 pb-8">
+        <p className="font-display text-[clamp(22px,3.5vw,38px)] font-semibold text-white/80">
+          Trusted in the ecosystem
+        </p>
+      </div>
 
       {/* Fixed-height track — the marquee fills it absolutely */}
       <div className="relative w-full" style={{ height: 'clamp(120px, 22vw, 200px)' }}>

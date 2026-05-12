@@ -226,7 +226,7 @@ export default function PinnedFeatureTabs() {
           <div ref={leftColRef} className="flex flex-col justify-end md:justify-center pt-20 md:pt-0 pb-4 md:pb-0">
             <h2
               ref={headingRef}
-              className="mb-3 sm:mb-6 font-display text-[clamp(22px,4vw,40px)] font-semibold leading-[1.05] tracking-[-0.035em] text-white/95"
+              className="mb-3 sm:mb-6 font-display text-[clamp(22px,4vw,40px)] font-semibold leading-[1.05] text-white/95"
             >
             {headingLine1.split(' ').map((word, i) => (
               <span key={i} className="word-reveal inline-block mr-[0.3em]">
@@ -242,7 +242,7 @@ export default function PinnedFeatureTabs() {
           </h2>
           <p
             ref={subtitleRef}
-            className="font-mono-accent text-[13px] sm:text-[14px] leading-relaxed text-white/40 uppercase tracking-[0.08em]"
+            className="font-mono-accent text-[13px] sm:text-[14px] leading-relaxed text-white/40"
           >
             Transform your existing camera infrastructure into an intelligent safety system. Fully on-premise, fully autonomous.
           </p>
@@ -313,13 +313,13 @@ export default function PinnedFeatureTabs() {
                 </div>
                 <h3
                   ref={el => { titleRefs.current[i] = el; }}
-                  className="mb-1 sm:mb-2 text-[16px] sm:text-[20px] font-display font-semibold text-white/95 tracking-[-0.02em]"
+                  className="mb-1 sm:mb-2 text-[16px] sm:text-[20px] font-display font-semibold text-white/95"
                 >
                   {tab.title}
                 </h3>
                 <p
                   ref={el => { descRefs.current[i] = el; }}
-                  className="text-[14px] sm:text-[15px] leading-[1.65] text-white/40 tracking-[-0.01em]"
+                  className="text-[14px] sm:text-[15px] leading-[1.65] text-white/40"
                 >
                   {tab.description}
                 </p>

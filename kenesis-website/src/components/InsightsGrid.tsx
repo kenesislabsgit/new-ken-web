@@ -112,7 +112,7 @@ export default function InsightsGrid() {
           <TextReveal
             variant="word-slide"
             as="h2"
-            className="font-display text-[clamp(28px,5vw,48px)] font-semibold tracking-[-0.02em] text-white/90"
+            className="font-display text-[clamp(28px,5vw,48px)] font-semibold text-white/90"
           >
             Insights.
           </TextReveal>
@@ -152,7 +152,7 @@ export default function InsightsGrid() {
                 <h3 className="mb-2 font-display text-[14px] sm:text-[15px] md:text-[17px] font-semibold leading-snug text-white/90 group-hover:text-amber-400 transition-colors line-clamp-3">
                   {article.title}
                 </h3>
-                <p className="font-mono-accent text-[11px] text-white/25 uppercase tracking-[0.06em]">{article.date}</p>
+                <p className="font-mono-accent text-[11px] text-white/25 uppercase">{article.date}</p>
               </article>
             </BorderGlow>
           </ScrollReveal>

@@ -213,7 +213,7 @@ export default function ScrollFrameSection({ frameSets, panels, sectionLabel, se
         <div className="absolute inset-0 flex items-end md:items-center pointer-events-none pb-[60px] sm:pb-[80px] md:pb-0">
           <div className="w-full md:w-[48%] px-4 sm:px-[24px] md:px-[48px] lg:px-[64px]">
             {sectionLabel && (
-              <p className="font-mono-accent text-[12px] uppercase tracking-[0.2em] text-amber-400/40 mb-[4px]">{sectionLabel}</p>
+              <p className="font-mono-accent text-[12px] uppercase text-amber-400/40 mb-[4px]">{sectionLabel}</p>
             )}
             {sectionTitle && (
               <p className="font-display text-[16px] text-white/15 mb-[40px] hidden md:block">{sectionTitle}</p>
@@ -222,11 +222,11 @@ export default function ScrollFrameSection({ frameSets, panels, sectionLabel, se
               {panels.map((panel, i) => (
                 <div key={panel.step} ref={el => { cardRefs.current[i] = el; }} className="absolute inset-0" style={{ opacity: 0 }}>
                   <div className="flex items-center gap-[12px] sm:gap-[16px] mb-[16px] sm:mb-[32px]">
-                    <span className="font-mono-accent text-[11px] sm:text-[13px] tracking-[0.16em] text-amber-400/70">{String(panel.step).padStart(2, '0')}</span>
+                    <span className="font-mono-accent text-[11px] sm:text-[13px] text-amber-400/70">{String(panel.step).padStart(2, '0')}</span>
                     <span className="h-[1px] w-[24px] sm:w-[40px] bg-amber-400/25" />
-                    <span className="font-mono-accent text-[11px] sm:text-[13px] uppercase tracking-[0.12em] text-white/25">{panel.label}</span>
+                    <span className="font-mono-accent text-[11px] sm:text-[13px] uppercase text-white/25">{panel.label}</span>
                   </div>
-                  <h2 className="font-display text-[clamp(20px,5vw,72px)] font-semibold leading-[1.05] tracking-[-0.035em] text-white/95 mb-[10px] sm:mb-[16px] md:mb-[24px]">{panel.headline}</h2>
+                  <h2 className="font-display text-[clamp(20px,5vw,72px)] font-semibold leading-[1.05] text-white/95 mb-[10px] sm:mb-[16px] md:mb-[24px]">{panel.headline}</h2>
                   <p className="text-[15px] sm:text-[16px] md:text-[18px] leading-[1.6] text-white/40 max-w-[460px]">{panel.body}</p>
                 </div>
               ))}

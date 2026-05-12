@@ -26,6 +26,11 @@ export const LazyPinnedFeatureTabs = dynamic(
   { ssr: false }
 );
 
+export const LazyCapabilitiesGrid = dynamic(
+  () => import('@/components/CapabilitiesGrid').then(m => ({ default: m.CapabilitiesGrid })),
+  { ssr: false }
+);
+
 export const LazyWavePerformanceSection = dynamic(
   () => import('@/components/WavePerformanceSection'),
   { ssr: false }

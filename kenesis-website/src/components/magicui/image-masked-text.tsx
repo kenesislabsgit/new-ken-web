@@ -32,7 +32,7 @@ export function ImageMaskedText({
   return (
     <span
       className={cn(
-        "inline-block leading-[0.95] tracking-[-0.03em] select-none",
+        "inline-block leading-[0.95] select-none",
         animateOnHover && "transition-[background-size] duration-700 ease-out bg-[length:110%] hover:bg-[length:130%]",
         className
       )}

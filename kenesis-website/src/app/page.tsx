@@ -13,7 +13,7 @@ import { BorderBeam } from "@/components/magicui/border-beam";
 import BorderGlow from "@/components/BorderGlow";
 import {
   LazyScrollFrameSection as ScrollFrameSection,
-  LazyPinnedFeatureTabs as PinnedFeatureTabs,
+  LazyCapabilitiesGrid as CapabilitiesGrid,
   LazyWavePerformanceSection as WavePerformanceSection,
   LazyPartnerLogosSection as PartnerLogosSection,
   LazyCareersCTASection as CareersCTASection,
@@ -32,8 +32,8 @@ const HW_FRAMES = [
 const HW_PANELS = [
   { step: 1, label: 'Visual Intelligence', headline: 'See what cameras miss.', body: 'Our AI watches every frame from every camera simultaneously. It doesn\'t just detect objects. It understands context, behavior, and safety violations in real time.' },
   { step: 2, label: 'Always Learning', headline: 'Smarter every shift.', body: 'The system continuously adapts to your facility\'s patterns. Fewer false positives over time, more accurate alerts, zero manual tuning required.' },
-  { step: 3, label: 'Camera Integration', headline: 'Works with what you have.', body: 'Connects to your existing IP cameras, no new hardware needed. Supports up to 64 simultaneous feeds with sub-second analysis.' },
-  { step: 4, label: 'Data Sovereignty', headline: 'Your data stays yours.', body: 'Every frame is processed and stored on your premises. No cloud uploads, no third-party access, fully compliant with India\'s DPDP Act.' },
+  { step: 3, label: 'Works With Your Cameras', headline: 'Works with what you have.', body: 'Connects to your existing CCTV cameras, no new hardware needed. Supports up to 64 simultaneous feeds with sub-second analysis.' },
+  { step: 4, label: 'Your Data Stays On-Site', headline: 'Your data stays yours.', body: 'Every frame is processed and stored on your premises. No cloud uploads, no third-party access, fully compliant with data protection regulations.' },
 ];
 
 const FUNNEL_FRAMES = [
@@ -44,16 +44,16 @@ const FUNNEL_FRAMES = [
 ];
 
 const FUNNEL_PANELS = [
-  { step: 5, label: 'Detection Layer', headline: 'Continuous monitoring at scale.', body: 'Our detection engine processes every frame from every camera in real time. Millions of frames analyzed, only genuine anomalies flagged.' },
-  { step: 6, label: 'Risk Scoring', headline: 'Signal over noise.', body: 'Each detection receives a contextual risk score. Low-confidence alerts are suppressed automatically. High-priority events escalate instantly.' },
-  { step: 7, label: 'The Brain', headline: 'Context-aware reasoning.', body: "The system reasons about what it sees: what they're doing, where, and whether it violates protocol." },
-  { step: 8, label: 'The Result', headline: 'From noise to signal.', body: "The funnel collapses noise into signal. When your shift manager's phone rings, it means something." },
+  { step: 5, label: 'Spot the Problem', headline: 'Continuous monitoring at scale.', body: 'Our detection engine processes every frame from every camera in real time. Millions of frames analyzed, only real issues flagged.' },
+  { step: 6, label: 'Know What Matters', headline: 'Signal over noise.', body: 'Each alert is rated by how serious it is. False alarms are filtered out automatically. Real incidents reach your team instantly.' },
+  { step: 7, label: 'The Brain', headline: 'Understands what it sees.', body: "The system reasons about what it sees: what they're doing, where, and whether it violates protocol." },
+  { step: 8, label: 'The Result', headline: 'From noise to signal.', body: "The system filters out the noise. When your shift manager's phone rings, it means something." },
 ];
 
 const FEATURES = [
-  { num: '01', title: 'Safety Compliance', desc: 'Automated PPE monitoring across all zones: helmets, vests, gloves, and safety gear verified continuously.' },
+  { num: '01', title: 'Safety Compliance', desc: 'Automated safety gear checks across all zones: helmets, vests, gloves, and more, verified continuously.' },
   { num: '02', title: 'Zone Intelligence', desc: 'Define restricted areas visually. Track access patterns, detect unauthorized entries, and enforce zone-specific safety rules.' },
-  { num: '03', title: 'Process Verification', desc: 'Verify that standard operating procedures are followed correctly during critical operations, step by step.' },
+  { num: '03', title: 'Process Verification', desc: 'Verify that safety procedures are followed correctly during critical operations, step by step.' },
   { num: '04', title: 'Natural Language Query', desc: '\u201CShow me every incident in Bay 3 this week.\u201D Answered in seconds from your local archive.' },
 ];
 
@@ -69,11 +69,11 @@ export default function Home() {
         <ScrollFrameSection
           frameSets={[...HW_FRAMES, ...FUNNEL_FRAMES]}
           panels={[...HW_PANELS, ...FUNNEL_PANELS]}
-          sectionLabel="Kenesis Vision"
-          sectionTitle="Software + Intelligence"
+          sectionLabel="How It Works"
+          sectionTitle="See every threat. Act in seconds."
         />
 
-        <PinnedFeatureTabs />
+        <CapabilitiesGrid />
 
         {/* -- Flowing light performance section -- */}
         <ErrorBoundary>
@@ -84,9 +84,9 @@ export default function Home() {
         <section className="section-amber-glow relative z-[2] py-[80px] sm:py-[120px] md:py-[160px] px-[16px] sm:px-[24px] md:px-[48px] border-t border-amber-400/[0.08]" style={{ background: '#0d0c0a' }}>
           <div className="mx-auto max-w-[1100px]">
             <BlurFade delay={0} duration={0.5} blur="6px" offset={10} inView inViewMargin="-80px">
-              <p className="font-mono-accent text-[11px] uppercase tracking-[0.2em] text-amber-400/60 mb-[12px]">Capabilities</p>
+              <p className="font-mono-accent text-[11px] uppercase text-amber-400/60 mb-[12px]">Capabilities</p>
             </BlurFade>
-            <TextReveal variant="word-slide" as="h2" start="top 85%" duration={0.8} stagger={0.06} className="font-display text-[clamp(24px,5vw,56px)] font-semibold tracking-[-0.035em] text-white mb-[32px] sm:mb-[48px] md:mb-[64px]">
+            <TextReveal variant="word-slide" as="h2" start="top 85%" duration={0.8} stagger={0.06} className="font-display text-[clamp(24px,5vw,56px)] font-semibold text-white mb-[20px] sm:mb-[28px] md:mb-[36px]">
               Core capabilities
             </TextReveal>
 
@@ -147,7 +147,7 @@ export default function Home() {
                         </div>
                       </div>
 
-                      <h3 className="font-display text-[18px] sm:text-[22px] font-semibold text-white/90 mb-[12px] sm:mb-[16px] group-hover:text-white transition-colors tracking-[-0.02em]">{f.title}</h3>
+                      <h3 className="font-display text-[18px] sm:text-[22px] font-semibold text-white/90 mb-[12px] sm:mb-[16px] group-hover:text-white transition-colors">{f.title}</h3>
                       <p className="text-[15px] sm:text-[16px] leading-[1.7] text-white/55 group-hover:text-white/70 transition-colors duration-400">{f.desc}</p>
                     </div>
                   </BorderGlow>

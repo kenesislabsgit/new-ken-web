@@ -80,7 +80,7 @@ export default function CareersCTASection() {
       <div className="relative z-[1] flex h-screen w-full flex-col items-center justify-center px-[24px] md:px-[48px]">
         {/* Heading */}
         <div ref={headingRef} className="mb-[32px] text-center max-w-full">
-          <h2 className="font-display text-[clamp(28px,7vw,80px)] font-semibold leading-[1.05] tracking-[-0.03em]">
+          <h2 className="font-display text-[clamp(28px,7vw,80px)] font-semibold leading-[1.05]">
             {'Help us make factories safer.'.split(' ').map((word, i) => (
               <span key={i} className="cta-word inline-block mr-[0.3em] text-white" style={{ opacity: 0 }}>
                 {word}
@@ -94,7 +94,7 @@ export default function CareersCTASection() {
           href="https://tally.so/r/Pd0Kdb"
           target="_blank"
           rel="noopener noreferrer"
-          className="btn-kenesis mb-[48px] inline-flex font-mono-accent text-[14px] uppercase tracking-[0.1em]"
+          className="btn-kenesis mb-[48px] inline-flex font-mono-accent text-[14px] uppercase"
           style={{ opacity: 0 }}
         >
           Join the team
