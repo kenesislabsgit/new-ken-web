@@ -160,11 +160,11 @@ export default function ContactPage() {
 
         {/* ── Main grid ── */}
         <div className="mx-auto max-w-[1280px] px-4 md:px-8 lg:px-16 pb-[6rem] md:pb-[12rem]">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-[3rem] md:gap-[4rem] lg:gap-[10rem]">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-[3rem] md:gap-[4rem] lg:gap-[10rem] [&>*]:order-none">
 
             {/* Left - info */}
             <BlurFade delay={0.2} duration={0.8} blur="10px" offset={20}>
-              <div className="space-y-[3rem] sm:space-y-[5rem]">
+              <div className="order-2 lg:order-1 space-y-[3rem] sm:space-y-[5rem]">
                 {/* Divider */}
                 <div className="h-[1px] w-full bg-white/8" />
 
@@ -174,7 +174,16 @@ export default function ContactPage() {
                   </p>
                   <p className="font-display text-[16px] sm:text-[20px] font-medium text-white/80 leading-[1.5]">
                     Kenesis Labs<br />
-                    <span className="text-white/35 font-light text-[1.1rem] sm:text-[16px]">iTamilnadu Technology Hub (iTNT)<br />Anna University, Sir C V Raman Science Block, 3rd Floor<br />Kotturpuram, Chennai, Tamil Nadu 600025</span>
+                    <a
+                      href="https://maps.app.goo.gl/U6VuU7J7AE1FNXck8"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-white/35 font-light text-[1.1rem] sm:text-[16px] hover:text-amber-400 transition-colors duration-200"
+                    >
+                      iTamilnadu Technology Hub (iTNT)<br />
+                      Anna University, Sir C V Raman Science Block, 3rd Floor<br />
+                      Kotturpuram, Chennai, Tamil Nadu 600025
+                    </a>
                   </p>
                 </div>
 
@@ -217,7 +226,7 @@ export default function ContactPage() {
 
             {/* Right - form */}
             <BlurFade delay={0.35} duration={0.8} blur="10px" offset={20}>
-              {submitted ? (
+              <div className="order-1 lg:order-2">
                 <div className="flex flex-col items-start justify-center h-full min-h-[40rem] gap-6">
                   <div className="h-[1px] w-[6rem] bg-amber-400/60" />
                   <p className="font-display text-[36px] font-semibold text-white/90 leading-[1.1]">
@@ -321,6 +330,7 @@ export default function ContactPage() {
                   </div>
                 </form>
               )}
+              </div>
             </BlurFade>
           </div>
         </div>
