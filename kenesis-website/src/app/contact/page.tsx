@@ -160,11 +160,12 @@ export default function ContactPage() {
 
         {/* ── Main grid ── */}
         <div className="mx-auto max-w-[1280px] px-4 md:px-8 lg:px-16 pb-[6rem] md:pb-[12rem]">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-[3rem] md:gap-[4rem] lg:gap-[10rem] [&>*]:order-none">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-[3rem] md:gap-[4rem] lg:gap-[10rem]">
 
-            {/* Left - info */}
+            {/* Left - info: second on mobile, first on desktop */}
+            <div className="order-2 lg:order-1">
             <BlurFade delay={0.2} duration={0.8} blur="10px" offset={20}>
-              <div className="order-2 lg:order-1 space-y-[3rem] sm:space-y-[5rem]">
+              <div className="space-y-[3rem] sm:space-y-[5rem]">
                 {/* Divider */}
                 <div className="h-[1px] w-full bg-white/8" />
 
@@ -178,11 +179,12 @@ export default function ContactPage() {
                       href="https://maps.app.goo.gl/U6VuU7J7AE1FNXck8"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-white/35 font-light text-[1.1rem] sm:text-[16px] hover:text-amber-400 transition-colors duration-200"
+                      className="text-white/35 font-light text-[1.1rem] sm:text-[16px] hover:text-amber-400 transition-colors duration-200 underline underline-offset-4 decoration-white/15 hover:decoration-amber-400/50 inline-flex items-start gap-1"
                     >
-                      iTamilnadu Technology Hub (iTNT)<br />
+                      <span>iTamilnadu Technology Hub (iTNT)<br />
                       Anna University, Sir C V Raman Science Block, 3rd Floor<br />
-                      Kotturpuram, Chennai, Tamil Nadu 600025
+                      Kotturpuram, Chennai, Tamil Nadu 600025</span>
+                      <svg className="size-3 mt-1 shrink-0 opacity-50" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M2.5 9.5l7-7M4 2.5h5.5V8"/></svg>
                     </a>
                   </p>
                 </div>
@@ -223,10 +225,12 @@ export default function ContactPage() {
                 </div>
               </div>
             </BlurFade>
+            </div>
 
-            {/* Right - form */}
+            {/* Right - form: first on mobile, second on desktop */}
+            <div className="order-1 lg:order-2">
             <BlurFade delay={0.35} duration={0.8} blur="10px" offset={20}>
-              <div className="order-1 lg:order-2">
+              <div>
                 {submitted ? (
                   <div className="flex flex-col items-start justify-center h-full min-h-[40rem] gap-6">
                     <div className="h-[1px] w-[6rem] bg-amber-400/60" />
@@ -333,6 +337,7 @@ export default function ContactPage() {
                 )}
               </div>
             </BlurFade>
+            </div>
           </div>
         </div>
       </div>
