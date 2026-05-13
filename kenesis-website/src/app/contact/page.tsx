@@ -1,9 +1,14 @@
 ﻿'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
+import dynamic from 'next/dynamic';
 import PageShell from '@/components/PageShell';
 import { BlurFade } from '@/components/magicui/blur-fade';
-import { GlitchBackground } from '@/components/magicui/glitch-background';
+
+const GlitchBackground = dynamic(
+  () => import('@/components/magicui/glitch-background').then(m => ({ default: m.GlitchBackground })),
+  { ssr: false }
+);
 
 const facilitySizes = [
   'Small (< 50 cameras)',
@@ -82,12 +87,22 @@ export default function ContactPage() {
   const [sending, setSending] = useState(false);
   const [error, setError] = useState('');
   const [bgReady, setBgReady] = useState(false);
-  const bgRef = useRef<HTMLDivElement>(null);
 
-  // Defer GlitchBackground until after initial paint
+  // Defer GlitchBackground — use setTimeout fallback for Safari which lacks requestIdleCallback
   useEffect(() => {
-    const id = requestIdleCallback(() => setBgReady(true), { timeout: 2000 });
-    return () => cancelIdleCallback(id);
+    if (typeof window === 'undefined') return;
+    if ('requestIdleCallback' in window) {
+      const id = (window as Window & { requestIdleCallback: (cb: () => void, opts?: object) => number })
+        .requestIdleCallback(() => setBgReady(true), { timeout: 2000 });
+      return () => {
+        if ('cancelIdleCallback' in window) {
+          (window as Window & { cancelIdleCallback: (id: number) => void }).cancelIdleCallback(id);
+        }
+      };
+    } else {
+      const id = setTimeout(() => setBgReady(true), 300);
+      return () => clearTimeout(id);
+    }
   }, []);
 
   return (
