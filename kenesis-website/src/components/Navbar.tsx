@@ -216,7 +216,7 @@ export default function Navbar() {
       `}</style>
 
       <div
-        className="fixed top-[12px] left-0 right-0 z-[500] mx-auto w-[calc(100vw-24px)] max-w-[1152px] sm:top-[20px] sm:w-[calc(100vw-48px)]"
+        className="fixed top-[12px] left-0 right-0 z-[502] mx-auto w-[calc(100vw-24px)] max-w-[1152px] sm:top-[20px] sm:w-[calc(100vw-48px)]"
         style={{ animation: "navbar-slide-in 0.9s cubic-bezier(0.22,1,0.36,1) 0.2s both" }}
       >
         <div className="navbar-shell relative flex items-center justify-between rounded-[10px] sm:rounded-[12px] px-[14px] py-[10px] sm:px-[20px] sm:py-[12px]">
@@ -287,7 +287,7 @@ export default function Navbar() {
       {/* Mobile menu */}
       {open && (
         <div
-          className="mobile-glass-panel fixed inset-0 z-[499] flex flex-col pt-[80px] px-6 pb-6 md:hidden"
+          className="mobile-glass-panel fixed inset-0 z-[501] flex flex-col pt-[80px] px-6 pb-6 md:hidden"
         >
           <nav className="flex flex-col gap-1" aria-label="Mobile navigation">
             {mobileLinks.map((link) => (
