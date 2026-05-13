@@ -123,16 +123,10 @@ export default function HeroSection() {
 
           <a
             href="/contact"
-            className="inline-flex items-center gap-2 self-start
-                       min-h-[44px] px-5
-                       border border-white/15 rounded-full
-                       text-[11px] uppercase font-medium
-                       text-white/60 hover:text-white hover:border-amber-400/40
-                       transition-all duration-300 group"
+            className="btn-primary btn-primary-lg self-start"
             style={{ animation: 'hero-fade-up 0.5s cubic-bezier(0.22,1,0.36,1) 0.4s both' }}
           >
-            <span>Book a walkthrough</span>
-            <span className="text-white/30 group-hover:text-amber-400/70 group-hover:translate-x-0.5 transition-all duration-200">&rarr;</span>
+            Book a walkthrough
           </a>
         </div>
 
@@ -169,16 +163,10 @@ export default function HeroSection() {
 
           <a
             href="/contact"
-            className="mt-6 inline-flex items-center gap-2
-                       min-h-[44px] px-6
-                       border border-white/15 rounded-full
-                       text-[12px] uppercase font-medium
-                       text-white/60 hover:text-white hover:border-amber-400/40
-                       transition-all duration-300 group"
+            className="btn-primary btn-primary-lg mt-6"
             style={{ animation: 'hero-fade-up 0.5s cubic-bezier(0.22,1,0.36,1) 0.45s both' }}
           >
-            <span>Book a walkthrough</span>
-            <span className="text-white/30 group-hover:text-amber-400/70 group-hover:translate-x-0.5 transition-all duration-200">&rarr;</span>
+            Book a walkthrough
           </a>
         </div>
 

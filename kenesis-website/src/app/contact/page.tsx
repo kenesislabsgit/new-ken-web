@@ -318,15 +318,9 @@ export default function ContactPage() {
                     <button
                       type="submit"
                       disabled={sending}
-                      className="group relative overflow-hidden rounded-full px-[2.4rem] sm:px-[3.2rem] py-[1.2rem] sm:py-[1.4rem] font-mono-accent text-[1rem] sm:text-[14px] uppercase font-semibold text-[#0a0a0b] cursor-pointer transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto"
-                      style={{
-                        background: 'linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%)',
-                        boxShadow: '0 0 40px rgba(245,158,11,0.25), 0 4px 16px rgba(245,158,11,0.2)',
-                      }}
+                      className="btn-primary btn-primary-lg w-full sm:w-auto disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                     >
-                      <span className="relative z-[1]">{sending ? 'Sending...' : 'Request a demo'}</span>
-                      {/* shimmer */}
-                      <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-500 group-hover:translate-x-full" />
+                      {sending ? 'Sending...' : 'Request a demo'}
                     </button>
                     <p className="font-mono-accent text-[1rem] text-white/20">
                       No commitment required

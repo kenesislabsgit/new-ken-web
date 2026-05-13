@@ -135,67 +135,6 @@ export default function Navbar() {
             0 1px 3px rgba(0,0,0,0.2);
         }
 
-        /* ── Skeuomorphic CTA button ── */
-        .btn-skeu {
-          position: relative;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          padding: 8px 18px;
-          border-radius: 8px;
-          font-family: var(--font-mono-accent);
-          font-size: 11px;
-          font-weight: 700;
-          letter-spacing: 0.08em;
-          text-transform: uppercase;
-          cursor: pointer;
-          color: #1a1200;
-          background: linear-gradient(
-            180deg,
-            #fcd34d 0%,
-            #f59e0b 45%,
-            #d97706 100%
-          );
-          border: none;
-          box-shadow:
-            /* outer lift */
-            0 4px 12px rgba(217,119,6,0.45),
-            0 1px 3px rgba(0,0,0,0.25),
-            /* top bright specular */
-            inset 0 1px 0 rgba(255,255,255,0.45),
-            /* bottom dark edge */
-            inset 0 -2px 0 rgba(0,0,0,0.18),
-            /* inner side rims */
-            inset 1px 0 0 rgba(255,255,255,0.15),
-            inset -1px 0 0 rgba(255,255,255,0.15);
-          text-shadow: 0 1px 0 rgba(255,255,255,0.25);
-          transition: all 0.15s ease;
-          white-space: nowrap;
-        }
-        .btn-skeu:hover {
-          background: linear-gradient(
-            180deg,
-            #fde68a 0%,
-            #fbbf24 45%,
-            #f59e0b 100%
-          );
-          box-shadow:
-            0 6px 18px rgba(217,119,6,0.55),
-            0 2px 6px rgba(0,0,0,0.2),
-            inset 0 1px 0 rgba(255,255,255,0.5),
-            inset 0 -2px 0 rgba(0,0,0,0.15),
-            inset 1px 0 0 rgba(255,255,255,0.2),
-            inset -1px 0 0 rgba(255,255,255,0.2);
-          transform: translateY(-1px);
-        }
-        .btn-skeu:active {
-          transform: translateY(1px);
-          box-shadow:
-            0 2px 6px rgba(217,119,6,0.3),
-            inset 0 1px 3px rgba(0,0,0,0.2),
-            inset 0 1px 0 rgba(0,0,0,0.1);
-        }
-
         /* ── Mobile menu glass panel ── */
         .mobile-glass-panel {
           background:
@@ -252,7 +191,7 @@ export default function Navbar() {
           {/* Right side */}
           <div className="relative z-10 flex items-center gap-3">
             <Link href="/contact" className="hidden md:block">
-              <button className="btn-skeu">
+              <button className="btn-primary">
                 Book a walkthrough
               </button>
             </Link>
@@ -303,7 +242,7 @@ export default function Navbar() {
           </nav>
           <div className="mt-auto">
             <Link href="/contact" onClick={() => setOpen(false)} className="block w-full">
-              <button className="btn-skeu w-full py-4 text-[14px]">
+              <button className="btn-primary w-full py-4 text-[14px]">
                 Book a walkthrough
               </button>
             </Link>
