@@ -40,7 +40,7 @@ function FloatingField({
   );
 }
 
-function CustomSelect({ options, placeholder }: { options: string[]; placeholder: string }) {
+function CustomSelect({ options, placeholder, onChange }: { options: string[]; placeholder: string; onChange: (val: string) => void }) {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState('');
 
@@ -64,7 +64,7 @@ function CustomSelect({ options, placeholder }: { options: string[]; placeholder
         >
           {options.map(opt => (
             <button key={opt} type="button"
-              onClick={() => { setSelected(opt); setOpen(false); }}
+              onClick={() => { setSelected(opt); onChange(opt); setOpen(false); }}
               className="w-full text-left px-[20px] py-[14px] text-[14px] text-white/50 hover:text-white/80 hover:bg-white/[0.04] transition-all duration-200 cursor-pointer"
               style={{ borderBottom: '1px solid rgba(255,255,255,0.03)' }}
             >
@@ -87,6 +87,7 @@ export default function ContactPage() {
   const [sending, setSending] = useState(false);
   const [error, setError] = useState('');
   const [bgReady, setBgReady] = useState(false);
+  const [facilitySize, setFacilitySize] = useState('');
 
   // Defer GlitchBackground — use setTimeout fallback for Safari which lacks requestIdleCallback
   useEffect(() => {
@@ -253,7 +254,7 @@ export default function ContactPage() {
                       name: (form.elements.namedItem('name') as HTMLInputElement)?.value,
                       email: (form.elements.namedItem('email') as HTMLInputElement)?.value,
                       company: (form.elements.namedItem('company') as HTMLInputElement)?.value,
-                      facilitySize: (form.querySelector('[data-facility]') as HTMLElement)?.textContent || '',
+                      facilitySize: facilitySize,
                       message: (form.elements.namedItem('message') as HTMLTextAreaElement)?.value,
                     };
                     try {
@@ -301,6 +302,7 @@ export default function ContactPage() {
                     <CustomSelect
                       options={facilitySizes}
                       placeholder="Select facility size"
+                      onChange={setFacilitySize}
                     />
                   </FloatingField>
 
