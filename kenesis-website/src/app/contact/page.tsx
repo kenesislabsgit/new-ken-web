@@ -227,16 +227,17 @@ export default function ContactPage() {
             {/* Right - form */}
             <BlurFade delay={0.35} duration={0.8} blur="10px" offset={20}>
               <div className="order-1 lg:order-2">
-                <div className="flex flex-col items-start justify-center h-full min-h-[40rem] gap-6">
-                  <div className="h-[1px] w-[6rem] bg-amber-400/60" />
-                  <p className="font-display text-[36px] font-semibold text-white/90 leading-[1.1]">
-                    Message<br />received.
-                  </p>
-                  <p className="font-display text-[17px] text-white/35 font-light">
-                    We&apos;ll be in touch within 24 hours.
-                  </p>
-                </div>
-              ) : (
+                {submitted ? (
+                  <div className="flex flex-col items-start justify-center h-full min-h-[40rem] gap-6">
+                    <div className="h-[1px] w-[6rem] bg-amber-400/60" />
+                    <p className="font-display text-[36px] font-semibold text-white/90 leading-[1.1]">
+                      Message<br />received.
+                    </p>
+                    <p className="font-display text-[17px] text-white/35 font-light">
+                      We&apos;ll be in touch within 24 hours.
+                    </p>
+                  </div>
+                ) : (
                 <form
                   className="space-y-[32px]"
                   onSubmit={async (e) => {
@@ -329,7 +330,7 @@ export default function ContactPage() {
                     {error && <p className="font-mono-accent text-[1rem] text-red-400">{error}</p>}
                   </div>
                 </form>
-              )}
+                )}
               </div>
             </BlurFade>
           </div>
