@@ -20,7 +20,6 @@ const TEAM: TeamMember[] = [
   { name: 'Daniel Das', role: 'CTO', bio: 'AI and backend architecture. Builds the inference pipelines that run on-premise.', image: '/team/dan.webp' },
   { name: 'Dheekshith', role: 'COO', bio: 'Operations, AI, and backend. Keeps the machine running and the models shipping.', image: '/team/dheek.webp' },
   { name: 'Aswin JD', role: 'CAIO', bio: 'Chief AI Officer. The core AI brain: model training, optimization, and research.', image: '/team/aswin.webp' },
-  { name: 'Dinesh Kumar', role: 'CPO', bio: 'Visual creativity and marketing. Shapes how Kenesis looks, feels, and speaks.', image: '/team/dk.webp' },
   { name: 'Dr. Rakesh Kumar Mahendran', role: 'Mentor', bio: 'Industry advisor and academic guide. Brings deep domain expertise in industrial systems and helps shape the technical direction of the company.', image: '/team/rakesh.webp' },
 ];
 
@@ -104,13 +103,18 @@ export default function TeamSection() {
         </BlurFade>
         <BlurFade delay={0.1} duration={0.6} blur="8px" offset={14} inView inViewMargin="-80px">
           <h2 className="font-display text-[clamp(28px,4vw,48px)] font-semibold text-white/90 mb-[32px] md:mb-[64px]">
-            Six people. One obsession.
+            Five people. One obsession.
           </h2>
         </BlurFade>
 
-        <div ref={gridRef} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-[20px] sm:gap-[24px] md:gap-[32px]">
-          {TEAM.map((member) => (
-            <TeamCard key={member.name} member={member} />
+        <div ref={gridRef} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap-[20px] sm:gap-[24px] md:gap-[32px]">
+          {TEAM.map((member, i) => (
+            <div
+              key={member.name}
+              className={`md:col-span-2${i === 3 ? ' md:col-start-2' : ''}`}
+            >
+              <TeamCard member={member} />
+            </div>
           ))}
         </div>
       </div>
