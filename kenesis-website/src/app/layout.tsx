@@ -1,6 +1,7 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import { Geist, Instrument_Serif } from "next/font/google";
 import localFont from "next/font/local";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 // Body: Geist - clean, modern sans-serif
@@ -76,7 +77,10 @@ export default function RootLayout({
         {/* Tell the browser not to render-block on this CSS */}
         <meta name="color-scheme" content="dark" />
       </head>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
