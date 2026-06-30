@@ -466,3 +466,31 @@ body::after {
   z-index: 1;
 }
 
+/* ?? 404 chromatic aberration — pure CSS, no React state ????????????? */
+@keyframes glitch-red {
+  0%, 80%, 100% { transform: translate(-3px, 1px); opacity: 0.5; }
+  82%           { transform: translate(-8px, 3px);  opacity: 0.8; }
+  84%           { transform: translate(-2px, -2px); opacity: 0.5; }
+  86%           { transform: translate(-6px, 2px);  opacity: 0.7; }
+}
+@keyframes glitch-blue {
+  0%, 80%, 100% { transform: translate(3px, -1px); opacity: 0.5; }
+  82%           { transform: translate(8px, -3px);  opacity: 0.8; }
+  84%           { transform: translate(2px, 2px);   opacity: 0.5; }
+  86%           { transform: translate(6px, -2px);  opacity: 0.7; }
+}
+@keyframes glitch-flicker {
+  0%, 79%, 87%, 100% { opacity: 1; }
+  80%, 86%           { opacity: 0.7; }
+}
+
+.glitch-red {
+  animation: glitch-red 4s infinite;
+}
+.glitch-blue {
+  animation: glitch-blue 4s infinite;
+}
+.glitch-flicker {
+  animation: glitch-flicker 4s infinite;
+}
+
