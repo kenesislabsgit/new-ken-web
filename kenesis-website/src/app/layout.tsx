@@ -39,6 +39,9 @@ export const metadata: Metadata = {
   description:
     "Kenesis deploys on-premise AI video analytics for industrial facilities. Real-time PPE compliance, zone detection, and safety alerts. No cloud. No data leaving your network.",
   metadataBase: new URL("https://kenesis.ai"),
+  alternates: {
+    canonical: "https://kenesis.ai",
+  },
   openGraph: {
     type: "website",
     url: "https://kenesis.ai",
@@ -52,6 +55,14 @@ export const metadata: Metadata = {
     title: "Kenesis | On-Premise AI Video Analytics",
     description:
       "Real-time AI safety monitoring for industrial facilities. PPE compliance, zone detection, hazard alerts. Fully on-premise, no cloud dependency.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
   },
   icons: {
     icon: "/kenesis-icon.png",
