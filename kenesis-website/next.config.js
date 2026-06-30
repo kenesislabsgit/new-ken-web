@@ -11,21 +11,9 @@ const nextConfig = {
     // Match common device widths to reduce unnecessary resizing
     deviceSizes: [390, 640, 750, 1080, 1920],
   },
-  async redirects() {
-    return [
-      // Permanent www → non-www redirect so Google never sees duplicate content
-      {
-        source: '/:path*',
-        has: [{ type: 'host', value: 'www.kenesis.ai' }],
-        destination: 'https://kenesis.ai/:path*',
-        permanent: true,
-      },
-    ];
-  },
   async headers() {
     return [
       {
-        // Tell Google the canonical host on every response
         source: '/:path*',
         headers: [
           { key: 'X-Robots-Tag', value: 'index, follow' },
