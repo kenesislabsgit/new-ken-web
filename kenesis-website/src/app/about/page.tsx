@@ -1,4 +1,5 @@
 ﻿// Server Component — pre-rendered HTML shipped from server, no blocking JS on initial load
+import type { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import PageShell from '@/components/PageShell';
 import { BlurFade } from '@/components/magicui/blur-fade';
@@ -21,6 +22,17 @@ const NumberTicker = dynamic(
   () => import('@/components/magicui/number-ticker').then(m => ({ default: m.NumberTicker }))
 );
 const TeamSection = dynamic(() => import('@/components/TeamSection'));
+
+export const metadata: Metadata = {
+  title: 'About',
+  description: 'Kenesis is a Chennai-based AI company building on-premise video analytics for industrial safety. Real-time PPE compliance and hazard detection. No cloud. No new hardware.',
+  alternates: { canonical: 'https://kenesis.ai/about' },
+  openGraph: {
+    title: 'About Kenesis | On-Premise AI Safety Company',
+    description: 'Meet the team behind Kenesis — building on-premise AI video analytics for factories and industrial facilities across India.',
+    url: 'https://kenesis.ai/about',
+  },
+};
 
 export default function AboutPage() {
   return (

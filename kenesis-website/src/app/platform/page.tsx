@@ -1,4 +1,5 @@
 ﻿// Server Component — pre-rendered HTML shipped from server
+import type { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import { Shield, Zap, Camera, WifiOff, FileCheck, Rocket } from 'lucide-react';
 import PageShell from '@/components/PageShell';
@@ -15,6 +16,17 @@ const DitheredWaves = dynamic(
 );
 const DashboardPreview = dynamic(() => import('@/components/DashboardPreview'));
 const SequentialHighlight = dynamic(() => import('@/components/SequentialHighlight'));
+
+export const metadata: Metadata = {
+  title: 'The Platform',
+  description: 'See how Kenesis connects to your existing cameras, runs AI inference on-premise, and delivers real-time safety alerts in under a second. No cloud. No new hardware.',
+  alternates: { canonical: 'https://kenesis.ai/platform' },
+  openGraph: {
+    title: 'Kenesis Platform | On-Premise AI Safety Monitoring',
+    description: 'Connect existing CCTV cameras to Kenesis and get real-time PPE compliance, zone breach detection, and hazard alerts — all on your own hardware.',
+    url: 'https://kenesis.ai/platform',
+  },
+};
 
 export default function PlatformPage() {
   return (

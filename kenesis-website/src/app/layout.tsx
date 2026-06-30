@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Instrument_Serif } from "next/font/google";
 import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/next";
+import { JsonLd } from "@/components/JsonLd";
 import "./globals.css";
 
 // Body: Geist - clean, modern sans-serif
@@ -45,14 +46,12 @@ export const metadata: Metadata = {
     title: "Kenesis | On-Premise AI Video Analytics",
     description:
       "Real-time AI safety monitoring for industrial facilities. PPE compliance, zone detection, hazard alerts. Fully on-premise, no cloud dependency.",
-    images: [{ url: "/kenesis-og.png", width: 1200, height: 630, alt: "Kenesis AI Video Analytics" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Kenesis | On-Premise AI Video Analytics",
     description:
       "Real-time AI safety monitoring for industrial facilities. PPE compliance, zone detection, hazard alerts. Fully on-premise, no cloud dependency.",
-    images: ["/kenesis-og.png"],
   },
   icons: {
     icon: "/kenesis-icon.png",
@@ -78,6 +77,34 @@ export default function RootLayout({
         <meta name="color-scheme" content="dark" />
       </head>
       <body className="antialiased">
+        <JsonLd data={[
+          {
+            '@type': 'Organization',
+            name: 'Kenesis',
+            url: 'https://kenesis.ai',
+            logo: 'https://kenesis.ai/kenesis-icon.png',
+            foundingDate: '2024',
+            address: {
+              '@type': 'PostalAddress',
+              addressLocality: 'Chennai',
+              addressRegion: 'Tamil Nadu',
+              addressCountry: 'IN',
+            },
+            contactPoint: {
+              '@type': 'ContactPoint',
+              email: 'admin@kenesis.ai',
+              contactType: 'sales',
+              areaServed: 'IN',
+              availableLanguage: 'English',
+            },
+            sameAs: ['https://kenesis.ai'],
+          },
+          {
+            '@type': 'WebSite',
+            name: 'Kenesis',
+            url: 'https://kenesis.ai',
+          },
+        ]} />
         {children}
         <Analytics />
       </body>
