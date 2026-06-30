@@ -14,8 +14,11 @@ function ScanLines() {
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none absolute inset-0 z-[1]"
       style={{
+        position: 'absolute',
+        inset: 0,
+        zIndex: 1,
+        pointerEvents: 'none',
         backgroundImage:
           'repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.12) 3px, rgba(0,0,0,0.12) 4px)',
       }}
@@ -84,19 +87,30 @@ export default function NotFound() {
 
   return (
     <div
-      className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden"
-      style={{ background: '#0a0a0b' }}
+      style={{
+        position: 'relative',
+        minHeight: '100vh',
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        overflow: 'hidden',
+        background: '#0a0a0b',
+      }}
     >
-      {/* Glitch character rain — deferred so it never blocks paint */}
+      {/* Glitch character rain — wrapped in explicit absolute div so canvas never affects flow */}
       {bgReady && (
-        <GlitchBackground
-          glitchColors={['rgba(245,158,11,0.22)', 'rgba(251,191,36,0.13)', 'rgba(217,119,6,0.18)']}
-          glitchSpeed={80}
-          density={0.04}
-          outerVignette
-          smooth
-          className="absolute inset-0 z-0"
-        />
+        <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
+          <GlitchBackground
+            glitchColors={['rgba(245,158,11,0.22)', 'rgba(251,191,36,0.13)', 'rgba(217,119,6,0.18)']}
+            glitchSpeed={80}
+            density={0.04}
+            outerVignette
+            smooth
+            style={{ width: '100%', height: '100%' }}
+          />
+        </div>
       )}
 
       <ScanLines />
@@ -104,19 +118,21 @@ export default function NotFound() {
       {/* Amber radial glow */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute z-[1]"
         style={{
+          position: 'absolute',
           top: '50%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
           width: '700px',
           height: '500px',
           background: 'radial-gradient(ellipse, rgba(245,158,11,0.09) 0%, transparent 70%)',
+          pointerEvents: 'none',
+          zIndex: 1,
         }}
       />
 
       {/* All content rendered immediately — no state gate */}
-      <div className="relative z-[2] flex flex-col items-center text-center px-6">
+      <div style={{ position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', padding: '0 24px' }}>
 
         <p
           className="font-mono-accent text-[11px] uppercase text-amber-400/50 mb-8"
