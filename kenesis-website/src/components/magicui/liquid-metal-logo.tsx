@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
-import { prefersReducedMotion } from "@/lib/animations";
+import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
 
 interface LiquidMetalLogoProps {
   src: string;
@@ -42,7 +42,7 @@ export function LiquidMetalLogo({
   const containerRef = useRef<HTMLDivElement>(null);
   const [LiquidMetal, setLiquidMetal] = useState<React.ComponentType<Record<string, unknown>> | null>(null);
   const [shaderRendered, setShaderRendered] = useState(false);
-  const reduced = prefersReducedMotion();
+  const reduced = usePrefersReducedMotion();
 
   useEffect(() => {
     if (reduced) return;

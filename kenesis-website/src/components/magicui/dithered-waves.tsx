@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useCallback } from "react";
 import { cn } from "@/lib/utils";
-import { prefersReducedMotion } from "@/lib/animations";
+import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
 
 // ── Simplex noise (compact implementation) ──
 const F2 = 0.5 * (Math.sqrt(3) - 1);
@@ -91,6 +91,7 @@ export function DitheredWaves({
   const noiseRef = useRef<{ perm: Uint8Array; permMod8: Uint8Array } | null>(null);
   // visibleRef must be declared before draw so the callback closes over the same ref
   const visibleRef = useRef(false);
+  const reducedMotion = usePrefersReducedMotion();
 
   // Initialize noise with random seed on mount
   if (!noiseRef.current) {
@@ -229,7 +230,7 @@ export function DitheredWaves({
   }, [charset, color, bgColor, effectiveCellSize, speed, effectiveLayers, amplitude, frequency, enableMouse, mouseRadius, frameInterval]);
 
   useEffect(() => {
-    if (prefersReducedMotion()) return;
+    if (reducedMotion) return;
 
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -274,9 +275,9 @@ export function DitheredWaves({
       canvas.removeEventListener("touchend", handleTouchEnd);
       io.disconnect();
     };
-  }, [draw, enableMouse]);
+  }, [draw, enableMouse, reducedMotion]);
 
-  if (prefersReducedMotion()) {
+  if (reducedMotion) {
     return <div className={cn("w-full h-full", className)} />;
   }
 

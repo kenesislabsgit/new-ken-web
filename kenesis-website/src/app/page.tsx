@@ -8,7 +8,6 @@ import Navbar from "@/components/Navbar";
 import { ProgressiveBlur } from "@/components/magicui/progressive-blur";
 import HeroSection from "@/components/HeroSection";
 import { BlurFade } from "@/components/magicui/blur-fade";
-import { JsonLd } from "@/components/JsonLd";
 import { ScrollReveal } from "@/components/magicui/scroll-reveal";
 import { TextReveal } from "@/components/magicui/text-reveal";
 import { BorderBeam } from "@/components/magicui/border-beam";
@@ -73,24 +72,6 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <LenisProvider>
-      <JsonLd data={{
-        '@type': 'SoftwareApplication',
-        name: 'Kenesis AI Video Analytics',
-        applicationCategory: 'BusinessApplication',
-        operatingSystem: 'On-Premise Linux, Windows Server',
-        description: 'Real-time on-premise AI video analytics for industrial safety. Detects PPE violations, zone breaches and hazards across existing CCTV cameras in under one second.',
-        offers: {
-          '@type': 'Offer',
-          price: '0',
-          priceCurrency: 'USD',
-          description: 'Contact for pricing',
-        },
-        provider: {
-          '@type': 'Organization',
-          name: 'Kenesis',
-          url: 'https://kenesis.ai',
-        },
-      }} />
       <main className="relative min-h-screen w-full">
         <Navbar />
         <ProgressiveBlur position="top" height="150px" className="fixed top-0 left-0 right-0 z-[100]" />

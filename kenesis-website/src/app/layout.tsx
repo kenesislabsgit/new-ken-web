@@ -86,8 +86,6 @@ export default function RootLayout({
         <link rel="preload" href="/fonts/MBFNeoWave-Regular.otf" as="font" type="font/otf" crossOrigin="anonymous" />
         {/* Tell the browser not to render-block on this CSS */}
         <meta name="color-scheme" content="dark" />
-      </head>
-      <body className="antialiased">
         <JsonLd data={[
           {
             '@type': 'Organization',
@@ -115,7 +113,27 @@ export default function RootLayout({
             name: 'Kenesis',
             url: 'https://kenesis.ai',
           },
+          {
+            '@type': 'SoftwareApplication',
+            name: 'Kenesis AI Video Analytics',
+            applicationCategory: 'BusinessApplication',
+            operatingSystem: 'On-Premise Linux, Windows Server',
+            description: 'Real-time on-premise AI video analytics for industrial safety. Detects PPE violations, zone breaches and hazards across existing CCTV cameras in under one second.',
+            offers: {
+              '@type': 'Offer',
+              price: '0',
+              priceCurrency: 'USD',
+              description: 'Contact for pricing',
+            },
+            provider: {
+              '@type': 'Organization',
+              name: 'Kenesis',
+              url: 'https://kenesis.ai',
+            },
+          },
         ]} />
+      </head>
+      <body className="antialiased" suppressHydrationWarning>
         {children}
         <Analytics />
       </body>

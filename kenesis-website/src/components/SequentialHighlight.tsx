@@ -3,7 +3,7 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { prefersReducedMotion } from '@/lib/animations';
+import { usePrefersReducedMotion } from '@/lib/usePrefersReducedMotion';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -18,10 +18,11 @@ export default function SequentialHighlight({ heading, paragraphs }: Props) {
   const counterRef = useRef<HTMLSpanElement>(null);
   const paraRefs = useRef<(HTMLParagraphElement | null)[]>([]);
   const progressRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const reducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
     const section = sectionRef.current;
-    if (!section || prefersReducedMotion()) return;
+    if (!section || reducedMotion) return;
 
     const ctx = gsap.context(() => {
       const n = paragraphs.length;
@@ -110,9 +111,9 @@ export default function SequentialHighlight({ heading, paragraphs }: Props) {
     }, section);
 
     return () => ctx.revert();
-  }, [paragraphs]);
+  }, [paragraphs, reducedMotion]);
 
-  if (prefersReducedMotion()) {
+  if (reducedMotion) {
     return (
       <section className="relative z-[1] mx-auto max-w-[1152px] px-4 sm:px-6 py-16 md:py-32 md:px-12 border-t border-white/[0.06]">
         <h2 className="font-display text-[clamp(24px,4vw,36px)] font-semibold text-white/90 mb-16">{heading}</h2>
