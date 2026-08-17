@@ -2,6 +2,7 @@
 import nodemailer from 'nodemailer';
 
 export const runtime = 'nodejs';
+export const maxDuration = 20;
 
 interface ContactPayload {
   name?: string;
@@ -13,6 +14,14 @@ interface ContactPayload {
 
 function isValidEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function escapeHtml(value: string) {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
 }
 
 export async function POST(req: NextRequest) {
@@ -46,11 +55,20 @@ export async function POST(req: NextRequest) {
   }
 
   const transporter = nodemailer.createTransport({
-    host: 'smtppro.zoho.in',
+    host: 'smtp.zoho.in',
     port: 465,
     secure: true,
     auth: { user: ZOHO_USER, pass: ZOHO_PASS },
+    connectionTimeout: 10_000,
+    greetingTimeout: 10_000,
+    socketTimeout: 15_000,
   });
+
+  const safeName = escapeHtml(name.trim());
+  const safeEmail = escapeHtml(email.trim());
+  const safeCompany = escapeHtml(company?.trim() || 'Not provided');
+  const safeFacility = escapeHtml(facilitySize?.trim() || 'Not provided');
+  const safeMessage = escapeHtml(message?.trim() || 'Not provided');
 
   try {
     await transporter.sendMail({
@@ -62,11 +80,11 @@ export async function POST(req: NextRequest) {
         <div style="font-family:sans-serif;max-width:600px;">
           <h2 style="color:#f59e0b;">New contact form submission</h2>
           <table style="width:100%;border-collapse:collapse;">
-            <tr><td style="padding:8px 0;color:#888;width:140px;">Name</td><td style="padding:8px 0;"><b>${name}</b></td></tr>
-            <tr><td style="padding:8px 0;color:#888;">Email</td><td style="padding:8px 0;"><a href="mailto:${email}">${email}</a></td></tr>
-            <tr><td style="padding:8px 0;color:#888;">Company</td><td style="padding:8px 0;">${company ?? '—'}</td></tr>
-            <tr><td style="padding:8px 0;color:#888;">Facility size</td><td style="padding:8px 0;">${facilitySize ?? '—'}</td></tr>
-            <tr><td style="padding:8px 0;color:#888;vertical-align:top;">Message</td><td style="padding:8px 0;">${message ?? '—'}</td></tr>
+            <tr><td style="padding:8px 0;color:#888;width:140px;">Name</td><td style="padding:8px 0;"><b>${safeName}</b></td></tr>
+            <tr><td style="padding:8px 0;color:#888;">Email</td><td style="padding:8px 0;"><a href="mailto:${safeEmail}">${safeEmail}</a></td></tr>
+            <tr><td style="padding:8px 0;color:#888;">Company</td><td style="padding:8px 0;">${safeCompany}</td></tr>
+            <tr><td style="padding:8px 0;color:#888;">Facility size</td><td style="padding:8px 0;">${safeFacility}</td></tr>
+            <tr><td style="padding:8px 0;color:#888;vertical-align:top;">Message</td><td style="padding:8px 0;">${safeMessage}</td></tr>
           </table>
         </div>
       `,
