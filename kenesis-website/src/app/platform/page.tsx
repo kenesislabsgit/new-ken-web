@@ -1,5 +1,6 @@
 ﻿// Server Component — pre-rendered HTML shipped from server
 import type { Metadata } from 'next';
+import { OG_IMAGE } from '@/lib/seo';
 import dynamic from 'next/dynamic';
 import { Shield, Zap, Camera, WifiOff, FileCheck, Rocket } from 'lucide-react';
 import PageShell from '@/components/PageShell';
@@ -25,6 +26,13 @@ export const metadata: Metadata = {
     title: 'Kenesis Platform | On-Premise AI Safety Monitoring',
     description: 'Connect existing CCTV cameras to Kenesis and get real-time PPE compliance, zone breach detection, and hazard alerts — all on your own hardware.',
     url: 'https://kenesis.ai/platform',
+    images: [OG_IMAGE],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Kenesis Platform | On-Premise AI Safety Monitoring',
+    description: 'Connect existing CCTV cameras to Kenesis and get real-time PPE compliance, zone breach detection, and hazard alerts — all on your own hardware.',
+    images: [OG_IMAGE.url],
   },
 };
 

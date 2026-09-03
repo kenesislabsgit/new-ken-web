@@ -3,6 +3,7 @@ import { Geist, Instrument_Serif } from "next/font/google";
 import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/next";
 import { JsonLd } from "@/components/JsonLd";
+import { OG_IMAGE } from "@/lib/seo";
 import "./globals.css";
 
 // Body: Geist - clean, modern sans-serif
@@ -33,11 +34,11 @@ const neoWave = localFont({
 
 export const metadata: Metadata = {
   title: {
-    default: "Kenesis | On-Premise AI Video Analytics",
+    default: "Kenesis | On-Premise Industrial Vision",
     template: "%s | Kenesis",
   },
   description:
-    "Kenesis deploys on-premise AI video analytics for industrial facilities. Real-time PPE compliance, zone detection, and safety alerts. No cloud. No data leaving your network.",
+    "Turn existing factory cameras into a real-time industrial safety system.",
   metadataBase: new URL("https://kenesis.ai"),
   alternates: {
     canonical: "https://kenesis.ai",
@@ -46,15 +47,17 @@ export const metadata: Metadata = {
     type: "website",
     url: "https://kenesis.ai",
     siteName: "Kenesis",
-    title: "Kenesis | On-Premise AI Video Analytics",
+    title: "Kenesis | On-Premise Industrial Vision",
     description:
-      "Real-time AI safety monitoring for industrial facilities. PPE compliance, zone detection, hazard alerts. Fully on-premise, no cloud dependency.",
+      "Turn existing factory cameras into a real-time industrial safety system.",
+    images: [OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Kenesis | On-Premise AI Video Analytics",
+    title: "Kenesis | On-Premise Industrial Vision",
     description:
-      "Real-time AI safety monitoring for industrial facilities. PPE compliance, zone detection, hazard alerts. Fully on-premise, no cloud dependency.",
+      "Turn existing factory cameras into a real-time industrial safety system.",
+    images: [OG_IMAGE.url],
   },
   robots: {
     index: true,

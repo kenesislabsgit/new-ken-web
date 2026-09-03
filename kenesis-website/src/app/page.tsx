@@ -2,6 +2,7 @@
 // All child components that need client APIs have their own "use client" boundaries.
 // This means Next.js will pre-render this page's HTML on the server and send it immediately.
 import type { Metadata } from "next";
+import { OG_IMAGE } from "@/lib/seo";
 import LenisProvider from "@/components/LenisProvider";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import Navbar from "@/components/Navbar";
@@ -63,9 +64,16 @@ export const metadata: Metadata = {
   description: 'Turn your existing CCTV into a real-time safety system. Kenesis detects PPE violations, zone breaches and hazards on-premise in under a second. No cloud required.',
   alternates: { canonical: 'https://kenesis.ai' },
   openGraph: {
-    title: 'Kenesis | AI Video Analytics for Industrial Safety',
-    description: 'Turn your existing CCTV into a real-time safety system. On-premise PPE detection, zone alerts and hazard monitoring in under a second.',
+    title: 'Kenesis | On-Premise Industrial Vision',
+    description: 'Turn existing factory cameras into a real-time industrial safety system.',
     url: 'https://kenesis.ai',
+    images: [OG_IMAGE],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Kenesis | On-Premise Industrial Vision',
+    description: 'Turn existing factory cameras into a real-time industrial safety system.',
+    images: [OG_IMAGE.url],
   },
 };
 

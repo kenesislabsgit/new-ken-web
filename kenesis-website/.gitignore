@@ -2,3 +2,5 @@
 .env*.local
 
 .env.local
+scripts/.font-cache
+scripts/og-preview-500.png

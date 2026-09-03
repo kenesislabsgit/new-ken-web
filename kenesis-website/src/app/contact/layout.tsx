@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { OG_IMAGE } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'Contact',
@@ -8,6 +9,13 @@ export const metadata: Metadata = {
     title: 'Contact Kenesis | Book a Walkthrough',
     description: 'Schedule a live demo. We connect to your existing cameras and show you what Kenesis sees — on-premise, in real time.',
     url: 'https://kenesis.ai/contact',
+    images: [OG_IMAGE],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Contact Kenesis | Book a Walkthrough',
+    description: 'Schedule a live demo. We connect to your existing cameras and show you what Kenesis sees — on-premise, in real time.',
+    images: [OG_IMAGE.url],
   },
 };
 

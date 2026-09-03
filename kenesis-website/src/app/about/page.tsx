@@ -1,5 +1,6 @@
 ﻿// Server Component — pre-rendered HTML shipped from server, no blocking JS on initial load
 import type { Metadata } from 'next';
+import { OG_IMAGE } from '@/lib/seo';
 import dynamic from 'next/dynamic';
 import PageShell from '@/components/PageShell';
 import { BlurFade } from '@/components/magicui/blur-fade';
@@ -31,6 +32,13 @@ export const metadata: Metadata = {
     title: 'About Kenesis | On-Premise AI Safety Company',
     description: 'Meet the team behind Kenesis — building on-premise AI video analytics for factories and industrial facilities across India.',
     url: 'https://kenesis.ai/about',
+    images: [OG_IMAGE],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'About Kenesis | On-Premise AI Safety Company',
+    description: 'Meet the team behind Kenesis — building on-premise AI video analytics for factories and industrial facilities across India.',
+    images: [OG_IMAGE.url],
   },
 };
 
